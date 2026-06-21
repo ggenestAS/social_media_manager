@@ -7,7 +7,8 @@
     "html:to-image": "node tools/html-to-image.mjs",
     "html:to-mp4": "node tools/html-to-mp4.mjs",
     "social:status": "postiz auth:status",
-    "social:channels": "postiz integrations:list"
+    "social:channels": "postiz integrations:list",
+    "social:resolve": "node scripts/resolve-channels.mjs"
   },
   "devDependencies": {
     "playwright": "^1.52.0",

@@ -1,0 +1,8 @@
+{
+  "_comment": "Semantic channel map for Postiz. Keys are aliases used in scripts; values identify a channel by stable provider + handle (NOT the opaque Postiz integration id, which rotates when a channel is reconnected). Resolve live ids with: npm run social:resolve. 'handle' is matched against the integration's profile, falling back to its name when profile is empty.",
+  "channels": {
+    "ig": { "provider": "instagram", "handle": "albert.prep" },
+    "fb": { "provider": "facebook", "handle": "Albert Prep" },
+    "tiktok": { "provider": "tiktok", "handle": "albertprep" }
+  }
+}
