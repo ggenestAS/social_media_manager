@@ -1,21 +1,20 @@
 """
-Package the albert-prep-social-post skill as a .skill file.
-Run from the 'Albert Prep' folder:
+Package the organic-post skill as a .skill file.
+Run from the repo root:
 
-    cd "Albert Prep"
-    python albert-prep-social-post/package_as_skill.py
+    python .agents/skills/organic-post/package_as_skill.py
 
-This creates albert-prep-social-post.skill in the Albert Prep folder.
+This creates organic-post.skill in the repo root.
 Drag it into Cowork > Settings > Skills to install.
 """
 import zipfile
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-skill_dir = script_dir  # the skill folder IS this script's parent
-output_path = os.path.join(os.path.dirname(script_dir), "albert-prep-social-post.skill")
+skill_dir = script_dir
+repo_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+output_path = os.path.join(repo_root, "organic-post.skill")
 
-# Files to include in the skill package
 include = ["SKILL.md", "references/design-system.md",
            "references/pillar-1-calcul.md", "references/pillar-2-astuce.md",
            "references/pillar-3-serie.md", "references/pillar-4-reel.md"]

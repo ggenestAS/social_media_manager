@@ -1,4 +1,4 @@
-Reel HTML sources live in [`../../meta-ads-for-prep-service/project/`](../../meta-ads-for-prep-service/project/).
+Reel HTML sources live in [`../../design-export/project/`](../../design-export/project/).
 
 Use the standalone exports for capture (`npm run capture:reels`):
 

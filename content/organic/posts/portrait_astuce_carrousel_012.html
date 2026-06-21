@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Astuce #012</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.08; }
+    .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy em { color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 20px;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 24px;
+    }
+    .slide-counter {
+      font-family: 'Spline Sans Mono', monospace; font-size: 20px; font-weight: 500;
+      opacity: 0.4; letter-spacing: 0.1em;
+    }
+    .post-number, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 22px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.4;
+    }
+    .brand-tag { font-size: 20px; text-transform: uppercase; opacity: 0.38; }
+    .correction { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; }
+    .correction .wrong {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 56px;
+      text-decoration: line-through; text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 6px; opacity: 0.5;
+    }
+    .correction .right {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 72px; color: var(--red-pen);
+    }
+    .correction .check { font-size: 72px; color: var(--good); }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 26px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 20px 48px;
+      box-shadow: 8px 8px 0 var(--sky);
+    }
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; padding: 56px 72px 64px 208px; height: 100%; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .hero-calc {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 160px; line-height: 1;
+    }
+    .step {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 36px;
+      line-height: 1.6; margin-bottom: 16px;
+    }
+    .step .hl { color: var(--sky); }
+    .separator { width: 100%; max-width: 560px; height: 2px; background: currentColor; opacity: 0.14; margin: 48px 0; }
+    .hint { font-size: 28px; opacity: 0.55; margin-top: auto; }
+    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 28px; opacity: 0.7; margin-top: 32px; }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 — Cover -->
+  <div data-screen-label="Astuce 01/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="top-bar">
+        <span class="post-number">#012</span>
+        <span class="slide-counter">01/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div style="margin-top:48px;margin-bottom:40px;"><span class="pill">Astuce</span></div>
+      <div class="display" style="font-size:72px;color:var(--navy);margin-bottom:48px;">
+        Comment<br>multiplier<br><em>par</em> 11 ?
+      </div>
+      <div class="separator"></div>
+      <p style="font-size:32px;opacity:0.65;">En moins de 3 secondes</p>
+      <p class="hint">① ② ③ Passe au slide →</p>
+    </div>
+  </div>
+
+  <!-- Slide 2 — Méthode -->
+  <div data-screen-label="Astuce 02/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="top-bar">
+        <span class="post-number">#012</span>
+        <span class="slide-counter">02/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="display on-navy" style="font-size:56px;margin-top:48px;margin-bottom:56px;">La <em>méthode</em></div>
+      <p style="font-size:32px;opacity:0.7;margin-bottom:40px;">Pour 36 × 11 :</p>
+      <p class="step">❶ 3 + 6 = <span class="hl">9</span></p>
+      <p class="step">❷ Insère : 3<span class="hl">[9]</span>6</p>
+      <p class="step">❸ Résultat : 396 <span style="color:var(--good)">✓</span></p>
+      <p class="hint">→ Slide suivant : exemple</p>
+    </div>
+  </div>
+
+  <!-- Slide 3 — Exemple -->
+  <div data-screen-label="Astuce 03/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="top-bar">
+        <span class="post-number">#012</span>
+        <span class="slide-counter">03/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <p style="font-size:36px;margin-top:48px;margin-bottom:40px;opacity:0.7;">Essaie avec…</p>
+      <div class="hero-calc">36 × 11</div>
+      <div class="separator"></div>
+      <div class="correction">
+        <span class="wrong">363</span>
+        <span>→</span>
+        <span class="right">396</span>
+        <span class="check">✓</span>
+      </div>
+      <p class="recap">3+6=9 → 3[9]6 = 396</p>
+    </div>
+  </div>
+
+  <!-- Slide 4 — CTA -->
+  <div data-screen-label="Astuce 04/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="top-bar">
+        <span class="post-number">#012</span>
+        <span class="slide-counter">04/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="display on-navy" style="font-size:72px;margin-top:80px;margin-bottom:64px;">
+        Enregistre<br>pour ne<br><em>pas oublier</em>
+      </div>
+      <div style="margin-bottom:48px;"><span class="btn-ink">Suivre @albertschool</span></div>
+      <p style="font-size:28px;opacity:0.65;">💡 Prochaine astuce : les carrés en 5</p>
+    </div>
+  </div>
+
+</body>
+</html>

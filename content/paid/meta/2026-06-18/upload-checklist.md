@@ -9,7 +9,7 @@ Pack créas Meta Ads (Facebook / Instagram)
 |---|---|
 | Static ads (8 PNG) | `static/` |
 | Reel cover images (4 PNG) | `reels/covers/` |
-| Reel HTML sources | `meta-ads-for-prep-service/project/` |
+| Reel HTML sources | `design-export/project/` |
 | Reel MP4s (generated) | `output/` |
 
 ## Static ads — Campagne 1 · Entrée en Première
@@ -71,7 +71,7 @@ Full copy variants: [`brief.md`](brief.md).
 Meta serves Reels as **video** (MP4). Generate from repo root:
 
 ```bash
-# Sources: meta-ads-for-prep-service/project/
+# Sources: design-export/project/
 #   Albert Prep - Reels Variantes (standalone).html
 npm run capture:reels
 ```

@@ -20,7 +20,7 @@ Two entry points, same product, different anxiety:
 
 - **Problem:** Spé Maths moves fast; weak automatisms become visible early.
 - **Promise:** Free diagnostic + 5 min/day to consolidate reflexes before rentrée.
-- **Proof cues:** Diagnostic, daily habit, structured themes (see `context/app-product.md`).
+- **Proof cues:** Diagnostic, daily habit, structured themes (see `context/brand/app-product.md`).
 
 ### Terminale — "Année du Bac"
 
@@ -50,10 +50,10 @@ Text is entered in Meta Ads Manager (not baked into visuals) so it can be A/B te
 |---|---|---|
 | Static ads | 8 | `static/` |
 | Reel covers | 4 | `reels/covers/` |
-| Reel HTML sources | 2 standalone + 3 `.dc.html` | `meta-ads-for-prep-service/project/` |
+| Reel HTML sources | 2 standalone + 3 `.dc.html` | `design-export/project/` |
 | Animated Reels | 2 variants | `output/` (generated) |
 
-See [`meta-upload.md`](meta-upload.md) for filenames, dimensions, and placement.
+See [`upload-checklist.md`](upload-checklist.md) for filenames, dimensions, and placement.
 
 ## Reel variants
 

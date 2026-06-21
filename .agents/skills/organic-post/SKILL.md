@@ -47,7 +47,7 @@ Also read `references/design-system.md` for the shared CSS (colors, fonts, grid,
 
 ### 4. Save the file
 
-Save the output HTML to the user's Albert Prep folder (or outputs folder if no workspace is mounted).
+Save the output HTML to `content/organic/posts/` in this repo.
 
 **Naming convention:** `{format}_{pillar}_{type}.html`
 

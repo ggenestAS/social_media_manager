@@ -2,7 +2,7 @@
 
 Claude Design handoff bundle: HTML/CSS/JS prototypes for Albert Prep Meta creatives.
 
-**In this repo:** source material for reel capture and static design reference — not a coding implementation target. Campaign ops docs live one level up ([`brief.md`](../brief.md), [`meta-upload.md`](../meta-upload.md)).
+**In this repo:** source material for reel capture and static design reference — not a coding implementation target. Campaign ops docs live one level up ([`brief.md`](../brief.md), [`upload-checklist.md`](../upload-checklist.md)).
 
 ## Reel capture (automated)
 
@@ -21,7 +21,7 @@ Reads `project/Albert Prep - Reels Variantes (standalone).html` by default. Outp
 | `project/*.html` | Standalone reel animations + `.dc.html` design sources |
 | `project/ds/` | Design system (CSS tokens, fonts) |
 | `project/assets/` | Logos, marks |
-| `project/export/` | Original static PNG export notes (superseded by [`../meta-upload.md`](../meta-upload.md)) |
+| `project/export/` | Original static PNG export notes (superseded by [`../upload-checklist.md`](../upload-checklist.md)) |
 
 ## Design files (reference)
 

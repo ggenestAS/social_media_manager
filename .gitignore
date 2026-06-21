@@ -1,7 +1,11 @@
 node_modules/
+.env
+.env.local
 *:Zone.Identifier
-campaigns/*/output/*.mp4
-campaigns/*/output/*.webm
-campaigns/*/output/*.png
-campaigns/*/output/.frames-*/
-!campaigns/*/output/.gitkeep
+*Zone.Identifier
+**/output/*.mp4
+**/output/*.webm
+**/output/*.png
+**/output/.frames-*/
+!**/output/.gitkeep
+content/organic/posts/export/

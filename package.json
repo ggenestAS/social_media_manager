@@ -1,9 +1,11 @@
 {
-  "name": "albert-prep-marketing",
+  "name": "social-media-manager",
   "private": true,
   "type": "module",
   "scripts": {
-    "capture:reels": "node campaigns/2026-06-18-meta/reels/scripts/capture-reels.mjs",
+    "capture:reels": "node content/paid/meta/2026-06-18/reels/scripts/capture-reels.mjs",
+    "html:to-image": "node tools/html-to-image.mjs",
+    "html:to-mp4": "node tools/html-to-mp4.mjs",
     "social:status": "postiz auth:status",
     "social:channels": "postiz integrations:list"
   },

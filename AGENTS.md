@@ -7,12 +7,13 @@ executable "application" is a Playwright + ffmpeg script that renders HTML reel
 animations into Meta-ready 9:16 MP4s.
 
 ### Services / commands
-- **Build/run the reels**: `npm run capture:reels` (the only npm script). It
-  loads the standalone HTML in
-  `campaigns/2026-06-18-meta/meta-ads-for-prep-service/project/`, captures
-  frames headlessly, and encodes MP4s into
-  `campaigns/2026-06-18-meta/output/` (1080×1920, H.264). Outputs and the
-  `.frames-*/` scratch dirs are gitignored.
+- **Build/run the reels**: `npm run capture:reels`. It loads the standalone HTML
+  in `content/paid/meta/2026-06-18/design-export/project/`, captures frames
+  headlessly, and encodes MP4s into `content/paid/meta/2026-06-18/output/`
+  (1080×1920, H.264). Outputs and the `.frames-*/` scratch dirs are gitignored.
+- **Export HTML posts**: `npm run html:to-image` / `npm run html:to-mp4` (see
+  `tools/README.md`).
+- **Social channels**: `npm run social:status` / `npm run social:channels`.
 - **Lint / automated tests**: none exist in this repo.
 
 ### Non-obvious notes
