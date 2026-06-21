@@ -20,145 +20,156 @@
         repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
     }
     .bg-navy { background-color: var(--navy); color: var(--paper); }
-    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.08; }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--paper); }
     .display em { font-weight: 300; font-style: italic; color: var(--sky); }
     .pill {
       display: inline-block; background: var(--sky); color: var(--navy);
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 20px;
-      letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 24px;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
     }
     .slide-counter, .brand-tag {
-      font-family: 'Spline Sans Mono', monospace; font-size: 20px; font-weight: 500;
-      letter-spacing: 0.1em; opacity: 0.4;
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 500;
+      letter-spacing: 0.1em; opacity: 0.42;
     }
-    .brand-tag { font-weight: 600; text-transform: uppercase; opacity: 0.38; }
-    .btn-ink {
-      display: inline-block; background: var(--paper); color: var(--navy);
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 26px;
-      letter-spacing: 0.05em; text-transform: uppercase; padding: 20px 48px;
-      box-shadow: 8px 8px 0 var(--sky);
-    }
+    .brand-tag { font-weight: 600; text-transform: uppercase; opacity: 0.4; }
+
     body { margin: 0; padding: 0; background: #dedad2; }
     .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
-    .inner { display: flex; flex-direction: column; padding: 56px 72px 64px 208px; height: 100%; }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
     .inner-navy { padding-left: 120px; color: var(--paper); }
-    .top-bar { display: flex; justify-content: space-between; align-items: center; }
-    .hero-calc {
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 192px; line-height: 1;
-      margin-top: 80px;
-    }
-    .hero-result {
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 128px;
-      color: var(--red-pen); margin-top: 48px;
-    }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
     .calc-label {
-      font-family: 'Spline Sans Mono', monospace; font-size: 28px; opacity: 0.5;
-      margin-top: 48px; letter-spacing: 0.08em; text-transform: uppercase;
+      font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px;
     }
-    .separator { width: 100%; max-width: 560px; height: 2px; background: currentColor; opacity: 0.14; margin: 48px 0; }
-    .hint { font-size: 28px; opacity: 0.55; margin-top: auto; }
-    .answers {
-      font-family: 'Spline Sans Mono', monospace; font-size: 40px; line-height: 1.8;
-      margin-top: 32px;
+    .hero-calc { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 180px; line-height: 0.95; letter-spacing: -0.04em; white-space: nowrap; }
+    .hero-result { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 120px; color: var(--red-pen); margin-top: 20px; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+    .lead { font-size: 40px; opacity: 0.78; }
+    .answers { font-family: 'Spline Sans Mono', monospace; font-weight: 500; font-size: 56px; line-height: 1.55; }
+    .answers .res { color: var(--sky); }
+    .stars { font-size: 64px; color: var(--gold); letter-spacing: 16px; }
+    .range { font-family: 'Spline Sans Mono', monospace; font-size: 40px; opacity: 0.7; }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
     }
-    .stars { font-size: 48px; color: var(--gold); letter-spacing: 8px; margin: 24px 0; }
+    .handle { font-family: 'Spline Sans Mono', monospace; font-size: 30px; opacity: 0.6; }
   </style>
 </head>
 <body>
 
-  <!-- Slide 1 — Intro -->
+  <!-- Slide 1 — Intro (navy) -->
   <div data-screen-label="Serie 01/06" class="screen bg-navy" style="width:1080px;height:1350px;">
     <div class="inner inner-navy">
-      <div class="top-bar">
+      <div class="head">
         <span class="slide-counter">SÉRIE #008 · 01/06</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <div style="margin-top:48px;margin-bottom:40px;"><span class="pill">Série</span></div>
-      <div class="display" style="font-size:80px;margin-bottom:32px;">
-        Calculs<br>rapides<br><em>× 25</em>
+      <div class="body">
+        <div style="margin-bottom:48px;"><span class="pill">Série</span></div>
+        <div class="display" style="font-size:128px;">Calculs<br>rapides<br><em>× 25</em></div>
       </div>
-      <p style="font-size:36px;opacity:0.75;margin-top:24px;">⏱ 3 secondes par calcul</p>
-      <p class="hint">Prêt ? →</p>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="lead" style="margin-bottom:16px;">3 secondes par calcul · 4 calculs</p>
+        <p class="hint">Prêt ? →</p>
+      </div>
     </div>
   </div>
 
-  <!-- Slide 2 -->
+  <!-- Slide 2 — Calcul 1 -->
   <div data-screen-label="Serie 02/06" class="screen bg-paper" style="width:1080px;height:1350px;">
     <div class="inner">
-      <div class="top-bar">
+      <div class="head">
         <span class="slide-counter">02/06</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <p class="calc-label">Calcul 1 / 4</p>
-      <div class="hero-calc">4 × 25</div>
-      <div class="hero-result">= ?</div>
-      <div class="separator"></div>
-      <p class="hint">→ Réponse au prochain slide</p>
+      <div class="body">
+        <p class="calc-label">Calcul 1 / 4</p>
+        <div class="hero-calc">4 × 25</div>
+        <div class="hero-result">= ?</div>
+      </div>
+      <div class="foot"><p class="hint">→ Réponses à la fin</p></div>
     </div>
   </div>
 
-  <!-- Slide 3 -->
+  <!-- Slide 3 — Calcul 2 -->
   <div data-screen-label="Serie 03/06" class="screen bg-paper" style="width:1080px;height:1350px;">
     <div class="inner">
-      <div class="top-bar">
+      <div class="head">
         <span class="slide-counter">03/06</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <p class="calc-label">Calcul 2 / 4</p>
-      <div class="hero-calc">12 × 25</div>
-      <div class="hero-result">= ?</div>
-      <div class="separator"></div>
-      <p class="hint">→ Réponse au prochain slide</p>
+      <div class="body">
+        <p class="calc-label">Calcul 2 / 4</p>
+        <div class="hero-calc">12 × 25</div>
+        <div class="hero-result">= ?</div>
+      </div>
+      <div class="foot"><p class="hint">→ Réponses à la fin</p></div>
     </div>
   </div>
 
-  <!-- Slide 4 -->
+  <!-- Slide 4 — Calcul 3 -->
   <div data-screen-label="Serie 04/06" class="screen bg-paper" style="width:1080px;height:1350px;">
     <div class="inner">
-      <div class="top-bar">
+      <div class="head">
         <span class="slide-counter">04/06</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <p class="calc-label">Calcul 3 / 4</p>
-      <div class="hero-calc">16 × 25</div>
-      <div class="hero-result">= ?</div>
-      <div class="separator"></div>
-      <p class="hint">→ Réponse au prochain slide</p>
+      <div class="body">
+        <p class="calc-label">Calcul 3 / 4</p>
+        <div class="hero-calc">16 × 25</div>
+        <div class="hero-result">= ?</div>
+      </div>
+      <div class="foot"><p class="hint">→ Réponses à la fin</p></div>
     </div>
   </div>
 
-  <!-- Slide 5 -->
+  <!-- Slide 5 — Calcul 4 -->
   <div data-screen-label="Serie 05/06" class="screen bg-paper" style="width:1080px;height:1350px;">
     <div class="inner">
-      <div class="top-bar">
+      <div class="head">
         <span class="slide-counter">05/06</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <p class="calc-label">Calcul 4 / 4</p>
-      <div class="hero-calc">20 × 25</div>
-      <div class="hero-result">= ?</div>
-      <div class="separator"></div>
-      <p class="hint">→ Réponses au prochain slide</p>
+      <div class="body">
+        <p class="calc-label">Calcul 4 / 4</p>
+        <div class="hero-calc">20 × 25</div>
+        <div class="hero-result">= ?</div>
+      </div>
+      <div class="foot"><p class="hint">→ Réponses au prochain slide</p></div>
     </div>
   </div>
 
-  <!-- Slide 6 — Score CTA -->
+  <!-- Slide 6 — Score + answers (navy) -->
   <div data-screen-label="Serie 06/06" class="screen bg-navy" style="width:1080px;height:1350px;">
     <div class="inner inner-navy">
-      <div class="top-bar">
+      <div class="head">
         <span class="slide-counter">06/06</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <div class="display" style="font-size:72px;margin-top:64px;margin-bottom:24px;">Ton score ?</div>
-      <div class="stars">★ ★ ★ ★</div>
-      <p style="font-family:'Spline Sans Mono',monospace;font-size:36px;opacity:0.7;margin-bottom:40px;">0/4 → 4/4</p>
-      <div class="answers">
-        4×25 = 100<br>
-        12×25 = 300<br>
-        16×25 = 400<br>
-        20×25 = 500
+      <div class="body">
+        <div class="display" style="font-size:96px;margin-bottom:28px;">Ton score ?</div>
+        <div class="stars" style="margin-bottom:16px;">★ ★ ★ ★</div>
+        <p class="range" style="margin-bottom:48px;">0/4 → 4/4</p>
+        <div class="answers">
+          4 × 25 = <span class="res">100</span><br>
+          12 × 25 = <span class="res">300</span><br>
+          16 × 25 = <span class="res">400</span><br>
+          20 × 25 = <span class="res">500</span>
+        </div>
       </div>
-      <div style="margin-top:48px;"><span class="btn-ink">Commente ton score</span></div>
+      <div class="foot">
+        <div style="margin-bottom:32px;"><span class="btn-ink">Commente ton score</span></div>
+        <p class="handle">@albert.prep · Suis-nous pour la suite</p>
+      </div>
     </div>
   </div>
 

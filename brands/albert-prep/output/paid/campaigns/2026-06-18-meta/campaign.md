@@ -10,7 +10,7 @@
 |---|---|
 | Paid brief | [`brief.md`](brief.md) |
 | Upload checklist | [`upload-checklist.md`](upload-checklist.md) |
-| Organic editorial brief | [`../../../../templates/designer-brief.html`](../../../../templates/designer-brief.html) |
+| Organic editorial brief | [`../../../../brand.md`](../../../../brand.md) · [`../../../../templates/design-system.md`](../../../../templates/design-system.md) |
 
 ## Audiences
 

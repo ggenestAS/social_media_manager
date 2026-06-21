@@ -55,7 +55,7 @@ organic-post skill.
 
 ```bash
 SLUG=brands/<brand>/output/organic/posts/<date>-<type>-<nnn>
-npm run html:to-image -- "$SLUG/source.html" --width 1080 --height 1350 --out "$SLUG/export"
+npm run html:to-image -- "$SLUG/source.html" --all --out "$SLUG/export"
 # animated reel:
 npm run html:to-mp4   -- "$SLUG/source.html" --out "$SLUG/export"
 ```

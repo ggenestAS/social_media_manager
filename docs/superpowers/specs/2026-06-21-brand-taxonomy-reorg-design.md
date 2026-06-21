@@ -125,7 +125,7 @@ working on. No global "current brand" state.
 
 | Today | New location |
 |---|---|
-| `content/organic/brief/designer-brief.html` | `brands/albert-prep/templates/design-system.md` (+ identity → `brand.md`) |
+| `content/organic/brief/designer-brief.html` | `brand.md` + `templates/design-system.md` (bundled HTML removed after migration) |
 | `content/organic/assets/*` | `brands/albert-prep/assets/` |
 | `context/brand/app-product.md` | `brands/albert-prep/context/app-product.md` |
 | `social.channels.json` | `brands/albert-prep/channels.json` |

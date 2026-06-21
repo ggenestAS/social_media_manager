@@ -34,6 +34,12 @@ The exact palette, fonts, CSS, and visual signatures are the contract in
 - **Numbers must be real and correct.** Never ship an incorrect calculation.
 - **Soft CTA rotation:** not every post pushes the diagnostic; avoid CTA fatigue.
   Typical CTA: *« Diagnostic gratuit → prep.albertschool.com »* or a comment prompt.
+- **Albert Prep only:** never reference any parent or sibling brand in copy, tags,
+  or handles. The social handle is **`@albert.prep`**.
+
+What to actually write — difficulty calibration, topic selection, hooks, and the
+canonical hashtag/handle/CTA set — is in
+[`templates/content-guide.md`](templates/content-guide.md).
 
 ## Post types
 

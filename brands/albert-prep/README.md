@@ -12,7 +12,7 @@ Generic tooling (HTML→media export, Postiz CLI, skills) lives at the repo root
 | [`context/`](context/) | Product context for accurate copy (`app-product.md`) |
 | [`channels.json`](channels.json) | Postiz channel aliases (`{provider, handle}`) |
 | [`assets/`](assets/) | Profile photo, cover image |
-| [`templates/`](templates/) | `design-system.md`, `content-calendar.template.md`, `post-types/<type>/{template.html, spec.md}`, `designer-brief.html` |
+| [`templates/`](templates/) | [`design-system.md`](templates/design-system.md) (look), [`content-guide.md`](templates/content-guide.md) (what to say), [`post-types/README.md`](templates/post-types/README.md), `content-calendar.template.md`, `post-types/<type>/{template.html, spec.md}` |
 
 ## Outputs (generated)
 

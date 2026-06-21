@@ -1,8 +1,8 @@
 # Pilier 1 — Calcul du jour
 
-**Format:** 1080 × 1350 px portrait (render at 540 × 675)  
+**Format:** Feed portrait **4:5** — 1080 × 1350 px (not 1:1, not 9:16)  
 **Slides:** 1 (single image)  
-**File name tag:** `standalone`
+**Export:** `npm run html:to-image -- source.html --all --out export/`
 
 ---
 
@@ -15,6 +15,9 @@ Alternate between paper and navy backgrounds for variety. Default: **paper** bac
 ---
 
 ## Slide structure
+
+One `[data-screen-label="Calcul NNN 4:5"]` screen at **1080×1350** (see
+`template.html`). Do not use half-scale `.slide-portrait` (540×675).
 
 ```
 ┌─────────────────────────────┐  540px wide

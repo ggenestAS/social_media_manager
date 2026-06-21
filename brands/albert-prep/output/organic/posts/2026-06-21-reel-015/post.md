@@ -1,6 +1,8 @@
 ---
 type: reel
 channels: [ig]
+placements:
+  - { channel: ig, post_type: post }
 schedule: 2026-06-21T19:00
 status: draft
 postiz_id: null

@@ -13,4 +13,4 @@ Pose ta réponse en commentaire — on corrige ce soir.
 
 5 min/jour sur prep.albertschool.com pour automatiser ce genre de calcul avant la rentrée.
 
-#calculmental #spémaths #préparation #albertschool
+#calculmental #albertprep #spémaths #révisions

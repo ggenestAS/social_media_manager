@@ -1,4 +1,4 @@
-# Prep — mental math training for Albert School
+# Prep — mental math training
 
 > **Context only.** This documents the product developed elsewhere. Use it
 > when writing ad copy, understanding the offer, or checking feature claims.

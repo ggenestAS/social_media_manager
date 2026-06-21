@@ -67,8 +67,8 @@ function usage() {
     '--aspect <ratio>            Filter screens (default: 9:16)',
     '--fps <n>                   Frame rate (default: 30)',
     '--speed <n>                 Playback speed multiplier (default: 1.5)',
-    '--loop-ms <ms>              CSS animation loop length (default: 8500)',
-    '--cta-ms <ms>               Timeline point for CTA preview/hold (default: 7750)',
+    '--loop-ms <ms>              CSS animation loop length (default: 8500; auto from data-loop-ms)',
+    '--cta-ms <ms>               Timeline point for CTA preview/hold (default: 7750; auto from data-cta-ms)',
     '--cta-hold-ms <ms>          Frozen CTA duration at 1× (default: 2000)',
   ]);
 }
@@ -101,6 +101,21 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
 
   await waitForPageReady(page);
   await isolateScreen(page, screenLabel);
+
+  const screenTiming = await page.evaluate((label) => {
+    const screen = document.querySelector(`[data-screen-label="${label}"]`);
+    if (!screen) return null;
+    const loopMs = parseInt(screen.dataset.loopMs, 10);
+    const ctaMs = parseInt(screen.dataset.ctaMs, 10);
+    return {
+      loopMs: Number.isFinite(loopMs) && loopMs > 0 ? loopMs : null,
+      ctaMs: Number.isFinite(ctaMs) && ctaMs > 0 ? ctaMs : null,
+    };
+  }, screenLabel);
+
+  if (screenTiming?.loopMs) cfg.loopMs = screenTiming.loopMs;
+  if (screenTiming?.ctaMs) cfg.ctaMs = screenTiming.ctaMs;
+
   await prepareAnimationCapture(page);
 
   const previewPath = join(outputDir, `preview-${slug}.png`);

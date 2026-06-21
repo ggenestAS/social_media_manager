@@ -20,129 +20,140 @@
         repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
     }
     .bg-navy { background-color: var(--navy); color: var(--paper); }
-    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.08; }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--navy); }
     .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy { color: var(--paper); }
     .display.on-navy em { color: var(--sky); }
     .pill {
       display: inline-block; background: var(--sky); color: var(--navy);
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 20px;
-      letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 24px;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
     }
-    .slide-counter {
-      font-family: 'Spline Sans Mono', monospace; font-size: 20px; font-weight: 500;
-      opacity: 0.4; letter-spacing: 0.1em;
+    .post-number, .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.42;
     }
-    .post-number, .brand-tag {
-      font-family: 'Spline Sans Mono', monospace; font-size: 22px; font-weight: 600;
-      letter-spacing: 0.1em; opacity: 0.4;
-    }
-    .brand-tag { font-size: 20px; text-transform: uppercase; opacity: 0.38; }
-    .correction { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; }
-    .correction .wrong {
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 56px;
-      text-decoration: line-through; text-decoration-color: var(--red-pen);
-      text-decoration-thickness: 6px; opacity: 0.5;
-    }
-    .correction .right {
-      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-      font-size: 72px; color: var(--red-pen);
-    }
-    .correction .check { font-size: 72px; color: var(--good); }
-    .btn-ink {
-      display: inline-block; background: var(--paper); color: var(--navy);
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 26px;
-      letter-spacing: 0.05em; text-transform: uppercase; padding: 20px 48px;
-      box-shadow: 8px 8px 0 var(--sky);
-    }
+    .slide-counter { font-weight: 500; }
+    .brand-tag { text-transform: uppercase; opacity: 0.4; }
+
     body { margin: 0; padding: 0; background: #dedad2; }
     .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
-    .inner { display: flex; flex-direction: column; padding: 56px 72px 64px 208px; height: 100%; }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
     .inner-navy { padding-left: 120px; color: var(--paper); }
-    .top-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .hero-calc {
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 160px; line-height: 1;
-    }
-    .step {
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 36px;
-      line-height: 1.6; margin-bottom: 16px;
-    }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .hero-calc { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 180px; line-height: 0.95; letter-spacing: -0.03em; white-space: nowrap; }
+    .step { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 52px; line-height: 1.7; }
     .step .hl { color: var(--sky); }
-    .separator { width: 100%; max-width: 560px; height: 2px; background: currentColor; opacity: 0.14; margin: 48px 0; }
-    .hint { font-size: 28px; opacity: 0.55; margin-top: auto; }
-    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 28px; opacity: 0.7; margin-top: 32px; }
+    .step .ok { color: var(--good); }
+    .lead { font-size: 38px; opacity: 0.7; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+    .correction { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-top: 8px; }
+    .correction .wrong {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 84px;
+      text-decoration: line-through; text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 7px; opacity: 0.5;
+    }
+    .correction .arrow { font-size: 56px; opacity: 0.5; }
+    .correction .right { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 120px; color: var(--red-pen); line-height: 1; }
+    .correction .check { font-size: 90px; color: var(--good); }
+    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 38px; opacity: 0.7; margin-top: 40px; }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+    .teaser { font-size: 30px; opacity: 0.65; margin-top: 44px; }
   </style>
 </head>
 <body>
 
-  <!-- Slide 1 — Cover -->
+  <!-- Slide 1 — Cover (paper) -->
   <div data-screen-label="Astuce 01/04" class="screen bg-paper" style="width:1080px;height:1350px;">
     <div class="inner">
-      <div class="top-bar">
+      <div class="head">
         <span class="post-number">#012</span>
         <span class="slide-counter">01/04</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <div style="margin-top:48px;margin-bottom:40px;"><span class="pill">Astuce</span></div>
-      <div class="display" style="font-size:72px;color:var(--navy);margin-bottom:48px;">
-        Comment<br>multiplier<br><em>par</em> 11 ?
+      <div class="body">
+        <div style="margin-bottom:48px;"><span class="pill">Astuce</span></div>
+        <div class="display" style="font-size:108px;">Comment<br>multiplier<br><em>par</em> 11 ?</div>
       </div>
-      <div class="separator"></div>
-      <p style="font-size:32px;opacity:0.65;">En moins de 3 secondes</p>
-      <p class="hint">① ② ③ Passe au slide →</p>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="lead" style="margin-bottom:20px;">En moins de 3 secondes</p>
+        <p class="hint">① ② ③ &nbsp; Passe au slide →</p>
+      </div>
     </div>
   </div>
 
-  <!-- Slide 2 — Méthode -->
+  <!-- Slide 2 — Méthode (navy) -->
   <div data-screen-label="Astuce 02/04" class="screen bg-navy" style="width:1080px;height:1350px;">
     <div class="inner inner-navy">
-      <div class="top-bar">
+      <div class="head">
         <span class="post-number">#012</span>
         <span class="slide-counter">02/04</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <div class="display on-navy" style="font-size:56px;margin-top:48px;margin-bottom:56px;">La <em>méthode</em></div>
-      <p style="font-size:32px;opacity:0.7;margin-bottom:40px;">Pour 36 × 11 :</p>
-      <p class="step">❶ 3 + 6 = <span class="hl">9</span></p>
-      <p class="step">❷ Insère : 3<span class="hl">[9]</span>6</p>
-      <p class="step">❸ Résultat : 396 <span style="color:var(--good)">✓</span></p>
-      <p class="hint">→ Slide suivant : exemple</p>
+      <div class="body">
+        <div class="display on-navy" style="font-size:84px;margin-bottom:48px;">La <em>méthode</em></div>
+        <p class="lead" style="margin-bottom:40px;">Pour 36 × 11 :</p>
+        <p class="step">❶ &nbsp;3 + 6 = <span class="hl">9</span></p>
+        <p class="step">❷ &nbsp;Insère : 3<span class="hl">[9]</span>6</p>
+        <p class="step">❸ &nbsp;Résultat : 396 <span class="ok">✓</span></p>
+      </div>
+      <div class="foot">
+        <p class="hint">→ Slide suivant : un exemple à toi</p>
+      </div>
     </div>
   </div>
 
-  <!-- Slide 3 — Exemple -->
+  <!-- Slide 3 — Exemple résolu (paper) -->
   <div data-screen-label="Astuce 03/04" class="screen bg-paper" style="width:1080px;height:1350px;">
     <div class="inner">
-      <div class="top-bar">
+      <div class="head">
         <span class="post-number">#012</span>
         <span class="slide-counter">03/04</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <p style="font-size:36px;margin-top:48px;margin-bottom:40px;opacity:0.7;">Essaie avec…</p>
-      <div class="hero-calc">36 × 11</div>
-      <div class="separator"></div>
-      <div class="correction">
-        <span class="wrong">363</span>
-        <span>→</span>
-        <span class="right">396</span>
-        <span class="check">✓</span>
+      <div class="body">
+        <p class="lead" style="margin-bottom:36px;">Essaie avec…</p>
+        <div class="hero-calc">36 × 11</div>
+        <div class="separator"></div>
+        <div class="correction">
+          <span class="wrong">363</span>
+          <span class="arrow">→</span>
+          <span class="right">396</span>
+          <span class="check">✓</span>
+        </div>
+        <p class="recap">3 + 6 = 9 &nbsp;→&nbsp; 3[9]6 = 396</p>
       </div>
-      <p class="recap">3+6=9 → 3[9]6 = 396</p>
+      <div class="foot">
+        <p class="hint">Enregistre pour t'entraîner →</p>
+      </div>
     </div>
   </div>
 
-  <!-- Slide 4 — CTA -->
+  <!-- Slide 4 — CTA (navy) -->
   <div data-screen-label="Astuce 04/04" class="screen bg-navy" style="width:1080px;height:1350px;">
     <div class="inner inner-navy">
-      <div class="top-bar">
+      <div class="head">
         <span class="post-number">#012</span>
         <span class="slide-counter">04/04</span>
         <span class="brand-tag">Albert&nbsp;Prep</span>
       </div>
-      <div class="display on-navy" style="font-size:72px;margin-top:80px;margin-bottom:64px;">
-        Enregistre<br>pour ne<br><em>pas oublier</em>
+      <div class="body">
+        <div class="display on-navy" style="font-size:104px;margin-bottom:64px;">Enregistre<br>pour ne<br><em>pas oublier</em></div>
+        <div><span class="btn-ink">Suivre @albert.prep</span></div>
       </div>
-      <div style="margin-bottom:48px;"><span class="btn-ink">Suivre @albertschool</span></div>
-      <p style="font-size:28px;opacity:0.65;">💡 Prochaine astuce : les carrés en 5</p>
+      <div class="foot">
+        <p class="teaser">Prochaine astuce : les carrés en 5</p>
+      </div>
     </div>
   </div>
 

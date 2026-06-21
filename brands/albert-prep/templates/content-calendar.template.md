@@ -8,13 +8,13 @@ Copy this file to `output/organic/calendar/YYYY-MM-DD.md` and fill in slots.
 
 ## Week of YYYY-MM-DD
 
-| Day | Channel | Type | Topic / Angle | Asset (bundle path) | Status |
-|---|---|---|---|---|---|
-| Mon | IG organic | calcul-du-jour | e.g. 47 × 11 | `../posts/<date>-calcul-du-jour-<nnn>/` | draft |
-| Tue | IG organic | astuce | ×11 trick | | planned |
-| Wed | Meta paid | reel | Première · La correction | `../../paid/campaigns/2026-06-18-meta/` | live |
-| Thu | IG organic | serie | ×25 family | | planned |
-| Fri | IG organic | reel | quick drill | | planned |
+| Day | Channel | Type | Difficulty | Topic / Angle | Asset (bundle path) | Status |
+|---|---|---|---|---|---|---|
+| Mon | IG organic | calcul-du-jour | medium | e.g. 47 × 11 | `../posts/<date>-calcul-du-jour-<nnn>/` | draft |
+| Tue | IG organic | astuce | medium | ×11 trick | | planned |
+| Wed | Meta paid | reel | — | Première · La correction | `../../paid/campaigns/2026-06-18-meta/` | live |
+| Thu | IG organic | serie | easy | ×25 family | | planned |
+| Fri | IG organic | reel | easy | quick drill | | planned |
 | Sat | — | — | rest | | — |
 | Sun | FB organic | calcul-du-jour | | | planned |
 

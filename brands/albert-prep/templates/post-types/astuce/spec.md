@@ -1,7 +1,8 @@
 # Pilier 2 — Astuce (Carrousel)
 
-**Format:** 1080 × 1350 px portrait (render at 540 × 675), ×4 slides  
-**File name tag:** `carrousel`
+**Format:** Feed carousel **4:5** — 1080 × 1350 px per slide (not 1:1, not 9:16)  
+**Slides:** 4 (fixed arc — do not add or remove)  
+**Export:** `npm run html:to-image -- source.html --all --out export/`
 
 ---
 
@@ -122,9 +123,9 @@ Key elements:
 
 ## Practical notes
 
-- Each slide: `<div class="slide slide-portrait bg-paper/bg-navy">`
-- Padding: `padding: 28px 36px 32px 100px` (left clears margin rule)
-- For navy slides: add `color: var(--paper)` on the slide element
+- Each slide: `<div data-screen-label="Astuce NN/04" class="screen …" style="width:1080px;height:1350px">`
+- Padding: `.inner` — `56px 72px 64px 208px` on paper; `.inner-navy` on navy slides
+- CTA handle: `@albert.prep` (see `content-guide.md` for the canon)
 
 ## Caption formula
 

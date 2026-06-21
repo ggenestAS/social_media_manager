@@ -27,6 +27,8 @@ Read these orientation files first:
 - `brands/<brand>/brand.md` — mission, tone, voice, language.
 - `brands/<brand>/templates/design-system.md` — palette, fonts, shared CSS,
   visual signatures. Its CSS goes verbatim into every post.
+- `brands/<brand>/templates/content-guide.md` (if present) — what to say:
+  canonical handle/hashtags/CTA, difficulty calibration, topic selection, hooks.
 
 ### 2. Determine the post type
 
@@ -46,9 +48,12 @@ Read both before writing any code.
 ### 3. Get the content
 
 If the user hasn't provided the concrete content (the calculation, technique,
-topic…), ask for it now. Don't invent facts — anything factual (e.g. math) must
-be real and correct. Follow the `spec.md` for exactly what content each slide
-needs.
+topic…), **create original questions** calibrated to the brand's
+`content-guide.md`: pick a theme, assign a difficulty tag (`easy` | `medium` |
+`hard`), invent operands in the same skill family as the guide's calibration
+table, and **verify every answer** before saving. Follow the type's `spec.md`
+for slide structure and the content guide for hooks, topic rotation, and the
+canonical hashtag/handle/CTA set.
 
 ### 4. Build the HTML
 
@@ -76,10 +81,16 @@ brands/<brand>/output/organic/posts/<date>-<type>-<nnn>/
 ```yaml
 ---
 type: <post-type>            # matches a templates/post-types/<name>
+difficulty: easy             # easy | medium | hard — required (see content-guide.md)
 channels: [ig, fb]           # aliases from brands/<brand>/channels.json
 schedule: 2026-06-22T09:00    # local time, or null
 status: draft                # draft | scheduled | published
 postiz_id: null              # filled after publishing
+# reel only — same export MP4, different IG placement (see reel/spec.md):
+# timer_sec: 3              # 3 | 5 | 10 | 15 — must match data-timer-sec in source.html
+# placements:
+#   - { channel: ig, post_type: post }    # Reels (default)
+#   - { channel: ig, post_type: story }   # optional Story cross-post
 ---
 Caption text in the brand's voice…
 ```
@@ -92,7 +103,8 @@ was created and how many slides it contains.
 ## Quality checks
 
 Before saving, verify against the brand's design system and the type's spec:
-- Any factual content (math, claims) is correct.
+- Any factual content (math, claims) is correct — recompute every answer.
+- `post.md` includes `difficulty: easy | medium | hard`.
 - All fonts required by `design-system.md` are loaded in `<head>`.
 - The HTML is self-contained.
 - Each slide renders at exactly the dimensions in `spec.md`.
@@ -105,8 +117,12 @@ Render the bundle to PNG/MP4 with the generic tools, writing into the bundle's
 `export/`:
 
 ```bash
+# Feed posts (calcul-du-jour, astuce, serie) — one PNG per [data-screen-label] screen
 npm run html:to-image -- brands/<brand>/output/organic/posts/<slug>/source.html \
-  --width 1080 --height 1350 --out brands/<brand>/output/organic/posts/<slug>/export
-npm run html:to-mp4   -- brands/<brand>/output/organic/posts/<slug>/source.html \
+  --all --out brands/<brand>/output/organic/posts/<slug>/export
+
+# Reel (9:16 animated) — same MP4 for IG Reels and optional IG Story
+npm run html:to-mp4 -- brands/<brand>/output/organic/posts/<slug>/source.html \
   --out brands/<brand>/output/organic/posts/<slug>/export
+# Publish: upload MP4 once; Postiz with post_type "post" (Reels) and/or "story"
 ```

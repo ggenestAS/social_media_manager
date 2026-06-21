@@ -2,6 +2,20 @@
 
 This file contains the shared CSS and design rules that apply to **all** Albert Prep social posts. Copy the CSS block verbatim into every HTML file you generate.
 
+## Post formats (Albert Prep)
+
+| Use | Aspect | Size | Post types |
+|---|---|---|---|
+| IG/FB **feed** (single or carousel) | **4:5** | 1080×1350 | calcul-du-jour, astuce, serie |
+| IG **Reels** (+ Story, same MP4) | **9:16** | 1080×1920 | reel |
+
+Do **not** use 1:1 or 9:16 for organic feed carousels. See
+[`post-types/README.md`](post-types/README.md) for HTML structure and export commands.
+
+Templates author at **export-native size** (1080×1350 or 1080×1920) on each
+`[data-screen-label]` screen. Export feed posts with
+`npm run html:to-image -- source.html --all --out export/`.
+
 ---
 
 ## Color Palette
@@ -87,13 +101,14 @@ Include this in every post's `<style>` tag:
   color: var(--navy);
 }
 
-/* Portrait (feed) 1080 × 1350 — rendered at 50% = 540 × 675 */
+/* Portrait (feed) 1080 × 1350 — legacy preview class at 50%; prefer export-native
+   1080×1350 screens with [data-screen-label] in new templates (see post-types/README.md) */
 .slide-portrait {
   width: 540px;
   height: 675px;
 }
 
-/* Vertical (reels/stories) 1080 × 1920 — rendered at 50% = 540 × 960 */
+/* Vertical (reels) 1080 × 1920 — legacy preview at 50% */
 .slide-vertical {
   width: 540px;
   height: 960px;
