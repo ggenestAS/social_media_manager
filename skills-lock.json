@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "postiz": {
+      "source": "gitroomhq/postiz-agent",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "bb1a28c176a8c31305ad60b0bce66c536fe195b7943d0b7c669ae7b26f24a916"
+    }
+  }
+}
