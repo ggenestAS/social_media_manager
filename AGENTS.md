@@ -37,8 +37,21 @@ reference; read it before composing posts.
 - `POSTIZ_API_KEY` is pre-injected as a secret. No `auth:login` needed — verify
   with `npx postiz auth:status`.
 - The connected Postiz account ("Albert Prep") has **Instagram, Facebook, and
-  TikTok** channels linked. Always discover live IDs with
-  `npx postiz integrations:list` (IDs change if a channel is reconnected).
+  TikTok** channels linked.
+- **Never hardcode Postiz integration IDs** (the opaque `cmq...` cuids) — they
+  rotate when a channel is reconnected, and a stale ID can silently target the
+  wrong account. The stable identity is `{provider, handle}`, mapped to short
+  aliases in `social.channels.json`.
+- Resolve live IDs from those aliases at runtime (one `integrations:list` call
+  per session):
+  ```bash
+  eval "$(npm run -s social:resolve)"   # exports IG_ID / FB_ID / TIKTOK_ID
+  npx postiz posts:create -c "..." -s "$DATE" -i "$IG_ID" ...
+  ```
+  Other forms: `node scripts/resolve-channels.mjs --json` (alias→id map) and
+  `node scripts/resolve-channels.mjs ig` (single id for `$(...)`). The resolver
+  exits non-zero if a configured channel isn't connected. Add/rename channels by
+  editing `social.channels.json`, not the script.
 
 ### Non-obvious gotchas (verified during setup)
 - **`postiz upload` prints a `✅ File uploaded successfully!` banner line BEFORE
