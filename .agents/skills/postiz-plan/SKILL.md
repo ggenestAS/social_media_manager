@@ -1,175 +1,114 @@
 ---
 name: postiz-plan
-description: Plan and schedule Albert Prep organic social posts using the content calendar, HTML export tools, and Postiz CLI. Use when filling planner calendars, scheduling IG/FB posts, uploading exported PNGs/MP4s, or batch-creating Postiz drafts from content/organic/.
+description: Plan and schedule a brand's organic social posts using its content calendar, the HTML export tools, and the Postiz CLI. Brand-agnostic — calendars, posts, and channel aliases live under brands/<brand>/. Use when filling a brand calendar, scheduling IG/FB/TikTok posts, uploading exported PNGs/MP4s, or batch-creating Postiz drafts from a brand's post bundles.
 ---
 
-# Postiz planning — Albert Prep
+# Postiz planning
 
-Plan editorial slots, export assets from HTML, and push **drafts or scheduled posts** to Instagram/Facebook via [Postiz CLI](https://docs.postiz.com/cli/introduction).
+Plan editorial slots, export assets from HTML, and push **drafts or scheduled
+posts** to Instagram/Facebook/TikTok via the [Postiz CLI](https://docs.postiz.com/cli/introduction).
 
-Postiz MCP (`.cursor/mcp.json`) is for interactive scheduling in chat. This skill is for **scriptable, repeatable** calendar → export → upload → schedule workflows.
+This skill is brand-agnostic. Resolve the active brand first (see organic-post
+skill §1), then operate entirely inside `brands/<brand>/`. The Postiz workspace
+is **shared across all brands** — `POSTIZ_API_KEY` is global, but each brand's
+`channels.json` declares which connected channels belong to it.
 
 ## When to use
 
-- Filling `planner/calendars/` from [`planner/content-calendar.template.md`](../../planner/content-calendar.template.md)
-- Scheduling organic pillars (P1 calcul · P2 astuce · P3 série · P4 reel)
+- Filling `brands/<brand>/output/organic/calendar/` from
+  `brands/<brand>/templates/content-calendar.template.md`
+- Scheduling a brand's organic posts (whatever post types it defines)
 - Batch-creating Postiz **drafts** for human review before going live
-- Uploading PNG/MP4 assets produced by repo tools
+- Uploading PNG/MP4 assets produced by the repo tools
 
 ## Prerequisites
 
 ```bash
-npm install -g postiz          # or: npx postiz …
-export POSTIZ_API_KEY=…        # from .env — or postiz auth:login
-postiz auth:status
-postiz integrations:list       # note IG/FB integration IDs
+export POSTIZ_API_KEY=…        # shared workspace key, from .env
+npx postiz auth:status
+eval "$(npm run -s social:resolve)"   # resolves THIS brand's aliases → IG_ID/FB_ID/…
 ```
 
-Repo setup: [`README.md`](../../README.md) · organic posts skill: [`.agents/skills/organic-post/`](organic-post/SKILL.md)
+`npm run social:resolve` reads the active brand's `channels.json` and filters the
+shared workspace's `integrations:list`. With one brand it's automatic; with
+several, set `BRAND=<name>`.
 
 ## Workflow
 
 ### 1. Plan the calendar
 
-Copy [`planner/content-calendar.template.md`](../../planner/content-calendar.template.md) → `planner/calendars/YYYY-MM.md`.
+Copy `brands/<brand>/templates/content-calendar.template.md` →
+`brands/<brand>/output/organic/calendar/YYYY-MM-DD.md`. For each row set day,
+channel, post type, topic, the asset path (the post bundle), and status.
 
-For each row, set:
+Status key: `planned` → `draft` → `review` → `scheduled` → `live` → `done`.
+Track per-post status in each bundle's `post.md` frontmatter — the calendar is
+the temporal roll-up, `post.md` is the source of truth for one post.
 
-| Column | Example |
-|---|---|
-| Day / Channel | Mon · IG organic |
-| Pillar | P1 calcul |
-| Topic | 47 × 11 |
-| Asset path | `content/organic/posts/portrait_calcul_du_jour_047.html` |
-| Status | `planned` → `draft` → `scheduled` → `live` |
+### 2. Generate or locate the post bundle
 
-Status key: `planned` → `draft` → `review` → `scheduled` → `live` → `done`
-
-### 2. Generate or locate HTML
-
-Organic HTML lives in `content/organic/posts/` (see organic-post skill).  
-Naming: `{format}_{pillar}_{type}_{number}.html`
-
-Paid assets: `content/paid/meta/<date>/` — use paid brief + upload checklist when layering paid flights.
+Each post is a bundle: `brands/<brand>/output/organic/posts/<date>-<type>-<nnn>/`
+containing `source.html`, `post.md`, and `export/`. Generate new ones via the
+organic-post skill.
 
 ### 3. Export media (repo tools)
 
-**Static post (PNG):**
-
 ```bash
-npm run html:to-image -- content/organic/posts/portrait_calcul_du_jour_047.html \
-  --width 1080 --height 1350 \
-  --out content/organic/posts/export
-```
-
-**Design-export artboards (all static sizes):**
-
-```bash
-npm run html:to-image -- path/to/design-export.html --all --out ./output
-```
-
-**Animated reel (MP4):**
-
-```bash
-npm run html:to-mp4 -- path/to/reels.html --all --out ./output
+SLUG=brands/<brand>/output/organic/posts/<date>-<type>-<nnn>
+npm run html:to-image -- "$SLUG/source.html" --width 1080 --height 1350 --out "$SLUG/export"
+# animated reel:
+npm run html:to-mp4   -- "$SLUG/source.html" --out "$SLUG/export"
 ```
 
 ### 4. Upload media to Postiz
 
-**Rule:** never pass raw local paths to `-m`. Always upload first.
+**Rule:** never pass raw local paths to `-m`. Upload first; the upload prints a
+banner line before the JSON, so strip it:
 
 ```bash
-RESULT=$(postiz upload content/organic/posts/export/portrait_calcul_du_jour_047.png)
-MEDIA_URL=$(echo "$RESULT" | jq -r '.path')
+MEDIA_URL=$(npx postiz upload "$SLUG/export/<file>.png" | tail -n +2 | jq -r '.path')
 ```
 
 ### 5. Create posts
 
-**Draft first (recommended)** — review in Postiz before scheduling:
+**Draft first (recommended):**
 
 ```bash
-postiz posts:create \
-  -c "Caption from brief — French, Albert Prep tone. CTA: prep.albertschool.com" \
+npx postiz posts:create \
+  -c "Caption from post.md — brand voice + CTA" \
   -s "2026-06-23T08:00:00Z" \
   -t draft \
   -m "$MEDIA_URL" \
-  -i "<instagram-integration-id>"
+  --settings '{"post_type":"post"}' \
+  -i "$IG_ID"
 ```
 
-**Schedule when approved:**
+Instagram requires media + `--settings '{"post_type":"post"}'` (or `"story"`).
+Facebook accepts text-only. `-s <ISO-date>` is required even for drafts.
 
-```bash
-postiz posts:create \
-  -c "…" \
-  -s "2026-06-23T08:00:00Z" \
-  -m "$MEDIA_URL" \
-  -i "<instagram-integration-id>,<facebook-page-id>"
-```
-
-Promote an existing draft:
-
-```bash
-postiz posts:status <post-id> --status schedule
-```
+Promote a draft when approved: `npx postiz posts:status <post-id> --status schedule`.
 
 ### 6. Verify queue
 
 ```bash
-postiz posts:list --startDate "2026-06-01T00:00:00Z" --endDate "2026-06-30T23:59:59Z"
+npx postiz posts:list --startDate "…" --endDate "…"
 ```
 
-Update the calendar row status to `scheduled` or `live`.
-
-## Batch week (shell sketch)
-
-```bash
-#!/usr/bin/env bash
-# planner/calendars/2026-06-week1.sh — adapt IDs and paths
-
-INTEGRATION_ID="your-ig-id"
-EXPORT_DIR="content/organic/posts/export"
-mkdir -p "$EXPORT_DIR"
-
-declare -A SLOTS=(
-  ["2026-06-23T08:00:00Z"]="content/organic/posts/portrait_calcul_du_jour_047.html|47 × 11 — calculez en 30 s"
-  ["2026-06-24T08:00:00Z"]="content/organic/posts/portrait_astuce_011.html|Astuce ×11"
-)
-
-for ISO_DATE in "${!SLOTS[@]}"; do
-  IFS='|' read -r HTML CAPTION <<< "${SLOTS[$ISO_DATE]}"
-  BASE=$(basename "$HTML" .html)
-
-  npm run html:to-image -- "$HTML" --width 1080 --height 1350 --out "$EXPORT_DIR"
-  MEDIA=$(postiz upload "$EXPORT_DIR/${BASE}.png" | jq -r '.path')
-
-  postiz posts:create \
-    -c "$CAPTION" \
-    -s "$ISO_DATE" \
-    -t draft \
-    -m "$MEDIA" \
-    -i "$INTEGRATION_ID"
-
-  echo "Draft created for $ISO_DATE"
-done
-```
-
-For complex carousels or threads, use JSON mode: `postiz posts:create --json path/to/post.json` ([examples](https://github.com/gitroomhq/postiz-app/blob/main/apps/cli/examples/EXAMPLES.md)).
+Then update the calendar row and the bundle's `post.md` (`status`, `postiz_id`).
 
 ## Agent checklist
 
-When the user asks to plan or schedule posts:
-
-1. Read active calendar in `planner/calendars/` or create from template
-2. Confirm `postiz auth:status` and list integrations
-3. Identify HTML assets (or invoke organic-post skill to generate)
-4. Export PNG/MP4 with `npm run html:to-image` / `html:to-mp4`
-5. Upload each file with `postiz upload`
-6. Create **drafts** unless user explicitly asks to schedule live
-7. Update calendar status and report post IDs + scheduled times
+1. Resolve active brand; read its calendar or create from template.
+2. `npx postiz auth:status`; `eval "$(npm run -s social:resolve)"`.
+3. Identify post bundles (or invoke organic-post to generate them).
+4. Export PNG/MP4 into each bundle's `export/`.
+5. Upload each file with `npx postiz upload` (strip the banner).
+6. Create **drafts** unless the user explicitly asks to schedule live.
+7. Update calendar status + `post.md` (`status`, `postiz_id`) and report IDs/times.
 
 ## References
 
-- Product copy truth: [`context/brand/app-product.md`](../../context/brand/app-product.md)
-- Organic pillars & naming: [`content/organic/README.md`](../../content/organic/README.md)
+- Product/brand voice: `brands/<brand>/brand.md` and `brands/<brand>/context/`
+- Post types & design system: `brands/<brand>/templates/`
+- Channel aliases: `brands/<brand>/channels.json` (resolve via `npm run social:resolve`)
 - Postiz CLI docs: https://docs.postiz.com/cli/managing-posts
-- Upstream Postiz agent skill: `npx skills add gitroomhq/postiz-agent` (full command reference)

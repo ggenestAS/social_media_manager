@@ -2,8 +2,12 @@
 /**
  * resolve-channels.mjs
  * Resolves Postiz integration IDs at runtime from the stable {provider, handle}
- * pairs in social.channels.json, so scripts never hardcode the opaque Postiz
- * integration ids (which rotate when a channel is disconnected/reconnected).
+ * pairs in the active brand's brands/<brand>/channels.json, so scripts never
+ * hardcode the opaque Postiz integration ids (which rotate on reconnect).
+ *
+ * Active brand: BRAND env var if set, else the sole brands/<brand>/ folder
+ * (ignoring the _template skeleton). One shared Postiz workspace serves all
+ * brands; this filters it down to the brand's declared channels.
  *
  * Requires POSTIZ_API_KEY in the environment (pre-injected on Cloud Agent VMs).
  *
@@ -12,15 +16,16 @@
  *   eval "$(node scripts/resolve-channels.mjs)"  # load IG_ID / FB_ID / TIKTOK_ID into the shell
  *   node scripts/resolve-channels.mjs --json     # prints {"ig":"<id>", ...}
  *   node scripts/resolve-channels.mjs ig         # print a single id (raw, for $(...))
+ *   BRAND=<brand> node scripts/resolve-channels.mjs   # choose brand when several exist
  */
 
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CONFIG_PATH = resolve(__dirname, '../social.channels.json');
+const BRANDS_DIR = resolve(__dirname, '../brands');
 
 const args = process.argv.slice(2);
 const asJson = args.includes('--json');
@@ -30,6 +35,33 @@ function fail(msg) {
   console.error(`resolve-channels: ${msg}`);
   process.exit(1);
 }
+
+// Resolve the active brand: explicit BRAND env wins; otherwise, if exactly one
+// real brand folder exists (ignoring the `_template` skeleton), use it.
+function resolveBrand() {
+  let entries;
+  try {
+    entries = readdirSync(BRANDS_DIR, { withFileTypes: true });
+  } catch (err) {
+    fail(`could not read ${BRANDS_DIR}: ${err.message}`);
+  }
+  const brands = entries
+    .filter((e) => e.isDirectory() && !e.name.startsWith('_') && !e.name.startsWith('.'))
+    .map((e) => e.name);
+
+  if (process.env.BRAND) {
+    if (!brands.includes(process.env.BRAND)) {
+      fail(`BRAND="${process.env.BRAND}" not found in ${BRANDS_DIR} (have: ${brands.join(', ') || 'none'}).`);
+    }
+    return process.env.BRAND;
+  }
+  if (brands.length === 1) return brands[0];
+  if (brands.length === 0) fail(`no brand folders found in ${BRANDS_DIR}.`);
+  fail(`multiple brands found (${brands.join(', ')}); set BRAND=<name> to choose one.`);
+}
+
+const BRAND = resolveBrand();
+const CONFIG_PATH = resolve(BRANDS_DIR, BRAND, 'channels.json');
 
 if (!process.env.POSTIZ_API_KEY) {
   fail('POSTIZ_API_KEY is not set. Cannot query Postiz integrations.');
@@ -42,7 +74,7 @@ try {
   fail(`could not read ${CONFIG_PATH}: ${err.message}`);
 }
 if (!channels || typeof channels !== 'object') {
-  fail('social.channels.json has no "channels" object.');
+  fail(`${CONFIG_PATH} has no "channels" object.`);
 }
 
 // `postiz integrations:list` prints a human banner line before the JSON array.

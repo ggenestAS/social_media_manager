@@ -2,14 +2,17 @@
 
 ## Cursor Cloud specific instructions
 
-This repo is a **marketing-assets repository**, not a deployable app. The only
+This repo is a **multi-brand social content factory**, not a deployable app. It
+is organized in three layers: generic tooling (`tools/`, `scripts/`,
+`.agents/skills/`), brand inputs and outputs under `brands/<brand>/`, and a
+`brands/_template/` skeleton for adding brands. See `README.md`. The only
 executable "application" is a Playwright + ffmpeg script that renders HTML reel
 animations into Meta-ready 9:16 MP4s.
 
 ### Services / commands
 - **Build/run the reels**: `npm run capture:reels`. It loads the standalone HTML
-  in `content/paid/meta/2026-06-18/design-export/project/`, captures frames
-  headlessly, and encodes MP4s into `content/paid/meta/2026-06-18/output/`
+  in `brands/albert-prep/output/paid/campaigns/2026-06-18-meta/design-export/project/`,
+  captures frames headlessly, and encodes MP4s into that campaign's `output/`
   (1080×1920, H.264). Outputs and the `.frames-*/` scratch dirs are gitignored.
 - **Export HTML posts**: `npm run html:to-image` / `npm run html:to-mp4` (see
   `tools/README.md`).
@@ -37,22 +40,25 @@ reference; read it before composing posts.
 ### Auth & channels
 - `POSTIZ_API_KEY` is pre-injected as a secret. No `auth:login` needed — verify
   with `npx postiz auth:status`.
-- The connected Postiz account ("Albert Prep") has **Instagram, Facebook, and
-  TikTok** channels linked.
+- **One shared Postiz workspace serves all brands.** `POSTIZ_API_KEY` is global;
+  each brand declares which connected channels are its own in
+  `brands/<brand>/channels.json`. The workspace has Instagram, Facebook, and
+  TikTok channels linked.
 - **Never hardcode Postiz integration IDs** (the opaque `cmq...` cuids) — they
   rotate when a channel is reconnected, and a stale ID can silently target the
   wrong account. The stable identity is `{provider, handle}`, mapped to short
-  aliases in `social.channels.json`.
+  aliases in the brand's `channels.json`.
 - Resolve live IDs from those aliases at runtime (one `integrations:list` call
-  per session):
+  per session). With one brand it's automatic; with several, set `BRAND=<name>`:
   ```bash
-  eval "$(npm run -s social:resolve)"   # exports IG_ID / FB_ID / TIKTOK_ID
+  eval "$(npm run -s social:resolve)"   # exports IG_ID / FB_ID / TIKTOK_ID for the active brand
   npx postiz posts:create -c "..." -s "$DATE" -i "$IG_ID" ...
   ```
   Other forms: `node scripts/resolve-channels.mjs --json` (alias→id map) and
   `node scripts/resolve-channels.mjs ig` (single id for `$(...)`). The resolver
-  exits non-zero if a configured channel isn't connected. Add/rename channels by
-  editing `social.channels.json`, not the script.
+  filters the shared workspace by the brand's aliases and exits non-zero if a
+  configured channel isn't connected. Add/rename channels by editing the brand's
+  `channels.json`, not the script.
 
 ### Non-obvious gotchas (verified during setup)
 - **`postiz upload` prints a `✅ File uploaded successfully!` banner line BEFORE

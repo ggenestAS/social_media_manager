@@ -11,7 +11,7 @@
  *   npx playwright install chromium
  *
  * Examples:
- *   node tools/html-to-image.mjs content/organic/posts/portrait_calcul_du_jour_047.html
+ *   node tools/html-to-image.mjs brands/albert-prep/output/organic/posts/2026-06-21-calcul-du-jour-047/source.html
  *   node tools/html-to-image.mjs design-export/project/Meta\ Ads\ Spe\ Maths.dc.html --all
  *   node tools/html-to-image.mjs design-export/project/file.html --screen "P1 Première 1:1" --out ./output
  */

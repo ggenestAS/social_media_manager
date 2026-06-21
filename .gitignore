@@ -8,4 +8,5 @@ node_modules/
 **/output/*.png
 **/output/.frames-*/
 !**/output/.gitkeep
-content/organic/posts/export/
+# Generated organic post exports (regenerable PNG/MP4 inside each post bundle)
+brands/*/output/organic/posts/**/export/

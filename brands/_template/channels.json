@@ -1,0 +1,8 @@
+{
+  "_comment": "Semantic channel map for Postiz. Keys are short aliases used in scripts; values identify a channel by stable provider + handle (NOT the opaque Postiz integration id, which rotates on reconnect). All brands share one Postiz workspace; this declares which connected channels are THIS brand's. Resolve live ids with: BRAND=<brand> npm run social:resolve.",
+  "channels": {
+    "ig": { "provider": "instagram", "handle": "<instagram-handle>" },
+    "fb": { "provider": "facebook", "handle": "<facebook-page-name>" },
+    "tiktok": { "provider": "tiktok", "handle": "<tiktok-handle>" }
+  }
+}
