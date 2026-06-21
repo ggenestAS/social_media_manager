@@ -1,0 +1,22 @@
+/* ════════════════════════════════════════════════════════════════════
+   Albert Prep — Fonts
+   ────────────────────────────────────────────────────────────────────
+   The product ("Le Cahier") pairs a fluent serif display with a mono for
+   numbers — numbers are the heroes of a math app.
+
+   · Fraunces           — display / headings (variable optical-size serif)
+   · Spline Sans Mono   — labels, numerals, code, UI mono
+   · Söhne              — Albert School's licensed corporate sans (body).
+                          Not redistributable, so it is declared with a
+                          local() lookup and falls back to the system
+                          grotesque stack. See README "Font substitution".
+   ════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap');
+
+/* Albert corporate sans — present only on licensed machines; otherwise the
+   system grotesque stack stands in (see --font-sans in typography.css). */
+@font-face { font-family: 'Sohne'; font-weight: 200; font-style: normal; src: local('Sohne Extraleicht'), local('Sohne-Extraleicht'); }
+@font-face { font-family: 'Sohne'; font-weight: 300; font-style: normal; src: local('Sohne Leicht'), local('Sohne-Leicht'); }
+@font-face { font-family: 'Sohne'; font-weight: 400; font-style: normal; src: local('Sohne Buch'), local('Sohne-Buch'); }
+@font-face { font-family: 'Sohne'; font-weight: 600; font-style: normal; src: local('Sohne Halbfett'), local('Sohne-Halbfett'); }

@@ -1,0 +1,39 @@
+/* ════════════════════════════════════════════════════════════════════
+   Albert Prep — Spacing, Radius & Sizing
+   ────────────────────────────────────────────────────────────────────
+   The grid is literal here: the paper texture rules at 28px. Spacing is a
+   soft 4px-based scale; radii are gentle (paper sheets, not pills) except
+   for fully-round chain links and pills.
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Spacing scale (4px base) ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── The séyès paper grid pitch ── */
+  --grid-pitch: 28px;
+
+  /* ── Radii — sheets of paper, softly cut ── */
+  --radius-sm:   8px;   /* chips, small controls          */
+  --radius-md:   10px;  /* inputs, list tiles             */
+  --radius-lg:   12px;  /* buttons                        */
+  --radius-xl:   14px;  /* cards (the sheet)              */
+  --radius-2xl:  16px;  /* large feature cards            */
+  --radius-full: 999px; /* pills, beads, chain links      */
+
+  /* ── Content widths ── */
+  --content-app:  680px; /* the single-column app column   */
+  --content-wide: 960px; /* marketing / guide column       */
+
+  /* ── Touch target floor ── */
+  --tap-min: 44px;
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Albert Prep">
+  <defs>
+    <clipPath id="tile"><rect width="512" height="512" rx="96"></rect></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#faf6ee"></rect>
+  <g clip-path="url(#tile)">
+    <g fill="none" stroke="rgba(95,130,190,0.18)" stroke-width="2">
+      <path d="M64 0V512M128 0V512M192 0V512M256 0V512M320 0V512M384 0V512M448 0V512"></path>
+      <path d="M0 64H512M0 128H512M0 192H512M0 256H512M0 320H512M0 384H512M0 448H512"></path>
+    </g>
+  </g>
+  <g fill="none" stroke="#212449" stroke-width="58" stroke-linejoin="miter">
+    <path d="M118 414 L230 100 L342 414"></path>
+    <path d="M152 312 H310" stroke-width="46"></path>
+  </g>
+  <g fill="none" stroke="#e7545b" stroke-width="42" stroke-linecap="round">
+    <path d="M362 146 H460"></path>
+    <path d="M411 97 V195"></path>
+  </g>
+</svg>

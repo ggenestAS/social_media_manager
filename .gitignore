@@ -1,0 +1,7 @@
+node_modules/
+*:Zone.Identifier
+campaigns/*/output/*.mp4
+campaigns/*/output/*.webm
+campaigns/*/output/*.png
+campaigns/*/output/.frames-*/
+!campaigns/*/output/.gitkeep

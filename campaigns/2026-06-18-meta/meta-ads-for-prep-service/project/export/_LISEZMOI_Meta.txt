@@ -1,0 +1,74 @@
+ALBERT PREP — Cahier de calcul mental
+Pack créas Meta Ads (Facebook / Instagram)
+═══════════════════════════════════════════════════════
+
+CE QUE CONTIENT CE DOSSIER
+───────────────────────────────────────────────────────
+8 visuels statiques (PNG, prêts à l'upload) + 4 visuels de
+couverture pour les Reels. Tous à la résolution exacte Meta.
+
+STATIQUES — CAMPAGNE 1 · ENTRÉE EN PREMIÈRE
+  Albert-Prep_Premiere_Feed-1x1_Accroche-calcul.png      1080×1080
+  Albert-Prep_Premiere_Feed-1x1_Promesse-titre.png       1080×1080
+  Albert-Prep_Premiere_Portrait-4x5_Copie-corrigee.png   1080×1350
+  Albert-Prep_Premiere_Story-9x16_Diagnostic.png         1080×1920
+
+STATIQUES — CAMPAGNE 2 · ENTRÉE EN TERMINALE
+  Albert-Prep_Terminale_Feed-1x1_Accroche-vitesse.png    1080×1080
+  Albert-Prep_Terminale_Feed-1x1_Pression-Bac.png        1080×1080
+  Albert-Prep_Terminale_Portrait-4x5_Tableau-noir.png    1080×1350
+  Albert-Prep_Terminale_Story-9x16_Reprends.png          1080×1920
+
+COUVERTURES DE REELS (image de couverture / story statique)
+  Albert-Prep_Premiere_Reel-cover_9x16.png               1080×1920
+  Albert-Prep_Terminale_Reel-cover_9x16.png              1080×1920
+  Albert-Prep_Premiere_Reel-cover_La-correction_9x16.png 1080×1920
+  Albert-Prep_Terminale_Reel-cover_Avant-Apres_9x16.png  1080×1920
+
+
+OÙ PLACER CHAQUE FORMAT DANS META
+───────────────────────────────────────────────────────
+  1:1  (1080×1080) → Fil Facebook, Fil Instagram, Explore
+  4:5  (1080×1350) → Fil (recommandé : occupe + d'écran mobile)
+  9:16 (1080×1920) → Stories Facebook/Instagram, Reels
+
+Formats acceptés : JPG ou PNG. Poids < 30 Mo. Ces fichiers
+sont conformes (PNG, ratios et tailles exacts).
+
+
+TEXTE DE L'ANNONCE (à coller dans le Gestionnaire de pub)
+───────────────────────────────────────────────────────
+Le visuel ne contient PAS le texte principal ni le titre :
+on les saisit dans Meta pour pouvoir les A/B tester.
+
+PREMIÈRE — texte principal suggéré :
+  « La Spé Maths va vite. Un diagnostic gratuit + 5 min/jour
+    pour consolider tes automatismes avant la rentrée. »
+  Titre : Prêt pour la Spé Maths ?
+  Bouton : En savoir plus   →   prep.albertschool.com
+
+TERMINALE — texte principal suggéré :
+  « Avant l'année du Bac, récupère tes réflexes de calcul.
+    Diagnostic gratuit, puis un sprint de 21 jours. »
+  Titre : Comprendre ne suffit pas, il faut aller vite.
+  Bouton : En savoir plus   →   prep.albertschool.com
+
+
+LES REELS ANIMÉS (VIDÉO)
+───────────────────────────────────────────────────────
+Les 4 Reels sont animés : Meta les diffuse en VIDÉO (MP4).
+Le fichier vidéo ne peut pas être généré ici — il s'obtient
+en enregistrant l'animation (8,5 s, en boucle) :
+
+  1. Ouvrir « Meta Ads Reels Animees » ou « …Variantes »
+  2. Enregistrer l'écran sur la zone du Reel pendant ~9 s
+     (QuickTime sur Mac, Xbox Game Bar sur Windows, ou
+     un outil type CleanShot / ScreenStudio pour le cadrage)
+  3. Recadrer en 1080×1920, exporter en MP4 (H.264)
+
+→ Spécs vidéo Meta : MP4/MOV, 9:16, ≥1080×1920, < 4 Go,
+  durée Reels jusqu'à 90 s (nos boucles : 8,5 s).
+→ Les fichiers « Reel-cover » ci-dessus servent d'image
+  de couverture du Reel.
+
+(Je peux aussi te livrer les MP4 si tu préfères — demande-le.)

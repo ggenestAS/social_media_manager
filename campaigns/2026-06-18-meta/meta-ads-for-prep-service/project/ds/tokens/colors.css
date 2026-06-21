@@ -1,0 +1,95 @@
+/* ════════════════════════════════════════════════════════════════════
+   Albert Prep — Color
+   ────────────────────────────────────────────────────────────────────
+   Two layers:
+   1. BASE PALETTE  — the raw Albert School brand hues (the navy, the pens,
+      the warm accents). Stable names, never themed.
+   2. SEMANTIC      — role tokens consumed by components. These re-point
+      between "Le Cahier" light (paper) and dark (chalkboard).
+
+   "Le Cahier" = a French exercise book by day, a chalkboard by night.
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── 1. Base palette — Albert School brand ─────────────────────── */
+  --albert-navy:        #212449;  /* the ink — primary brand color      */
+  --albert-blue:        #71c0f3;  /* signature sky accent               */
+  --albert-blue-light:  #a8dbee;
+  --albert-blue-accent: #648dc9;  /* "blue pen" mid-tone                */
+  --albert-turquoise:   #69c6dd;
+  --albert-red:         #f4535a;  /* correction red                     */
+  --albert-peach:       #f3a77e;
+  --albert-beige:       #f8e6d0;
+
+  /* Le Cahier working inks (slightly warmer than the raw brand reds) */
+  --paper:        #faf6ee;  /* exercise-book cream                      */
+  --paper-raised: #fffdf8;  /* a sheet lifted off the desk              */
+  --ink:          #212449;  /* writing ink = Albert navy                */
+  --red-pen:      #e7545b;  /* teacher's correction pen                 */
+  --blue-pen:     #2f6fb7;  /* student's ballpoint                      */
+  --good:         #2e9e83;  /* correct / mastered green                 */
+  --gold:         #d9a13b;  /* gold star, 1st place                     */
+
+  /* ── 2. Semantic — light "paper" ──────────────────────────────── */
+  --surface-page:    var(--paper);        /* app/page background       */
+  --surface-raised:  var(--paper-raised); /* cards, sheets, menus      */
+  --surface-sunken:  rgba(33, 36, 73, 0.05);
+
+  --text-primary:    var(--ink);
+  --text-soft:       rgba(33, 36, 73, 0.74);
+  --text-faint:      rgba(33, 36, 73, 0.55);
+  --text-ghost:      rgba(33, 36, 73, 0.28);
+  --text-on-ink:     var(--paper);        /* text on a navy fill       */
+
+  --accent:          var(--albert-blue);  /* sky highlight, focus glow */
+  --accent-pen:      var(--blue-pen);      /* links, progress fills     */
+
+  --rule:            rgba(33, 36, 73, 0.10); /* hairline borders        */
+  --rule-dashed:     rgba(33, 36, 73, 0.16); /* dashed dividers         */
+  --grid-line:       rgba(95, 130, 190, 0.13); /* séyès grid            */
+  --margin-rule:     rgba(231, 84, 91, 0.38);  /* red left margin       */
+
+  --field-bg:        var(--paper-raised);
+  --field-border:    rgba(33, 36, 73, 0.18);
+  --focus-ring:      rgba(47, 111, 183, 0.12);
+
+  /* Correction states (callouts, feedback, marks) */
+  --good-bg:         rgba(46, 158, 131, 0.10);
+  --warn:            var(--red-pen);
+  --warn-bg:         rgba(231, 84, 91, 0.08);
+  --info-bg:         rgba(105, 198, 221, 0.10);
+}
+
+/* ── Dark "chalkboard" ──────────────────────────────────────────── */
+[data-theme="dark"] {
+  --paper:        #131a17;  /* slate-green board                        */
+  --paper-raised: #1a231f;
+  --ink:          #ecf2ec;  /* chalk                                    */
+  --red-pen:      #f08a8f;
+  --blue-pen:     #8ec7f0;
+  --good:         #6fcbb0;
+  --gold:         #e8bb66;
+
+  --surface-page:    var(--paper);
+  --surface-raised:  var(--paper-raised);
+  --surface-sunken:  rgba(236, 242, 236, 0.05);
+
+  --text-primary:    var(--ink);
+  --text-soft:       rgba(236, 242, 236, 0.72);
+  --text-faint:      rgba(236, 242, 236, 0.45);
+  --text-ghost:      rgba(236, 242, 236, 0.25);
+  --text-on-ink:     #131a17;
+
+  --rule:            rgba(236, 242, 236, 0.10);
+  --rule-dashed:     rgba(236, 242, 236, 0.16);
+  --grid-line:       rgba(236, 242, 236, 0.045);
+  --margin-rule:     rgba(240, 138, 143, 0.30);
+
+  --field-bg:        var(--paper-raised);
+  --field-border:    rgba(236, 242, 236, 0.18);
+
+  --good-bg:         rgba(111, 203, 176, 0.10);
+  --warn:            var(--red-pen);
+  --warn-bg:         rgba(240, 138, 143, 0.09);
+  --info-bg:         rgba(105, 198, 221, 0.10);
+}

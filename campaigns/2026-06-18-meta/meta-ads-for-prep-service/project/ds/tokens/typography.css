@@ -1,0 +1,51 @@
+/* ════════════════════════════════════════════════════════════════════
+   Albert Prep — Typography
+   ────────────────────────────────────────────────────────────────────
+   · Display  Fraunces — serif, the "headline written in fountain pen".
+              Italics are a deliberate emphasis device (the <em> in every
+              headline renders in italic blue-pen).
+   · Mono     Spline Sans Mono — every number, label, kbd, and metric.
+              Tabular numerals so digits line up like a ledger.
+   · Body     Söhne → system grotesque fallback.
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Families ── */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono:    'Spline Sans Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-sans:    'Sohne', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body:    var(--font-sans);
+
+  /* ── Weights ── */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* ── Display scale (Fraunces, fluid) ── */
+  --display-xl:  clamp(2.4rem, 7vw, 3.6rem);   /* hero headline @kind font */
+  --display-lg:  clamp(2rem, 6vw, 2.9rem);     /* page headline @kind font */
+  --display-md:  1.5rem;                        /* card title            */
+  --display-sm:  1.1rem;                        /* inline serif emphasis */
+
+  /* ── Text scale ── */
+  --text-lg:   1.05rem;   /* lead paragraph / question prompt */
+  --text-base: 0.95rem;
+  --text-sm:   0.85rem;
+  --text-xs:   0.75rem;
+
+  /* ── Mono label (the all-caps tracked tag used everywhere) ── */
+  --label-size:    0.66rem;
+  --label-spacing: 0.14em;
+
+  /* ── Line heights ── */
+  --leading-tight:   1.05;
+  --leading-snug:    1.25;
+  --leading-normal:  1.55;
+  --leading-relaxed: 1.65;
+
+  /* ── Display letter-spacing ── */
+  --tracking-display: -0.02em;
+  --tracking-tight:   -0.03em;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "albert-prep-marketing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture:reels": "node campaigns/2026-06-18-meta/reels/scripts/capture-reels.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.52.0"
+  }
+}

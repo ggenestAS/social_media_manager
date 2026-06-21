@@ -1,0 +1,59 @@
+/* ════════════════════════════════════════════════════════════════════
+   Albert Prep — Base element styles
+   Light resets + default typography so bare HTML already looks "Albert".
+   Scope component-specific styling to components; keep this minimal.
+   ════════════════════════════════════════════════════════════════════ */
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  text-wrap: balance;
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--display-lg); letter-spacing: var(--tracking-display); line-height: var(--leading-tight); }
+h2 { font-size: var(--display-md); letter-spacing: var(--tracking-display); line-height: var(--leading-snug); }
+h3 { font-size: var(--display-sm); letter-spacing: -0.01em; line-height: var(--leading-snug); }
+
+/* Italic emphasis inside a serif headline renders in blue-pen — the
+   signature Albert Prep "underlined-by-hand" emphasis. */
+h1 em, h2 em, .cahier-display em {
+  font-style: italic;
+  font-weight: var(--weight-medium);
+  color: var(--blue-pen);
+}
+
+p { margin: 0 0 1em; }
+a { color: var(--accent-pen); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code, kbd, samp { font-family: var(--font-mono); }
+
+/* Tabular numerals everywhere a number is shown deliberately */
+.cahier-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* The mono all-caps label/eyebrow used to title every section */
+.cahier-label {
+  font-family: var(--font-mono);
+  font-size: var(--label-size);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--label-spacing);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+::selection { background: rgba(113, 192, 243, 0.28); }

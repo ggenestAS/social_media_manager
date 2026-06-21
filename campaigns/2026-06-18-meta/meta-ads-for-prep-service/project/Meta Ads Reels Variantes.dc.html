@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="ds/styles.css">
+<style>
+  body { margin:0; }
+
+  /* ── Concept B: « La correction » — 8.5s loop ── */
+  @keyframes cb_brand   { 0%{opacity:0;transform:translateY(-10px)} 4%{opacity:1;transform:none} 95%{opacity:1} 100%{opacity:0} }
+  @keyframes cb_eyebrow { 0%,4%{opacity:0;transform:translateY(12px)} 9%{opacity:1;transform:none} 93%{opacity:1} 98%{opacity:0} }
+  @keyframes cb_eq      { 0%,9%{opacity:0;transform:scale(.92)} 14%{opacity:1;transform:scale(1)} 70%{opacity:1;transform:scale(1)} 75%{opacity:0;transform:scale(.97)} 100%{opacity:0} }
+  @keyframes cb_strike  { 0%,30%{transform:scaleX(0)} 40%{transform:scaleX(1)} 100%{transform:scaleX(1)} }
+  @keyframes cb_wrong   { 0%,40%{opacity:1} 49%{opacity:.32} 100%{opacity:.32} }
+  @keyframes cb_correct { 0%,42%{opacity:0;transform:translateY(14px) scale(.8)} 50%{opacity:1;transform:none} 100%{opacity:1;transform:none} }
+  @keyframes cb_check   { 0%,52%{opacity:0;transform:scale(.2) rotate(-25deg)} 58%{opacity:1;transform:scale(1) rotate(0)} 100%{opacity:1} }
+  @keyframes cb_head    { 0%,71%{opacity:0;transform:translateY(28px)} 80%{opacity:1;transform:none} 92%{opacity:1} 97%{opacity:0} }
+  @keyframes cb_cta     { 0%,81%{opacity:0;transform:translateY(22px)} 89%{opacity:1;transform:none} 93%{opacity:1} 98%{opacity:0} }
+  @keyframes cb_pulse   { 0%,87%,100%{transform:scale(1)} 92%{transform:scale(1.04)} }
+
+  /* ── Concept C: « Avant / Après » — 8.5s loop ── */
+  @keyframes cc_brand   { 0%{opacity:0;transform:translateY(-10px)} 4%{opacity:1;transform:none} 95%{opacity:1} 100%{opacity:0} }
+  @keyframes cc_eyebrow { 0%,4%{opacity:0;transform:translateY(12px)} 9%{opacity:1;transform:none} 93%{opacity:1} 98%{opacity:0} }
+  @keyframes cc_sans    { 0%,10%{opacity:0;transform:translateY(20px)} 17%{opacity:1;transform:none} 90%{opacity:1} 96%{opacity:0} }
+  @keyframes cc_cross   { 0%,24%{opacity:0;transform:scale(.3) rotate(20deg)} 30%{opacity:1;transform:scale(1) rotate(0)} 90%{opacity:1} 96%{opacity:0} }
+  @keyframes cc_avec    { 0%,34%{opacity:0;transform:translateY(20px)} 41%{opacity:1;transform:none} 90%{opacity:1} 96%{opacity:0} }
+  @keyframes cc_answer  { 0%,46%{opacity:0;transform:scale(.4)} 53%{opacity:1;transform:scale(1.18)} 58%{opacity:1;transform:scale(1)} 90%{opacity:1} 96%{opacity:0} }
+  @keyframes cc_check   { 0%,52%{opacity:0;transform:scale(.2) rotate(-25deg)} 59%{opacity:1;transform:scale(1) rotate(0)} 90%{opacity:1} 96%{opacity:0} }
+  @keyframes cc_cta     { 0%,72%{opacity:0;transform:translateY(22px)} 80%{opacity:1;transform:none} 93%{opacity:1} 98%{opacity:0} }
+  @keyframes cc_pulse   { 0%,82%,100%{transform:scale(1)} 88%{transform:scale(1.04)} }
+</style>
+</helmet>
+
+<div style="background:#e9e0d0;min-height:100vh;padding:64px 56px 96px;font-family:var(--font-body);box-sizing:border-box;color:var(--text-primary)">
+
+  <!-- ===== Board header ===== -->
+  <div style="max-width:1180px;margin:0 0 8px">
+    <div class="cahier-label" style="font-size:13px;color:var(--red-pen);margin-bottom:16px">Meta Ads · Reels animées — autres concepts</div>
+    <h1 style="font-family:var(--font-display);font-weight:600;font-size:46px;line-height:1.04;letter-spacing:-0.02em;color:var(--ink);margin:0 0 16px">Deux nouveaux <em style="font-style:italic;font-weight:500;color:var(--blue-pen)">angles</em> animés</h1>
+    <p style="font-size:17px;line-height:1.6;color:var(--text-soft);max-width:820px;margin:0">Même moteur de boucle 9:16 (8,5 s), deux mécaniques narratives différentes : <strong style="color:var(--ink);font-weight:600">« La correction »</strong> joue le stylo rouge qui rature et corrige ; <strong style="color:var(--ink);font-weight:600">« Avant / Après »</strong> oppose l'hésitation à la réponse instantanée.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;margin-top:56px">
+
+    <!-- ============ VARIANTE B — « La correction » (Première, paper) ============ -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cahier-num" style="font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--text-on-ink);background:var(--ink);padding:7px 14px;border-radius:var(--radius-full)">PREMIÈRE · LA CORRECTION</span>
+        <span class="cahier-num" style="font-size:11px;font-weight:600;color:var(--text-faint);border:1px dashed var(--rule-dashed);border-radius:var(--radius-full);padding:3px 10px">9:16 · 1080×1920 · boucle 8,5 s</span>
+      </div>
+      <div style="width:380px;height:676px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lift);background:var(--paper)">
+        <div data-screen-label="Variante Correction 9:16" style="width:1080px;height:1920px;transform:scale(0.35185);transform-origin:top left;background:var(--paper);color:var(--ink);position:relative;display:flex;flex-direction:column;align-items:center;padding:150px 90px 150px;box-sizing:border-box;overflow:hidden">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:60px 60px;z-index:0"></div>
+          <div style="position:absolute;top:0;bottom:0;left:118px;width:2px;background:var(--margin-rule);z-index:1"></div>
+
+          <!-- brand -->
+          <div style="position:relative;z-index:2;display:flex;align-items:center;gap:16px;animation:cb_brand 8.5s linear infinite">
+            <img src="assets/logo-mark.svg" style="width:60px;height:60px;border-radius:12px;display:block" alt="Albert Prep">
+            <span style="font-family:var(--font-sans);text-transform:uppercase;color:var(--ink)"><strong style="font-weight:700;letter-spacing:.08em;font-size:36px">Albert</strong> <span style="font-weight:300;letter-spacing:.26em;font-size:36px">Prep</span></span>
+          </div>
+
+          <!-- eyebrow -->
+          <div class="cahier-label" style="position:relative;z-index:2;font-size:26px;color:var(--red-pen);margin-top:80px;animation:cb_eyebrow 8.5s linear infinite">Sûr de tes pourcentages ?</div>
+
+          <!-- middle scene -->
+          <div style="position:relative;z-index:2;flex:1;width:100%;display:flex;align-items:center;justify-content:center">
+
+            <!-- equation block with correction -->
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:cb_eq 8.5s linear infinite">
+              <div style="display:flex;align-items:center;gap:28px;font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:500;font-size:104px;line-height:1;color:var(--ink)">
+                <span>15&nbsp;% de 240 =</span>
+                <!-- wrong answer, struck -->
+                <span style="position:relative;display:inline-flex;animation:cb_wrong 8.5s linear infinite">
+                  <span style="color:var(--text-faint)">60</span>
+                  <span style="position:absolute;left:-6px;right:-6px;top:52%;height:8px;background:var(--red-pen);border-radius:4px;transform-origin:left center;transform:scaleX(0);animation:cb_strike 8.5s linear infinite"></span>
+                </span>
+                <!-- correct answer in red pen -->
+                <span style="display:inline-flex;align-items:center;gap:22px;animation:cb_correct 8.5s linear infinite">
+                  <span style="font-family:var(--font-display);font-style:italic;font-weight:500;color:var(--red-pen)">36</span>
+                  <span style="color:var(--good);font-size:84px;animation:cb_check 8.5s linear infinite">✓</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- headline -->
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;animation:cb_head 8.5s linear infinite">
+              <div style="font-family:var(--font-display);font-weight:600;font-size:94px;line-height:1.04;letter-spacing:-0.02em;color:var(--ink)">Albert Prep <em style="font-style:italic;font-weight:500;color:var(--blue-pen)">corrige</em> tes automatismes.</div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="position:relative;z-index:2;animation:cb_cta 8.5s linear infinite">
+            <div style="animation:cb_pulse 8.5s ease-in-out infinite">
+              <span style="display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--text-on-ink);font-family:var(--font-mono);font-weight:600;font-size:34px;letter-spacing:.04em;padding:32px 60px;border-radius:var(--radius-lg);box-shadow:0 8px 0 rgba(33,36,73,0.25)">Diagnostic gratuit →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VARIANTE C — « Avant / Après » (Terminale, navy) ============ -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cahier-num" style="font-weight:600;font-size:13px;letter-spacing:.06em;color:#fff;background:var(--red-pen);padding:7px 14px;border-radius:var(--radius-full)">TERMINALE · AVANT / APRÈS</span>
+        <span class="cahier-num" style="font-size:11px;font-weight:600;color:var(--text-faint);border:1px dashed var(--rule-dashed);border-radius:var(--radius-full);padding:3px 10px">9:16 · 1080×1920 · boucle 8,5 s</span>
+      </div>
+      <div style="width:380px;height:676px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lift);background:var(--ink)">
+        <div data-screen-label="Variante AvantApres 9:16" style="width:1080px;height:1920px;transform:scale(0.35185);transform-origin:top left;background:var(--ink);color:var(--paper);position:relative;display:flex;flex-direction:column;align-items:center;padding:140px 86px 140px;box-sizing:border-box;overflow:hidden">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(168,219,238,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(168,219,238,0.05) 1px,transparent 1px);background-size:60px 60px;z-index:0"></div>
+
+          <!-- brand -->
+          <div style="position:relative;z-index:2;animation:cc_brand 8.5s linear infinite">
+            <span style="font-family:var(--font-sans);text-transform:uppercase;color:var(--paper)"><strong style="font-weight:700;letter-spacing:.08em;font-size:36px">Albert</strong> <span style="font-weight:300;letter-spacing:.26em;font-size:36px">Prep</span></span>
+          </div>
+
+          <!-- eyebrow -->
+          <div class="cahier-label" style="position:relative;z-index:2;font-size:25px;color:var(--albert-blue);margin-top:64px;text-align:center;animation:cc_eyebrow 8.5s linear infinite">En Terminale, le temps compte</div>
+
+          <!-- contrast stack -->
+          <div style="position:relative;z-index:2;flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;gap:48px">
+
+            <!-- SANS -->
+            <div style="border:1px dashed rgba(236,242,236,0.22);border-radius:var(--radius-2xl);padding:54px 56px;animation:cc_sans 8.5s linear infinite">
+              <div class="cahier-label" style="font-size:22px;color:rgba(236,242,236,0.5);margin-bottom:28px">Sans entraînement</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:24px">
+                <span style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:500;font-size:96px;line-height:1;color:rgba(236,242,236,0.6)">2<sup style="font-size:52px;vertical-align:super">5</sup> × 2<sup style="font-size:52px;vertical-align:super">3</sup> = <span style="color:rgba(236,242,236,0.4)">?</span></span>
+                <span style="display:inline-flex;flex-direction:column;align-items:center;gap:8px">
+                  <span style="color:var(--red-pen);font-size:84px;line-height:1;animation:cc_cross 8.5s linear infinite">✗</span>
+                  <span class="cahier-num" style="font-size:20px;color:var(--red-pen);animation:cc_cross 8.5s linear infinite">trop lent</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- AVEC -->
+            <div style="background:rgba(168,219,238,0.08);border:1px solid var(--albert-blue);border-radius:var(--radius-2xl);padding:54px 56px;animation:cc_avec 8.5s linear infinite">
+              <div class="cahier-label" style="font-size:22px;color:var(--albert-blue);margin-bottom:28px">Avec Albert Prep</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:24px">
+                <span style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:500;font-size:96px;line-height:1;color:var(--paper)">2<sup style="font-size:52px;vertical-align:super">5</sup> × 2<sup style="font-size:52px;vertical-align:super">3</sup> = <span style="color:var(--albert-blue);animation:cc_answer 8.5s linear infinite;display:inline-block">256</span></span>
+                <span style="color:var(--good);font-size:88px;line-height:1;animation:cc_check 8.5s linear infinite">✓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="position:relative;z-index:2;text-align:center;animation:cc_cta 8.5s linear infinite">
+            <div style="font-family:var(--font-display);font-weight:600;font-size:46px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:36px">Reprends de l'avance en <em style="font-style:italic;font-weight:500;color:var(--albert-blue)">21 jours.</em></div>
+            <div style="animation:cc_pulse 8.5s ease-in-out infinite;display:inline-block">
+              <span style="display:inline-flex;align-items:center;gap:14px;background:var(--red-pen);color:#fff;font-family:var(--font-mono);font-weight:600;font-size:34px;letter-spacing:.04em;padding:32px 60px;border-radius:var(--radius-lg);box-shadow:0 8px 0 rgba(0,0,0,0.3)">Commencer le diagnostic →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size:14px;color:var(--text-faint);margin:48px 0 0;max-width:780px;font-family:var(--font-mono)">Chaque mécanique fonctionne pour les deux niveaux — il suffit d'échanger le calcul et l'accroche. Capture d'écran de la zone du Reel sur 8,5 s pour l'export MP4.</p>
+
+</div>
+
+<template id="__bundler_thumbnail" data-bg-color="#1d2546">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#1d2546"/>
+    <text x="600" y="430" font-family="'Spline Sans Mono',monospace" font-size="220" font-weight="600" fill="#f4efe4" text-anchor="middle">= ?</text>
+    <text x="600" y="560" font-family="'Spline Sans Mono',monospace" font-size="44" font-weight="600" letter-spacing="12" fill="#a8dbee" text-anchor="middle">ALBERT PREP</text>
+  </svg>
+</template></x-dc>
+</body>
+</html>
