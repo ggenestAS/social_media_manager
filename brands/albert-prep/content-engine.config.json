@@ -1,0 +1,50 @@
+{
+  "_comment": "Constraints for agent-authored daily briefs. The agent plans against this; scripts do not auto-compose content.",
+  "timezone": "Europe/Paris",
+  "daily": {
+    "unique_assets": { "min": 8, "target": 10 },
+    "channel_posts_per_platform": { "min": 8, "target": 10 },
+    "ig_feed_carousel_cap": 2,
+    "cadence_minutes": 10,
+    "posting_window": { "start": "08:00", "end": "22:00" }
+  },
+  "fan_out": {
+    "model": "crosspost",
+    "default_channels": ["ig", "fb", "tiktok"],
+    "note": "One authored asset → multiple channel posts. IG feed capped; surplus → Reels + Stories."
+  },
+  "type_mix_guidance": {
+    "reel": "Primary volume driver (~40–50% of unique assets). Short drills + QCM reels.",
+    "calcul-du-jour": "~15–20%. Single-slide; cross-post IG + FB feed.",
+    "astuce": "~10–15%. Carousel; IG feed only (counts toward cap).",
+    "serie": "~10%. Carousel; IG feed only.",
+    "qcm": "~10–15%. Mix reel (cross-post) + occasional story probe + ≤1 feed carousel/day."
+  },
+  "placement_defaults": {
+    "reel": [
+      { "channel": "ig", "post_type": "post" },
+      { "channel": "ig", "post_type": "story" },
+      { "channel": "fb", "post_type": "post" },
+      { "channel": "tiktok", "post_type": "post" }
+    ],
+    "calcul-du-jour": [
+      { "channel": "ig", "post_type": "post" },
+      { "channel": "fb", "post_type": "post" }
+    ],
+    "astuce": [{ "channel": "ig", "post_type": "post" }],
+    "serie": [{ "channel": "ig", "post_type": "post" }],
+    "qcm": [{ "channel": "ig", "post_type": "post" }],
+    "qcm-reel": [
+      { "channel": "ig", "post_type": "post" },
+      { "channel": "ig", "post_type": "story" },
+      { "channel": "fb", "post_type": "post" },
+      { "channel": "tiktok", "post_type": "post" }
+    ],
+    "qcm-story": [{ "channel": "ig", "post_type": "story" }]
+  },
+  "authoring": {
+    "agent_authors_all_html": true,
+    "templates_are_reference_only": true,
+    "verify_before_save": "npm run verify:math -- …"
+  }
+}

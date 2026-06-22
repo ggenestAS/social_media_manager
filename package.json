@@ -8,7 +8,9 @@
     "html:to-mp4": "node tools/html-to-mp4.mjs",
     "social:status": "postiz auth:status",
     "social:channels": "postiz integrations:list",
-    "social:resolve": "node scripts/resolve-channels.mjs"
+    "social:resolve": "node scripts/resolve-channels.mjs",
+    "verify:math": "node scripts/verify-math.mjs",
+    "stage:day": "node scripts/stage-day.mjs"
   },
   "devDependencies": {
     "playwright": "^1.52.0",

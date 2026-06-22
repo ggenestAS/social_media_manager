@@ -24,9 +24,15 @@ Generic tooling (HTML→media export, Postiz CLI, skills) lives at the repo root
 
 ## How to work here
 
-- **Create a post:** organic-post skill → resolves this brand → reads
-  `templates/` → writes a bundle under `output/organic/posts/`.
-- **Plan / schedule:** postiz-plan skill → calendar + export + Postiz drafts.
+- **Plan a day (agent):** organic-plan skill → writes
+  `output/organic/briefs/YYYY-MM-DD.md` against
+  [`content-engine.config.json`](content-engine.config.json) (~8–10 assets/day,
+  cross-post to IG/FB/TikTok, IG feed cap ≤2 carousels).
+- **Create a post (agent):** organic-post skill → original `source.html` +
+  `post.md` per brief slot (templates are reference, not fill-forms).
+- **Verify math (script):** `npm run verify:math -- …` before saving.
+- **Stage / schedule (script):** `npm run stage:day -- --date YYYY-MM-DD`
+  → export + Postiz drafts. See postiz-plan skill to promote drafts.
 - **Render media:** `npm run html:to-image` / `html:to-mp4` (paid reels:
   `npm run capture:reels`).
 

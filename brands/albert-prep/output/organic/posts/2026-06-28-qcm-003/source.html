@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — QCM #003 (story)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+      --navy-grid: rgba(168, 219, 238, 0.05);
+    }
+    body { margin: 0; padding: 0; background: #111; }
+
+    .story {
+      width: 1080px; height: 1920px;
+      background: var(--navy); color: var(--paper);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      padding: 320px 110px 300px;
+    }
+    .story::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--navy-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .z { position: relative; z-index: 2; }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { font-family: system-ui, -apple-system, sans-serif; text-transform: uppercase; }
+    .brand-wordmark strong { font-weight: 700; letter-spacing: 0.08em; font-size: 34px; }
+    .brand-wordmark span { font-weight: 300; letter-spacing: 0.26em; font-size: 34px; }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .question {
+      font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.06;
+      color: var(--paper); font-size: 96px; margin-bottom: 64px;
+    }
+    .question em { font-weight: 300; font-style: italic; color: var(--sky); }
+
+    .choices { display: flex; flex-direction: column; gap: 34px; }
+    .choice { display: flex; align-items: center; gap: 32px; }
+    .choice .key {
+      flex: 0 0 auto; width: 88px; height: 88px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 46px;
+    }
+    .choice .val {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 84px; color: var(--paper); line-height: 1;
+    }
+
+    .prompt {
+      font-family: 'Spline Sans Mono', monospace; font-size: 36px; font-weight: 500;
+      opacity: 0.7; text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    QCM story — static 9:16. Native IG Quiz sticker over the options, or post as-is (reply-driven).
+    Export: npm run html:to-image -- source.html --all --out export/
+  -->
+
+  <div data-screen-label="Qcm 003 story 9:16" class="story">
+    <div class="topbar z">
+      <span class="brand-wordmark"><strong>Albert</strong> <span>Prep</span></span>
+      <span class="pill">QCM</span>
+    </div>
+
+    <div class="body z">
+      <div class="question">&radic;(25/49)<br>= <em>?</em></div>
+      <div class="choices">
+        <div class="choice"><span class="key">A</span><span class="val">5/7</span></div>
+        <div class="choice"><span class="key">B</span><span class="val">25/49</span></div>
+        <div class="choice"><span class="key">C</span><span class="val">5/49</span></div>
+      </div>
+    </div>
+
+    <div class="z">
+      <p class="prompt">R&eacute;ponds A, B ou C &uarr;</p>
+    </div>
+  </div>
+
+</body>
+</html>

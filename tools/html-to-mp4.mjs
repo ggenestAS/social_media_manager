@@ -46,7 +46,7 @@ const ARG_SPEC = {
   speed: { type: 'number' },
   'loop-ms': { type: 'number' },
   'cta-ms': { type: 'number' },
-  'cta-hold-ms': { type: 'number' },
+  'cover-hold-ms': { type: 'number' },
 };
 
 const DEFAULTS = {
@@ -55,6 +55,7 @@ const DEFAULTS = {
   loopMs: 8500,
   ctaMs: 7750,
   ctaHoldMs: 2000,
+  coverHoldMs: 1000,
   aspect: '9:16',
 };
 
@@ -70,6 +71,7 @@ function usage() {
     '--loop-ms <ms>              CSS animation loop length (default: 8500; auto from data-loop-ms)',
     '--cta-ms <ms>               Timeline point for CTA preview/hold (default: 7750; auto from data-cta-ms)',
     '--cta-hold-ms <ms>          Frozen CTA duration at 1× (default: 2000)',
+    '--cover-hold-ms <ms>        Frozen cover frame prepended to MP4 at 1× (default: 1000)',
   ]);
 }
 
@@ -107,39 +109,63 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
     if (!screen) return null;
     const loopMs = parseInt(screen.dataset.loopMs, 10);
     const ctaMs = parseInt(screen.dataset.ctaMs, 10);
+    const coverMs = parseInt(screen.dataset.coverMs, 10);
     return {
       loopMs: Number.isFinite(loopMs) && loopMs > 0 ? loopMs : null,
       ctaMs: Number.isFinite(ctaMs) && ctaMs > 0 ? ctaMs : null,
+      coverMs: Number.isFinite(coverMs) && coverMs > 0 ? coverMs : null,
     };
   }, screenLabel);
 
   if (screenTiming?.loopMs) cfg.loopMs = screenTiming.loopMs;
   if (screenTiming?.ctaMs) cfg.ctaMs = screenTiming.ctaMs;
+  if (screenTiming?.coverMs) cfg.coverMs = screenTiming.coverMs;
+  else cfg.coverMs = 2500;
 
   await prepareAnimationCapture(page);
 
-  const previewPath = join(outputDir, `preview-${slug}.png`);
-  await seekAnimations(page, cfg.ctaMs);
+  const clip = { x: 0, y: 0, width: dims.width, height: dims.height };
+  const gridY = Math.round((dims.height - dims.width) / 2);
+
+  await seekAnimations(page, cfg.coverMs);
+  const coverPath = join(outputDir, `cover-${slug}.png`);
+  await page.screenshot({ path: coverPath, clip });
+  console.log(`   Cover saved → ${coverPath}`);
+
+  const cover1x1Path = join(outputDir, `cover-${slug}-1x1.png`);
   await page.screenshot({
-    path: previewPath,
-    clip: { x: 0, y: 0, width: dims.width, height: dims.height },
+    path: cover1x1Path,
+    clip: { x: 0, y: gridY, width: dims.width, height: dims.width },
   });
+  console.log(`   Cover 1:1 saved → ${cover1x1Path}`);
+
+  const previewPath = join(outputDir, `preview-${slug}.png`);
+  await page.screenshot({ path: previewPath, clip });
   console.log(`   Preview saved → ${previewPath}`);
 
   const framesDir = join(outputDir, `.frames-${slug}`);
   cleanupFramesDir(framesDir);
   mkdirSync(framesDir, { recursive: true });
 
-  const clip = { x: 0, y: 0, width: dims.width, height: dims.height };
   const loopFrameCount = Math.round((cfg.loopMs / cfg.speed / 1000) * cfg.fps);
   const holdFrameCount = Math.round((cfg.ctaHoldMs / cfg.speed / 1000) * cfg.fps);
-  const totalSec = ((loopFrameCount + holdFrameCount) / cfg.fps).toFixed(1);
+  const coverHoldFrameCount = Math.round((cfg.coverHoldMs / cfg.speed / 1000) * cfg.fps);
+  const totalSec = ((coverHoldFrameCount + loopFrameCount + holdFrameCount) / cfg.fps).toFixed(1);
 
   console.log(
-    `   ${cfg.speed}× · ${loopFrameCount} loop + ${holdFrameCount} hold · ~${totalSec}s @ ${cfg.fps} fps`
+    `   ${cfg.speed}× · ${coverHoldFrameCount} cover + ${loopFrameCount} loop + ${holdFrameCount} hold · ~${totalSec}s @ ${cfg.fps} fps`
   );
 
   let frameIndex = 0;
+
+  await seekAnimations(page, cfg.coverMs);
+  for (let k = 0; k < coverHoldFrameCount; k++) {
+    await page.screenshot({
+      path: join(framesDir, `frame-${String(frameIndex).padStart(5, '0')}.png`),
+      clip,
+    });
+    frameIndex++;
+  }
 
   for (let i = 0; i < loopFrameCount; i++) {
     const timeMs = Math.min(Math.round((i / cfg.fps) * 1000 * cfg.speed), cfg.loopMs - 1);
@@ -198,6 +224,8 @@ async function main() {
     loopMs: options['loop-ms'] ?? DEFAULTS.loopMs,
     ctaMs: options['cta-ms'] ?? DEFAULTS.ctaMs,
     ctaHoldMs: options['cta-hold-ms'] ?? DEFAULTS.ctaHoldMs,
+    coverHoldMs: options['cover-hold-ms'] ?? DEFAULTS.coverHoldMs,
+    coverMs: 2500,
   };
 
   const aspect = options.aspect ?? DEFAULTS.aspect;

@@ -51,7 +51,9 @@ If the user hasn't provided the concrete content (the calculation, technique,
 topic…), **create original questions** calibrated to the brand's
 `content-guide.md`: pick a theme, assign a difficulty tag (`easy` | `medium` |
 `hard`), invent operands in the same skill family as the guide's calibration
-table, and **verify every answer** before saving. Follow the type's `spec.md`
+table, and **verify every answer** before saving (run
+`npm run verify:math -- --expr "…" --expect N` or add a `verify:` block in
+`post.md` frontmatter). Follow the type's `spec.md`
 for slide structure and the content guide for hooks, topic rotation, and the
 canonical hashtag/handle/CTA set.
 
@@ -86,6 +88,10 @@ channels: [ig, fb]           # aliases from brands/<brand>/channels.json
 schedule: 2026-06-22T09:00    # local time, or null
 status: draft                # draft | scheduled | published
 postiz_id: null              # filled after publishing
+# optional — checked by npm run verify:math -- --bundle …
+# verify:
+#   answer: 528
+#   exprs: ["48*11"]
 # reel only — same export MP4, different IG placement (see reel/spec.md):
 # timer_sec: 3              # 3 | 5 | 10 | 15 — must match data-timer-sec in source.html
 # placements:

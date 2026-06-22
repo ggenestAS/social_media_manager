@@ -19,6 +19,8 @@
 
   reel.dataset.loopMs = String(loopMs);
   reel.dataset.ctaMs = String(Math.round((revealStart + REVEAL * 0.62) * 1000));
+  // Grid thumbnail: question + ring visible, before reveal (see reel/spec.md)
+  reel.dataset.coverMs = String(Math.round((INTRO + 0.5) * 1000));
 
   const p = (sec) => ((sec / total) * 100).toFixed(3);
 

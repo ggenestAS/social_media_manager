@@ -127,6 +127,25 @@ export async function isolateScreen(page, screenLabel) {
   return dims;
 }
 
+export async function fitHeroCalcs(page) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    const MAX = 180;
+    const MIN = 72;
+    for (const el of document.querySelectorAll('.hero-calc')) {
+      const box = el.closest('.body') || el.parentElement;
+      if (!box) continue;
+      const maxW = box.clientWidth;
+      let size = MAX;
+      el.style.fontSize = `${size}px`;
+      while (el.scrollWidth > maxW && size > MIN) {
+        size -= 2;
+        el.style.fontSize = `${size}px`;
+      }
+    }
+  });
+}
+
 export async function seekAnimations(page, timeMs) {
   await page.evaluate((t) => {
     for (const anim of document.getAnimations({ subtree: true })) {

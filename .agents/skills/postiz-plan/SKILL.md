@@ -15,8 +15,11 @@ is **shared across all brands** — `POSTIZ_API_KEY` is global, but each brand's
 
 ## When to use
 
+- **Daily volume planning** — use **organic-plan** first (agent-authored brief);
+  this skill handles export + Postiz after bundles exist.
 - Filling `brands/<brand>/output/organic/calendar/` from
-  `brands/<brand>/templates/content-calendar.template.md`
+  `brands/<brand>/templates/content-calendar.template.md` or
+  `templates/daily-brief.template.md`
 - Scheduling a brand's organic posts (whatever post types it defines)
 - Batch-creating Postiz **drafts** for human review before going live
 - Uploading PNG/MP4 assets produced by the repo tools
@@ -53,11 +56,20 @@ organic-post skill.
 
 ### 3. Export media (repo tools)
 
+Single bundle:
+
 ```bash
 SLUG=brands/<brand>/output/organic/posts/<date>-<type>-<nnn>
 npm run html:to-image -- "$SLUG/source.html" --all --out "$SLUG/export"
 # animated reel:
 npm run html:to-mp4   -- "$SLUG/source.html" --out "$SLUG/export"
+```
+
+Full day (after agent authored all bundles):
+
+```bash
+eval "$(npm run -s social:resolve)"
+npm run stage:day -- --date YYYY-MM-DD --export-missing
 ```
 
 ### 4. Upload media to Postiz

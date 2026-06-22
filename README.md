@@ -81,8 +81,26 @@ cp -r brands/_template brands/<new-brand>   # then fill it in — see brands/_te
 
 ## Skills
 
+- **organic-plan** — agent-authored daily brief at volume (8–10 assets/day,
+  cross-post fan-out). `.agents/skills/organic-plan/`
 - **organic-post** — create a post bundle for the active brand (reads the brand's
   `templates/`). `.agents/skills/organic-post/`
 - **postiz-plan** — calendar → export → Postiz drafts/scheduling.
   `.agents/skills/postiz-plan/`
 - **postiz** — authoritative Postiz CLI command reference. `.agents/skills/postiz/`
+- **experiment** — design a content experiment + N shippable drafts that break
+  out of the brand's post-types while staying on-brand. `.agents/skills/experiment/`
+
+## Content factory plumbing
+
+```bash
+# Seatbelt — agent recomputes; script refuses wrong arithmetic
+npm run verify:math -- --expr "48*11" --expect 528
+
+# Batch export + Postiz drafts for all bundles on a date
+eval "$(npm run -s social:resolve)"
+npm run stage:day -- --date 2026-06-22 --export-missing
+```
+
+Volume constraints for Albert Prep: `brands/albert-prep/content-engine.config.json`
+(brief template: `brands/albert-prep/templates/daily-brief.template.md`).

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Astuce #017</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--navy); }
+    .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy { color: var(--paper); }
+    .display.on-navy em { color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+    .post-number, .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.42;
+    }
+    .slide-counter { font-weight: 500; }
+    .brand-tag { text-transform: uppercase; opacity: 0.4; }
+
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .hero-calc { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 180px; line-height: 0.95; letter-spacing: -0.03em; white-space: nowrap; }
+    .step { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 52px; line-height: 1.7; }
+    .step .hl { color: var(--sky); }
+    .step .ok { color: var(--good); }
+    .lead { font-size: 38px; opacity: 0.7; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+    .correction { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-top: 8px; }
+    .correction .wrong {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 84px;
+      text-decoration: line-through; text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 7px; opacity: 0.5;
+    }
+    .correction .arrow { font-size: 56px; opacity: 0.5; }
+    .correction .right { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 120px; color: var(--red-pen); line-height: 1; }
+    .correction .check { font-size: 90px; color: var(--good); }
+    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 38px; opacity: 0.7; margin-top: 40px; }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+    .teaser { font-size: 30px; opacity: 0.65; margin-top: 44px; }
+  </style>
+</head>
+<body>
+  <div data-screen-label="Astuce 017 01/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner"><div class="head"><span class="post-number">#017</span><span class="slide-counter">01/04</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><div style="margin-bottom:48px;"><span class="pill">Astuce</span></div>
+    <div class="display" style="font-size:108px;">Comment<br>multiplier<br><em>49 × 21</em> ?</div></div>
+    <div class="foot"><div class="separator"></div><p class="lead" style="margin-bottom:20px;">49 × 21 = ?</p><p class="hint">Passe au slide →</p></div></div></div>
+  <div data-screen-label="Astuce 017 02/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy"><div class="head"><span class="post-number">#017</span><span class="slide-counter">02/04</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><div class="display on-navy" style="font-size:84px;margin-bottom:48px;">La <em>méthode</em></div>
+    <p class="lead" style="margin-bottom:40px;">Pour 49 × 21 :</p><p class="step">❶ &nbsp;50 × 21 = 1050</p>
+        <p class="step">❷ &nbsp;− 21 = <span class="hl">1029</span></p>
+        <p class="step">❸ &nbsp;Compensation <span class="ok">✓</span></p></div>
+    <div class="foot"><p class="hint">→ Slide suivant</p></div></div></div>
+  <div data-screen-label="Astuce 017 03/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner"><div class="head"><span class="post-number">#017</span><span class="slide-counter">03/04</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><p class="lead" style="margin-bottom:36px;">Essaie avec…</p><div class="hero-calc">49 × 21</div><div class="separator"></div>
+    <div class="correction"><span class="wrong">1050</span><span class="arrow">→</span><span class="right">1029</span><span class="check">✓</span></div>
+    <p class="recap">50 × 21 − 21 = 1029</p></div><div class="foot"><p class="hint">Enregistre pour t'entraîner →</p></div></div></div>
+  <div data-screen-label="Astuce 017 04/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy"><div class="head"><span class="post-number">#017</span><span class="slide-counter">04/04</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><div class="display on-navy" style="font-size:104px;margin-bottom:64px;">Enregistre<br>pour ne<br><em>pas oublier</em></div>
+    <div><span class="btn-ink">Suivre @albert.prep</span></div></div>
+    <div class="foot"><p class="teaser">Prochaine astuce : les fractions</p></div></div></div>
+</body></html>

@@ -115,6 +115,26 @@ Export: npm run html:to-mp4 — loop-ms read from data-loop-ms automatically
 Transitions: hard cut (no dissolve)
 Sound: silence or single tick per beat
 Export: 1080×1920, 30fps, MP4
+
+## Cover / miniature (profile grid)
+
+IG and TikTok pick a **video frame** for the profile grid. Frame 0 used to be
+the intro fade → blank navy thumbnails.
+
+On export, `html-to-mp4` now also writes:
+
+| File | Use |
+|---|---|
+| `cover-<slug>.png` | Full 9:16 — manual cover upload in IG/TikTok app |
+| `cover-<slug>-1x1.png` | Center crop — approximates IG profile grid |
+| `preview-<slug>.png` | Same as cover (QA) |
+
+The MP4 **prepends ~1 s** of the cover frame (`data-cover-ms`, default 2.5 s
+into the loop) so auto-thumbnails show the question + ring even when Postiz
+cannot attach a separate cover image.
+
+Timeline: `data-cover-ms` is set by `reel-timeline.js` at `INTRO + 0.5 s`.
+Paid ads use the same pattern in `reels/covers/` (static PNG paired with MP4).
 ```
 
 ## Caption formula

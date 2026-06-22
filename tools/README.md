@@ -50,7 +50,10 @@ npm run html:to-mp4 -- path/to/reels.html --screen "Reel Première 9:16" --out .
 Outputs per screen:
 
 - `reel-<slug>.mp4`
-- `preview-<slug>.png` — CTA frame for QA
+- `reel-<slug>.mp4` — encoded video (cover frame prepended ~1 s for grid thumbnails)
+- `cover-<slug>.png` — 9:16 miniature (question hold)
+- `cover-<slug>-1x1.png` — center square crop for IG grid QA
+- `preview-<slug>.png` — same frame as cover
 
 Campaign-specific batch capture still available via `npm run capture:reels` (uses these libraries internally).
 

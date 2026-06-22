@@ -22,6 +22,7 @@ import {
   defaultOutputDir,
   discoverScreens,
   ensureDir,
+  fitHeroCalcs,
   getScreenDimensions,
   isolateScreen,
   parseArgs,
@@ -71,6 +72,7 @@ async function captureScreen(browser, htmlFile, screenLabel, outputDir, atMs) {
   await page.waitForSelector('[data-screen-label]', { timeout: 60000 });
   await isolateScreen(page, screenLabel);
   await prepareAnimationCapture(page);
+  await fitHeroCalcs(page);
   if (atMs > 0) await seekAnimations(page, atMs);
 
   const slug = slugFromLabel(screenLabel) || 'screen';

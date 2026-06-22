@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Astuce #021</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--navy); }
+    .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy { color: var(--paper); }
+    .display.on-navy em { color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+    .post-number, .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.42;
+    }
+    .slide-counter { font-weight: 500; }
+    .brand-tag { text-transform: uppercase; opacity: 0.4; }
+
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .hero-calc { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 180px; line-height: 0.95; letter-spacing: -0.03em; white-space: nowrap; max-width: 100%; }
+    .step { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 56px; line-height: 1.7; }
+    .step .hl { color: var(--sky); }
+    .step .bad { color: var(--red-pen); }
+    .step .ok { color: var(--good); }
+    .lead { font-size: 38px; opacity: 0.7; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+    .correction { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-top: 8px; }
+    .correction .wrong {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 84px;
+      text-decoration: line-through; text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 7px; opacity: 0.5;
+    }
+    .correction .arrow { font-size: 56px; opacity: 0.5; }
+    .correction .right { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 120px; color: var(--red-pen); line-height: 1; }
+    .correction .check { font-size: 90px; color: var(--good); }
+    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 36px; opacity: 0.7; margin-top: 40px; }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+    .teaser { font-size: 30px; opacity: 0.65; margin-top: 44px; }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 — Cover (paper) -->
+  <div data-screen-label="Astuce 021 01/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">#021</span>
+        <span class="slide-counter">01/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div style="margin-bottom:48px;"><span class="pill">Astuce</span></div>
+        <p class="lead" style="margin-bottom:28px;">Sans calculatrice :</p>
+        <div class="hero-calc">35&sup2;</div>
+      </div>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="lead" style="margin-bottom:20px;">La r&egrave;gle en <em style="font-style:italic;">2 temps</em>.</p>
+        <p class="hint">&#9312; &#9313; &#9314; &nbsp; Passe au slide &rarr;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 — Méthode (navy) -->
+  <div data-screen-label="Astuce 021 02/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">#021</span>
+        <span class="slide-counter">02/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:84px;margin-bottom:44px;">La <em>m&eacute;thode</em></div>
+        <p class="lead" style="margin-bottom:36px;">Pour 35&sup2; :</p>
+        <p class="step">&#10102; &nbsp;Enl&egrave;ve le 5 &rarr; <span class="hl">3</span></p>
+        <p class="step">&#10103; &nbsp;3 &times; (3+1) = <span class="hl">12</span></p>
+        <p class="step">&#10104; &nbsp;Colle 25 &rarr; <span class="ok">1225</span> &check;</p>
+      </div>
+      <div class="foot">
+        <p class="hint">&rarr; Slide suivant : un exemple &agrave; toi</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 — Exemple résolu (paper) -->
+  <div data-screen-label="Astuce 021 03/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">#021</span>
+        <span class="slide-counter">03/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <p class="lead" style="margin-bottom:36px;">Essaie avec&hellip;</p>
+        <div class="hero-calc">65&sup2;</div>
+        <div class="separator"></div>
+        <div class="correction">
+          <span class="wrong">3625</span>
+          <span class="arrow">&rarr;</span>
+          <span class="right">4225</span>
+          <span class="check">&check;</span>
+        </div>
+        <p class="recap">6 &times; 7 = 42 &rarr; colle 25 = 4225</p>
+      </div>
+      <div class="foot">
+        <p class="hint">Enregistre pour t'entra&icirc;ner &rarr;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4 — CTA (navy) -->
+  <div data-screen-label="Astuce 021 04/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">#021</span>
+        <span class="slide-counter">04/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:100px;margin-bottom:64px;">Les carr&eacute;s<br>en 5,<br><em>instantan&eacute;</em></div>
+        <div><span class="btn-ink">Suivre @albert.prep</span></div>
+      </div>
+      <div class="foot">
+        <p class="teaser">Prochaine astuce : la diff&eacute;rence de carr&eacute;s</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

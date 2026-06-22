@@ -63,12 +63,14 @@
     }
 
     .eq-row {
-      display: flex; align-items: center; justify-content: center; gap: 30px;
+      display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 30px;
       font-family: 'Spline Sans Mono', monospace;
       font-variant-numeric: tabular-nums; font-weight: 600;
       font-size: 128px; line-height: 1; color: var(--paper);
+      white-space: nowrap; max-width: 100%;
     }
-    .eq-q { color: var(--sky); }
+    .eq-expr { white-space: nowrap; flex-shrink: 0; }
+    .eq-q { color: var(--sky); flex-shrink: 0; }
 
     .timer-ring { position: relative; width: 240px; height: 240px; }
     .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
@@ -164,7 +166,7 @@
         </div>
 
         <div class="eq-row">
-          <span>17 × 3</span>
+          <span class="eq-expr">17 × 3</span>
           <span>=</span>
           <span class="eq-q" data-anim="r_qmark">?</span>
         </div>
@@ -202,6 +204,7 @@
 
   reel.dataset.loopMs = String(loopMs);
   reel.dataset.ctaMs = String(Math.round((revealStart + REVEAL * 0.62) * 1000));
+  reel.dataset.coverMs = String(Math.round((INTRO + 0.5) * 1000));
 
   const p = (sec) => ((sec / total) * 100).toFixed(3);
 

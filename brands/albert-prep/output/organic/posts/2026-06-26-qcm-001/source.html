@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — QCM #001</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--navy); }
+    .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy { color: var(--paper); }
+    .display.on-navy em { color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+    .post-number, .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.42;
+    }
+    .slide-counter { font-weight: 500; }
+    .brand-tag { text-transform: uppercase; opacity: 0.4; }
+
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .question { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.06; color: var(--navy); }
+    .question em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .on-navy .question, .inner-navy .question { color: var(--paper); }
+
+    .choices { display: flex; flex-direction: column; gap: 30px; }
+    .choice { display: flex; align-items: center; gap: 32px; }
+    .choice .key {
+      flex: 0 0 auto; width: 84px; height: 84px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 44px;
+    }
+    .choice .val {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 76px;
+      color: var(--navy); line-height: 1;
+    }
+    .inner-navy .choice .val { color: var(--paper); }
+    .choice .note { font-family: 'Spline Sans Mono', monospace; font-size: 40px; opacity: 0.55; }
+    .choice .tick { color: var(--good); font-size: 60px; }
+    .choice.is-correct .key { background: var(--good); color: var(--paper); }
+    .choice.is-correct .val { color: var(--good); }
+    .choice.is-wrong { opacity: 0.38; }
+
+    .lead { font-size: 38px; opacity: 0.7; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 36px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+    .prompt { font-family: 'Spline Sans Mono', monospace; font-size: 38px; font-weight: 500; opacity: 0.78; }
+    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 38px; opacity: 0.7; }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 — Question (paper) -->
+  <div data-screen-label="Qcm 001 01/02" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">#001</span>
+        <span class="slide-counter">01/02</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div style="margin-bottom:40px;"><span class="pill">QCM</span></div>
+        <div class="question" style="font-size:88px;margin-bottom:56px;">Lequel est<br>le <em>plus petit</em> ?</div>
+        <div class="choices">
+          <div class="choice"><span class="key">A</span><span class="val">0,6</span></div>
+          <div class="choice"><span class="key">B</span><span class="val">5/8</span></div>
+          <div class="choice"><span class="key">C</span><span class="val">62 %</span></div>
+        </div>
+      </div>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="prompt" style="margin-bottom:18px;">R&eacute;ponds A, B ou C en commentaire &darr;</p>
+        <p class="hint">Puis swipe pour la r&eacute;ponse &rarr;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 — Reveal (navy) -->
+  <div data-screen-label="Qcm 001 02/02" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">#001</span>
+        <span class="slide-counter">02/02</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:76px;margin-bottom:48px;">La <em>r&eacute;ponse</em></div>
+        <div class="choices">
+          <div class="choice is-correct"><span class="key">A</span><span class="val">0,6</span><span class="tick">&check;</span></div>
+          <div class="choice is-wrong"><span class="key">B</span><span class="val">5/8</span><span class="note">= 0,625</span></div>
+          <div class="choice is-wrong"><span class="key">C</span><span class="val">62 %</span><span class="note">= 0,62</span></div>
+        </div>
+        <div class="separator"></div>
+        <p class="recap">0,60 &lt; 0,62 &lt; 0,625</p>
+      </div>
+      <div class="foot">
+        <div><span class="btn-ink">Suivre @albert.prep</span></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

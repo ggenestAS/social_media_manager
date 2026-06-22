@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Série #012</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--paper); }
+    .display em { font-weight: 300; font-style: italic; color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+    .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 500;
+      letter-spacing: 0.1em; opacity: 0.42;
+    }
+    .brand-tag { font-weight: 600; text-transform: uppercase; opacity: 0.4; }
+
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .calc-label {
+      font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero-calc { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 180px; line-height: 0.95; letter-spacing: -0.04em; white-space: nowrap; }
+    .hero-result { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 120px; color: var(--red-pen); margin-top: 20px; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+    .lead { font-size: 40px; opacity: 0.78; }
+    .answers { font-family: 'Spline Sans Mono', monospace; font-weight: 500; font-size: 56px; line-height: 1.55; }
+    .answers .res { color: var(--sky); }
+    .stars { font-size: 64px; color: var(--gold); letter-spacing: 16px; }
+    .range { font-family: 'Spline Sans Mono', monospace; font-size: 40px; opacity: 0.7; }
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+    .handle { font-family: 'Spline Sans Mono', monospace; font-size: 30px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <div data-screen-label="Serie 012 01/06" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy"><div class="head"><span class="slide-counter">SÉRIE #012 · 01/06</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><div style="margin-bottom:48px;"><span class="pill">Série</span></div>
+    <div class="display" style="font-size:128px;">Calculs<br>rapides<br><em>× 2</em></div></div>
+    <div class="foot"><div class="separator"></div><p class="lead" style="margin-bottom:16px;">3 secondes par calcul · 4 calculs</p><p class="hint">Prêt ? →</p></div></div></div>
+  <div data-screen-label="Serie 012 02/06" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner"><div class="head"><span class="slide-counter">02/06</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><p class="calc-label">Calcul 1 / 4</p><div class="hero-calc">17 × 2</div><div class="hero-result">= ?</div></div>
+    <div class="foot"><p class="hint">→ Réponses à la fin</p></div></div></div>
+  <div data-screen-label="Serie 012 03/06" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner"><div class="head"><span class="slide-counter">03/06</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><p class="calc-label">Calcul 2 / 4</p><div class="hero-calc">23 × 2</div><div class="hero-result">= ?</div></div>
+    <div class="foot"><p class="hint">→ Réponses à la fin</p></div></div></div>
+  <div data-screen-label="Serie 012 04/06" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner"><div class="head"><span class="slide-counter">04/06</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><p class="calc-label">Calcul 3 / 4</p><div class="hero-calc">31 × 2</div><div class="hero-result">= ?</div></div>
+    <div class="foot"><p class="hint">→ Réponses à la fin</p></div></div></div>
+  <div data-screen-label="Serie 012 05/06" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner"><div class="head"><span class="slide-counter">05/06</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><p class="calc-label">Calcul 4 / 4</p><div class="hero-calc">29 × 2</div><div class="hero-result">= ?</div></div>
+    <div class="foot"><p class="hint">→ Réponses à la fin</p></div></div></div>
+  <div data-screen-label="Serie 012 06/06" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy"><div class="head"><span class="slide-counter">06/06</span><span class="brand-tag">Albert&nbsp;Prep</span></div>
+    <div class="body"><div class="display" style="font-size:96px;margin-bottom:28px;">Ton score ?</div>
+    <div class="stars" style="margin-bottom:16px;">★ ★ ★ ★</div><p class="range" style="margin-bottom:48px;">0/4 → 4/4</p>
+    <div class="answers">17 × 2 = <span class="res">34</span><br>
+          23 × 2 = <span class="res">46</span><br>
+          31 × 2 = <span class="res">62</span><br>
+          29 × 2 = <span class="res">58</span></div></div>
+    <div class="foot"><div style="margin-bottom:32px;"><span class="btn-ink">Commente ton score</span></div>
+    <p class="handle">@albert.prep · Suis-nous pour la suite</p></div></div></div>
+</body></html>

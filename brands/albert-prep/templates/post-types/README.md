@@ -11,6 +11,7 @@ the organic-post skill reads.
 | `astuce` | 4 | **4:5** feed carousel | 1080×1350 | IG feed | `html:to-image --all` |
 | `serie` | 6 | **4:5** feed carousel | 1080×1350 | IG feed | `html:to-image --all` |
 | `reel` | 1 (animated) | **9:16** | 1080×1920 | IG Reels (+ Story optional) | `html:to-mp4` |
+| `qcm` | 2 (post) · 1 anim (reel) · 1 (story) | **4:5** + **9:16** | 1080×1350 · 1080×1920 | IG feed · Reels · Story | `html:to-image` · `html:to-mp4` |
 
 **Do not use 1:1 or 9:16 for organic feed carousels.** The `reel` type is
 9:16 video for Reels; the same export can be cross-posted as an IG Story — see
@@ -48,3 +49,4 @@ npm run html:to-image -- path/to/source.html --all --out path/to/export/
 | **serie** | 6 | Intro → 4 rapid-fire questions → score + all answers. Batch reveal keeps swipe count ≤6 (IG engagement drops after ~7). |
 | **calcul-du-jour** | 1 | One calc, one comment prompt. |
 | **reel** | 1 screen | Animated loop (~8 s); not a carousel. |
+| **qcm** | 2 / 1 / 1 | Multi-placement: feed = question + reveal (2); reel = animated countdown; story = static, sticker-ready. One type, three templates. |

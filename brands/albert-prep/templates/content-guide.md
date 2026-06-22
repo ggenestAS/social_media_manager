@@ -61,10 +61,34 @@ prompts verbatim.
 
 **Scope:** general mental maths only — no exam-specific framing (no "question
 Bac", no SAT-style setup). Strip word problems down to a bare on-slide
-expression: `47 × 11 = ?`, not a paragraph of context.
+expression: `47 × 11 = ?`, not a paragraph of context. **Exact** non-integer
+results are fine (`3/4`, `0,375`, `5√2`) — see the expression families below.
 
-**Out of scope for feed templates:** multiple-choice, nested fractions as a
-naked hook, answers that require rounding ("≈ 41,7 %"), anything needing paper.
+**Out of scope:** answers that require rounding in an *open* prompt
+("≈ 41,7 %" — acceptable only as a QCM distractor, never as the asked value),
+and anything that genuinely needs paper (multi-step factoring, rationalising a
+denominator). Multiple-choice is now **in** scope — but only where it earns its
+place; see [§ Answer format](#answer-format--open-vs-qcm).
+
+### Expression & comparison families (astuce / serie / qcm)
+
+Beyond the six CORE themes, these richer families raise *apparent* difficulty
+while staying head-doable. They skew **medium/hard** and belong to teach/quiz
+formats (astuce, serie, qcm) — **not** the naked `calcul-du-jour`. Invent fresh
+operands and **verify the exact result** before saving.
+
+| Family | Invent around | On-slide shape | Exact answer | Best types |
+|---|---|---|---|---|
+| **Racine de fraction** | √ d'un rapport de carrés parfaits | `√(9/16)` | `3/4` | qcm, astuce, reel |
+| **Fraction de fraction** | diviser = multiplier par l'inverse | `(3/4) ÷ (2/5)` | `15/8` | astuce, qcm |
+| **Puissances & radicaux** | `√a×√b`, `(aᵐ)ⁿ`, simplifier `√` | `√2 × √8` · `√50` | `4` · `5√2` | astuce, serie, qcm |
+| **Pourcentage de pourcentage** | composer / enchaîner les % | `100 € +10 % +10 %` · `50 % de 20 %` | `121 €` · `10 %` | qcm, astuce |
+| **% vs fraction vs décimale** | comparer / égaler les écritures | `3/8 · 0,4 · 37 % → le + grand ?` | `0,4` | qcm |
+
+Keep the perfect-square / clean-ratio constraint so the answer stays exact and
+mental (`√(9/16)`, not `√(7/10)`). The comparison family is the natural home
+for QCM — « lequel est le plus grand / lesquels sont égaux ? » has no single
+typed answer.
 
 ### Authoring workflow
 
@@ -74,6 +98,30 @@ naked hook, answers that require rounding ("≈ 41,7 %"), anything needing paper
    brand-damaging.
 4. Write the bare expression on slides in **French**; keep captions in French.
 5. Tag the post `difficulty: easy | medium | hard` in `post.md` frontmatter.
+
+---
+
+## Answer format — open vs QCM
+
+Two ways to ask. **Default to open**; reach for QCM only when an open prompt
+would be ambiguous, or when the *wrong* answers are the actual lesson.
+
+| | Open (type the answer) | QCM (pick A / B / C) |
+|---|---|---|
+| **Use when** | one clean exact result (`47 × 11`, `√(9/16)`) | comparison / ordering, « lequel égale… », trap questions where a mistake is tempting |
+| **Prompt** | « Pose ta réponse en commentaire ↓ » | « Réponds A, B ou C en commentaire ↓ » |
+| **Reveal** | next slide / end of reel | same — correct option in `--good` + ✓, distractors dimmed |
+
+### QCM design rules
+
+1. **3 options** (A / B / C). A 4th only if it's genuinely tempting; never > 4.
+2. **Diagnostic distractors** — each wrong option is the result of a *specific,
+   common mistake* (e.g. `120 €` for `100 € +10 % +10 %` = forgetting the
+   compounding). A random-number distractor wastes the slot.
+3. **Exactly one** correct option. No « A et C », no « aucune des trois ».
+4. The comment prompt **names the letters** (« A, B ou C ? ↓ »). QCM exists to
+   manufacture comments — never bury the prompt.
+5. Options stay **short** enough to fit one line at hero size.
 
 ---
 
@@ -151,6 +199,9 @@ Full product context: [`context/app-product.md`](../context/app-product.md).
 - **reel:** question on screen within the first second; countdown creates the
   "can I beat it?" tension. Set **`timer_sec`** (3 / 5 / 10 / 15) to match the
   calc — see [`post-types/reel/spec.md`](post-types/reel/spec.md).
+- **qcm:** the *question + the three options* are the hook, all on screen at
+  once — « Lequel est le plus grand ? · A 3/8 · B 0,4 · C 37 % ». The tension is
+  "I think I know — am I right?". Lead with the comparison, never with theory.
 
 Avoid: generic openers ("Le saviez-vous ?"), walls of text on slide 1, or
 burying the calculation below explanatory copy.
@@ -168,3 +219,5 @@ burying the calculation below explanatory copy.
 6. **No emoji on slides** — the export renderer has no emoji font. Emoji are fine
    in `post.md` captions.
 7. **Albert Prep only** — no parent-brand names, handles, or hashtags.
+8. **QCM = one correct option + diagnostic distractors.** Every wrong choice
+   models a real mistake; verify the correct one. (see § Answer format)
