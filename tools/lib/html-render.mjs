@@ -184,6 +184,82 @@ export function framesToMp4(framesDir, mp4Path, fps = 30) {
   );
 }
 
+/**
+ * Mux countdown tick + reveal chime onto a reel MP4.
+ * Video timeline: coverHold + animTime/speed + ctaHold.
+ */
+export function muxReelAudio(mp4Path, {
+  timerSec = 5,
+  speed = 1.5,
+  coverHoldMs = 1000,
+  introSec = 2,
+  revealSec = null,
+} = {}) {
+  const coverSec = coverHoldMs / 1000;
+  const revealAnimSec = revealSec ?? introSec + timerSec;
+  const toVideo = (animSec) => coverSec + animSec / speed;
+
+  const tickTimes = [];
+  for (let n = timerSec; n >= 1; n--) {
+    tickTimes.push(toVideo(introSec + (timerSec - n)));
+  }
+  const chimeTime = toVideo(revealAnimSec);
+
+  const probe = spawnSync(
+    'ffprobe',
+    ['-v', 'quiet', '-show_entries', 'format=duration', '-of', 'csv=p=0', mp4Path],
+    { encoding: 'utf8' }
+  );
+  const duration = parseFloat(probe.stdout?.trim() || '10') + 0.05;
+
+  const filters = [];
+  const inputs = [`-f lavfi -i "anullsrc=r=44100:cl=mono"`];
+  filters.push(`[0]atrim=0:${duration.toFixed(3)},asetpts=N/SR/TB[base]`);
+
+  let idx = 1;
+  const mixInputs = ['[base]'];
+
+  for (const t of tickTimes) {
+    inputs.push(`-f lavfi -i "sine=frequency=880:duration=0.07"`);
+    filters.push(
+      `[${idx}]adelay=${Math.round(t * 1000)}|${Math.round(t * 1000)}[t${idx}]`
+    );
+    mixInputs.push(`[t${idx}]`);
+    idx++;
+  }
+
+  inputs.push(`-f lavfi -i "sine=frequency=1320:duration=0.14"`);
+  filters.push(
+    `[${idx}]adelay=${Math.round(chimeTime * 1000)}|${Math.round(chimeTime * 1000)}[c${idx}]`
+  );
+  mixInputs.push(`[c${idx}]`);
+
+  filters.push(
+    `${mixInputs.join('')}amix=inputs=${mixInputs.length}:duration=longest:dropout_transition=0[outa]`
+  );
+
+  const tmpAudio = mp4Path.replace(/\.mp4$/, '.audio.m4a');
+  const tmpOut = mp4Path.replace(/\.mp4$/, '.with-audio.mp4');
+
+  const genCmd =
+    `ffmpeg -y ${inputs.join(' ')} ` +
+    `-filter_complex "${filters.join(';')}" ` +
+    `-map "[outa]" -t ${duration.toFixed(3)} -c:a aac -b:a 128k "${tmpAudio}"`;
+
+  execSync(genCmd, { stdio: 'inherit' });
+
+  execSync(
+    `ffmpeg -y -i "${mp4Path}" -i "${tmpAudio}" ` +
+      `-c:v copy -c:a aac -b:a 128k -map 0:v:0 -map 1:a:0 ` +
+      `-movflags +faststart "${tmpOut}"`,
+    { stdio: 'inherit' }
+  );
+
+  execSync(`mv "${tmpOut}" "${mp4Path}"`, { stdio: 'inherit' });
+  rmSync(tmpAudio, { force: true });
+  console.log(`   Audio muxed → ${mp4Path}`);
+}
+
 export function ensureDir(dirPath) {
   if (!existsSync(dirPath)) mkdirSync(dirPath, { recursive: true });
   return dirPath;
