@@ -6,10 +6,10 @@ timer_sec: 5
 channels: [ig, tiktok]
 placements:
   - { channel: ig, post_type: post }
-schedule: null
-status: draft
-postiz_id: null
-postiz_tiktok_id: null
+schedule: 2026-06-24T07:24:32Z
+status: scheduled
+postiz_id: cmqrqzp8a044iqw0yqabfzfi9
+postiz_tiktok_id: cmqrr04hb044jqw0yj3m4h9e1
 ---
 19² sans poser l'opération 🧠
 
