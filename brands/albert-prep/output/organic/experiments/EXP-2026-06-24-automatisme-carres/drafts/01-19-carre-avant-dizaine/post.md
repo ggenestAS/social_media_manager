@@ -7,7 +7,7 @@ channels: [ig, tiktok]
 placements:
   - { channel: ig, post_type: post }
 schedule: 2026-06-24T07:24:32Z
-status: scheduled
+status: live
 postiz_id: cmqrqzp8a044iqw0yqabfzfi9
 postiz_tiktok_id: cmqrr04hb044jqw0yj3m4h9e1
 ---
