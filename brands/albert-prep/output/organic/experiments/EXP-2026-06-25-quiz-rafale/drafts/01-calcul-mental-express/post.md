@@ -11,8 +11,10 @@ schedule: 2026-06-25T17:59:27Z
 status: live
 postiz_id: cmqtt41pq02fls70yg2eqzqd3
 release_url: https://www.instagram.com/reel/DaBKOzDDDk_/
-postiz_tiktok_id: null
-postiz_fb_id: null
+postiz_tiktok_id: cmqtuwejv02s1o50yltz9eosi
+postiz_fb_id: cmqtuweyw005ts70yx0dug7v3
+postiz_tiktok_schedule: 2026-06-26T14:00:00Z
+postiz_fb_schedule: 2026-06-26T14:00:00Z
 answers_comment: "Réponses : 1) 56 · 2) 225 · 3) 16 · 4) 75 % · 5) 32 — ton score sur 5 ?"
 ---
 Prêt pour le Bac de maths ? 🧮 5 calculs, 5 secondes chacun.
