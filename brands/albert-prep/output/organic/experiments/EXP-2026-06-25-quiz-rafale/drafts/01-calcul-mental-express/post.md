@@ -7,9 +7,10 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
+schedule: 2026-06-25T17:23:33Z
+status: live
+postiz_id: cmqtrtvq5027ds70yfdmj7q0i
+release_url: https://www.instagram.com/reel/DaBGHgmAJ7u/
 postiz_tiktok_id: null
 postiz_fb_id: null
 ---
