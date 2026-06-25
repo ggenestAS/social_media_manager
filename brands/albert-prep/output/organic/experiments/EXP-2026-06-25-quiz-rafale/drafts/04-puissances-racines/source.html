@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Défi Bac #01 (quiz rafale)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+      --navy-grid: rgba(168, 219, 238, 0.05);
+    }
+
+    body { margin: 0; padding: 0; background: #111; }
+
+    .reel {
+      width: 1080px; height: 1920px;
+      background: var(--navy); color: var(--paper);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 140px 90px 130px;
+    }
+    .reel::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--navy-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .cat-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 700;
+      font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sky); text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 46px; color: var(--paper); opacity: 0.85; text-align: center;
+      margin-top: 14px;
+    }
+
+    .dots { display: flex; gap: 18px; margin-top: 34px; position: relative; z-index: 2; }
+    .dot {
+      width: 22px; height: 22px; border-radius: 999px;
+      background: rgba(168,219,238,0.22);
+    }
+
+    .stage {
+      position: relative; z-index: 2; flex: 1; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .layer {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; opacity: 0;
+    }
+
+    /* ── Hook ── */
+    .hook-title {
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 118px;
+      line-height: 1.02; color: var(--paper);
+    }
+    .hook-title em { font-weight: 300; font-style: italic; color: var(--sky); }
+    .hook-sub {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 40px; color: var(--paper); opacity: 0.7; margin-top: 48px;
+      line-height: 1.5;
+    }
+    .hook-tag {
+      display: inline-block; margin-top: 56px;
+      background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 32px; letter-spacing: 0.04em;
+      padding: 20px 40px; border-radius: 999px;
+    }
+
+    /* ── Question block ── */
+    .q-counter {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 34px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 8px;
+    }
+    .q-think, .q-answer {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 70px;
+    }
+    .timer-ring { position: relative; width: 220px; height: 220px; }
+    .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .q-expr {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-variant-numeric: tabular-nums; font-size: 132px; line-height: 1;
+      color: var(--paper); white-space: nowrap;
+    }
+    .q-expr .q-eq { color: var(--sky); }
+
+    .q-expr-small {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 56px; color: var(--paper); opacity: 0.55;
+    }
+    .q-result {
+      display: flex; align-items: center; justify-content: center; gap: 36px;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 220px; line-height: 1; color: var(--good);
+    }
+    .q-check { color: var(--good); font-size: 120px; }
+
+    /* ── Outro ── */
+    .outro-q {
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 104px;
+      line-height: 1.05; color: var(--paper);
+    }
+    .outro-q em { font-weight: 300; font-style: italic; color: var(--sky); }
+    .outro-sub {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 38px; color: var(--paper); opacity: 0.7; margin-top: 44px;
+    }
+    .outro-handle {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 40px; color: var(--sky); margin-top: 60px;
+    }
+    .outro-cta {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 32px; color: var(--paper); opacity: 0.55; margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    Quiz rafale (experiment): 5 timed Q→A beats in one reel.
+    Edit ONLY the #quiz-data JSON below to make a new themed reel.
+    Export: npm run html:to-mp4 -- source.html --out export/ --audio cues --speed 1
+  -->
+
+  <script type="application/json" id="quiz-data">
+  {
+    "post": "Défi Bac #04",
+    "cat": "Défi Bac · Puissances & racines",
+    "eyebrow": "Le réflexe exposants",
+    "questions": [
+      { "expr": "2⁵",      "ans": "32"  },
+      { "expr": "3³",      "ans": "27"  },
+      { "expr": "√81",     "ans": "9"   },
+      { "expr": "5²",      "ans": "25"  },
+      { "expr": "√(9/16)", "ans": "3/4" }
+    ]
+  }
+  </script>
+
+  <div data-screen-label="Quiz Rafale 9:16" class="reel">
+    <div class="cat-label" data-cat></div>
+    <div class="eyebrow" data-eyebrow></div>
+    <div class="dots" data-dots></div>
+    <div class="stage" data-stage></div>
+  </div>
+
+  <script>
+(function initQuizReel() {
+  const reel = document.querySelector('.reel');
+  const data = JSON.parse(document.getElementById('quiz-data').textContent);
+  const Q = data.questions;
+  const n = Q.length;
+
+  reel.querySelector('[data-cat]').textContent = data.cat;
+  reel.querySelector('[data-eyebrow]').textContent = data.eyebrow;
+
+  // ── Timeline (animation seconds) ──
+  const INTRO = 2.4;
+  const QDUR = 4.2;        // per question
+  const THINK = 2.8;       // think phase inside QDUR (rest = reveal)
+  const OUTRO = 3.0;
+  const total = INTRO + n * QDUR + OUTRO;
+  const loopMs = Math.round(total * 1000);
+  const loopS = (total) + 's';
+
+  reel.dataset.loopMs = String(loopMs);
+  reel.dataset.coverMs = String(1000);                               // hook = thumbnail
+  reel.dataset.ctaMs = String(Math.round((INTRO + n * QDUR + 1.6) * 1000)); // outro
+  reel.dataset.timerSec = '5';
+
+  const p = (sec) => ((sec / total) * 100).toFixed(3);
+  const RING = 540; // 2π·86
+
+  const css = [];
+  const audioCues = [];
+
+  // Progress dots
+  const dotsWrap = reel.querySelector('[data-dots]');
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.style.animation = `dot_${i} ${loopS} linear infinite`;
+    dotsWrap.appendChild(d);
+    const on = INTRO + i * QDUR;
+    css.push(
+      `@keyframes dot_${i}{0%,${p(on)}%{background:rgba(168,219,238,0.22)}${p(on + 0.15)}%,100%{background:var(--sky)}}`
+    );
+  }
+
+  const stage = reel.querySelector('[data-stage]');
+
+  // ── Hook layer ──
+  const hook = document.createElement('div');
+  hook.className = 'layer';
+  hook.style.animation = `hook ${loopS} linear infinite`;
+  hook.innerHTML =
+    `<div class="hook-title">5 calculs.<br><em>5 secondes</em> chacun.</div>` +
+    `<div class="hook-sub">Mets le son. Réponds à voix haute.<br>Compte tes points.</div>` +
+    `<div class="hook-tag">Prêt ? C'est parti →</div>`;
+  stage.appendChild(hook);
+  css.push(
+    `@keyframes hook{0%{opacity:0;transform:translateY(18px)}${p(0.35)}%{opacity:1;transform:none}${p(INTRO - 0.35)}%{opacity:1;transform:none}${p(INTRO)}%,100%{opacity:0}}`
+  );
+
+  // ── Question layers ──
+  Q.forEach((q, i) => {
+    const start = INTRO + i * QDUR;
+    const reveal = start + THINK;
+    const end = start + QDUR;
+
+    const layer = document.createElement('div');
+    layer.className = 'layer';
+    layer.style.animation = `qlayer_${i} ${loopS} linear infinite`;
+    layer.innerHTML =
+      `<div class="q-counter">Question ${i + 1} / ${n}</div>` +
+      `<div class="q-stage" style="position:relative;width:100%;flex:1;display:flex;align-items:center;justify-content:center;">` +
+        `<div class="q-think" data-think>` +
+          `<div class="timer-ring">` +
+            `<svg width="220" height="220" viewBox="0 0 200 200" aria-hidden="true">` +
+              `<circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>` +
+              `<circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${RING}" data-ring></circle>` +
+            `</svg>` +
+          `</div>` +
+          `<div class="q-expr">${q.expr} <span class="q-eq">= ?</span></div>` +
+        `</div>` +
+        `<div class="q-answer" data-answer>` +
+          `<div class="q-expr-small">${q.expr} =</div>` +
+          `<div class="q-result">${q.ans}<span class="q-check">✓</span></div>` +
+        `</div>` +
+      `</div>`;
+    stage.appendChild(layer);
+
+    layer.querySelector('[data-think]').style.animation = `qthink_${i} ${loopS} linear infinite`;
+    layer.querySelector('[data-answer]').style.animation = `qans_${i} ${loopS} linear infinite`;
+    layer.querySelector('[data-ring]').style.animation = `qring_${i} ${loopS} linear infinite`;
+
+    // whole layer visible across its window
+    css.push(
+      `@keyframes qlayer_${i}{0%,${p(start - 0.05)}%{opacity:0}${p(start + 0.08)}%{opacity:1}${p(end - 0.08)}%{opacity:1}${p(end)}%,100%{opacity:0}}`,
+      `@keyframes qthink_${i}{0%,${p(start)}%{opacity:0;transform:scale(.94)}${p(start + 0.18)}%{opacity:1;transform:scale(1)}${p(reveal - 0.1)}%{opacity:1;transform:scale(1)}${p(reveal)}%,100%{opacity:0;transform:scale(.96)}}`,
+      `@keyframes qring_${i}{0%,${p(start)}%{stroke-dashoffset:0}${p(reveal)}%,100%{stroke-dashoffset:${RING}}}`,
+      `@keyframes qans_${i}{0%,${p(reveal - 0.04)}%{opacity:0;transform:scale(.6)}${p(reveal + 0.16)}%{opacity:1;transform:scale(1.08)}${p(reveal + 0.3)}%{opacity:1;transform:scale(1)}${p(end - 0.06)}%{opacity:1;transform:scale(1)}${p(end)}%,100%{opacity:0;transform:scale(1)}}`
+    );
+
+    audioCues.push({ at: start + 0.05, freq: 760, dur: 0.06 });   // question tick
+    audioCues.push({ at: reveal, freq: 1320, dur: 0.13 });        // answer chime
+  });
+
+  // ── Outro layer ──
+  const outroStart = INTRO + n * QDUR;
+  const outro = document.createElement('div');
+  outro.className = 'layer';
+  outro.style.animation = `outro ${loopS} linear infinite`;
+  outro.innerHTML =
+    `<div class="outro-q">Ton score sur <em>5</em> ?</div>` +
+    `<div class="outro-sub">Note-le en commentaire 👇</div>` +
+    `<div class="outro-handle">@albert.prep</div>` +
+    `<div class="outro-cta">Un défi par jour → prep.albertschool.com</div>`;
+  stage.appendChild(outro);
+  css.push(
+    `@keyframes outro{0%,${p(outroStart - 0.05)}%{opacity:0;transform:translateY(18px)}${p(outroStart + 0.25)}%{opacity:1;transform:none}100%{opacity:1;transform:none}}`
+  );
+  audioCues.push({ at: outroStart + 0.1, freq: 1570, dur: 0.22 }); // final success chime
+
+  // Commit styles + audio metadata
+  const style = document.createElement('style');
+  style.id = 'quiz-timeline';
+  style.textContent = css.join('\n');
+  document.head.appendChild(style);
+
+  reel.dataset.audioCues = JSON.stringify(audioCues);
+})();
+  </script>
+
+</body>
+</html>

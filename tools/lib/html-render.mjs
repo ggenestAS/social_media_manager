@@ -185,8 +185,14 @@ export function framesToMp4(framesDir, mp4Path, fps = 30) {
 }
 
 /**
- * Mux countdown tick + reveal chime onto a reel MP4.
- * Video timeline: coverHold + animTime/speed + ctaHold.
+ * Mux beeps onto a reel MP4.
+ *
+ * Two cue sources (cues wins when provided):
+ *  - `cues`: explicit [{ at, freq, dur }] in ANIMATION seconds (from data-audio-cues).
+ *  - else: legacy single-question countdown (timerSec ticks + one reveal chime).
+ *
+ * Animation seconds are mapped to VIDEO time as: coverHold + animSec / speed,
+ * matching how html-to-mp4 prepends a frozen cover frame and time-stretches the loop.
  */
 export function muxReelAudio(mp4Path, {
   timerSec = 5,
@@ -194,16 +200,27 @@ export function muxReelAudio(mp4Path, {
   coverHoldMs = 1000,
   introSec = 2,
   revealSec = null,
+  cues = null,
 } = {}) {
   const coverSec = coverHoldMs / 1000;
-  const revealAnimSec = revealSec ?? introSec + timerSec;
   const toVideo = (animSec) => coverSec + animSec / speed;
 
-  const tickTimes = [];
-  for (let n = timerSec; n >= 1; n--) {
-    tickTimes.push(toVideo(introSec + (timerSec - n)));
+  // Build the list of beeps (video time, freq, dur).
+  let beeps;
+  if (Array.isArray(cues) && cues.length) {
+    beeps = cues.map((c) => ({
+      t: toVideo(Number(c.at) || 0),
+      freq: Number(c.freq) || 880,
+      dur: Number(c.dur) || 0.08,
+    }));
+  } else {
+    const revealAnimSec = revealSec ?? introSec + timerSec;
+    beeps = [];
+    for (let k = timerSec; k >= 1; k--) {
+      beeps.push({ t: toVideo(introSec + (timerSec - k)), freq: 880, dur: 0.07 });
+    }
+    beeps.push({ t: toVideo(revealAnimSec), freq: 1320, dur: 0.14 });
   }
-  const chimeTime = toVideo(revealAnimSec);
 
   const probe = spawnSync(
     'ffprobe',
@@ -219,23 +236,16 @@ export function muxReelAudio(mp4Path, {
   let idx = 1;
   const mixInputs = ['[base]'];
 
-  for (const t of tickTimes) {
-    inputs.push(`-f lavfi -i "sine=frequency=880:duration=0.07"`);
-    filters.push(
-      `[${idx}]adelay=${Math.round(t * 1000)}|${Math.round(t * 1000)}[t${idx}]`
-    );
-    mixInputs.push(`[t${idx}]`);
+  for (const b of beeps) {
+    const ms = Math.max(0, Math.round(b.t * 1000));
+    inputs.push(`-f lavfi -i "sine=frequency=${b.freq}:duration=${b.dur.toFixed(3)}"`);
+    filters.push(`[${idx}]adelay=${ms}|${ms}[b${idx}]`);
+    mixInputs.push(`[b${idx}]`);
     idx++;
   }
 
-  inputs.push(`-f lavfi -i "sine=frequency=1320:duration=0.14"`);
   filters.push(
-    `[${idx}]adelay=${Math.round(chimeTime * 1000)}|${Math.round(chimeTime * 1000)}[c${idx}]`
-  );
-  mixInputs.push(`[c${idx}]`);
-
-  filters.push(
-    `${mixInputs.join('')}amix=inputs=${mixInputs.length}:duration=longest:dropout_transition=0[outa]`
+    `${mixInputs.join('')}amix=inputs=${mixInputs.length}:duration=longest:dropout_transition=0,volume=2.0[outa]`
   );
 
   const tmpAudio = mp4Path.replace(/\.mp4$/, '.audio.m4a');
@@ -257,7 +267,7 @@ export function muxReelAudio(mp4Path, {
 
   execSync(`mv "${tmpOut}" "${mp4Path}"`, { stdio: 'inherit' });
   rmSync(tmpAudio, { force: true });
-  console.log(`   Audio muxed → ${mp4Path}`);
+  console.log(`   Audio muxed → ${mp4Path} (${beeps.length} cues)`);
 }
 
 export function ensureDir(dirPath) {

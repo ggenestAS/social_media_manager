@@ -74,7 +74,7 @@ function usage() {
     '--cta-ms <ms>               Timeline point for CTA preview/hold (default: 7750; auto from data-cta-ms)',
     '--cta-hold-ms <ms>          Frozen CTA duration at 1× (default: 2000)',
     '--cover-hold-ms <ms>        Frozen cover frame prepended to MP4 at 1× (default: 1000)',
-    '--audio <mode>              Mux audio after encode: ticks (countdown beeps + reveal chime)',
+    '--audio <mode>              Mux audio after encode: ticks (single-Q countdown) | cues (data-audio-cues beeps)',
   ]);
 }
 
@@ -114,11 +114,14 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
     const ctaMs = parseInt(screen.dataset.ctaMs, 10);
     const coverMs = parseInt(screen.dataset.coverMs, 10);
     const timerSec = parseInt(screen.dataset.timerSec, 10);
+    let audioCues = null;
+    try { audioCues = JSON.parse(screen.dataset.audioCues || 'null'); } catch (e) { audioCues = null; }
     return {
       loopMs: Number.isFinite(loopMs) && loopMs > 0 ? loopMs : null,
       ctaMs: Number.isFinite(ctaMs) && ctaMs > 0 ? ctaMs : null,
       coverMs: Number.isFinite(coverMs) && coverMs > 0 ? coverMs : null,
       timerSec: Number.isFinite(timerSec) && timerSec > 0 ? timerSec : 5,
+      audioCues: Array.isArray(audioCues) ? audioCues : null,
     };
   }, screenLabel);
 
@@ -197,11 +200,12 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
   framesToMp4(framesDir, mp4Path, cfg.fps);
   cleanupFramesDir(framesDir);
 
-  if (globalOptions.audio === 'ticks') {
+  if (globalOptions.audio === 'ticks' || globalOptions.audio === 'cues') {
     muxReelAudio(mp4Path, {
       timerSec: screenTiming?.timerSec ?? 5,
       speed: cfg.speed,
       coverHoldMs: cfg.coverHoldMs,
+      cues: globalOptions.audio === 'cues' ? screenTiming?.audioCues ?? null : null,
     });
   }
 
