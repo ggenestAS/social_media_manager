@@ -29,8 +29,10 @@ quality + Postiz reach, no formal stats.
 - `expr` is the on-screen prompt. `= ?` is appended automatically unless the
   prompt already contains `?` (e.g. `3/4 = ? %`, `200 → 250 = ? %`). Every prompt
   is **auto-fit** in-page so it can never exceed the frame.
-- Timeline (animation seconds, generated in-page): `INTRO 2.4s` → `5 × 5.0s`
+- Timeline (animation seconds, generated in-page): **`5 × 5.0s`**
   (5-second chrono: depleting ring + 5→1 countdown, no reveal) → `OUTRO 3.0s`.
+  **No intro/hook screen** — reel opens directly on Q1; progress dots + large
+  `Question 1 / 5` counter signal the 5-question format.
 - Audio cues written to `data-audio-cues`; export with
   `npm run html:to-mp4 -- source.html --out export/ --audio cues --speed 1`.
 - Every number is verified (recompute before shipping). Head-doable only.

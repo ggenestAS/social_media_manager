@@ -11,8 +11,8 @@ schedule: 2026-06-25T17:59:27Z
 status: live
 postiz_id: cmqtt41pq02fls70yg2eqzqd3
 release_url: https://www.instagram.com/reel/DaBKOzDDDk_/
-postiz_tiktok_id: cmqtuwejv02s1o50yltz9eosi
-postiz_fb_id: cmqtuweyw005ts70yx0dug7v3
+postiz_tiktok_id: cmqtw1xhs00eas70y1d1by4p0
+postiz_fb_id: cmqtw1xyh00ecs70ycyww227c
 postiz_tiktok_schedule: 2026-06-26T14:00:00Z
 postiz_fb_schedule: 2026-06-26T14:00:00Z
 answers_comment: "Réponses : 1) 56 · 2) 225 · 3) 16 · 4) 75 % · 5) 32 — ton score sur 5 ?"
