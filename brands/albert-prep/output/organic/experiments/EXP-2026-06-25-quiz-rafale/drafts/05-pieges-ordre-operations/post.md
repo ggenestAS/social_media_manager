@@ -12,12 +12,13 @@ status: draft
 postiz_id: null
 postiz_tiktok_id: null
 postiz_fb_id: null
+answers_comment: "Réponses : 1) 23 · 2) 100 · 3) 4 · 4) 539 · 5) 8 — ton score sur 5 ?"
 ---
 5 pièges où tout le monde se fait avoir ⚠️ L'ordre des opérations décide tout.
 
-5 questions, 5 secondes chacune. Mets le son, réponds à voix haute et note ton score /5 en commentaire 👇
+5 questions, 5 secondes chacune. Mets le son, réponds avant la fin du chrono et note ton score /5 en commentaire 👇 (réponses en commentaire épinglé)
 
-8+3×5, 2+2×2, 10−2×3, 12÷4+2, (6+4)². Multiplication et puissance AVANT addition.
+Multiplication et puissance AVANT addition — plus une astuce ×11 cachée.
 
 Un défi par jour → prep.albertschool.com
 

@@ -80,34 +80,28 @@
 
     /* ── Question block ── */
     .q-counter {
+      position: absolute; top: 24px; left: 0; right: 0; text-align: center;
       font-family: 'Spline Sans Mono', monospace; font-weight: 600;
       font-size: 34px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--sky); margin-bottom: 8px;
+      color: var(--sky);
     }
-    .q-think, .q-answer {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 70px;
-    }
-    .timer-ring { position: relative; width: 220px; height: 220px; }
+    .timer-ring { position: relative; width: 230px; height: 230px; margin-bottom: 96px; }
     .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .timer-num {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Spline Sans Mono', monospace; font-variant-numeric: tabular-nums;
+      font-weight: 600; font-size: 108px; color: var(--paper);
+    }
+    .timer-num span { position: absolute; }
+
     .q-expr {
+      display: inline-block; white-space: nowrap;
       font-family: 'Spline Sans Mono', monospace; font-weight: 600;
       font-variant-numeric: tabular-nums; font-size: 132px; line-height: 1;
-      color: var(--paper); white-space: nowrap;
+      color: var(--paper);
     }
     .q-expr .q-eq { color: var(--sky); }
-
-    .q-expr-small {
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
-      font-size: 56px; color: var(--paper); opacity: 0.55;
-    }
-    .q-result {
-      display: flex; align-items: center; justify-content: center; gap: 36px;
-      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
-      font-size: 220px; line-height: 1; color: var(--good);
-    }
-    .q-check { color: var(--good); font-size: 120px; }
 
     /* ── Outro ── */
     .outro-q {
@@ -132,8 +126,9 @@
 <body>
 
   <!--
-    Quiz rafale (experiment): 5 timed Q→A beats in one reel.
-    Edit ONLY the #quiz-data JSON below to make a new themed reel.
+    Quiz rafale (experiment): N timed QUESTIONS in one reel — NO answers shown
+    (answers go in the first comment / caption). Each question = a 5-second chrono
+    (depleting ring + 5→1 countdown). Edit ONLY the #quiz-data JSON below.
     Export: npm run html:to-mp4 -- source.html --out export/ --audio cues --speed 1
   -->
 
@@ -143,11 +138,11 @@
     "cat": "Défi Bac · Pourcentages",
     "eyebrow": "Évolutions & proportions",
     "questions": [
-      { "expr": "10 % de 200", "ans": "20"   },
-      { "expr": "25 % de 60",  "ans": "15"   },
-      { "expr": "50 + 20 %",   "ans": "60"   },
-      { "expr": "80 × 1,5",    "ans": "120"  },
-      { "expr": "200 → 250",   "ans": "+25 %" }
+      { "expr": "25 % de 60",     "ans": "15"    },
+      { "expr": "50 + 20 %",      "ans": "60"    },
+      { "expr": "200 → 250 = ? %", "ans": "+25 %" },
+      { "expr": "80 × 1,5",       "ans": "120"   },
+      { "expr": "7/8 = ? %",      "ans": "87,5 %" }
     ]
   }
   </script>
@@ -171,17 +166,17 @@
 
   // ── Timeline (animation seconds) ──
   const INTRO = 2.4;
-  const QDUR = 4.2;        // per question
-  const THINK = 2.8;       // think phase inside QDUR (rest = reveal)
+  const QDUR = 5.0;                 // per question (matches "5 secondes chacun")
+  const COUNT = Math.round(QDUR);   // countdown digits N..1
   const OUTRO = 3.0;
   const total = INTRO + n * QDUR + OUTRO;
   const loopMs = Math.round(total * 1000);
-  const loopS = (total) + 's';
+  const loopS = total + 's';
 
   reel.dataset.loopMs = String(loopMs);
-  reel.dataset.coverMs = String(1000);                               // hook = thumbnail
-  reel.dataset.ctaMs = String(Math.round((INTRO + n * QDUR + 1.6) * 1000)); // outro
-  reel.dataset.timerSec = '5';
+  reel.dataset.coverMs = String(1000);                                      // hook = thumbnail
+  reel.dataset.ctaMs = String(Math.round((INTRO + n * QDUR + 1.5) * 1000)); // outro
+  reel.dataset.timerSec = String(COUNT);
 
   const p = (sec) => ((sec / total) * 100).toFixed(3);
   const RING = 540; // 2π·86
@@ -209,56 +204,64 @@
   hook.className = 'layer';
   hook.style.animation = `hook ${loopS} linear infinite`;
   hook.innerHTML =
-    `<div class="hook-title">5 calculs.<br><em>5 secondes</em> chacun.</div>` +
-    `<div class="hook-sub">Mets le son. Réponds à voix haute.<br>Compte tes points.</div>` +
+    `<div class="hook-title">${n} calculs.<br><em>5 secondes</em> chacun.</div>` +
+    `<div class="hook-sub">Mets le son. Réponds à voix haute<br>avant la fin du chrono.</div>` +
     `<div class="hook-tag">Prêt ? C'est parti →</div>`;
   stage.appendChild(hook);
   css.push(
     `@keyframes hook{0%{opacity:0;transform:translateY(18px)}${p(0.35)}%{opacity:1;transform:none}${p(INTRO - 0.35)}%{opacity:1;transform:none}${p(INTRO)}%,100%{opacity:0}}`
   );
 
-  // ── Question layers ──
+  // ── Question layers (question only — NO answer reveal) ──
   Q.forEach((q, i) => {
     const start = INTRO + i * QDUR;
-    const reveal = start + THINK;
     const end = start + QDUR;
+
+    let label = q.expr;
+    if (!label.includes('?')) label += ' = ?';
+    label = label.replace(/\?/g, '<span class="q-eq">?</span>');
 
     const layer = document.createElement('div');
     layer.className = 'layer';
     layer.style.animation = `qlayer_${i} ${loopS} linear infinite`;
     layer.innerHTML =
       `<div class="q-counter">Question ${i + 1} / ${n}</div>` +
-      `<div class="q-stage" style="position:relative;width:100%;flex:1;display:flex;align-items:center;justify-content:center;">` +
-        `<div class="q-think" data-think>` +
-          `<div class="timer-ring">` +
-            `<svg width="220" height="220" viewBox="0 0 200 200" aria-hidden="true">` +
-              `<circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>` +
-              `<circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${RING}" data-ring></circle>` +
-            `</svg>` +
-          `</div>` +
-          `<div class="q-expr">${q.expr} <span class="q-eq">= ?</span></div>` +
-        `</div>` +
-        `<div class="q-answer" data-answer>` +
-          `<div class="q-expr-small">${q.expr} =</div>` +
-          `<div class="q-result">${q.ans}<span class="q-check">✓</span></div>` +
-        `</div>` +
-      `</div>`;
+      `<div class="timer-ring">` +
+        `<svg width="230" height="230" viewBox="0 0 200 200" aria-hidden="true">` +
+          `<circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>` +
+          `<circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${RING}" data-ring></circle>` +
+        `</svg>` +
+        `<div class="timer-num" data-num></div>` +
+      `</div>` +
+      `<div class="q-expr" data-expr>${label}</div>`;
     stage.appendChild(layer);
 
-    layer.querySelector('[data-think]').style.animation = `qthink_${i} ${loopS} linear infinite`;
-    layer.querySelector('[data-answer]').style.animation = `qans_${i} ${loopS} linear infinite`;
     layer.querySelector('[data-ring]').style.animation = `qring_${i} ${loopS} linear infinite`;
 
-    // whole layer visible across its window
     css.push(
-      `@keyframes qlayer_${i}{0%,${p(start - 0.05)}%{opacity:0}${p(start + 0.08)}%{opacity:1}${p(end - 0.08)}%{opacity:1}${p(end)}%,100%{opacity:0}}`,
-      `@keyframes qthink_${i}{0%,${p(start)}%{opacity:0;transform:scale(.94)}${p(start + 0.18)}%{opacity:1;transform:scale(1)}${p(reveal - 0.1)}%{opacity:1;transform:scale(1)}${p(reveal)}%,100%{opacity:0;transform:scale(.96)}}`,
-      `@keyframes qring_${i}{0%,${p(start)}%{stroke-dashoffset:0}${p(reveal)}%,100%{stroke-dashoffset:${RING}}}`,
-      `@keyframes qans_${i}{0%,${p(reveal - 0.04)}%{opacity:0;transform:scale(.6)}${p(reveal + 0.16)}%{opacity:1;transform:scale(1.08)}${p(reveal + 0.3)}%{opacity:1;transform:scale(1)}${p(end - 0.06)}%{opacity:1;transform:scale(1)}${p(end)}%,100%{opacity:0;transform:scale(1)}}`
+      `@keyframes qlayer_${i}{0%,${p(start - 0.05)}%{opacity:0}${p(start + 0.08)}%{opacity:1}${p(end - 0.12)}%{opacity:1}${p(end)}%,100%{opacity:0}}`,
+      `@keyframes qring_${i}{0%,${p(start)}%{stroke-dashoffset:0}${p(end)}%,100%{stroke-dashoffset:${RING}}}`
     );
 
-    audioCues.push({ at: start + 0.05, freq: 760, dur: 0.06 });   // question tick
-    audioCues.push({ at: reveal, freq: 1320, dur: 0.13 });        // answer chime
+    // Countdown digits N..1, one per second
+    const numEl = layer.querySelector('[data-num]');
+    for (let dgt = COUNT; dgt >= 1; dgt--) {
+      const span = document.createElement('span');
+      span.textContent = String(dgt);
+      span.style.animation = `qcd_${i}_${dgt} ${loopS} linear infinite`;
+      numEl.appendChild(span);
+      const segStart = start + (COUNT - dgt);
+      const segEnd = segStart + 1;
+      css.push(
+        `@keyframes qcd_${i}_${dgt}{0%,${p(segStart)}%{opacity:0}${p(segStart + 0.05)}%{opacity:1}${p(segEnd - 0.05)}%{opacity:1}${p(segEnd)}%,100%{opacity:0}}`
+      );
+    }
+
+    // Audio: a "go" on each new question + 3·2·1 ticks
+    audioCues.push({ at: start + 0.02, freq: 1100, dur: 0.09 });
+    for (let s = 3; s >= 1; s--) {
+      audioCues.push({ at: start + (COUNT - s), freq: 820, dur: 0.05 });
+    }
   });
 
   // ── Outro layer ──
@@ -267,15 +270,15 @@
   outro.className = 'layer';
   outro.style.animation = `outro ${loopS} linear infinite`;
   outro.innerHTML =
-    `<div class="outro-q">Ton score sur <em>5</em> ?</div>` +
-    `<div class="outro-sub">Note-le en commentaire 👇</div>` +
+    `<div class="outro-q">Combien sur <em>${n}</em> ?</div>` +
+    `<div class="outro-sub">Réponses + ton score en commentaire 👇</div>` +
     `<div class="outro-handle">@albert.prep</div>` +
     `<div class="outro-cta">Un défi par jour → prep.albertschool.com</div>`;
   stage.appendChild(outro);
   css.push(
     `@keyframes outro{0%,${p(outroStart - 0.05)}%{opacity:0;transform:translateY(18px)}${p(outroStart + 0.25)}%{opacity:1;transform:none}100%{opacity:1;transform:none}}`
   );
-  audioCues.push({ at: outroStart + 0.1, freq: 1570, dur: 0.22 }); // final success chime
+  audioCues.push({ at: outroStart + 0.1, freq: 1570, dur: 0.22 });
 
   // Commit styles + audio metadata
   const style = document.createElement('style');
@@ -284,6 +287,21 @@
   document.head.appendChild(style);
 
   reel.dataset.audioCues = JSON.stringify(audioCues);
+
+  // ── Auto-fit each expression so long prompts never exceed the frame ──
+  function fitExprs() {
+    const MAXW = 880, MAX = 132, MIN = 60;
+    reel.querySelectorAll('[data-expr]').forEach((el) => {
+      let size = MAX;
+      el.style.fontSize = size + 'px';
+      while (el.scrollWidth > MAXW && size > MIN) {
+        size -= 2;
+        el.style.fontSize = size + 'px';
+      }
+    });
+  }
+  fitExprs();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitExprs);
 })();
   </script>
 

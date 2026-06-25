@@ -12,12 +12,13 @@ status: draft
 postiz_id: null
 postiz_tiktok_id: null
 postiz_fb_id: null
+answers_comment: "Réponses : 1) 27 · 2) 3/4 · 3) 1/2 · 4) 25 · 5) 16 — ton score sur 5 ?"
 ---
-Puissances et racines : le réflexe qui fait gagner du temps partout 🔢
+Puissances, racines et fractions : le réflexe qui fait gagner du temps partout 🔢
 
-5 questions, 5 secondes chacune. Mets le son et note ton score /5 en commentaire 👇
+5 questions, 5 secondes chacune. Mets le son, réponds avant la fin du chrono et note ton score /5 en commentaire 👇 (réponses en commentaire épinglé)
 
-2⁵, 3³, √81, 5², et le piège : √(9/16).
+Au programme : cube, racine de fraction, produit de fractions, carré, puissance de 2.
 
 Un défi par jour → prep.albertschool.com
 

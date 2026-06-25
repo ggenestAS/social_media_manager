@@ -12,12 +12,11 @@ status: draft
 postiz_id: null
 postiz_tiktok_id: null
 postiz_fb_id: null
+answers_comment: "Réponses : 1) 3x² · 2) 5 · 3) 12 · 4) 64 · 5) 0,12 — ton score sur 5 ?"
 ---
 Spé Maths : ces automatismes doivent sortir en 5 secondes ⚡
 
-5 réflexes de Terminale d'affilée — dérivée, ln, puissances. Mets le son et note ton score /5 en commentaire 👇
-
-(x³)′, ln(e⁵), e⁰, 2⁶, √144.
+5 réflexes de Terminale d'affilée — dérivée, ln, racine, puissance, décimaux. Mets le son, réponds avant la fin du chrono et note ton score /5 en commentaire 👇 (réponses en commentaire épinglé)
 
 Un défi par jour → prep.albertschool.com
 

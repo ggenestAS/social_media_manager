@@ -12,12 +12,13 @@ status: draft
 postiz_id: null
 postiz_tiktok_id: null
 postiz_fb_id: null
+answers_comment: "Réponses : 1) 15 · 2) 60 · 3) +25 % · 4) 120 · 5) 87,5 % — ton score sur 5 ?"
 ---
 Les pourcentages, c'est tout le chapitre évolutions 📈 5 calculs, 5 secondes chacun.
 
-Mets le son, réponds à voix haute et note ton score /5 en commentaire 👇
+Mets le son, réponds avant la fin du chrono et note ton score /5 en commentaire 👇 (réponses en commentaire épinglé)
 
-10 % de 200, 25 % de 60, 50 +20 %, 80×1,5, et 200 → 250 (combien de % ?).
+Au programme : % d'un nombre, hausse, évolution en %, coefficient, fraction en %.
 
 Un défi par jour → prep.albertschool.com
 
