@@ -7,10 +7,10 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
-release_url: null
+schedule: 2026-06-25T17:59:27Z
+status: live
+postiz_id: cmqtt41pq02fls70yg2eqzqd3
+release_url: https://www.instagram.com/reel/DaBKOzDDDk_/
 postiz_tiktok_id: null
 postiz_fb_id: null
 answers_comment: "Réponses : 1) 56 · 2) 225 · 3) 16 · 4) 75 % · 5) 32 — ton score sur 5 ?"
