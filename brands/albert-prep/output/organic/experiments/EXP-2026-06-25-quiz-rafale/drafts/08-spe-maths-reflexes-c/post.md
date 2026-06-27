@@ -7,10 +7,10 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
-postiz_tiktok_id: null
+schedule: 2026-07-01T08:00:00Z
+status: scheduled
+postiz_id: cmqwhvusq007dny0yjbzesl0q
+postiz_tiktok_id: cmqwhvv7u007fny0yf6hqguez
 postiz_fb_id: null
 answers_comment: "Réponses : 1) 2x+5 · 2) 0 · 3) 11 · 4) 256 · 5) 5/6 — ton score sur 5 ?"
 ---
