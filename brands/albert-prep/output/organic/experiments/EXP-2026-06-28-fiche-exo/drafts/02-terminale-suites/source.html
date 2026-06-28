@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Fiche Exo #02 · Suites (rafale 3 zones)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+      --navy-grid: rgba(168, 219, 238, 0.05);
+      --line: rgba(168, 219, 238, 0.22);
+    }
+    body { margin: 0; padding: 0; background: #111; }
+
+    .reel {
+      width: 1080px; height: 1920px;
+      background: var(--navy); color: var(--paper);
+      position: relative; overflow: hidden;
+    }
+    .reel::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--navy-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Each beat is a full 3-zone screen; only opacity swaps between beats.
+       Constant parts (catch, fiche labels, track, theme, method) are identical
+       across layers, so there is no flicker. */
+    .layer {
+      position: absolute; inset: 0; z-index: 2; opacity: 0;
+      display: flex; flex-direction: column;
+      padding: 96px 84px 84px;
+    }
+
+    /* ── TOP third ── */
+    .zone-top {
+      flex: 0 0 540px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .catch {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: 56px; line-height: 1.12; text-align: center;
+      color: var(--paper); letter-spacing: -0.01em;
+    }
+    .catch em { font-weight: 300; font-style: italic; color: var(--sky); }
+
+    .meter {
+      margin-top: auto; width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .counter { display: flex; flex-direction: column; gap: 14px; }
+    .counter-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 34px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--sky); opacity: 0.8;
+    }
+    .counter-nums {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 88px; line-height: 0.9; color: var(--paper);
+    }
+    .counter-nums em { font-style: normal; color: var(--sky); }
+    .dots { display: flex; gap: 16px; margin-top: 6px; }
+    .dot { width: 22px; height: 22px; border-radius: 999px; background: rgba(168,219,238,0.22); }
+    .dot.on { background: var(--sky); }
+
+    .timer-ring { position: relative; width: 200px; height: 200px; flex: 0 0 auto; }
+    .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .timer-num {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Spline Sans Mono', monospace; font-variant-numeric: tabular-nums;
+      font-weight: 600; font-size: 92px; color: var(--paper);
+    }
+
+    /* ── MIDDLE third ── */
+    .zone-mid {
+      flex: 1 1 auto;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 40px; width: 100%;
+    }
+    .exo-rule {
+      width: 120px; height: 4px; background: var(--sky); opacity: 0.55; border-radius: 4px;
+    }
+    .exo-context {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-variant-numeric: tabular-nums; white-space: nowrap;
+      font-size: 56px; line-height: 1.1; color: var(--paper); opacity: 0.92;
+    }
+    .exo-ask {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-variant-numeric: tabular-nums; white-space: nowrap;
+      font-size: 104px; line-height: 1; color: var(--paper);
+    }
+    .exo-ask .q-eq { color: var(--sky); }
+
+    /* ── BOTTOM third — the fiche ── */
+    .zone-bottom { flex: 0 0 auto; width: 100%; }
+    .fiche {
+      border: 2px solid var(--line); border-radius: 22px;
+      background: rgba(168,219,238,0.045);
+      padding: 36px 44px; display: flex; flex-direction: column; gap: 26px;
+    }
+    .fiche-row { display: flex; align-items: center; gap: 28px; }
+    .fiche-label {
+      flex: 0 0 230px;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sky); opacity: 0.85;
+    }
+    .fiche-value {
+      flex: 1 1 auto;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 40px; color: var(--paper); letter-spacing: 0.01em;
+    }
+    .fiche-value.small { font-size: 36px; font-weight: 500; }
+
+    /* difficulty gauge */
+    .gauge { flex: 1 1 auto; display: flex; align-items: center; gap: 20px; }
+    .gauge-tick {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 24px; color: var(--paper); opacity: 0.5; flex: 0 0 auto;
+    }
+    .gauge-track {
+      position: relative; flex: 1 1 auto; height: 14px; border-radius: 999px;
+      background: rgba(168,219,238,0.18);
+    }
+    .gauge-fill {
+      position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px;
+      background: linear-gradient(90deg, var(--good), var(--gold));
+    }
+    .gauge-marker {
+      position: absolute; top: 50%; width: 30px; height: 30px; border-radius: 999px;
+      background: var(--paper); border: 4px solid var(--navy);
+      transform: translate(-50%, -50%); box-shadow: 0 0 0 3px var(--sky);
+    }
+    .gauge-val {
+      flex: 0 0 auto; font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 40px; color: var(--paper); min-width: 130px; text-align: right;
+    }
+    .gauge-val em { font-style: normal; color: var(--sky); }
+
+    /* ── OUTRO ── */
+    .outro {
+      position: absolute; inset: 0; z-index: 3; opacity: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 90px;
+    }
+    .outro-q { font-family: 'Fraunces', serif; font-weight: 700; font-size: 100px; line-height: 1.05; color: var(--paper); }
+    .outro-q em { font-weight: 300; font-style: italic; color: var(--sky); }
+    .outro-sub { font-family: 'Spline Sans Mono', monospace; font-weight: 500; font-size: 38px; color: var(--paper); opacity: 0.72; margin-top: 44px; }
+    .outro-handle { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 42px; color: var(--sky); margin-top: 64px; }
+    .outro-cta { font-family: 'Spline Sans Mono', monospace; font-weight: 500; font-size: 32px; color: var(--paper); opacity: 0.55; margin-top: 14px; }
+  </style>
+</head>
+<body>
+
+  <!--
+    Fiche Exo (experiment EXP-2026-06-28): 5 timed exam-style exercises in one
+    reel — NO answers shown (answers go in the first comment). 3 zones:
+      top = catch phrase + EXERCICE n/5 + countdown ring
+      mid = the exercise (context line + ask line)
+      bottom = fiche (filière / niveau gauge / thème / méthode)
+    Edit ONLY the #exo-data JSON below. Each question has its own `sec` (timer)
+    and `level` (10..20, moves the gauge marker).
+    Export: npm run html:to-mp4 -- source.html --out export/ --audio cues --speed 1
+  -->
+
+  <script type="application/json" id="exo-data">
+  {
+  "post": "Fiche Exo #02",
+  "track": "Terminale · Spé Maths",
+  "theme": "Suites",
+  "method": "Papier-crayon",
+  "catch": "Les <em>suites</em>, c'est 5 points au bac. Ne les offre pas.",
+  "questions": [
+    { "context": "uₙ₊₁ = 2uₙ − 3,  u₀ = 4", "ask": "u₂ = ?", "ans": "7", "sec": 8, "level": 12 },
+    { "context": "vₙ = 3 × 2ⁿ", "ask": "v₄ = ?", "ans": "48", "sec": 8, "level": 13 },
+    { "context": "Arithmétique : u₀ = 5, r = 3", "ask": "u₁₀ = ?", "ans": "35", "sec": 10, "level": 14 },
+    { "context": "uₙ = (3n + 1)/(n + 2)", "ask": "lim uₙ = ?", "ans": "3", "sec": 10, "level": 16 },
+    { "context": "Géométrique : u₀ = 2, q = 3", "ask": "u₀ + … + u₄ = ?", "ans": "242", "sec": 14, "level": 18 }
+  ]
+}
+  </script>
+
+  <div data-screen-label="Fiche Exo 9:16" class="reel"></div>
+
+  <script>
+(function initFicheReel() {
+  const reel = document.querySelector('.reel');
+  const data = JSON.parse(document.getElementById('exo-data').textContent);
+  const Q = data.questions;
+  const n = Q.length;
+
+  // ── Timeline (animation seconds), per-question durations ──
+  const OUTRO = 3.0;
+  const starts = [];
+  let acc = 0;
+  Q.forEach((q) => { starts.push(acc); acc += (q.sec || 6); });
+  const outroStart = acc;
+  const total = acc + OUTRO;
+  const loopMs = Math.round(total * 1000);
+
+  reel.dataset.loopMs = String(loopMs);
+  reel.dataset.coverMs = String(600);                       // hold on exo 1 = thumbnail
+  reel.dataset.ctaMs = String(Math.round((outroStart + 1.5) * 1000));
+  reel.dataset.timerSec = String(Math.round(Q[0].sec || 6));
+
+  const p = (sec) => ((sec / total) * 100).toFixed(3);
+  const RING = 540; // 2π·86
+  const css = [];
+  const audioCues = [];
+
+  const lvlPos = (lvl) => Math.max(0, Math.min(100, ((lvl - 10) / 10) * 100));
+  const esc = (s) => String(s);
+
+  Q.forEach((q, i) => {
+    const start = starts[i];
+    const dur = q.sec || 6;
+    const end = start + dur;
+    const COUNT = Math.round(dur);
+
+    let ask = q.ask;
+    if (!ask.includes('?')) ask += ' = ?';
+    ask = ask.replace(/\?/g, '<span class="q-eq">?</span>');
+
+    const dotsHtml = Q.map((_, k) => `<div class="dot${k <= i ? ' on' : ''}"></div>`).join('');
+    const numsHtml = (() => {
+      let spans = '';
+      for (let dgt = COUNT; dgt >= 1; dgt--) {
+        spans += `<span data-cd="${dgt}">${dgt}</span>`;
+      }
+      return spans;
+    })();
+
+    const layer = document.createElement('div');
+    layer.className = 'layer';
+    layer.style.animation = `layer_${i} ${total}s linear infinite`;
+    layer.innerHTML =
+      `<div class="zone-top">` +
+        `<div class="catch">${data.catch}</div>` +
+        `<div class="meter">` +
+          `<div class="counter">` +
+            `<span class="counter-label">Exercice</span>` +
+            `<span class="counter-nums">${i + 1} / <em>${n}</em></span>` +
+            `<div class="dots">${dotsHtml}</div>` +
+          `</div>` +
+          `<div class="timer-ring">` +
+            `<svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">` +
+              `<circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>` +
+              `<circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${RING}" data-ring></circle>` +
+            `</svg>` +
+            `<div class="timer-num">${numsHtml}</div>` +
+          `</div>` +
+        `</div>` +
+      `</div>` +
+      `<div class="zone-mid">` +
+        `<div class="exo-rule"></div>` +
+        (q.context ? `<div class="exo-context" data-fit>${esc(q.context)}</div>` : ``) +
+        `<div class="exo-ask" data-fit>${ask}</div>` +
+      `</div>` +
+      `<div class="zone-bottom">` +
+        `<div class="fiche">` +
+          `<div class="fiche-row"><span class="fiche-label">Filière</span><span class="fiche-value">${esc(data.track)}</span></div>` +
+          `<div class="fiche-row"><span class="fiche-label">Niveau</span>` +
+            `<span class="gauge">` +
+              `<span class="gauge-tick">10/20</span>` +
+              `<span class="gauge-track">` +
+                `<span class="gauge-fill" style="width:${lvlPos(q.level)}%"></span>` +
+                `<span class="gauge-marker" style="left:${lvlPos(q.level)}%"></span>` +
+              `</span>` +
+              `<span class="gauge-tick">20/20</span>` +
+            `</span>` +
+            `<span class="gauge-val">${q.level}<em>/20</em></span>` +
+          `</div>` +
+          `<div class="fiche-row"><span class="fiche-label">Thème</span><span class="fiche-value">${esc(data.theme)}</span></div>` +
+          `<div class="fiche-row"><span class="fiche-label">Méthode</span><span class="fiche-value small">${esc(data.method)}</span></div>` +
+        `</div>` +
+      `</div>`;
+    reel.appendChild(layer);
+
+    // ring depletes over this beat's duration
+    layer.querySelector('[data-ring]').style.animation = `ring_${i} ${total}s linear infinite`;
+    css.push(
+      `@keyframes layer_${i}{0%,${p(start - 0.05)}%{opacity:0}${p(start + 0.08)}%{opacity:1}${p(end - 0.12)}%{opacity:1}${p(end)}%,100%{opacity:0}}`,
+      `@keyframes ring_${i}{0%,${p(start)}%{stroke-dashoffset:0}${p(end)}%,100%{stroke-dashoffset:${RING}}}`
+    );
+
+    // per-second countdown digit visibility
+    layer.querySelectorAll('[data-cd]').forEach((span) => {
+      const dgt = parseInt(span.getAttribute('data-cd'), 10);
+      const segStart = start + (COUNT - dgt);
+      const segEnd = segStart + 1;
+      const name = `cd_${i}_${dgt}`;
+      span.style.position = 'absolute';
+      span.style.animation = `${name} ${total}s linear infinite`;
+      css.push(
+        `@keyframes ${name}{0%,${p(segStart)}%{opacity:0}${p(segStart + 0.04)}%{opacity:1}${p(segEnd - 0.04)}%{opacity:1}${p(segEnd)}%,100%{opacity:0}}`
+      );
+    });
+
+    // audio: a "go" on each new exercise + 3·2·1 ticks before time runs out
+    audioCues.push({ at: start + 0.02, freq: 1100, dur: 0.09 });
+    for (let s = 3; s >= 1; s--) {
+      if (dur - s >= 0) audioCues.push({ at: start + (dur - s), freq: 820, dur: 0.05 });
+    }
+  });
+
+  // ── Outro ──
+  const outro = document.createElement('div');
+  outro.className = 'outro';
+  outro.style.animation = `outro ${total}s linear infinite`;
+  outro.innerHTML =
+    `<div class="outro-q">Combien sur <em>${n}</em> ?</div>` +
+    `<div class="outro-sub">Corrigé + ton score en commentaire</div>` +
+    `<div class="outro-handle">@albert.prep</div>` +
+    `<div class="outro-cta">Gagne en vitesse → prep.albertschool.com</div>`;
+  reel.appendChild(outro);
+  css.push(
+    `@keyframes outro{0%,${p(outroStart - 0.05)}%{opacity:0;transform:translateY(18px)}${p(outroStart + 0.25)}%{opacity:1;transform:none}100%{opacity:1;transform:none}}`
+  );
+  audioCues.push({ at: outroStart + 0.1, freq: 1570, dur: 0.22 });
+
+  const style = document.createElement('style');
+  style.id = 'fiche-timeline';
+  style.textContent = css.join('\n');
+  document.head.appendChild(style);
+
+  reel.dataset.audioCues = JSON.stringify(audioCues);
+
+  // ── Auto-fit context + ask lines so they never exceed the frame ──
+  function fitOne(el, max, min) {
+    let size = max; el.style.fontSize = size + 'px';
+    const MAXW = 912;
+    while (el.scrollWidth > MAXW && size > min) { size -= 2; el.style.fontSize = size + 'px'; }
+  }
+  function fitAll() {
+    reel.querySelectorAll('.exo-ask[data-fit]').forEach((el) => fitOne(el, 104, 52));
+    reel.querySelectorAll('.exo-context[data-fit]').forEach((el) => fitOne(el, 56, 34));
+  }
+  fitAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+})();
+  </script>
+
+</body>
+</html>
