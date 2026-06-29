@@ -33,15 +33,23 @@
     /* Each beat is a full 3-zone screen; only opacity swaps between beats.
        Constant parts (catch, fiche labels, track, theme, method) are identical
        across layers, so there is no flicker. */
+    /* Padding doubles as platform safe-area:
+         top    → clears the status bar + IG/TikTok back/camera row
+         right  → clears the action rail (like / comment / share / save / more)
+         bottom → lifts the fiche above the caption, @handle and bottom nav
+       Tune via the --safe-* tokens below. */
+    .reel {
+      --safe-top: 210px; --safe-right: 156px; --safe-bottom: 400px; --safe-left: 84px;
+    }
     .layer {
       position: absolute; inset: 0; z-index: 2; opacity: 0;
       display: flex; flex-direction: column;
-      padding: 96px 84px 84px;
+      padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
     }
 
     /* ── TOP third ── */
     .zone-top {
-      flex: 0 0 540px;
+      flex: 0 0 450px;
       display: flex; flex-direction: column; align-items: center;
     }
     .catch {
@@ -337,7 +345,7 @@
   // ── Auto-fit context + ask lines so they never exceed the frame ──
   function fitOne(el, max, min) {
     let size = max; el.style.fontSize = size + 'px';
-    const MAXW = 912;
+    const MAXW = 816;
     while (el.scrollWidth > MAXW && size > min) { size -= 2; el.style.fontSize = size + 'px'; }
   }
   function fitAll() {
