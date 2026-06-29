@@ -7,11 +7,11 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
-postiz_tiktok_id: null
-postiz_fb_id: null
+schedule: 2026-06-29T18:00:00Z
+status: scheduled
+postiz_id: cmqz2o5n20efrke0ypu3uif29
+postiz_tiktok_id: cmqz2o61v0ekeny0y7tlnytxu
+postiz_fb_id: cmqz2o6gz0ekgny0y3f50pzr1
 answers_comment: "Corrigé : 1) 7 · 2) 48 · 3) 35 · 4) 3 · 5) 242 — ton score sur 5 ?"
 ---
 5 questions de suites, format bac, chrono en main ⚡

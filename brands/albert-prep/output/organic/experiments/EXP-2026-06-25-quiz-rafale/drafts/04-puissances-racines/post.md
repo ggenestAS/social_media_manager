@@ -7,11 +7,11 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
-postiz_tiktok_id: null
-postiz_fb_id: null
+schedule: 2026-06-29T14:00:00Z
+status: scheduled
+postiz_id: cmqz2o1g60ek3ny0y0pbaymqw
+postiz_tiktok_id: cmqz2o1vu0ek5ny0yuk30xd7i
+postiz_fb_id: cmqz2o2c80ek7ny0ys6xs9xzv
 answers_comment: "Réponses : 1) 27 · 2) 3/4 · 3) 1/2 · 4) 25 · 5) 16 — ton score sur 5 ?"
 ---
 Puissances, racines et fractions : le réflexe qui fait gagner du temps partout 🔢

@@ -7,11 +7,11 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
-postiz_tiktok_id: null
-postiz_fb_id: null
+schedule: 2026-06-29T20:00:00Z
+status: scheduled
+postiz_id: cmqz2o7nb0eftke0yynx6ylb4
+postiz_tiktok_id: cmqz2o82b0ekiny0yaa4g3ira
+postiz_fb_id: cmqz2o8h80efvke0ylxk0dks8
 answers_comment: "Corrigé : 1) 361 · 2) 36 · 3) 15/8 · 4) 23 · 5) 39 — ton score sur 5 ?"
 ---
 5 automatismes que tout Première en Spé doit sortir sans réfléchir ⚡

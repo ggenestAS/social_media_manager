@@ -7,11 +7,11 @@ placements:
   - { channel: ig, post_type: post }
   - { channel: tiktok }
   - { channel: fb }
-schedule: null
-status: draft
-postiz_id: null
-postiz_tiktok_id: null
-postiz_fb_id: null
+schedule: 2026-06-29T10:27:40Z
+status: live
+postiz_id: cmqz2nx7w0ejsny0y86v4wzc8
+postiz_tiktok_id: cmqz2nxpx0ejuny0ycjcmx28l
+postiz_fb_id: cmqz2ny850efnke0yr434ea5l
 answers_comment: "Corrigé : 1) 3x² − 6x · 2) (2x+1)·eˣ · 3) 2x/(x²+1) · 4) 1/(x+1)² · 5) 3/(2√(3x+1)) — ton score sur 5 ?"
 ---
 5 dérivées format bac ⚡ Mais chrono en main.
