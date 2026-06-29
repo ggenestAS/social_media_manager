@@ -45,6 +45,19 @@ quality + Postiz reach, no formal stats.
 4. `puissances-racines` — powers/roots/fractions: `3³`, `√(9/16)`, `(2/3)×(3/4)`, `5²`, `2⁴`
 5. `pieges-ordre-operations` — traps & tricks: `8+3×5`, `(6+4)²`, `10−2×3`, `49×11`, `30÷5+2`
 
+## Follow-up batch (2026-06-27) — doubling down on the winning theme
+
+After #02 (Spé Maths Terminale) won the 7-day window, three more drafts replicate
+that exact winning *shape* (1 dérivée + 1 ln + 1 racine + 1 puissance + 1 décimal/fraction)
+with fresh, verified numbers. Same engine, Terminale/Spé branding kept constant.
+
+6. `spe-maths-reflexes-a` — `(x⁴)′`, `ln(e⁷)`, `√169`, `2⁷`, `0,5×0,8` → **live IG ([reel](https://www.instagram.com/reel/DaF_r0oFbIe/)) + TikTok, 27/06 15:03 UTC**
+7. `spe-maths-reflexes-b` — `(x⁵)′`, `ln(e⁶)`, `√225`, `3⁴`, `0,2×0,3` → **scheduled IG+TikTok 30/06 08:00 UTC** (winning slot)
+8. `spe-maths-reflexes-c` — `(x²+5x)′`, `ln(1)`, `√121`, `2⁸`, `1/2+1/3` → **scheduled IG+TikTok 01/07 08:00 UTC**
+
+> Slot choice: #02 won at **08:00 UTC** (10:00 Paris). #06 went out now as the
+> live test; #07/#08 take the proven morning slot to keep the theme comparison clean.
+
 ## Learnings (2026-06-27, Postiz 7d window)
 
 Source: `brands/albert-prep/output/analytics/post-stats-2026-06-20-to-2026-06-27.md`
