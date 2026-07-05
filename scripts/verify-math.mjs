@@ -133,14 +133,14 @@ function parseVerifyFromBundle(dir) {
   if (!fm) throw new Error('no frontmatter in post.md');
 
   const body = fm[1];
-  const answerLine = body.match(/^answer:\s*(.+)$/m);
+  const answerLine = body.match(/^\s*answer:\s*(.+)$/m);
   const exprLines = [...body.matchAll(/^\s+-\s+"(.+)"\s*$/gm)].map((m) => m[1]);
   const exprsFromList = body.match(/exprs:\s*\n((?:\s+-\s+.+\n?)+)/);
   let exprs = exprLines;
   if (exprsFromList) {
     exprs = [...exprsFromList[1].matchAll(/-\s+"(.+?)"/g)].map((m) => m[1]);
   }
-  const singleExpr = body.match(/^exprs:\s*\[(.+)\]/m);
+  const singleExpr = body.match(/^\s*exprs:\s*\[(.+)\]/m);
   if (singleExpr) {
     exprs = singleExpr[1].split(',').map((s) => s.trim().replace(/^"|"$/g, ''));
   }

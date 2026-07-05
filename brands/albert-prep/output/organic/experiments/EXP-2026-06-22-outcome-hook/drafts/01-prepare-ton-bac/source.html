@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — EXP outcome-hook — Prépare ton Bac</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--navy); }
+    .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy { color: var(--paper); }
+    .display.on-navy em { color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+    .post-number, .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.42;
+    }
+    .slide-counter { font-weight: 500; }
+    .brand-tag { text-transform: uppercase; opacity: 0.4; }
+
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .lead { font-size: 38px; opacity: 0.7; line-height: 1.35; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+
+    /* wedge slide */
+    .wedge { font-size: 56px; line-height: 1.3; font-weight: 400; }
+    .wedge .strike { text-decoration: line-through; text-decoration-color: var(--red-pen); text-decoration-thickness: 5px; opacity: 0.55; }
+    .wedge .pop { color: var(--sky); font-style: italic; font-family: 'Fraunces', serif; font-weight: 300; }
+
+    /* proof drill */
+    .proof { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 60px; line-height: 1.75; display: flex; align-items: baseline; gap: 28px; }
+    .proof .q { color: var(--navy); }
+    .proof .a { color: var(--good); }
+    .proof .ok { color: var(--good); font-size: 0.8em; }
+
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+    .teaser { font-size: 30px; opacity: 0.7; margin-top: 44px; font-family: 'Spline Sans Mono', monospace; }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 — Objectif / cover (paper) -->
+  <div data-screen-label="ExpBac 01/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">01/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div style="margin-bottom:48px;"><span class="pill">Objectif</span></div>
+        <div class="display" style="font-size:104px;">Prépare ton<br><em>Bac</em> de maths</div>
+      </div>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="lead" style="margin-bottom:20px;">Pas en relisant des chapitres.<br>En automatisant tes calculs.</p>
+        <p class="hint">① ② ③ &nbsp; Passe au slide →</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 — La faille / wedge (navy) -->
+  <div data-screen-label="ExpBac 02/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">02/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:84px;margin-bottom:48px;">La <em>faille</em></div>
+        <p class="wedge">Tu connais tes méthodes.<br>Mais le jour J, tu perds des points sur des calculs <span class="strike">justes</span> <span class="pop">trop lents</span>.</p>
+      </div>
+      <div class="foot">
+        <p class="hint">→ Slide suivant : le test</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 — Preuve / drill (paper) -->
+  <div data-screen-label="ExpBac 03/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">03/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display" style="font-size:64px;margin-bottom:40px;">Un 18/20<br>fait ça <em>de tête</em></div>
+        <p class="proof"><span class="q">15 % de 80</span> <span class="a">= 12</span> <span class="ok">✓</span></p>
+        <p class="proof"><span class="q">9 × 25</span> <span class="a">= 225</span> <span class="ok">✓</span></p>
+        <p class="proof"><span class="q">48 + 7 × 6</span> <span class="a">= 90</span> <span class="ok">✓</span></p>
+      </div>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="hint">Tu as bloqué sur une ? C'est ça, l'écart.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4 — CTA lié à l'objectif (navy) -->
+  <div data-screen-label="ExpBac 04/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">04/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:96px;margin-bottom:56px;">5 minutes<br>par <em>jour</em></div>
+        <p class="lead" style="margin-bottom:48px;opacity:0.8;">L'écart de vitesse se comble avant la rentrée, pas la veille du Bac.</p>
+        <div><span class="btn-ink">Diagnostic gratuit</span></div>
+      </div>
+      <div class="foot">
+        <p class="teaser">prep.albertschool.com &nbsp;·&nbsp; @albert.prep</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

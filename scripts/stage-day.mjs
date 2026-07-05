@@ -9,7 +9,7 @@
  *   node scripts/stage-day.mjs --date 2026-06-22 --schedule
  *   node scripts/stage-day.mjs --date 2026-06-22 --export-missing --dry-run
  *
- * Reads each matching bundle under brands/<brand>/output/organic/posts/<date>-*/
+ * Reads each matching bundle under brands/<brand>/output/organic/posts/<date>-*
  * Uses post.md frontmatter: channels, placements, schedule, verify (optional).
  */
 
@@ -20,6 +20,7 @@ import {
   readdirSync,
   existsSync,
   mkdirSync,
+  statSync,
 } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -109,7 +110,19 @@ function resolveChannelIds() {
 
 function bundleDirsForDate() {
   return readdirSync(POSTS, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && d.name.startsWith(`${date}-`))
+    .filter((d) => {
+      if (!d.name.startsWith(`${date}-`)) return false;
+      const full = join(POSTS, d.name);
+      if (d.isDirectory()) return true;
+      if (d.isSymbolicLink()) {
+        try {
+          return statSync(full).isDirectory();
+        } catch {
+          return false;
+        }
+      }
+      return false;
+    })
     .map((d) => d.name)
     .sort();
 }
@@ -202,10 +215,22 @@ function captionFor(channel, postType, body, meta) {
   return body.replace(/\n\(story repost @[^\n]+\)\n?/g, '\n').trim();
 }
 
-function scheduleIso(meta, slotIndex, cadenceMin) {
+function parseSchedule(str) {
+  if (!str) return null;
+  const normalized =
+    str.length === 16 ? `${str}:00+02:00` : /[Z+]/.test(str) ? str : `${str}+02:00`;
+  const d = new Date(normalized);
+  return Number.isNaN(d.getTime()) ? null : d.toISOString();
+}
+
+function scheduleIso(meta, pl, slotIndex, cadenceMin) {
+  if (pl.channel === 'ig' && pl.post_type === 'story' && meta.story_schedule) {
+    const iso = parseSchedule(meta.story_schedule);
+    if (iso) return iso;
+  }
   if (meta.schedule) {
-    const d = new Date(meta.schedule.length === 16 ? `${meta.schedule}:00` : meta.schedule);
-    if (!Number.isNaN(d.getTime())) return d.toISOString();
+    const iso = parseSchedule(meta.schedule);
+    if (iso) return iso;
   }
   const base = new Date(`${date}T08:00:00+02:00`);
   base.setMinutes(base.getMinutes() + slotIndex * cadenceMin);
@@ -224,9 +249,10 @@ function verifyBundle(dir) {
 
 function updatePostMd(dir, { schedule, postizKey, postId }) {
   let raw = readFileSync(join(dir, 'post.md'), 'utf8');
-  raw = raw
-    .replace(/^schedule: .*/m, `schedule: ${schedule.slice(0, 16)}`)
-    .replace(/^status: .*/m, `status: ${mode === 'schedule' ? 'scheduled' : 'draft'}`);
+  if (schedule) {
+    raw = raw.replace(/^schedule: .*/m, `schedule: ${schedule.slice(0, 16)}`);
+  }
+  raw = raw.replace(/^status: .*/m, `status: ${mode === 'schedule' ? 'scheduled' : 'draft'}`);
   const key = postizKey || 'postiz_id';
   if (raw.includes(`${key}:`)) {
     raw = raw.replace(new RegExp(`^${key}: .*`, 'm'), `${key}: ${postId}`);
@@ -285,7 +311,7 @@ for (const name of bundles) {
         continue;
       }
       const kind = mediaKind(type, pl);
-      const iso = scheduleIso(meta, slot, cadence);
+      const iso = scheduleIso(meta, pl, slot, cadence);
       const label = `${pl.channel}:${pl.post_type} @ ${iso}`;
 
       if (dryRun) {
@@ -323,9 +349,11 @@ for (const name of bundles) {
       const postizKey =
         pl.channel === 'tiktok' ? 'postiz_tiktok_id' : pl.post_type === 'story' ? 'postiz_story_id' : 'postiz_id';
       if (pl.channel === 'ig' && pl.post_type === 'post') {
-        updatePostMd(dir, { schedule: iso, postizKey: 'postiz_id', postId });
+        updatePostMd(dir, { postizKey: 'postiz_id', postId });
+      } else if (pl.channel === 'ig' && pl.post_type === 'story') {
+        updatePostMd(dir, { postizKey: 'postiz_story_id', postId });
       } else if (pl.channel === 'tiktok') {
-        updatePostMd(dir, { schedule: iso, postizKey: 'postiz_tiktok_id', postId });
+        updatePostMd(dir, { postizKey: 'postiz_tiktok_id', postId });
       }
 
       results.push({ ok: true, name, label, postId });

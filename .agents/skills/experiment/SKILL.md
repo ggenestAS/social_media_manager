@@ -26,6 +26,9 @@ Same rule as organic-post §1 (named brand → else the single real brand → el
 
 ### 2. Read the brand DNA (what must stay constant)
 
+- `brands/<brand>/LOG.md` (if present) — the decision log: prior experiment
+  readouts and running tests. Don't relaunch a logged loser or duplicate a
+  live experiment's slot/variable.
 - `brands/<brand>/brand.md` — mission, audience, voice, language, CTA rules.
 - `brands/<brand>/templates/content-guide.md` — what to say, hooks, hashtags, CTA.
 - `brands/<brand>/templates/design-system.md` — palette, fonts, CSS. Used **verbatim**
@@ -152,3 +155,7 @@ If an experiment wins, promote its format into a real, reusable type: create
 `brands/<brand>/templates/post-types/<name>/{spec.md, template.html}` from the
 winning draft. That — not this skill — is where a proven experiment becomes part
 of the brand's permanent menu. Losers: just delete the experiment folder.
+
+Either way, **record the verdict in `brands/<brand>/LOG.md`** (if the brand
+keeps one): launch entries when the test ships, a readout entry when it's
+judged. A deleted loser folder with no log entry will be re-invented.

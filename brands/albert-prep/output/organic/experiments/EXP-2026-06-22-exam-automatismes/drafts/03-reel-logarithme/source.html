@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — EXP automatismes — Reel suite géométrique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+      --grid-line: rgba(95, 130, 190, 0.13);
+      --margin-rule: rgba(231, 84, 91, 0.38);
+      --navy-grid: rgba(168, 219, 238, 0.05);
+    }
+
+    body { margin: 0; padding: 0; background: #111; }
+
+    .reel {
+      width: 1080px; height: 1920px;
+      background: var(--navy); color: var(--paper);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 150px 90px 150px;
+    }
+    .reel::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--navy-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .brand-wordmark {
+      font-family: system-ui, -apple-system, sans-serif;
+      text-transform: uppercase; color: var(--paper);
+    }
+    .brand-wordmark strong { font-weight: 700; letter-spacing: 0.08em; font-size: 36px; }
+    .brand-wordmark span { font-weight: 300; letter-spacing: 0.26em; font-size: 36px; }
+
+    .cdj-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 700;
+      font-size: 40px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sky);
+    }
+
+    .eyebrow {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 72px; color: var(--sky); text-align: center; line-height: 1.18;
+    }
+    .timer-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 38px; letter-spacing: 0.06em; opacity: 0.6; margin-top: 22px;
+    }
+
+    .eq-row {
+      display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 30px;
+      font-family: 'Spline Sans Mono', monospace;
+      font-variant-numeric: tabular-nums; font-weight: 600;
+      font-size: 128px; line-height: 1; color: var(--paper);
+      white-space: nowrap; max-width: 100%;
+    }
+    .eq-expr { white-space: nowrap; flex-shrink: 0; }
+    .eq-expr sup { font-size: 0.5em; vertical-align: super; }
+    .eq-q { color: var(--sky); flex-shrink: 0; }
+
+    .timer-ring { position: relative; width: 240px; height: 240px; }
+    .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .timer-num {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Spline Sans Mono', monospace;
+      font-variant-numeric: tabular-nums; font-weight: 600;
+      font-size: 110px; color: var(--paper);
+    }
+    .timer-num span { position: absolute; }
+    .timer-num--wide { font-size: 88px; }
+
+    .paper-reveal {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background-color: var(--paper); color: var(--navy);
+    }
+    .paper-reveal::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .paper-reveal::after {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 118px;
+      width: 2px; background: var(--margin-rule); z-index: 1;
+    }
+    .paper-inner { position: relative; z-index: 2; text-align: center; padding: 0 80px; }
+
+    .calc-repeat {
+      font-family: 'Spline Sans Mono', monospace; font-size: 48px;
+      color: var(--navy); opacity: 0.4; margin-bottom: 40px;
+    }
+    .calc-repeat sup { font-size: 0.6em; vertical-align: super; }
+    .rule { width: 480px; height: 4px; background: var(--navy); opacity: 0.12; margin: 0 auto 56px; }
+    .answer-row { display: flex; align-items: center; justify-content: center; gap: 32px; }
+    .answer-hero {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 280px; line-height: 1; color: var(--navy);
+    }
+    .answer-check { color: var(--good); font-size: 120px; }
+
+    .method {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 52px; color: var(--blue-pen); margin-top: 56px; line-height: 1.25;
+    }
+    .method b { font-family: 'Spline Sans Mono', monospace; font-style: normal; font-weight: 600; color: var(--navy); }
+
+    .pill-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: rgba(33, 36, 73, 0.06); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 30px; letter-spacing: 0.03em;
+      padding: 24px 44px; border-radius: 999px; margin-top: 88px;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    EXP exam-automatismes — value-reel format (exam-anchor eyebrow + method in reveal).
+    timer_sec = 5 (one power of 2 + a single product).
+    Export: npm run html:to-mp4 -- source.html --out export/
+  -->
+
+  <div data-screen-label="ReelLog 9:16" class="reel" data-timer-sec="3">
+
+    <div style="position:relative;z-index:2" data-anim="r_brand">
+      <span class="cdj-label">Automatisme · Logarithme</span>
+    </div>
+
+    <div style="position:relative;z-index:2;margin-top:56px" data-anim="r_eyebrow">
+      <p class="eyebrow">Vise le 20<br>en maths</p>
+      <p class="timer-label"><span class="js-timer-sec">3</span> secondes</p>
+    </div>
+
+    <div style="position:relative;z-index:2;flex:1;width:100%;display:flex;align-items:center;justify-content:center;margin-top:24px;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:72px" data-anim="r_eq">
+
+        <div class="timer-ring">
+          <svg width="240" height="240" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>
+            <circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10"
+                    stroke-linecap="round" stroke-dasharray="540" data-ring></circle>
+          </svg>
+          <div class="timer-num"></div>
+        </div>
+
+        <div class="eq-row">
+          <span class="eq-expr">ln(e<sup>5</sup>)</span>
+          <span>=</span>
+          <span class="eq-q" data-anim="r_qmark">?</span>
+        </div>
+      </div>
+
+      <div class="paper-reveal" data-anim="r_reveal">
+        <div class="paper-inner">
+          <p class="calc-repeat">ln(e<sup>5</sup>)</p>
+          <div class="rule"></div>
+          <div class="answer-row" data-anim="r_answer">
+            <span class="answer-hero">5</span>
+            <span class="answer-check" data-anim="r_check">✓</span>
+          </div>
+          <p class="method" data-anim="r_cta">ln(e<sup>x</sup>) = <b>x</b></p>
+          <span class="pill-cta" data-anim="r_cta">↓ Ton temps en commentaire</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function initReelTimeline() {
+  const reel = document.querySelector('.reel[data-timer-sec]');
+  if (!reel) return;
+
+  const ALLOWED = [3, 5, 10, 15];
+  let timerSec = parseInt(reel.dataset.timerSec, 10);
+  if (!ALLOWED.includes(timerSec)) timerSec = 3;
+
+  const INTRO = 2;
+  const REVEAL = 3;
+  const total = INTRO + timerSec + REVEAL;
+  const revealStart = INTRO + timerSec;
+  const loopMs = total * 1000;
+  const loopS = total + 's';
+
+  reel.dataset.loopMs = String(loopMs);
+  reel.dataset.ctaMs = String(Math.round((revealStart + REVEAL * 0.62) * 1000));
+  reel.dataset.coverMs = String(Math.round((INTRO + 0.5) * 1000));
+
+  const p = (sec) => ((sec / total) * 100).toFixed(3);
+
+  const lines = [];
+
+  lines.push(
+    `@keyframes r_brand{0%{opacity:0;transform:translateY(-10px)}${p(0.2)}%{opacity:1;transform:none}${p(total - 0.4)}%{opacity:1}100%{opacity:0}}`,
+    `@keyframes r_eyebrow{0%,${p(0.15)}%{opacity:0;transform:translateY(12px)}${p(0.35)}%{opacity:1;transform:none}${p(total - 0.5)}%{opacity:1}100%{opacity:0}}`,
+    `@keyframes r_eq{0%,${p(INTRO * 0.35)}%{opacity:0;transform:scale(.9)}${p(INTRO * 0.55)}%{opacity:1;transform:scale(1)}${p(revealStart - 0.12)}%{opacity:1;transform:scale(1)}${p(revealStart)}%{opacity:0;transform:scale(.96)}100%{opacity:0}}`,
+    `@keyframes r_ring{0%,${p(INTRO)}%{stroke-dashoffset:0}${p(revealStart)}%{stroke-dashoffset:540}100%{stroke-dashoffset:540}}`,
+    `@keyframes r_qmark{0%,${p(INTRO * 0.45)}%{opacity:0}${p(INTRO * 0.6)}%{opacity:1}${p(revealStart - 0.08)}%{opacity:1}${p(revealStart)}%{opacity:0}100%{opacity:0}}`,
+    `@keyframes r_reveal{0%,${p(revealStart - 0.06)}%{opacity:0}${p(revealStart + 0.06)}%{opacity:1}100%{opacity:1}}`,
+    `@keyframes r_answer{0%,${p(revealStart + 0.12)}%{opacity:0;transform:scale(.4)}${p(revealStart + 0.38)}%{opacity:1;transform:scale(1.12)}${p(revealStart + 0.55)}%{opacity:1;transform:scale(1)}100%{opacity:1;transform:scale(1)}}`,
+    `@keyframes r_check{0%,${p(revealStart + 0.28)}%{opacity:0;transform:scale(.2) rotate(-25deg)}${p(revealStart + 0.48)}%{opacity:1;transform:scale(1) rotate(0)}100%{opacity:1}}`,
+    `@keyframes r_cta{0%,${p(revealStart + REVEAL * 0.52)}%{opacity:0;transform:translateY(22px)}${p(revealStart + REVEAL * 0.68)}%{opacity:1;transform:none}100%{opacity:1}}`
+  );
+
+  for (let n = timerSec; n >= 1; n--) {
+    const start = INTRO + (timerSec - n);
+    const end = start + 1;
+    lines.push(
+      `@keyframes r_cd_${n}{0%,${p(start)}%{opacity:0}${p(start + 0.12)}%{opacity:1}${p(end - 0.12)}%{opacity:1}${p(end)}%,100%{opacity:0}}`
+    );
+  }
+
+  document.getElementById('reel-timeline')?.remove();
+  const style = document.createElement('style');
+  style.id = 'reel-timeline';
+  style.textContent = lines.join('\n');
+  document.head.appendChild(style);
+
+  const timerNumEl = reel.querySelector('.timer-num');
+  if (timerNumEl) {
+    timerNumEl.innerHTML = '';
+    for (let n = timerSec; n >= 1; n--) {
+      const span = document.createElement('span');
+      span.textContent = String(n);
+      span.style.animation = `r_cd_${n} ${loopS} linear infinite`;
+      if (n >= 10) span.classList.add('timer-num--wide');
+      timerNumEl.appendChild(span);
+    }
+  }
+
+  reel.querySelectorAll('.js-timer-sec').forEach((el) => {
+    el.textContent = String(timerSec);
+  });
+
+  reel.querySelectorAll('[data-anim]').forEach((el) => {
+    el.style.animation = `${el.dataset.anim} ${loopS} linear infinite`;
+  });
+
+  const ring = reel.querySelector('[data-ring]');
+  if (ring) ring.style.animation = `r_ring ${loopS} linear infinite`;
+})();
+  </script>
+
+</body>
+</html>

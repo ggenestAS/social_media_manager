@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — EXP paid-accroche — Terminale feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3;
+      --grid-line: rgba(95, 130, 190, 0.13);
+      --margin-rule: rgba(231, 84, 91, 0.38);
+    }
+    body { margin: 0; background: #dedad2; }
+    .screen {
+      width: 1080px; height: 1350px; background: var(--paper); position: relative;
+      overflow: hidden; color: var(--navy);
+    }
+    .screen::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .screen::after {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 118px;
+      width: 2px; background: var(--margin-rule); z-index: 1;
+    }
+    .inner {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column;
+      padding: 72px 80px 80px 208px;
+    }
+    .head { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+    .foot { flex-shrink: 0; }
+    .brand-lockup { display: flex; align-items: center; gap: 14px; }
+    .brand-lockup img { border-radius: 10px; display: block; }
+    .brand-name {
+      font-family: system-ui, sans-serif; text-transform: uppercase; color: var(--navy);
+    }
+    .brand-name strong { font-weight: 700; letter-spacing: 0.08em; font-size: 22px; }
+    .brand-name span { font-weight: 300; letter-spacing: 0.26em; font-size: 22px; }
+    .level-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 20px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--red-pen);
+    }
+    .speed-hook {
+      font-family: 'Fraunces', serif; font-weight: 600; font-size: 44px;
+      line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 28px; max-width: 760px;
+    }
+    .speed-hook em { font-style: italic; font-weight: 500; color: var(--blue-pen); }
+    .hero-row {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 28px;
+      font-family: 'Spline Sans Mono', monospace; font-variant-numeric: tabular-nums;
+      font-weight: 600; font-size: 120px; line-height: 1;
+    }
+    .hero-row .times { font-size: 80px; }
+    .sup { font-size: 64px; vertical-align: super; line-height: 0; }
+    .hero-q { color: var(--red-pen); }
+    .pain {
+      font-family: 'Fraunces', serif; font-size: 36px; line-height: 1.14;
+      letter-spacing: -0.01em; max-width: 760px; margin-bottom: 28px;
+    }
+    .pain em { font-style: italic; font-weight: 500; color: var(--blue-pen); }
+    .prompt {
+      font-family: 'Spline Sans Mono', monospace; font-size: 30px; font-weight: 500;
+      opacity: 0.6; padding-top: 28px; border-top: 2px solid rgba(33, 36, 73, 0.14);
+    }
+  </style>
+</head>
+<body>
+  <div data-screen-label="ExpAccroche Terminale 4:5" class="screen" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <div class="brand-lockup">
+          <img src="../../../../../paid/campaigns/2026-06-18-meta/design-export/project/assets/logo-mark.svg" width="48" height="48" alt="Albert Prep">
+          <span class="brand-name"><strong>Albert</strong> <span>Prep</span></span>
+        </div>
+        <span class="level-tag">Entrée en Terminale</span>
+      </div>
+      <div class="body">
+        <div class="speed-hook">Tu sais le faire.<br>Mais en <em>combien de temps</em> ?</div>
+        <div class="hero-row">
+          <span>2<sup class="sup">5</sup></span>
+          <span class="times">×</span>
+          <span>2<sup class="sup">3</sup></span>
+          <span>=</span>
+          <span class="hero-q">?</span>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="pain">En Terminale, comprendre ne suffit pas : reprends tes <em>réflexes</em> en 21 jours.</p>
+        <p class="prompt">Pose ta réponse en commentaire ↓</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

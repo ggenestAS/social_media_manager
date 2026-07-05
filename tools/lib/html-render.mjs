@@ -4,8 +4,15 @@
  */
 
 import { execSync, spawnSync } from 'child_process';
-import { existsSync, mkdirSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, renameSync, rmSync } from 'fs';
 import { dirname, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+const REEL_SFX_DIR = join(REPO_ROOT, 'brands/albert-prep/assets/audio');
+const REEL_INTRO_SEC = 2;
+/** Pink-noise bed gain (~−25 dB). Audible on phone speakers without masking ticks. */
+const REEL_BED_VOLUME = 0.055;
 
 export function slugFromLabel(label) {
   return label
@@ -268,6 +275,108 @@ export function muxReelAudio(mp4Path, {
   execSync(`mv "${tmpOut}" "${mp4Path}"`, { stdio: 'inherit' });
   rmSync(tmpAudio, { force: true });
   console.log(`   Audio muxed → ${mp4Path} (${beeps.length} cues)`);
+}
+
+/** Generate short tick + reveal clips if missing (ffmpeg lavfi). */
+export function ensureReelSfxAssets() {
+  ensureDir(REEL_SFX_DIR);
+  const tick = join(REEL_SFX_DIR, 'tick.wav');
+  const reveal = join(REEL_SFX_DIR, 'reveal.wav');
+
+  if (!existsSync(tick)) {
+    execSync(
+      `ffmpeg -y -f lavfi -i "sine=frequency=880:duration=0.045" ` +
+        `-af "afade=t=out:st=0.02:d=0.025,volume=0.55" "${tick}"`,
+      { stdio: 'pipe' }
+    );
+  }
+  if (!existsSync(reveal)) {
+    execSync(
+      `ffmpeg -y -f lavfi -i "sine=frequency=1174:duration=0.28" ` +
+        `-af "afade=t=out:st=0.06:d=0.22,volume=0.45" "${reveal}"`,
+      { stdio: 'pipe' }
+    );
+  }
+  return { tick, reveal };
+}
+
+function probeDurationSec(mediaPath) {
+  const out = execSync(
+    `ffprobe -v error -show_entries format=duration -of csv=p=0 "${mediaPath}"`,
+    { encoding: 'utf8' }
+  ).trim();
+  const sec = parseFloat(out);
+  if (!Number.isFinite(sec) || sec <= 0) {
+    throw new Error(`Could not probe duration for ${mediaPath}`);
+  }
+  return sec;
+}
+
+/**
+ * Mux low ambient bed + countdown ticks + reveal chime onto a silent reel MP4.
+ * Timing follows reel-timeline.js (INTRO=2s, countdown=timerSec, REVEAL=3s)
+ * mapped through export playback speed + cover hold.
+ */
+export function muxReelSfx(mp4Path, { timerSec, speed = 1.5, coverHoldMs = 1000, bedVolume = REEL_BED_VOLUME } = {}) {
+  const allowed = [3, 5, 10, 15];
+  let sec = parseInt(timerSec, 10);
+  if (!allowed.includes(sec)) sec = 3;
+
+  const { tick, reveal } = ensureReelSfxAssets();
+  const durationSec = probeDurationSec(mp4Path);
+  const coverSec = coverHoldMs / 1000;
+  const dur = durationSec.toFixed(3);
+  const fadeOut = Math.max(0, durationSec - 0.25).toFixed(3);
+
+  const animToVideoSec = (animSec) => coverSec + animSec / speed;
+
+  const tickTimes = [];
+  for (let n = sec; n >= 1; n--) {
+    tickTimes.push(animToVideoSec(REEL_INTRO_SEC + (sec - n)));
+  }
+  const revealTime = animToVideoSec(REEL_INTRO_SEC + sec + 0.35);
+
+  const inputs = [
+    `-i "${mp4Path}"`,
+    `-f lavfi -t ${dur} -i anoisesrc=c=pink:d=${dur}:r=44100`,
+  ];
+  const filters = [
+    `[1:a]aformat=sample_rates=44100:channel_layouts=stereo,` +
+      `highpass=f=80,lowpass=f=420,volume=${bedVolume},` +
+      `afade=t=in:st=0:d=0.25,afade=t=out:st=${fadeOut}:d=0.25[bed]`,
+  ];
+  const mixLabels = ['[bed]'];
+  let idx = 2;
+
+  for (const t of tickTimes) {
+    inputs.push(`-i "${tick}"`);
+    const delayMs = Math.max(0, Math.round(t * 1000));
+    filters.push(`[${idx}:a]adelay=${delayMs}|${delayMs},volume=0.9[t${idx}]`);
+    mixLabels.push(`[t${idx}]`);
+    idx++;
+  }
+
+  inputs.push(`-i "${reveal}"`);
+  const revealDelayMs = Math.max(0, Math.round(revealTime * 1000));
+  filters.push(`[${idx}:a]adelay=${revealDelayMs}|${revealDelayMs},volume=1.0[t${idx}]`);
+  mixLabels.push(`[t${idx}]`);
+
+  filters.push(
+    `${mixLabels.join('')}amix=inputs=${mixLabels.length}:duration=longest:dropout_transition=0[aout]`
+  );
+
+  const tmp = `${mp4Path}.sfx.tmp.mp4`;
+  const filterComplex = filters.join(';');
+  execSync(
+    `ffmpeg -y ${inputs.join(' ')} -filter_complex "${filterComplex}" ` +
+      `-map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 128k -movflags +faststart ` +
+      `-shortest "${tmp}"`,
+    { stdio: 'inherit' }
+  );
+  renameSync(tmp, mp4Path);
+  console.log(
+    `   SFX muxed  → ${mp4Path} (${sec}s timer · ${tickTimes.length} ticks · ambient bed)`
+  );
 }
 
 export function ensureDir(dirPath) {

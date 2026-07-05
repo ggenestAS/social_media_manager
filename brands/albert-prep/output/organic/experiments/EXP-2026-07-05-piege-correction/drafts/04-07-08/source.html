@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Piège 04</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+      --navy-grid: rgba(168, 219, 238, 0.05);
+    }
+    body { margin: 0; padding: 0; background: #111; }
+    .reel {
+      width: 1080px; height: 1920px;
+      background: var(--navy); color: var(--paper);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 140px 90px 130px;
+    }
+    .reel::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--navy-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .cat-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 700;
+      font-size: 32px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red-pen); text-align: center; position: relative; z-index: 2;
+    }
+    .eyebrow {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 54px; color: var(--paper); opacity: 0.9; text-align: center;
+      margin-top: 18px; position: relative; z-index: 2;
+    }
+    .stage {
+      position: relative; z-index: 2; flex: 1; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .layer {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; opacity: 0;
+    }
+    .timer-ring { position: relative; width: 230px; height: 230px; margin-bottom: 96px; }
+    .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .timer-num {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Spline Sans Mono', monospace; font-variant-numeric: tabular-nums;
+      font-weight: 600; font-size: 108px; color: var(--paper);
+    }
+    .timer-num span { position: absolute; opacity: 0; }
+    .q-expr {
+      display: inline-block; white-space: nowrap;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-variant-numeric: tabular-nums; font-size: 132px; line-height: 1;
+      color: var(--paper);
+    }
+    .q-expr .q-eq { color: var(--sky); }
+
+    /* Reveal */
+    .r-expr {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 64px; color: var(--paper); opacity: 0.75;
+    }
+    .correction {
+      display: flex; align-items: baseline; gap: 40px; margin-top: 70px;
+    }
+    .correction .wrong {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 140px;
+      color: var(--paper); opacity: 0.45;
+      text-decoration: line-through; text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 8px;
+    }
+    .correction .right {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 170px; color: var(--red-pen);
+    }
+    .correction .check { font-size: 110px; color: var(--good); }
+    .r-why {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 40px; color: var(--sky); margin-top: 70px;
+    }
+    .r-cta {
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 76px;
+      color: var(--paper); margin-top: 90px;
+    }
+    .r-cta em { font-weight: 300; font-style: italic; color: var(--sky); }
+    .r-sub {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 36px; color: var(--paper); opacity: 0.7; margin-top: 30px;
+    }
+    .r-handle {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 38px; color: var(--sky); margin-top: 56px;
+    }
+
+    /* ── Timeline · total 10s ── */
+    .q-layer { animation: qlayer 10s linear infinite; }
+    .r-layer { animation: rlayer 10s linear infinite; }
+    @keyframes qlayer { 0%, 55% { opacity: 1; } 56.5%, 100% { opacity: 0; } }
+    @keyframes rlayer { 0%, 55.5% { opacity: 0; } 57%, 100% { opacity: 1; } }
+    [data-ring] { animation: ringdrain 10s linear infinite; }
+    @keyframes ringdrain { 0%, 5% { stroke-dashoffset: 0; } 55%, 100% { stroke-dashoffset: 540; } }
+    .d5 { animation: d5 10s linear infinite; }
+    .d4 { animation: d4 10s linear infinite; }
+    .d3 { animation: d3 10s linear infinite; }
+    .d2 { animation: d2 10s linear infinite; }
+    .d1 { animation: d1 10s linear infinite; }
+    @keyframes d5 { 0%, 5% { opacity: 0; } 5.5%, 14.5% { opacity: 1; } 15%, 100% { opacity: 0; } }
+    @keyframes d4 { 0%, 15% { opacity: 0; } 15.5%, 24.5% { opacity: 1; } 25%, 100% { opacity: 0; } }
+    @keyframes d3 { 0%, 25% { opacity: 0; } 25.5%, 34.5% { opacity: 1; } 35%, 100% { opacity: 0; } }
+    @keyframes d2 { 0%, 35% { opacity: 0; } 35.5%, 44.5% { opacity: 1; } 45%, 100% { opacity: 0; } }
+    @keyframes d1 { 0%, 45% { opacity: 0; } 45.5%, 54.5% { opacity: 1; } 55%, 100% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <div data-screen-label="Piège 04 9:16" class="reel"
+       data-loop-ms="10000" data-cover-ms="400" data-cta-ms="7500" data-timer-sec="5"
+       data-audio-cues='[{"at":0.02,"freq":1100,"dur":0.09},{"at":2.5,"freq":820,"dur":0.05},{"at":3.5,"freq":820,"dur":0.05},{"at":4.5,"freq":820,"dur":0.05},{"at":5.6,"freq":1570,"dur":0.22}]'>
+    <div class="cat-label">Le piège du jour</div>
+    <div class="eyebrow">Presque tout le monde tombe dedans</div>
+    <div class="stage">
+      <div class="layer q-layer">
+        <div class="timer-ring">
+          <svg width="230" height="230" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>
+            <circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round" stroke-dasharray="540" data-ring></circle>
+          </svg>
+          <div class="timer-num">
+            <span class="d5">5</span><span class="d4">4</span><span class="d3">3</span><span class="d2">2</span><span class="d1">1</span>
+          </div>
+        </div>
+        <div class="q-expr">100 € −10 % +10 % = <span class="q-eq">?</span></div>
+      </div>
+      <div class="layer r-layer">
+        <div class="r-expr">100 € −10 % +10 % =</div>
+        <div class="correction">
+          <span class="wrong">100</span>
+          <span class="right">99</span>
+          <span class="check">✓</span>
+        </div>
+        <div class="r-why">−10 % puis +10 % ≠ retour au départ</div>
+        <div class="r-cta">Tu l'avais&nbsp;<em>?</em></div>
+        <div class="r-sub">Dis-le en commentaire 👇</div>
+        <div class="r-handle">@albert.prep</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

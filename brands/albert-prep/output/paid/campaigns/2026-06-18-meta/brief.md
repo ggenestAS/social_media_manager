@@ -63,3 +63,10 @@ See [`upload-checklist.md`](upload-checklist.md) for filenames, dimensions, and 
 | `reel-variante-avantapres-9-16.mp4` | « Avant / Après » (Terminale) | `reels/covers/Albert-Prep_Terminale_Reel-cover_Avant-Apres_9x16.png` |
 
 Capture isolates each `[data-screen-label]` 9:16 screen from the design file — not the full presentation board.
+
+## Live learnings (Jun 2026)
+
+**Winners:** `Accroche-calcul` (Première) and `Accroche-vitesse` (Terminale) — static 1:1, ~0,02 € CPC, 10×+ vs other creatives.  
+**Losers:** Promesse-titre, Reels (Correction / Avant-Après).
+
+**Scale pack:** [`../2026-06-24-accroche-scale/brief.md`](../2026-06-24-accroche-scale/brief.md) · **Organic map:** [`../../../templates/paid-organic-hook-map.md`](../../../templates/paid-organic-hook-map.md)

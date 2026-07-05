@@ -4,10 +4,16 @@ Read this first to orient. This folder is fully self-contained: everything an
 agent needs to plan, generate, and ship Albert Prep social content lives here.
 Generic tooling (HTML→media export, Postiz CLI, skills) lives at the repo root.
 
+> **Before planning, analyzing, or launching anything: read
+> [`LOG.md`](LOG.md)** — the brand's decision log (what we've learned, what's
+> running, what we expect, standing infrastructure gotchas). Append an entry
+> before ending any session that changed what we believe or do.
+
 ## Inputs (hand-authored — the source of truth)
 
 | Path | What |
 |---|---|
+| [`LOG.md`](LOG.md) | Decision log — analyses, experiment launches, results, decisions, infra caveats |
 | [`brand.md`](brand.md) | Mission, audience, "Le Cahier" identity, voice, CTA rules |
 | [`context/`](context/) | Product context for accurate copy (`app-product.md`) |
 | [`channels.json`](channels.json) | Postiz channel aliases (`{provider, handle}`) |

@@ -64,7 +64,8 @@ const BRAND = resolveBrand();
 const CONFIG_PATH = resolve(BRANDS_DIR, BRAND, 'channels.json');
 
 if (!process.env.POSTIZ_API_KEY) {
-  fail('POSTIZ_API_KEY is not set. Cannot query Postiz integrations.');
+  // OAuth credentials (~/.postiz/credentials.json) are enough for `postiz integrations:list`.
+  // POSTIZ_API_KEY is optional — only needed for headless API-key auth on Cloud VMs.
 }
 
 let channels;

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — EXP paid-accroche — Première feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3;
+      --grid-line: rgba(95, 130, 190, 0.13);
+      --margin-rule: rgba(231, 84, 91, 0.38);
+      --text-soft: rgba(33, 36, 73, 0.62);
+      --surface-sunken: rgba(33, 36, 73, 0.06);
+    }
+    body { margin: 0; background: #dedad2; }
+    .screen {
+      width: 1080px; height: 1350px; background: var(--paper); position: relative;
+      overflow: hidden; color: var(--navy);
+    }
+    .screen::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .screen::after {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 118px;
+      width: 2px; background: var(--margin-rule); z-index: 1;
+    }
+    .inner {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column;
+      padding: 72px 80px 80px 208px;
+    }
+    .head { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+    .foot { flex-shrink: 0; }
+    .brand-lockup { display: flex; align-items: center; gap: 14px; }
+    .brand-lockup img { border-radius: 10px; display: block; }
+    .brand-stack { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-name {
+      font-family: system-ui, sans-serif; text-transform: uppercase; color: var(--navy);
+    }
+    .brand-name strong { font-weight: 700; letter-spacing: 0.08em; font-size: 22px; }
+    .brand-name span { font-weight: 300; letter-spacing: 0.26em; font-size: 22px; }
+    .brand-sub {
+      font-family: 'Spline Sans Mono', monospace; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--red-pen); margin-top: 4px;
+    }
+    .url-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 18px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft);
+    }
+    .seg-eyebrow {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 26px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--red-pen);
+      margin-bottom: 24px;
+    }
+    .hero-row {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 32px;
+      font-family: 'Spline Sans Mono', monospace; font-variant-numeric: tabular-nums;
+      font-weight: 600; font-size: 128px; line-height: 1; color: var(--navy);
+    }
+    .frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 0.92; }
+    .frac-bar { border-top: 7px solid var(--navy); margin-top: 8px; padding-top: 8px; }
+    .hero-q { color: var(--red-pen); }
+    .timer-badge {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 28px;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 22px;
+      letter-spacing: 0.04em; color: var(--text-soft); background: var(--surface-sunken);
+      padding: 12px 22px; border-radius: 999px;
+    }
+    .pain {
+      font-family: 'Fraunces', serif; font-size: 38px; line-height: 1.14;
+      letter-spacing: -0.01em; max-width: 760px; margin-bottom: 28px;
+    }
+    .pain em { font-style: italic; font-weight: 500; color: var(--blue-pen); }
+    .prompt {
+      font-family: 'Spline Sans Mono', monospace; font-size: 30px; font-weight: 500;
+      opacity: 0.6; padding-top: 28px; border-top: 2px solid rgba(33, 36, 73, 0.14);
+    }
+  </style>
+</head>
+<body>
+  <div data-screen-label="ExpAccroche Premiere 4:5" class="screen" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <div class="brand-lockup">
+          <img src="../../../../../paid/campaigns/2026-06-18-meta/design-export/project/assets/logo-mark.svg" width="48" height="48" alt="Albert Prep">
+          <span class="brand-stack">
+            <span class="brand-name"><strong>Albert</strong> <span>Prep</span></span>
+            <span class="brand-sub">Mental Math</span>
+          </span>
+        </div>
+        <span class="url-tag">prep.albertschool.com</span>
+      </div>
+      <div class="body">
+        <div class="seg-eyebrow">Prêt pour la Spé Maths ?</div>
+        <div class="hero-row">
+          <span class="frac"><span>3</span><span class="frac-bar">4</span></span>
+          <span>+</span>
+          <span class="frac"><span>2</span><span class="frac-bar">3</span></span>
+          <span>=</span>
+          <span class="hero-q">?</span>
+        </div>
+        <div class="timer-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          10 s en tête
+        </div>
+      </div>
+      <div class="foot">
+        <p class="pain">Si la réponse ne vient pas tout de suite, ce sont tes <em>automatismes</em> qui te ralentiront.</p>
+        <p class="prompt">Pose ta réponse en commentaire ↓</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -28,6 +28,7 @@ import {
   framesToMp4,
   muxReelAudio,
   isolateScreen,
+  muxReelSfx,
   openHtmlPage,
   parseArgs,
   prepareAnimationCapture,
@@ -49,6 +50,7 @@ const ARG_SPEC = {
   'cta-ms': { type: 'number' },
   'cover-hold-ms': { type: 'number' },
   audio: { type: 'string' },
+  'no-sfx': { type: 'flag' },
 };
 
 const DEFAULTS = {
@@ -75,6 +77,7 @@ function usage() {
     '--cta-hold-ms <ms>          Frozen CTA duration at 1× (default: 2000)',
     '--cover-hold-ms <ms>        Frozen cover frame prepended to MP4 at 1× (default: 1000)',
     '--audio <mode>              Mux audio after encode: ticks (single-Q countdown) | cues (data-audio-cues beeps)',
+    '--no-sfx                    Skip countdown ticks + reveal chime (silent MP4)',
   ]);
 }
 
@@ -120,7 +123,7 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
       loopMs: Number.isFinite(loopMs) && loopMs > 0 ? loopMs : null,
       ctaMs: Number.isFinite(ctaMs) && ctaMs > 0 ? ctaMs : null,
       coverMs: Number.isFinite(coverMs) && coverMs > 0 ? coverMs : null,
-      timerSec: Number.isFinite(timerSec) && timerSec > 0 ? timerSec : 5,
+      timerSec: Number.isFinite(timerSec) && timerSec > 0 ? timerSec : null,
       audioCues: Array.isArray(audioCues) ? audioCues : null,
     };
   }, screenLabel);
@@ -198,6 +201,13 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
 
   const mp4Path = join(outputDir, `reel-${slug}.mp4`);
   framesToMp4(framesDir, mp4Path, cfg.fps);
+  if (!cfg.noSfx && screenTiming?.timerSec) {
+    muxReelSfx(mp4Path, {
+      timerSec: screenTiming.timerSec,
+      speed: cfg.speed,
+      coverHoldMs: cfg.coverHoldMs,
+    });
+  }
   cleanupFramesDir(framesDir);
 
   if (globalOptions.audio === 'ticks' || globalOptions.audio === 'cues') {
@@ -243,6 +253,7 @@ async function main() {
     ctaHoldMs: options['cta-hold-ms'] ?? DEFAULTS.ctaHoldMs,
     coverHoldMs: options['cover-hold-ms'] ?? DEFAULTS.coverHoldMs,
     coverMs: 2500,
+    noSfx: options['no-sfx'] ?? false,
   };
 
   const aspect = options.aspect ?? DEFAULTS.aspect;

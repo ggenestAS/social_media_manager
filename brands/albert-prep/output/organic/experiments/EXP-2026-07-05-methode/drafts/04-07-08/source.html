@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Méthode 04</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+    }
+    body { margin: 0; padding: 0; background: #111; }
+    .reel {
+      width: 1080px; height: 1920px;
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+      color: var(--navy);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 150px 90px 130px 130px;
+    }
+    .cat-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 700;
+      font-size: 32px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue-pen); text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 54px; color: var(--navy); opacity: 0.85; text-align: center; margin-top: 18px;
+    }
+    .stage { position: relative; flex: 1; width: 100%; }
+    .layer {
+      position: absolute; inset: 0; opacity: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .hook-expr {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 170px; line-height: 1; color: var(--navy); white-space: nowrap;
+    }
+    .hook-expr .eq { color: var(--red-pen); }
+    .hook-sub {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 60px; color: var(--blue-pen); margin-top: 56px;
+    }
+    .step-line {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 76px; line-height: 1.25; color: var(--navy); white-space: nowrap;
+    }
+    .step-line + .step-line { margin-top: 64px; }
+    .step-line .hl { color: var(--blue-pen); }
+    .result-expr {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 64px; color: var(--navy); opacity: 0.7;
+    }
+    .result-val {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 220px; line-height: 1; color: var(--navy); margin-top: 50px;
+    }
+    .result-check { font-size: 120px; color: var(--good); margin-top: 30px; }
+    .result-why {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 52px; color: var(--blue-pen); margin-top: 60px;
+    }
+    .save-cta {
+      display: inline-block; background: var(--navy); color: var(--paper);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 40px;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 26px 54px; box-shadow: 8px 8px 0 var(--red-pen); margin-top: 90px;
+    }
+    .handle {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 36px; color: var(--blue-pen); margin-top: 46px;
+    }
+
+    /* Timeline 14s: hook 0-4 · steps 4-9 · result 9-14 */
+    .l-hook { animation: lhook 14s linear infinite; }
+    .l-step { animation: lstep 14s linear infinite; }
+    .l-result { animation: lresult 14s linear infinite; }
+    @keyframes lhook { 0%, 27.5% { opacity: 1; } 28.5%, 100% { opacity: 0; } }
+    @keyframes lstep { 0%, 28% { opacity: 0; } 29%, 63.5% { opacity: 1; } 64.5%, 100% { opacity: 0; } }
+    @keyframes lresult { 0%, 64% { opacity: 0; } 65%, 100% { opacity: 1; } }
+    .s2 { animation: s2fade 14s linear infinite; }
+    @keyframes s2fade { 0%, 45% { opacity: 0; } 46%, 100% { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div data-screen-label="Méthode 04 9:16" class="reel"
+       data-loop-ms="14000" data-cover-ms="400" data-cta-ms="12500" data-timer-sec="5"
+       data-audio-cues='[{"at":0.02,"freq":1100,"dur":0.09},{"at":4.0,"freq":820,"dur":0.06},{"at":6.4,"freq":820,"dur":0.06},{"at":9.1,"freq":1570,"dur":0.22}]'>
+    <div class="cat-label">La méthode</div>
+    <div class="eyebrow">que ton prof ne t’a jamais montrée</div>
+    <div class="stage">
+      <div class="layer l-hook">
+        <div class="hook-expr">15 % de 80 = <span class="eq">?</span></div>
+        <div class="hook-sub">de tête, en 3 secondes</div>
+      </div>
+      <div class="layer l-step">
+        <div class="step-line">10 % de 80 = 8</div>
+        <div class="step-line s2 hl">5 % = 4 → 8 + 4</div>
+      </div>
+      <div class="layer l-result">
+        <div class="result-expr">15 % de 80 =</div>
+        <div class="result-val">12</div>
+        <div class="result-check">✓</div>
+        <div class="result-why">15 % = 10 % + 5 %</div>
+        <div class="save-cta">Enregistre pour t'entraîner</div>
+        <div class="handle">@albert.prep</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

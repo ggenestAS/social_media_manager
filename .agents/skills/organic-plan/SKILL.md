@@ -23,6 +23,10 @@ Scripts handle only:
 ### 1. Resolve brand + read constraints
 
 - Brand folder: `brands/<brand>/` (same rules as organic-post)
+- **Decision log first:** if `brands/<brand>/LOG.md` exists, read it before
+  planning — it holds prior readouts, running experiments, and standing
+  gotchas that override defaults (e.g. a logged decision may supersede the
+  config's volume targets)
 - **Volume & fan-out:** `brands/<brand>/content-engine.config.json`
 - **What to say:** `templates/content-guide.md`
 - **Post types:** `templates/post-types/*/spec.md`
@@ -102,6 +106,10 @@ Update brief + calendar statuses and `postiz_id` fields in each `post.md`.
 
 Summarize: assets planned vs authored, channel-post count, IG feed cap usage,
 Postiz draft IDs, anything skipped or failed verify.
+
+If the session produced a new analysis, launched/killed an experiment, or hit
+a new infrastructure gotcha, **append an entry to `brands/<brand>/LOG.md`**
+(newest first; observation → decision → what would change our mind → links).
 
 ## Division of labour
 

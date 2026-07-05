@@ -10,3 +10,6 @@ node_modules/
 !**/output/.gitkeep
 # Generated organic post exports (regenerable PNG/MP4 inside each post bundle)
 brands/*/output/organic/posts/**/export/
+
+# Local scratch
+tmp/

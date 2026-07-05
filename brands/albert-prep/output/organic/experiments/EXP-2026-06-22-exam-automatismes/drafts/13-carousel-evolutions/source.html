@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — EXP automatismes — Carrousel évolutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+    }
+    .bg-paper {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 156px, var(--red-pen) 156px, var(--red-pen) 160px, transparent 160px),
+        repeating-linear-gradient(to bottom, transparent, transparent 60px, rgba(33,36,73,0.09) 60px, rgba(33,36,73,0.09) 64px);
+    }
+    .bg-navy { background-color: var(--navy); color: var(--paper); }
+    .display { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.04; color: var(--navy); }
+    .display em { font-weight: 300; font-style: italic; color: var(--blue-pen); }
+    .display.on-navy { color: var(--paper); }
+    .display.on-navy em { color: var(--sky); }
+    .pill {
+      display: inline-block; background: var(--sky); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+    }
+    .post-number, .slide-counter, .brand-tag {
+      font-family: 'Spline Sans Mono', monospace; font-size: 24px; font-weight: 600;
+      letter-spacing: 0.1em; opacity: 0.42;
+    }
+    .slide-counter { font-weight: 500; }
+    .brand-tag { text-transform: uppercase; opacity: 0.4; }
+
+    body { margin: 0; padding: 0; background: #dedad2; }
+    .screen { position: relative; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: var(--navy); }
+    .inner { display: flex; flex-direction: column; height: 100%; padding: 72px 80px 80px 208px; }
+    .inner-navy { padding-left: 120px; color: var(--paper); }
+    .head { display: flex; justify-content: space-between; align-items: baseline; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .foot { }
+
+    .lead { font-size: 38px; opacity: 0.75; line-height: 1.35; }
+    .separator { width: 100%; max-width: 600px; height: 2px; background: currentColor; opacity: 0.16; margin: 40px 0; }
+    .hint { font-family: 'Spline Sans Mono', monospace; font-size: 32px; opacity: 0.55; }
+
+    .step { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 52px; line-height: 1.7; }
+    .step .hl { color: var(--sky); }
+    .step .ok { color: var(--good); }
+
+    .hero-calc { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 120px; line-height: 0.95; letter-spacing: -0.03em; white-space: nowrap; }
+    .correction { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-top: 8px; }
+    .correction .wrong {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 84px;
+      text-decoration: line-through; text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 7px; opacity: 0.5;
+    }
+    .correction .arrow { font-size: 56px; opacity: 0.5; }
+    .correction .right { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 120px; color: var(--red-pen); line-height: 1; }
+    .correction .check { font-size: 90px; color: var(--good); }
+    .recap { font-family: 'Spline Sans Mono', monospace; font-size: 38px; opacity: 0.7; margin-top: 40px; }
+
+    .btn-ink {
+      display: inline-block; background: var(--paper); color: var(--navy);
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 30px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 24px 52px;
+      box-shadow: 10px 10px 0 var(--sky);
+    }
+    .teaser { font-size: 30px; opacity: 0.7; margin-top: 44px; font-family: 'Spline Sans Mono', monospace; }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 — Cover / hook question (paper) -->
+  <div data-screen-label="Evol 01/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">01/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div style="margin-bottom:48px;"><span class="pill">Automatisme · Bac</span></div>
+        <div class="display" style="font-size:96px;">+20 %<br>puis <em>−20 %</em></div>
+        <p class="lead" style="margin-top:40px;">Tu reviens à 100 € ?</p>
+      </div>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="hint">① ② ③ &nbsp; La réponse piège la moitié des élèves →</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 — Méthode (navy) -->
+  <div data-screen-label="Evol 02/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">02/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:84px;margin-bottom:48px;">On <em>multiplie</em>,<br>on n'additionne pas</div>
+        <p class="step">+20 % &nbsp;→&nbsp; <span class="hl">× 1,2</span></p>
+        <p class="step">−20 % &nbsp;→&nbsp; <span class="hl">× 0,8</span></p>
+        <p class="step">1,2 × 0,8 = <span class="ok">0,96</span></p>
+      </div>
+      <div class="foot">
+        <p class="hint">→ 0,96, donc pas 1. Slide suivant : l'écart.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 — Exemple résolu (paper) -->
+  <div data-screen-label="Evol 03/04" class="screen bg-paper" style="width:1080px;height:1350px;">
+    <div class="inner">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">03/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <p class="lead" style="margin-bottom:36px;">100 € &nbsp;→&nbsp; 120 € &nbsp;→&nbsp; ?</p>
+        <div class="correction">
+          <span class="wrong">100 €</span>
+          <span class="arrow">→</span>
+          <span class="right">96 €</span>
+          <span class="check">✓</span>
+        </div>
+        <p class="recap">× 0,96 &nbsp;=&nbsp; −4 %, jamais 0.</p>
+      </div>
+      <div class="foot">
+        <div class="separator"></div>
+        <p class="hint">Deux évolutions opposées ne s'annulent pas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4 — Value recap + soft CTA (navy) -->
+  <div data-screen-label="Evol 04/04" class="screen bg-navy" style="width:1080px;height:1350px;">
+    <div class="inner inner-navy">
+      <div class="head">
+        <span class="post-number">EXP</span>
+        <span class="slide-counter">04/04</span>
+        <span class="brand-tag">Albert&nbsp;Prep</span>
+      </div>
+      <div class="body">
+        <div class="display on-navy" style="font-size:76px;margin-bottom:40px;">Les évolutions<br>se <em>multiplient</em></div>
+        <p class="lead" style="margin-bottom:48px;opacity:0.85;">Coefficient global = produit des coefficients. C'est l'automatisme qui sécurise tout un chapitre du Bac.</p>
+        <div><span class="btn-ink">Enregistre pour réviser</span></div>
+      </div>
+      <div class="foot">
+        <p class="teaser">@albert.prep</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

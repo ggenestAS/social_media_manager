@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Comment reel paper Terminale 10% de 12%</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83;
+      --grid-line: rgba(95, 130, 190, 0.13);
+      --margin-rule: rgba(231, 84, 91, 0.38);
+      --navy-grid: rgba(168, 219, 238, 0.05);
+      --text-soft: rgba(33, 36, 73, 0.62);
+      --surface-sunken: rgba(33, 36, 73, 0.06);
+    }
+    .frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 0.92; }
+    .frac-bar { border-top: 7px solid currentColor; margin-top: 8px; padding-top: 8px; }
+    .sup { font-size: 0.55em; vertical-align: super; line-height: 0; }
+    .hero-q, .eq-q { color: var(--red-pen); }
+    .timer-ring { position: relative; width: 200px; height: 200px; flex-shrink: 0; }
+    .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .timer-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 92px; }
+    .timer-num span { position: absolute; }
+    .timer-num--wide { font-size: 76px; }
+    .timer-zone { display: flex; align-items: center; gap: 28px; margin-top: 8px; }
+    .pain { font-family: 'Fraunces', serif; font-size: 38px; line-height: 1.14; letter-spacing: -0.01em; max-width: 760px; margin-bottom: 24px; }
+    .pain em { font-style: italic; font-weight: 500; color: var(--blue-pen); }
+    .cta-end {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 32px;
+      letter-spacing: 0.02em; padding: 22px 40px; border-radius: 999px; margin-top: 8px;
+    }
+    .handle { font-family: 'Spline Sans Mono', monospace; font-size: 26px; font-weight: 600; opacity: 0.45; margin-top: 20px; }
+
+    body { margin: 0; background: #dedad2; }
+    .reel { width: 1080px; height: 1920px; background: var(--paper); color: var(--navy); position: relative; overflow: hidden; }
+    .reel::before { content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px; }
+    .reel::after { content: ''; position: absolute; top: 0; bottom: 0; left: 118px; width: 2px; background: var(--margin-rule); z-index: 1; }
+    .inner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; padding: 100px 80px 120px 208px; }
+    .head, .foot { flex-shrink: 0; } .head { display: flex; justify-content: space-between; align-items: center; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+    .brand-lockup { display: flex; align-items: center; gap: 14px; }
+    .brand-lockup img { border-radius: 10px; }
+    .brand-stack { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-name { font-family: system-ui, sans-serif; text-transform: uppercase; }
+    .brand-name strong { font-weight: 700; letter-spacing: 0.08em; font-size: 24px; }
+    .brand-name span { font-weight: 300; letter-spacing: 0.26em; font-size: 24px; }
+    .brand-sub { font-family: 'Spline Sans Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red-pen); margin-top: 4px; }
+    .url-tag, .level-tag { font-family: 'Spline Sans Mono', monospace; font-size: 18px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); }
+    .level-tag { color: var(--red-pen); font-size: 20px; }
+    .seg-eyebrow { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red-pen); margin-bottom: 32px; }
+    .speed-hook { font-family: 'Fraunces', serif; font-weight: 600; font-size: 48px; line-height: 1.1; margin-bottom: 36px; max-width: 760px; }
+    .speed-hook em { font-style: italic; font-weight: 500; color: var(--blue-pen); }
+    .hero-row { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 132px; line-height: 1; margin-bottom: 40px; }
+    .hero-row .times { font-size: 0.65em; }
+    .hero-compact { font-size: 72px; gap: 16px; }
+    .pct { font-size: 0.55em; }
+    .frac-bar { border-top-color: var(--navy); }
+    .timer-num { color: var(--navy); }
+    .timer-badge, .timer-label { font-family: 'Spline Sans Mono', monospace; font-weight: 600; font-size: 24px; color: var(--text-soft); background: var(--surface-sunken); padding: 14px 24px; border-radius: 999px; }
+    .pain em { color: var(--blue-pen); }
+    .cta-end { background: var(--surface-sunken); color: var(--navy); }
+  </style>
+</head>
+<body>
+  <!-- Comment-only reel: no answer in video · 10% de 12% · 5s -->
+  <div data-screen-label="ExpAccroche Paper Terminale 10pct12pct Comment Reel 9:16" class="reel" style="width:1080px;height:1920px;" data-timer-sec="5" data-comment-only="true">
+    <div class="inner">
+      <div class="head" data-anim="r_head"><div class="brand-lockup"><img src="../../../../../paid/campaigns/2026-06-18-meta/design-export/project/assets/logo-mark.svg" width="52" height="52" alt="Albert Prep"><span class="brand-name"><strong>Albert</strong> <span>Prep</span></span></div><span class="level-tag">Entrée en Terminale</span></div>
+      <div class="body">
+        <div class="speed-hook" data-anim="r_hook">Tu sais le faire.<br>Mais en <em>combien de temps</em> ?</div>
+        <div class="hero-row hero-compact" data-anim="r_hero">
+          <span>10<span class="pct"> %</span></span>
+          <span>de</span>
+          <span>12<span class="pct"> %</span></span>
+          <span>=</span>
+          <span class="hero-q" data-anim="r_qmark">?</span><span class="pct"> %</span>
+        </div>
+        <div class="timer-zone" data-anim="r_timer">
+          <div class="timer-ring">
+            <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(33,36,73,0.1)" stroke-width="10"></circle>
+              <circle cx="100" cy="100" r="86" fill="none" stroke="var(--red-pen)" stroke-width="10" stroke-linecap="round" stroke-dasharray="540" data-ring></circle>
+            </svg>
+            <div class="timer-num"></div>
+          </div>
+          <span class="timer-badge"><span class="js-timer-sec">5</span> s en tête</span>
+        </div>
+      </div>
+      <div class="foot" data-anim="r_foot">
+        <p class="pain">En Terminale, comprendre ne suffit pas : reprends tes <em>réflexes</em> en 21 jours.</p>
+        <span class="cta-end" data-anim="r_cta_end">↓ Pose ta réponse en commentaire</span>
+        <p class="handle" data-anim="r_handle">@albert.prep</p>
+      </div>
+    </div>
+  </div>
+  <script>(function initReelTimeline() {
+  const reel = document.querySelector('.reel[data-timer-sec]');
+  if (!reel) return;
+  const ALLOWED = [3, 5, 10, 15];
+  let timerSec = parseInt(reel.dataset.timerSec, 10);
+  if (!ALLOWED.includes(timerSec)) timerSec = 5;
+  const INTRO = 2, REVEAL = 3, total = INTRO + timerSec + REVEAL;
+  const revealStart = INTRO + timerSec;
+  const loopS = total + 's';
+  reel.dataset.loopMs = String(total * 1000);
+  reel.dataset.ctaMs = String(Math.round((revealStart + 0.2) * 1000));
+  reel.dataset.coverMs = String(Math.round((INTRO + 0.35) * 1000));
+  const p = (sec) => ((sec / total) * 100).toFixed(3);
+  const lines = [
+    `@keyframes r_head{0%{opacity:0;transform:translateY(-8px)}${p(0.15)}%{opacity:1;transform:none}100%{opacity:1}}`,
+    `@keyframes r_hook{0%,${p(0.08)}%{opacity:0;transform:translateY(10px)}${p(0.28)}%{opacity:1;transform:none}100%{opacity:1}}`,
+    `@keyframes r_hero{0%,${p(0.12)}%{opacity:0;transform:scale(.94)}${p(0.32)}%{opacity:1;transform:scale(1)}100%{opacity:1;transform:scale(1)}}`,
+    `@keyframes r_qmark{0%,${p(0.2)}%{opacity:0}${p(0.35)}%{opacity:1}${p(revealStart)}%{opacity:1;transform:scale(1)}${p(revealStart + 0.15)}%{opacity:1;transform:scale(1.08)}${p(revealStart + 0.35)}%{opacity:1;transform:scale(1)}100%{opacity:1;transform:scale(1)}}`,
+    `@keyframes r_timer{0%,${p(INTRO * 0.4)}%{opacity:0}${p(INTRO * 0.55)}%{opacity:1}${p(revealStart - 0.06)}%{opacity:1}${p(revealStart + 0.04)}%{opacity:0}100%{opacity:0}}`,
+    `@keyframes r_ring{0%,${p(INTRO)}%{stroke-dashoffset:0}${p(revealStart)}%{stroke-dashoffset:540}100%{stroke-dashoffset:540}}`,
+    `@keyframes r_foot{0%,${p(0.25)}%{opacity:0;transform:translateY(12px)}${p(0.45)}%{opacity:1;transform:none}100%{opacity:1}}`,
+    `@keyframes r_cta_end{0%,${p(revealStart - 0.02)}%{opacity:0;transform:translateY(18px) scale(.96)}${p(revealStart + 0.18)}%{opacity:1;transform:none}100%{opacity:1}}`,
+    `@keyframes r_handle{0%,${p(revealStart + REVEAL * 0.45)}%{opacity:0}${p(revealStart + REVEAL * 0.62)}%{opacity:1}100%{opacity:1}}`
+  ];
+  for (let n = timerSec; n >= 1; n--) {
+    const start = INTRO + (timerSec - n);
+    const end = start + 1;
+    lines.push(`@keyframes r_cd_${n}{0%,${p(start)}%{opacity:0}${p(start + 0.1)}%{opacity:1}${p(end - 0.1)}%{opacity:1}${p(end)}%,100%{opacity:0}}`);
+  }
+  document.getElementById('reel-timeline')?.remove();
+  const style = document.createElement('style');
+  style.id = 'reel-timeline';
+  style.textContent = lines.join('\n');
+  document.head.appendChild(style);
+  const timerNumEl = reel.querySelector('.timer-num');
+  if (timerNumEl) {
+    timerNumEl.innerHTML = '';
+    for (let n = timerSec; n >= 1; n--) {
+      const span = document.createElement('span');
+      span.textContent = String(n);
+      span.style.animation = `r_cd_${n} ${loopS} linear infinite`;
+      if (n >= 10) span.classList.add('timer-num--wide');
+      timerNumEl.appendChild(span);
+    }
+  }
+  reel.querySelectorAll('.js-timer-sec').forEach((el) => { el.textContent = String(timerSec); });
+  reel.querySelectorAll('[data-anim]').forEach((el) => {
+    el.style.animation = `${el.dataset.anim} ${loopS} linear infinite`;
+  });
+  const ring = reel.querySelector('[data-ring]');
+  if (ring) ring.style.animation = `r_ring ${loopS} linear infinite`;
+})();</script>
+</body></html>
