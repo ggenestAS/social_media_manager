@@ -27,3 +27,9 @@ reach format.
 3. 03-07-07 — 49 × 21 = 1029 (compensation 50−1) — renderable
 4. 04-07-08 — 15 % de 80 = 12 (10 % + 5 %) — renderable
 5. 05-07-09 — 21² = 441 ((a+b)²) — renderable
+
+## Verdict (2026-07-09)
+
+**KILL.** Vues IG : 658 (jour 1) puis 155 / 147 / 124 — médiane 151. Pari
+« saves » : 0 save sur 5 posts, le CTA save n'a rien déclenché. Jamais gagné
+le slot distribué. Voir LOG READOUT 2026-07-09.

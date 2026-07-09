@@ -25,3 +25,9 @@ comments vanish, the pace is too fast to play along — try 3 s next.
 5. 05-07-09 — renderable
 
 All operands verified at authoring (10 per reel, easy tier).
+
+## Verdict (2026-07-09)
+
+**KILL.** Vues IG : 1 221 (jour 1, effet nouveauté du sprint) puis 142 / 161 /
+198 — médiane ~180. Jamais gagné le slot distribué après le jour 1. Le pari
+completion→replays ne s'est pas traduit en reach. Voir LOG READOUT 2026-07-09.

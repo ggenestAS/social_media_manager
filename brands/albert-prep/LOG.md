@@ -17,6 +17,47 @@ Rules (keep it a decision log, not a journal):
 
 ---
 
+## 2026-07-09 · READOUT — Jul 3–9 week + reach sprint: distribution cap found
+
+Pulled a day early (Jul 9 posts still queued; 36/41 IG posts measured). The
+sprint answered a different question than the one it asked.
+
+**Observed — the cap is the story, not the formats:**
+
+- From Jul 6, IG distributes exactly **one reel/day** (~1,300–2,240 views);
+  every other reel dies at 100–220, regardless of format or slot. Jul 5 (sprint
+  day 1: 4 reels > 1,200, 6.2k total) was a novelty spike, not a new regime.
+- Tripling volume added ~nothing: Jul 6–8 daily totals (~2.2–3.1k views) match
+  the 2-reel/day baseline. Account daily reach **fell 28% during the sprint**
+  (2,282 → 1,632) — possible volume penalty.
+- Format ranking inside the chaos: defibac quiz won the daily slot 4×/6,
+  échelle 2× (1,321 / 1,287 — only new format to ever win). Piège (0 comments,
+  its bet), méthode (0 saves, its bet), vitesse: never won in 15 posts,
+  medians 142–180. Calcul-du-jour feed: 18–39 views.
+- Both base-week experiments negative per their own decision rules:
+  broad median 1,399 vs niche 1,236 (< 2×; week's best post was *niche*,
+  2,240) → June "9×" gap definitively a confound. Defi share-CTA arm: 1 share
+  vs 0 — while no-CTA 10:00 quizzes got 3–4 shares. CTA doesn't manufacture
+  sharing; content does.
+
+**Decided (week of Jul 10):** back to 2–3 posts/day; quiz-rafale anchor at
+10:00 with free themes (broad/niche distinction dropped); échelle as challenger
+2×/week in a clean slot; kill piège, vitesse, méthode, calcul-du-jour, and
+both CTA arms. The volume cut doubles as the throttle test: per-reel reach
+back at ~1,300+ and account reach > 2,300/day by ~Jul 14 confirms the cap was
+volume-related.
+
+**Would change our mind:** reach NOT recovering after the volume cut (throttle
+is something else — audience fatigue with quiz formats becomes lead
+hypothesis); échelle failing to break 1,000 in clean slots (its 2 wins were
+sprint-chaos artifacts).
+
+**New infra:** `analytics:platform <name>` 500s — call with the integration ID
+instead. One TikTok placement ERROR (Jul 8 17:00 score arm), unpublished.
+
+Canvas: `week-jul3-9-readout` · Plans: `briefs/2026-07-03-week.md`,
+`briefs/2026-07-05-reach-sprint.md`.
+
 ## 2026-07-05 · LAUNCH — reach sprint: 4 format experiments (Jul 5–9)
 
 Caption/topic tweaks aren't moving reach (see readout below), so this sprint

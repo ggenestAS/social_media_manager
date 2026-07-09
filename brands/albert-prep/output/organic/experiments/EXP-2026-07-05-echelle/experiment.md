@@ -26,3 +26,12 @@ whether profile visits/follows still come.
 3. 03-07-07 — 63−28 → 98×102 — renderable
 4. 04-07-08 — 9×8 → 1+…+100 — renderable
 5. 05-07-09 — 47+38 → 2¹⁰ — renderable
+
+## Verdict (2026-07-09)
+
+**RE-TEST (seul format retenu).** Vues IG : 1 321 / 199 / 200 / 1 287 — a
+franchi 1 200 deux fois et gagné le slot distribué du Jul 8 face au defibac,
+seul format du sprint à y parvenir. Shares 1, comments 2 (meilleur engagement
+des 4 formats). À re-tester 2×/semaine en slot propre hors cannibalisation
+pour vérifier que les 2 victoires ne sont pas un artefact du chaos du sprint.
+Voir LOG READOUT 2026-07-09.
