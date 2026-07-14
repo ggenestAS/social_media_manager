@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albert Prep — Défi Bac #06 (quiz rafale)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #212449; --paper: #faf6ee; --red-pen: #e7545b;
+      --blue-pen: #2f6fb7; --sky: #71c0f3; --good: #2e9e83; --gold: #d9a13b;
+      --navy-grid: rgba(168, 219, 238, 0.05);
+    }
+
+    body { margin: 0; padding: 0; background: #111; }
+
+    .reel {
+      width: 1080px; height: 1920px;
+      background: var(--navy); color: var(--paper);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 140px 90px 130px;
+    }
+    .reel::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--navy-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .cat-label {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 700;
+      font-size: 32px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sky); text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 54px; color: var(--paper); opacity: 0.9; text-align: center;
+      margin-top: 18px;
+    }
+
+    .dots { display: flex; gap: 22px; margin-top: 40px; position: relative; z-index: 2; }
+    .dot {
+      width: 28px; height: 28px; border-radius: 999px;
+      background: rgba(168,219,238,0.22);
+    }
+
+    .stage {
+      position: relative; z-index: 2; flex: 1; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .layer {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; opacity: 0;
+    }
+
+    /* ── Question block ── */
+    .q-counter {
+      position: absolute; top: 8px; left: 0; right: 0; text-align: center;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--sky);
+      line-height: 1.1;
+    }
+    .q-counter-label {
+      display: block; font-size: 36px; font-weight: 500; opacity: 0.75;
+      letter-spacing: 0.14em; margin-bottom: 6px;
+    }
+    .q-counter-nums {
+      display: block; font-size: 64px; font-weight: 600; color: var(--paper);
+    }
+    .q-counter-nums em {
+      font-style: normal; color: var(--sky);
+    }
+    .timer-ring { position: relative; width: 230px; height: 230px; margin-bottom: 96px; }
+    .timer-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .timer-num {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Spline Sans Mono', monospace; font-variant-numeric: tabular-nums;
+      font-weight: 600; font-size: 108px; color: var(--paper);
+    }
+    .timer-num span { position: absolute; }
+
+    .q-expr {
+      display: inline-block; white-space: nowrap;
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-variant-numeric: tabular-nums; font-size: 132px; line-height: 1;
+      color: var(--paper);
+    }
+    .q-expr .q-eq { color: var(--sky); }
+
+    /* ── Outro ── */
+    .outro-q {
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 104px;
+      line-height: 1.05; color: var(--paper);
+    }
+    .outro-q em { font-weight: 300; font-style: italic; color: var(--sky); }
+    .outro-sub {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 38px; color: var(--paper); opacity: 0.7; margin-top: 44px;
+    }
+    .outro-handle {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 600;
+      font-size: 40px; color: var(--sky); margin-top: 60px;
+    }
+    .outro-cta {
+      font-family: 'Spline Sans Mono', monospace; font-weight: 500;
+      font-size: 32px; color: var(--paper); opacity: 0.55; margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    Quiz rafale (experiment): N timed QUESTIONS in one reel — NO answers shown
+    (answers go in the first comment / caption). Each question = a 5-second chrono
+    (depleting ring + 5→1 countdown). Edit ONLY the #quiz-data JSON below.
+    Export: npm run html:to-mp4 -- source.html --out export/ --audio cues --speed 1
+  -->
+
+  <script type="application/json" id="quiz-data">
+  {
+      "post": "Épreuve anticipée #02",
+      "cat": "Épreuve anticipée · Maths",
+      "eyebrow": "6 points sans calculatrice",
+      "questions": [
+          {
+              "expr": "−10 % puis +10 %",
+              "ans": "−1 %"
+          },
+          {
+              "expr": "2/3 de 45",
+              "ans": "30"
+          },
+          {
+              "expr": "(2x)²",
+              "ans": "4x²"
+          },
+          {
+              "expr": "25 % = ? (fraction)",
+              "ans": "1/4"
+          },
+          {
+              "expr": "80 € : +5 %",
+              "ans": "84 €"
+          }
+      ]
+  }
+  </script>
+
+  <div data-screen-label="Quiz Rafale 9:16" class="reel">
+    <div class="cat-label" data-cat></div>
+    <div class="eyebrow" data-eyebrow></div>
+    <div class="dots" data-dots></div>
+    <div class="stage" data-stage></div>
+  </div>
+
+  <script>
+(function initQuizReel() {
+  const reel = document.querySelector('.reel');
+  const data = JSON.parse(document.getElementById('quiz-data').textContent);
+  const Q = data.questions;
+  const n = Q.length;
+
+  reel.querySelector('[data-cat]').textContent = data.cat;
+  reel.querySelector('[data-eyebrow]').textContent = data.eyebrow;
+
+  // ── Timeline (animation seconds) ──
+  const INTRO = 0;                  // no hook — reel opens on Q1
+  const QDUR = 5.0;
+  const COUNT = Math.round(QDUR);
+  const OUTRO = 3.0;
+  const total = n * QDUR + OUTRO;
+  const loopMs = Math.round(total * 1000);
+  const loopS = total + 's';
+
+  reel.dataset.loopMs = String(loopMs);
+  reel.dataset.coverMs = String(400);                               // Q1 hold = thumbnail
+  reel.dataset.ctaMs = String(Math.round((n * QDUR + 1.5) * 1000));
+  reel.dataset.timerSec = String(COUNT);
+
+  const p = (sec) => ((sec / total) * 100).toFixed(3);
+  const RING = 540; // 2π·86
+
+  const css = [];
+  const audioCues = [];
+
+  // Progress dots
+  const dotsWrap = reel.querySelector('[data-dots]');
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.style.animation = `dot_${i} ${loopS} linear infinite`;
+    dotsWrap.appendChild(d);
+    const on = i * QDUR;
+    css.push(
+      `@keyframes dot_${i}{0%,${p(on)}%{background:rgba(168,219,238,0.22)}${p(on + 0.15)}%,100%{background:var(--sky)}}`
+    );
+  }
+
+  const stage = reel.querySelector('[data-stage]');
+
+  // ── Question layers (question only — NO answer reveal) ──
+  Q.forEach((q, i) => {
+    const start = i * QDUR;
+    const end = start + QDUR;
+
+    let label = q.expr;
+    if (!label.includes('?')) label += ' = ?';
+    label = label.replace(/\?/g, '<span class="q-eq">?</span>');
+
+    const layer = document.createElement('div');
+    layer.className = 'layer';
+    layer.style.animation = `qlayer_${i} ${loopS} linear infinite`;
+    layer.innerHTML =
+      `<div class="q-counter">` +
+        `<span class="q-counter-label">Question</span>` +
+        `<span class="q-counter-nums">${i + 1} / <em>${n}</em></span>` +
+      `</div>` +
+      `<div class="timer-ring">` +
+        `<svg width="230" height="230" viewBox="0 0 200 200" aria-hidden="true">` +
+          `<circle cx="100" cy="100" r="86" fill="none" stroke="rgba(168,219,238,0.16)" stroke-width="10"></circle>` +
+          `<circle cx="100" cy="100" r="86" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${RING}" data-ring></circle>` +
+        `</svg>` +
+        `<div class="timer-num" data-num></div>` +
+      `</div>` +
+      `<div class="q-expr" data-expr>${label}</div>`;
+    stage.appendChild(layer);
+
+    layer.querySelector('[data-ring]').style.animation = `qring_${i} ${loopS} linear infinite`;
+
+    css.push(
+      `@keyframes qlayer_${i}{0%,${p(start - 0.05)}%{opacity:0}${p(start + 0.08)}%{opacity:1}${p(end - 0.12)}%{opacity:1}${p(end)}%,100%{opacity:0}}`,
+      `@keyframes qring_${i}{0%,${p(start)}%{stroke-dashoffset:0}${p(end)}%,100%{stroke-dashoffset:${RING}}}`
+    );
+
+    // Countdown digits N..1, one per second
+    const numEl = layer.querySelector('[data-num]');
+    for (let dgt = COUNT; dgt >= 1; dgt--) {
+      const span = document.createElement('span');
+      span.textContent = String(dgt);
+      span.style.animation = `qcd_${i}_${dgt} ${loopS} linear infinite`;
+      numEl.appendChild(span);
+      const segStart = start + (COUNT - dgt);
+      const segEnd = segStart + 1;
+      css.push(
+        `@keyframes qcd_${i}_${dgt}{0%,${p(segStart)}%{opacity:0}${p(segStart + 0.05)}%{opacity:1}${p(segEnd - 0.05)}%{opacity:1}${p(segEnd)}%,100%{opacity:0}}`
+      );
+    }
+
+    // Audio: a "go" on each new question + 3·2·1 ticks
+    audioCues.push({ at: start + 0.02, freq: 1100, dur: 0.09 });
+    for (let s = 3; s >= 1; s--) {
+      audioCues.push({ at: start + (COUNT - s), freq: 820, dur: 0.05 });
+    }
+  });
+
+  // ── Outro layer ──
+  const outroStart = n * QDUR;
+  const outro = document.createElement('div');
+  outro.className = 'layer';
+  outro.style.animation = `outro ${loopS} linear infinite`;
+  outro.innerHTML =
+    `<div class="outro-q">Combien sur <em>${n}</em> ?</div>` +
+    `<div class="outro-sub">Réponses + ton score en commentaire 👇</div>` +
+    `<div class="outro-handle">@albert.prep</div>` +
+    `<div class="outro-cta">Un défi par jour → prep.albertschool.com</div>`;
+  stage.appendChild(outro);
+  css.push(
+    `@keyframes outro{0%,${p(outroStart - 0.05)}%{opacity:0;transform:translateY(18px)}${p(outroStart + 0.25)}%{opacity:1;transform:none}100%{opacity:1;transform:none}}`
+  );
+  audioCues.push({ at: outroStart + 0.1, freq: 1570, dur: 0.22 });
+
+  // Commit styles + audio metadata
+  const style = document.createElement('style');
+  style.id = 'quiz-timeline';
+  style.textContent = css.join('\n');
+  document.head.appendChild(style);
+
+  reel.dataset.audioCues = JSON.stringify(audioCues);
+
+  // ── Auto-fit each expression so long prompts never exceed the frame ──
+  function fitExprs() {
+    const MAXW = 880, MAX = 132, MIN = 60;
+    reel.querySelectorAll('[data-expr]').forEach((el) => {
+      let size = MAX;
+      el.style.fontSize = size + 'px';
+      while (el.scrollWidth > MAXW && size > MIN) {
+        size -= 2;
+        el.style.fontSize = size + 'px';
+      }
+    });
+  }
+  fitExprs();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitExprs);
+})();
+  </script>
+
+</body>
+</html>

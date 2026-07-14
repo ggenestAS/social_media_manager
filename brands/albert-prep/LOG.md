@@ -17,6 +17,37 @@ Rules (keep it a decision log, not a journal):
 
 ---
 
+## 2026-07-14 · LAUNCH — restart after 5 dark days + hook-framing test (Jul 14–20)
+
+**Incident first: the account was silent Jul 10–13.** The Jul 9 readout
+decided the week's plan but nobody shipped it — no session ran between Jul 9
+and Jul 14. Cost: 4 days of the throttle-recovery test lost, plus whatever
+consistency signal the algorithm holds. Process fix: a session that decides a
+plan must either ship it or explicitly hand it off with a date; "decided" ≠
+"scheduled" (this entry is the handoff convention now).
+
+Relaunched today per the Jul 9 decisions (1–2 reels/day, anchor 10:00,
+échelle re-test 2×, everything else killed), with one addition:
+
+- `EXP-2026-07-14-hook-eam` — exam framing (« Épreuve anticipée : 6 points
+  sans calculatrice ») vs classic défi framing, alternating days at the
+  10:00 anchor slot, 3 posts/arm. Rule: eam median ≥ 1,5× classic → adopt
+  exam framing everywhere + rewrite the page. This is the cheap data test of
+  the **repositioning discussion (Jul 11–14)**: from "fais du calcul mental"
+  to "prends les points" — anchored on the new épreuve anticipée (all
+  Première students, no calculator, 6-point automatismes QCM, first session
+  June 2026). Strategy thread also covers: training-layer positioning vs
+  teacher-creators (wonderwomath ~400k, ines.maths, Hedacademy — all
+  explanation-layer), and a mascot/VO character format as the follow-motive
+  fix (production recipe agreed, character not yet designed).
+
+27 placements queued and verified (9 bundles × IG/FB/TikTok), restart post
+today 17:00. Readout ≈ Jul 23 together with échelle re-test and the
+distribution-cap recovery check (per-reel ≥ ~1 300 & account reach > 2 300/j
+by ~Jul 17 confirms the volume-throttle hypothesis). Docs:
+`experiments/EXP-2026-07-14-hook-eam/experiment.md`,
+`calendar/2026-07-14-week.md`.
+
 ## 2026-07-09 · READOUT — Jul 3–9 week + reach sprint: distribution cap found
 
 Pulled a day early (Jul 9 posts still queued; 36/41 IG posts measured). The
