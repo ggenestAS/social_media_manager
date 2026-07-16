@@ -8,8 +8,8 @@ node_modules/
 **/output/*.png
 **/output/.frames-*/
 !**/output/.gitkeep
-# Generated organic post exports (regenerable PNG/MP4 inside each post bundle)
-brands/*/output/organic/posts/**/export/
+# Generated exports (regenerable PNG/MP4 inside any post/creative bundle)
+brands/*/output/**/export/
 
 # Local scratch
 tmp/

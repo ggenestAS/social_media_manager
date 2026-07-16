@@ -1,0 +1,8 @@
+{
+  "_comment": "No social accounts exist for this brand yet — these are intended handles, not connected channels. The resolver will fail loudly until accounts are created and linked to the shared Postiz workspace. Paid (Meta Ads) does not go through Postiz.",
+  "channels": {
+    "ig": { "provider": "instagram", "handle": "<todo-create: prep.albert or prepalbert>" },
+    "fb": { "provider": "facebook", "handle": "<todo-create: Prep Albert>" },
+    "tiktok": { "provider": "tiktok", "handle": "<todo-create: prep.albert>" }
+  }
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>prep-ai · meta-angles · parents</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+   :root {
+      --paper:#050505; --paper-raised:#0e0e0e; --ink:#fafafa; --ink-soft:#a3a3a3;
+      --ink-faint:#6b6b6b; --rule:#222222; --composer:#262626; --composer-border:#424242;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#333; font-family:'Inter',sans-serif; }
+    .screen { background:var(--paper); color:var(--ink);
+      position:relative; overflow:hidden; display:flex; flex-direction:column; }
+    .display { font-weight:800; letter-spacing:-0.045em; line-height:0.98; }
+    .eyebrow { font-size:28px; font-weight:600; letter-spacing:0.14em;
+      text-transform:uppercase; color:var(--ink-faint); }
+    .avatar { width:88px; height:88px; border-radius:50%;
+      border:2px solid var(--rule); background:var(--paper-raised);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .agent-msg { display:flex; align-items:flex-start; gap:28px; }
+    .agent-msg .txt { font-size:52px; line-height:1.32; color:var(--ink); padding-top:12px; }
+    .agent-msg .txt strong { font-weight:800; }
+    .user-msg { display:flex; justify-content:flex-end; }
+    .user-msg .bubble { background:var(--paper-raised); border:2px solid var(--rule);
+      border-radius:36px 36px 12px 36px; padding:28px 44px;
+      font-size:48px; color:var(--ink); max-width:80%; line-height:1.3; }
+    .composer { background:var(--composer); border:2px solid var(--composer-border);
+      border-radius:52px; box-shadow:0 24px 80px -24px rgba(0,0,0,0.7);
+      display:flex; align-items:center; gap:24px; padding:20px 24px 20px 44px; }
+    .composer .ph { flex:1; font-size:44px; font-weight:600; color:var(--ink); }
+    .composer .send { width:88px; height:88px; border-radius:50%;
+      background:var(--ink); color:var(--paper); display:flex; align-items:center;
+      justify-content:center; font-size:44px; font-weight:600; }
+    .wordmark { font-weight:800; letter-spacing:-0.045em; font-size:44px; }
+    .wordmark .albert { color:var(--ink-faint); }
+    .trust { font-size:30px; color:var(--ink-faint); }
+    .inner { display:flex; flex-direction:column; flex:1; padding:80px 72px; }
+    .thread { display:flex; flex-direction:column; gap:56px; flex:1; justify-content:center; }
+    .foot { display:flex; flex-direction:column; gap:36px; }
+    .brandline { display:flex; align-items:center; justify-content:space-between; }
+</style>
+</head>
+<body>
+  <div data-screen-label="feed 4:5" class="screen" style="width:1080px;height:1350px;">
+    <div class="inner" style="padding:80px 72px;">
+      <div class="eyebrow">Pour les parents</div>
+      <div class="thread">
+        <div class="agent-msg">
+          <div class="avatar"><svg viewBox="0 0 96 96" width="64" height="64" aria-hidden="true">
+  <rect x="22" y="34" width="52" height="50" rx="25" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M48 8 86 25 48 42 10 25Z" fill="#0d0d0d" stroke="#2e2e2e" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M48 42v6" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M74 30v16" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="74" cy="49" r="3" fill="#fafafa"/>
+  <ellipse cx="38" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <ellipse cx="58" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <circle cx="40" cy="60" r="3.8" fill="#050505"/>
+  <circle cx="60" cy="60" r="3.8" fill="#050505"/>
+</svg></div>
+          <div class="txt">Votre enfant révise. Mais quoi, exactement — et comment&nbsp;?</div>
+        </div>
+        <div class="user-msg"><div class="bubble">Bonne question…</div></div>
+        <div class="agent-msg">
+          <div class="avatar"><svg viewBox="0 0 96 96" width="64" height="64" aria-hidden="true">
+  <rect x="22" y="34" width="52" height="50" rx="25" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M48 8 86 25 48 42 10 25Z" fill="#0d0d0d" stroke="#2e2e2e" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M48 42v6" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M74 30v16" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="74" cy="49" r="3" fill="#fafafa"/>
+  <ellipse cx="38" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <ellipse cx="58" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <circle cx="40" cy="60" r="3.8" fill="#050505"/>
+  <circle cx="60" cy="60" r="3.8" fill="#050505"/>
+</svg></div>
+          <div class="txt">Je construis son plan jusqu’au bac et je structure <strong>chaque journée de travail</strong>. Vous voyez les progrès.</div>
+        </div>
+      </div>
+      <div class="foot">
+        <div class="composer">
+          <div class="ph">Construire son plan — gratuit</div>
+          <div class="send">↑</div>
+        </div>
+        <div class="brandline">
+          <div class="wordmark">Prep <span class="albert">Albert</span></div>
+          <div class="trust">Gratuit · sans carte bancaire · 2 minutes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-screen-label="story 9:16" class="screen" style="width:1080px;height:1920px;">
+    <div class="inner" style="padding:96px 72px;">
+      <div class="eyebrow">Pour les parents</div>
+      <div class="thread">
+        <div class="agent-msg">
+          <div class="avatar"><svg viewBox="0 0 96 96" width="64" height="64" aria-hidden="true">
+  <rect x="22" y="34" width="52" height="50" rx="25" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M48 8 86 25 48 42 10 25Z" fill="#0d0d0d" stroke="#2e2e2e" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M48 42v6" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M74 30v16" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="74" cy="49" r="3" fill="#fafafa"/>
+  <ellipse cx="38" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <ellipse cx="58" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <circle cx="40" cy="60" r="3.8" fill="#050505"/>
+  <circle cx="60" cy="60" r="3.8" fill="#050505"/>
+</svg></div>
+          <div class="txt">Votre enfant révise. Mais quoi, exactement — et comment&nbsp;?</div>
+        </div>
+        <div class="user-msg"><div class="bubble">Bonne question…</div></div>
+        <div class="agent-msg">
+          <div class="avatar"><svg viewBox="0 0 96 96" width="64" height="64" aria-hidden="true">
+  <rect x="22" y="34" width="52" height="50" rx="25" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M48 8 86 25 48 42 10 25Z" fill="#0d0d0d" stroke="#2e2e2e" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M48 42v6" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M74 30v16" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="74" cy="49" r="3" fill="#fafafa"/>
+  <ellipse cx="38" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <ellipse cx="58" cy="62" rx="8" ry="9.5" fill="#fafafa"/>
+  <circle cx="40" cy="60" r="3.8" fill="#050505"/>
+  <circle cx="60" cy="60" r="3.8" fill="#050505"/>
+</svg></div>
+          <div class="txt">Je construis son plan jusqu’au bac et je structure <strong>chaque journée de travail</strong>. Vous voyez les progrès.</div>
+        </div>
+      </div>
+      <div class="foot">
+        <div class="composer">
+          <div class="ph">Construire son plan — gratuit</div>
+          <div class="send">↑</div>
+        </div>
+        <div class="brandline">
+          <div class="wordmark">Prep <span class="albert">Albert</span></div>
+          <div class="trust">Gratuit · sans carte bancaire · 2 minutes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
