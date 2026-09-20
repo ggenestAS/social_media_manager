@@ -1,0 +1,8 @@
+{
+  "_comment": "PLACEHOLDERS — no accounts exist for this identity yet. WARNING: the handles the design mockups show (albertprep / albert.prep / 'Albert Prep') are already owned by the sibling mental-math brand brands/albert-prep. Resolve the naming collision (LOG.md, 2026-09-20) before creating accounts, then replace these values. Resolver: BRAND=albert-prep-agent npm run social:resolve. Paid (Meta Ads) does not go through Postiz.",
+  "channels": {
+    "ig": { "provider": "instagram", "handle": "<todo-create: handle pending naming decision>" },
+    "fb": { "provider": "facebook", "handle": "<todo-create: page pending naming decision>" },
+    "tiktok": { "provider": "tiktok", "handle": "<todo-create: handle pending naming decision>" }
+  }
+}

@@ -1,0 +1,59 @@
+# EXP-2026-09-20-meta-directions — which mechanic buys the signup?
+
+**Hypothesis:** Among 16–18 exam candidates on Meta, the **press mechanic**
+(a real "AI is hollowing out students" headline, agreed with, then turned
+toward Albert) will deliver a cheaper early-access signup than the pure
+**statement** (black frame, one sentence), because borrowed credibility +
+agreement lowers the guard that a product claim raises — and the press-led
+set is what the design team kept producing after concept v1.
+**Variable under test:** the creative MECHANIC (statement · press-split ·
+press-reel), one per ad set, × 2 markets (FR · UK). Everything else held
+constant: objective (`Lead`), audience per market, budget per ad set,
+schedule, destination (one landing, exam pre-filled by URL), trust line, CTA.
+**Concept-deck lineage:** the deck's test was 3 directions × 2 markets = 6 ad
+sets, 14 days, equal budget, no mid-flight edits. Same shape; the directions
+are replaced by the mechanics that were actually produced (see
+`campaign.md` §4).
+
+**What "worked" looks like:** cost per `Lead` by ad set, read in Ads Manager
+against Pixel/CAPI; plan-built rate (`PlanBuilt` / `Lead`) as the quality
+check. Diagnostics: thumb-stop rate (3-s views / impressions on the reel
+sets), CTR, landing conversion. No formal stats — order-of-magnitude
+differences only, after 14 days of comparable spend.
+
+**Decision rule (fixed before spend, from the deck):** scale the mechanic
+with the lowest cost per signup, provided its plan-built rate holds above
+the site average. Mechanics within 15 % of each other keep running as a
+pair. Losers are cut, not reworked. Week-3 budget goes 70 / 30 to the top
+two. Cost-per-signup ceiling: set from week-one baseline (owner to fill).
+
+**Platform:** Meta (Instagram Feed / Reels / Stories, Facebook Feed / Reels;
+Advantage+ on; Audience Network and right column excluded).
+**Not through Postiz** — manual upload via Meta Ads Manager (no ad account is
+wired to this repo). This bundle produces creatives, copy and URLs.
+
+## Ad sets
+
+| # | Ad set | Market | Creatives (bundles) | Formats |
+|---|---|---|---|---|
+| 1 | statement · FR | FR, 16–18 | FR statement adapts of 01–05 (**to produce** — the design's statements are EN; FR lines in the copy bank) | 4:5 + 9:16 |
+| 2 | statement · UK | UK, 16–18 | 01 … 05 | 4:5 + 9:16 |
+| 3 | press-split · FR | FR, 16–18 | 08: Le Monde, Les Echos, Le Figaro | 4:5 (+ 9:16 adapt) |
+| 4 | press-split · UK | UK, 16–18 | 07: Fortune ×2, Euronews, Inquirer · 08: WaPo ×3, HBR | 4:5 + 9:16 |
+| 5 | press-reel · FR | FR, 16–18 | 10 Le Monde (A/B), 11 Les Echos (A/B) | 9:16 |
+| 6 | press-reel · UK | UK, 16–18 | 09 Fortune (A/B), 12 Washington Post (A/B) | 9:16 |
+| + | carousel · parents (outside the core test) | FR+UK, 25–54 | 06 | carousel |
+
+Within an ad set, Meta may rotate the creatives (dynamic); the unit of
+decision is the ad set (mechanic × market), not the single ad. Reel variant
+A/B is a within-set rotation, read as a secondary signal only.
+
+## Honest gaps
+
+- Ad set 1 has no FR statements yet: the design's five statements are
+  English. Produce FR adapts from the copy bank before launch or run the test
+  as 5 ad sets and note it.
+- Every press headline is a placeholder until verified (design note: "EN
+  headlines paraphrased — verify and paste the exact wording before use").
+- Masthead logos: text by default; real logos only with rights sign-off.
+- Landing URL and `exam=` pre-fill parameter unconfirmed (LOG.md).

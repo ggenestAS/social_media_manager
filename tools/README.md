@@ -55,6 +55,11 @@ Outputs per screen:
 - `cover-<slug>-1x1.png` — center square crop for IG grid QA
 - `preview-<slug>.png` — same frame as cover
 
+Per-screen timing hints are read from the screen element when the matching flag
+is omitted: `data-loop-ms`, `data-cta-ms`, `data-cover-ms`, `data-timer-sec`
+(SFX), and `data-speed` (authored-pace reels such as `press-reel` set
+`data-speed="1"` so the default 1.5× time-stretch is not applied).
+
 Campaign-specific batch capture still available via `npm run capture:reels` (uses these libraries internally).
 
 ## Shared library

@@ -44,10 +44,17 @@ same three names, so skills never branch on context:
 State (status, schedule, postiz id) lives in `post.md` frontmatter — never in the
 folder name, so nothing is renamed across its lifecycle.
 
-## Active brand
+## Brands
 
-[`brands/albert-prep/`](brands/albert-prep/) — mental-math training, "Le Cahier"
-visual identity. Start at its [README](brands/albert-prep/README.md).
+| Brand | Product | Status |
+|---|---|---|
+| [`brands/albert-prep/`](brands/albert-prep/) | Mental-math training, "Le Cahier" identity | Live organic + paid |
+| [`brands/prep-ai/`](brands/prep-ai/) | Exam agent, previous identity (Prep Albert, monochrome chat) | Paid-first, one experiment staged |
+| [`brands/albert-prep-agent/`](brands/albert-prep-agent/) | Exam agent, current identity ("Albert Prep", black frame + press mechanic) | First Meta campaign + first organic bundles staged |
+
+With several brands, set `BRAND=<brand>` for the scripts that resolve one
+(`social:resolve`, `stage:day`). Start at each brand's README; note the
+naming collision recorded in `brands/albert-prep-agent/README.md`.
 
 ## Common commands
 
