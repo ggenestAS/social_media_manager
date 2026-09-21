@@ -14,8 +14,10 @@ Read after `brand.md` and `design-system.md`. This is the *what*, they are the
 | Early-access CTA | Get early access — free, no card | Obtenir l'accès anticipé — gratuit, sans carte |
 | Organic CTA | Link in bio. | Lien en bio. |
 
-Handle: pending the naming decision (see `channels.json`). Until then write
-"Link in bio" and never a handle.
+Handle: **@albert.prep** on Instagram, **@albertprep** on TikTok, page
+"Albert Prep" on Facebook (converted from the mental-math brand, 2026-09-21).
+Prefer "Link in bio" in captions; name the handle only when the post asks for
+a follow.
 
 ## Copy bank (from the concept deck — verbatim, don't paraphrase)
 

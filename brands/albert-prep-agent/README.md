@@ -5,16 +5,13 @@ builds your plan and trains you daily until you sit it."). Imported from the
 Claude Design project *Hero background animation* (files `Meta Campaign
 Concept`, `Meta Ad Statics`, `Meta Reel 1–4`) on 2026-09-20.
 
-> **Naming collision — resolve before anything goes live.** The design's
-> wordmark is "Albert Prep", but this repo already has
-> [`brands/albert-prep/`](../albert-prep/) (mental-math, "Le Cahier"), which
-> also **owns the social handles** `albert.prep` (IG), `Albert Prep` (FB) and
-> `albertprep` (TikTok) — the same handle the design's ad mockups show. This
-> folder is therefore slugged `albert-prep-agent`; its `channels.json` holds
-> placeholders. Also note [`brands/prep-ai/`](../prep-ai/) is the *same
-> product* under its previous identity (Prep Albert, monochrome chat,
-> prepai.albertschool.com). Decide: rename/merge, or archive `prep-ai`.
-> Logged in [`LOG.md`](LOG.md).
+> **Naming resolved 2026-09-21.** "Albert Prep" now means this brand. The
+> mental-math brand [`brands/albert-prep/`](../albert-prep/) is **on hold** and
+> its social accounts — `albert.prep` (IG), `Albert Prep` (FB), `albertprep`
+> (TikTok) — are being converted to this identity; they are declared in this
+> folder's `channels.json`. The folder keeps the slug `albert-prep-agent` so
+> paths stay stable. [`brands/prep-ai/`](../prep-ai/) remains the previous
+> identity of the same product (archive candidate). Logged in [`LOG.md`](LOG.md).
 
 Read in order:
 
@@ -32,7 +29,7 @@ Read in order:
 
 | Path | What |
 |---|---|
-| `brand.md` · `context/` · `channels.json` · `assets/` | Identity, product facts, channel aliases (placeholders), wordmark SVG |
+| `brand.md` · `context/` · `channels.json` · `assets/` | Identity, product facts, channel aliases (the converted albert.prep accounts), wordmark SVG |
 | `templates/design-system.md` | Palette, type, shared CSS, signatures, artboard conventions |
 | `templates/content-guide.md` | Handle/CTA/hashtag rules, hooks, copy bank pointers |
 | `templates/post-types/<type>/{spec.md, template.html}` | The organic menu; `press-reel/reel-timeline.js` is the animation engine inlined by reel bundles |
@@ -54,7 +51,9 @@ Read in order:
   (the reel sets `data-speed="1"`; pacing is authored, don't time-stretch).
 - **Paid:** upload manually via Meta Ads Manager — no ad account is wired to
   this repo. Copy, URLs and checklist are in the campaign's `campaign.md`.
-- **Postiz:** blocked until accounts exist (see `channels.json`).
+- **Postiz:** `BRAND=albert-prep-agent npm run social:resolve` → the converted
+  accounts (profile/cover assets for the new identity are pending from Claude
+  Design; see LOG 2026-09-21).
 
 Per-post state (status, schedule, Postiz id) lives in each bundle's `post.md`
 frontmatter, never in folder names.

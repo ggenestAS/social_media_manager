@@ -17,6 +17,20 @@ Rules (keep it a decision log, not a journal):
 
 ---
 
+## 2026-09-21 · ON HOLD — brand paused; accounts converted to albert-prep-agent
+
+**Decided (owner).** The mental-math brand is on hold. Its social accounts
+(IG `albert.prep`, FB `Albert Prep`, TikTok `albertprep`) become the accounts
+of the exam-agent brand `brands/albert-prep-agent`, which now owns the name
+"Albert Prep". Handles withdrawn from this folder's `channels.json` so nothing
+here can resolve to the converted accounts; `stage-day` no longer defaults to
+this brand. Already-published mental-math posts stay on the accounts until
+the new brand decides what to archive.
+
+**Would change our mind.** A revival needs new accounts and a new name.
+
+---
+
 ## 2026-07-14 · LAUNCH — restart after 5 dark days + hook-framing test (Jul 14–20)
 
 **Incident first: the account was silent Jul 10–13.** The Jul 9 readout

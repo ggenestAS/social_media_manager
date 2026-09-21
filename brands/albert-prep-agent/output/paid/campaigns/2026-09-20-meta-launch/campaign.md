@@ -8,9 +8,10 @@
 **Experiment:** [`experiment.md`](experiment.md) — EXP-2026-09-20-meta-directions
 **Source:** Claude Design *Meta Campaign Concept* (concept v1, 14 slides) + *Meta Ad Statics* + *Meta Reel 1–4* → [`design-export/`](design-export/)
 
-> Before spend, the four blockers in [`../../../LOG.md`](../../../LOG.md) must
-> clear: brand name/handles, production landing URL, press-headline
-> verification, Pixel + CAPI. None of them is a creative task.
+> Before spend, the remaining blockers in [`../../../LOG.md`](../../../LOG.md)
+> must clear: production landing URL, press-headline verification, Pixel +
+> CAPI (the name/handle question was settled 2026-09-21). None of them is a
+> creative task.
 
 ## 1. Objective (deck §01)
 
@@ -153,7 +154,7 @@ the week-one baseline, then held for the scale phase.
 
 | # | Action | When |
 |---|---|---|
-| 01 | Resolve the brand-name / handle collision with `brands/albert-prep` | This week |
+| 01 | ~~Resolve the brand-name / handle collision~~ — done 2026-09-21: `albert-prep` on hold, its accounts converted to this brand | — |
 | 02 | Approve the mechanics to test (statement vs press) or cut to one; set the two-week test budget and the cost-per-signup ceiling | This week |
 | 03 | Confirm the production landing URL + exam pre-fill parameter; Pixel + CAPI live | Week 1 |
 | 04 | Verify the 15 press headlines (exact wording, links); masthead-logo sign-off; replace carousel card-1 clippings with verified screenshots | Week 1 |
