@@ -8,6 +8,7 @@ multiple brands can share one toolchain without entangling their content.
 
 ```
 GENERIC TOOLING (account-independent, shared by every brand)
+├── app/                   Brand browser — local read-only web UI (npm run browse)
 ├── tools/                 HTML → PNG / MP4 export CLIs (Playwright + ffmpeg)
 ├── scripts/               resolve-channels.mjs (Postiz alias → live id)
 ├── .agents/skills/        Brand-agnostic skills: organic-post, postiz-plan, postiz
@@ -55,6 +56,16 @@ folder name, so nothing is renamed across its lifecycle.
 With several brands, set `BRAND=<brand>` for the scripts that resolve one
 (`social:resolve`, `stage:day`). Start at each brand's README; note the
 naming collision recorded in `brands/albert-prep-agent/README.md`.
+
+## Browse everything locally
+
+```bash
+npm run browse      # http://127.0.0.1:4173 — brands, assets (live previews), calendars, docs
+```
+
+A read-only UI over `brands/` (see [`app/README.md`](app/README.md)): every
+bundle renders straight from its `source.html`, so you can review posts,
+campaign creatives and experiment drafts without exporting PNGs first.
 
 ## Common commands
 
