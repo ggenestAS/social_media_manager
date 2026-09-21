@@ -18,6 +18,15 @@ Not imported: the `uploads/*.png` pasted screenshots and the site/prototype
 files (`Prep Albert.dc.html`, `Albert Home.dc.html`, …). Product copy from
 `strings.js` was folded into [`../../../../context/product.md`](../../../../context/product.md).
 
+Re-synced 2026-09-21 with the design's safe-zone revision (`meta-reel-1.jsx`
+SAFE = top 250 / bottom 480 / right 160, panel at y = 800; `Split 1 · 9:16`
+padding). The design's five statement 9:16 boards (`Ad 1–5 · 9:16`) were **not**
+updated in the design; the repo applies the same safe zone to them anyway.
+The port also fixes two things the design revision leaves: the headline
+building inside the caption band during the first scene (paper bottom padding
+animated 560 → 80) and the ×1.05 zoom pushing edges into the bands (wider
+paper/panel margins). See LOG.md 2026-09-21.
+
 Known deltas between design and port:
 - Mastheads are rendered as **text** (Georgia 700) — the design pulled outlet
   logos from Wikimedia via `<image-slot>`; logo use needs rights sign-off.

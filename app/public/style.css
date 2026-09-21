@@ -63,3 +63,7 @@ h1{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}h2{font-s
 .pathline{font-family:var(--mono);font-size:12px;color:var(--mute);word-break:break-all}
 .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}@media(max-width:1100px){.two{grid-template-columns:1fr}}
 @media(max-width:800px){body{grid-template-columns:1fr}#side{position:static;height:auto}}
+
+/* 9:16 safe-zone overlay (Reels / Stories / TikTok UI) */
+.safe{position:absolute;inset:0;pointer-events:none;display:none}.safe.on{display:block}
+.safe .band{position:absolute;background:rgba(255,60,60,.22);outline:2px dashed rgba(255,80,80,.9);outline-offset:-2px;color:#ffb4b4;font-size:11px;padding:4px 6px;text-transform:uppercase;letter-spacing:.06em;overflow:hidden;white-space:nowrap}
