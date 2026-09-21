@@ -23,7 +23,7 @@ press:
   - { mast: "Les Echos", date: "2026", headline: "Les jeunes diplômés, premières victimes de l’IA", logo_ref: "https://fr.wikipedia.org/wiki/Special:FilePath/Logo_Les_%C3%89chos_(2021).svg", url: TODO-verify }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
-  notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms are set by the inlined reel-timeline.js; cover = the full headline just before the panel rises
+  notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises
 checklist:
   - verify the headline's exact wording + link; masthead renders as text (real logo only with sign-off)
   - QA the MP4 at 1× — pacing is authored, never time-stretch

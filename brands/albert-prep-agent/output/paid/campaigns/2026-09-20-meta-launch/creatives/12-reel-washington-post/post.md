@@ -23,7 +23,7 @@ press:
   - { mast: "The Washington Post", date: "August 9, 2026", headline: "Universities are fighting AI cheating. But there’s a deeper problem.", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Logo_of_The_Washington_Post_Newspaper.svg", url: TODO-verify }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
-  notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms are set by the inlined reel-timeline.js; cover = the full headline just before the panel rises
+  notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises
 checklist:
   - verify the headline's exact wording + link; masthead renders as text (real logo only with sign-off)
   - QA the MP4 at 1× — pacing is authored, never time-stretch

@@ -25,7 +25,9 @@ import {
   defaultOutputDir,
   discoverScreens,
   ensureDir,
+  findBrandAudioDir,
   framesToMp4,
+  muxReelSamples,
   muxReelAudio,
   isolateScreen,
   muxReelSfx,
@@ -50,6 +52,7 @@ const ARG_SPEC = {
   'cta-ms': { type: 'number' },
   'cover-hold-ms': { type: 'number' },
   audio: { type: 'string' },
+  samples: { type: 'string' },
   'no-sfx': { type: 'flag' },
 };
 
@@ -77,7 +80,8 @@ function usage() {
     '--cta-hold-ms <ms>          Frozen CTA duration at 1× (default: 2000)',
     '--cover-hold-ms <ms>        Frozen cover frame prepended to MP4 at 1× (default: 1000)',
     '--audio <mode>              Mux audio after encode: ticks (single-Q countdown) | cues (data-audio-cues beeps)',
-    '--no-sfx                    Skip countdown ticks + reveal chime (silent MP4)',
+    '--samples <dir>             Sample folder for data-audio-cues with {sample} (default: brands/<brand>/assets/audio)',
+    '--no-sfx                    Skip all sound (countdown ticks, sample cues, bed) — silent MP4',
   ]);
 }
 
@@ -117,6 +121,7 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
     const ctaMs = parseInt(screen.dataset.ctaMs, 10);
     const coverMs = parseInt(screen.dataset.coverMs, 10);
     const timerSec = parseInt(screen.dataset.timerSec, 10);
+    const audioBed = screen.dataset.audioBed || null;
     const speed = parseFloat(screen.dataset.speed);
     let audioCues = null;
     try { audioCues = JSON.parse(screen.dataset.audioCues || 'null'); } catch (e) { audioCues = null; }
@@ -127,6 +132,7 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
       timerSec: Number.isFinite(timerSec) && timerSec > 0 ? timerSec : null,
       speed: Number.isFinite(speed) && speed > 0 ? speed : null,
       audioCues: Array.isArray(audioCues) ? audioCues : null,
+      audioBed,
     };
   }, screenLabel);
 
@@ -214,7 +220,14 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
   }
   cleanupFramesDir(framesDir);
 
-  if (globalOptions.audio === 'ticks' || globalOptions.audio === 'cues') {
+  // Sound design: cues that name sample files (press-reel and friends) are mixed
+  // automatically from brands/<brand>/assets/audio — --no-sfx skips, --samples overrides the dir.
+  const sampleCues = (screenTiming?.audioCues || []).filter((c) => c && c.sample);
+  if (sampleCues.length && !cfg.noSfx) {
+    const samplesDir = globalOptions.samples ? join(process.cwd(), globalOptions.samples) : findBrandAudioDir(htmlFile);
+    if (!samplesDir) console.warn('   ⚠ audio cues present but no brands/<brand>/assets/audio folder found — MP4 left silent');
+    else muxReelSamples(mp4Path, { cues: sampleCues, samplesDir, bed: screenTiming.audioBed || 'pink:0.035', speed: cfg.speed, coverHoldMs: cfg.coverHoldMs });
+  } else if (globalOptions.audio === 'ticks' || globalOptions.audio === 'cues') {
     muxReelAudio(mp4Path, {
       timerSec: screenTiming?.timerSec ?? 5,
       speed: cfg.speed,

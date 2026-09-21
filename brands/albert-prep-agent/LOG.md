@@ -6,6 +6,30 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-21 · DECISION — reels get sound design (samples synced to the animation), no music
+
+**Observed.** Reels and TikTok autoplay with sound on; a silent typographic ad
+reads as broken there, while Facebook and much of Instagram feed autoplay
+muted. Music for ads is a licensing trap: in-app libraries are organic-only,
+Meta's Sound Collection does not cover TikTok. No stock-audio connector exists
+in the MCP registry; Mixkit and Kenney serve files directly over HTTPS.
+
+**Decided.** Sound design, not music: one short sample per beat of the
+choreography (paper wipe, typing per word, panel slam, reply pop, accent
+chime, CTA pop) over a generated room-tone bed, mixed to −14 LUFS with a true-
+peak limiter. Cues are emitted by `reel-timeline.js` from the same timeline as
+the motion, so sync is exact and free for every new reel. Samples: Mixkit
+(free commercial licence) and Kenney (CC0) — sources and processing in
+[`assets/audio/SOURCES.md`](assets/audio/SOURCES.md). Verified on the Le
+Monde reel: every cue lands within one 50 ms window of its target. No
+voice-over in this flight; a VO version would be a separate ad set.
+
+**Would change our mind.** If thumb-stop or 3-second views on the reel ad sets
+trail the statics badly, test a music-bed variant under a proper commercial
+licence (Artlist/Epidemic) before blaming the mechanic.
+
+---
+
 ## 2026-09-21 · DECISION — "Albert Prep" is this brand; mental-math on hold, its accounts converted
 
 **Decided (owner).** `brands/albert-prep` (mental math, "Le Cahier") is on

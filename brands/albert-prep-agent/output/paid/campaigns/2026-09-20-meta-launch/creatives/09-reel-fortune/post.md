@@ -23,7 +23,7 @@ press:
   - { mast: "Fortune", date: "February 24, 2026", headline: "‘Students can’t reason’: Teachers warn AI is fueling a crisis in kids’ ability to think", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/Fortune_magazine_logo_2016.svg", url: TODO-verify }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
-  notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms are set by the inlined reel-timeline.js; cover = the full headline just before the panel rises
+  notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises
 checklist:
   - verify the headline's exact wording + link; masthead renders as text (real logo only with sign-off)
   - QA the MP4 at 1× — pacing is authored, never time-stretch

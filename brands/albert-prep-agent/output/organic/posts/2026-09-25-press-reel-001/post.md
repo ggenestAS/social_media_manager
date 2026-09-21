@@ -17,7 +17,7 @@ press:
   - { mast: Le Monde, date: 2026-09-18, headline: "Les avancées de l’IA provoquent une crise inédite chez les mathématiciens", url: TODO-verify }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
-  notes: silent MP4 (no timer → no SFX); data-speed=1 read from the board; cover = full headline frame
+  notes: sound design mixed automatically from assets/audio (samples synced to the animation, −14 LUFS, no music); data-speed=1 read from the board; cover = full headline frame
 checklist:
   - vérifier le titre exact + le lien ; masthead en texte (logo réel uniquement avec accord)
   - QA du MP4 à 1× — le rythme est écrit, ne pas l’accélérer

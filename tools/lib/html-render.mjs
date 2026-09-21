@@ -5,7 +5,7 @@
 
 import { execSync, spawnSync } from 'child_process';
 import { existsSync, mkdirSync, renameSync, rmSync } from 'fs';
-import { dirname, join, resolve } from 'path';
+import { dirname, join, resolve, sep } from 'path';
 import { fileURLToPath } from 'url';
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -275,6 +275,105 @@ export function muxReelAudio(mp4Path, {
   execSync(`mv "${tmpOut}" "${mp4Path}"`, { stdio: 'inherit' });
   rmSync(tmpAudio, { force: true });
   console.log(`   Audio muxed → ${mp4Path} (${beeps.length} cues)`);
+}
+
+/**
+ * Locate the owning brand's sample folder for an HTML file:
+ * brands/<brand>/assets/audio — or null when the file is not under brands/.
+ */
+export function findBrandAudioDir(htmlFile) {
+  let dir = dirname(resolve(htmlFile));
+  while (dir !== dirname(dir)) {
+    const parent = dirname(dir);
+    if (parent.endsWith(`${sep}brands`) || parent === join(REPO_ROOT, 'brands')) {
+      const audio = join(dir, 'assets', 'audio');
+      return existsSync(audio) ? audio : null;
+    }
+    dir = parent;
+  }
+  return null;
+}
+
+/**
+ * Sound design mux: place sample files at authored cue times over a generated
+ * room-tone bed, normalise to social loudness, and write the result into the MP4.
+ *
+ *  cues        [{ at, sample, gain? }] — `at` in ANIMATION seconds, `sample` is a
+ *              file stem in samplesDir (.wav/.ogg/.mp3), gain 0..1 (default 1)
+ *  bed         'pink:0.035' | 'brown:0.03' | 'none' — noise colour and linear volume
+ *  speed /     how html-to-mp4 mapped animation time to video time
+ *  coverHoldMs (video = coverHold + anim / speed)
+ *  target      loudnorm I target (default -13; measured output ≈ -14 LUFS integrated, limiter at -1.4 dBTP)
+ */
+export function muxReelSamples(mp4Path, {
+  cues = [],
+  samplesDir,
+  bed = 'pink:0.035',
+  speed = 1,
+  coverHoldMs = 1000,
+  target = -13, // single-pass loudnorm lands ~1.5 LU under target on this material → ≈ −14 LUFS integrated
+} = {}) {
+  if (!samplesDir || !existsSync(samplesDir)) throw new Error(`samples dir not found: ${samplesDir}`);
+  const findSample = (stem) => {
+    for (const ext of ['.wav', '.ogg', '.mp3', '.flac']) {
+      const f = join(samplesDir, stem + ext);
+      if (existsSync(f)) return f;
+    }
+    return null;
+  };
+  const durationSec = probeDurationSec(mp4Path);
+  const dur = durationSec.toFixed(3);
+  const toVideo = (animSec) => coverHoldMs / 1000 + animSec / speed;
+
+  const inputs = [`-i "${mp4Path}"`];
+  const filters = [];
+  const mixLabels = [];
+  let idx = 1;
+  const missing = new Set();
+
+  const [bedKind, bedVol] = String(bed).split(':');
+  if (bedKind && bedKind !== 'none') {
+    inputs.push(`-f lavfi -t ${dur} -i anoisesrc=c=${bedKind}:d=${dur}:r=48000:a=0.5`);
+    filters.push(
+      `[1:a]aformat=sample_rates=48000:channel_layouts=stereo,` +
+        `highpass=f=90,lowpass=f=700,volume=${Number(bedVol) || 0.035},` +
+        `afade=t=in:st=0:d=0.3,afade=t=out:st=${Math.max(0, durationSec - 0.45).toFixed(3)}:d=0.45[bed]`
+    );
+    mixLabels.push('[bed]');
+    idx = 2;
+  }
+
+  let placed = 0;
+  for (const c of cues) {
+    const file = findSample(c.sample);
+    if (!file) { missing.add(c.sample); continue; }
+    const t = toVideo(Number(c.at) || 0);
+    if (t >= durationSec) continue;
+    const ms = Math.max(0, Math.round(t * 1000));
+    const gain = c.gain == null ? 1 : Number(c.gain);
+    inputs.push(`-i "${file}"`);
+    filters.push(`[${idx}:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=${gain},adelay=${ms}|${ms}[s${idx}]`);
+    mixLabels.push(`[s${idx}]`);
+    idx++;
+    placed++;
+  }
+  if (missing.size) console.warn(`   ⚠ samples missing in ${samplesDir}: ${[...missing].join(', ')}`);
+  if (!mixLabels.length) { console.warn('   no audio to mix — MP4 left silent'); return; }
+
+  filters.push(
+    `${mixLabels.join('')}amix=inputs=${mixLabels.length}:duration=longest:dropout_transition=0:normalize=0,` +
+      `atrim=0:${dur},asetpts=N/SR/TB,` +
+      `loudnorm=I=${target}:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.85:attack=3:release=60:level=false[aout]`
+  );
+
+  const tmp = `${mp4Path}.sfx.tmp.mp4`;
+  execSync(
+    `ffmpeg -y ${inputs.join(' ')} -filter_complex "${filters.join(';')}" ` +
+      `-map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest "${tmp}"`,
+    { stdio: 'pipe' }
+  );
+  renameSync(tmp, mp4Path);
+  console.log(`   Sound mixed → ${mp4Path} (${placed} cues${bedKind !== 'none' ? ` + ${bedKind} bed` : ''}, loudnorm ${target} LUFS)`);
 }
 
 /** Generate short tick + reveal clips if missing (ffmpeg lavfi). */
