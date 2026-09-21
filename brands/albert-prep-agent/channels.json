@@ -1,8 +1,17 @@
 {
-  "_comment": "PLACEHOLDERS — no accounts exist for this identity yet. WARNING: the handles the design mockups show (albertprep / albert.prep / 'Albert Prep') are already owned by the sibling mental-math brand brands/albert-prep. Resolve the naming collision (LOG.md, 2026-09-20) before creating accounts, then replace these values. Resolver: BRAND=albert-prep-agent npm run social:resolve. Paid (Meta Ads) does not go through Postiz.",
+  "_comment": "Semantic channel map for Postiz. Keys are aliases used in scripts; values identify a channel by stable provider + handle (NOT the opaque Postiz integration id, which rotates on reconnect). These are the former albert-prep (mental-math) accounts, converted to this brand on 2026-09-21 (LOG.md). Resolve live ids with: BRAND=albert-prep-agent npm run social:resolve. Paid (Meta Ads) does not go through Postiz.",
   "channels": {
-    "ig": { "provider": "instagram", "handle": "<todo-create: handle pending naming decision>" },
-    "fb": { "provider": "facebook", "handle": "<todo-create: page pending naming decision>" },
-    "tiktok": { "provider": "tiktok", "handle": "<todo-create: handle pending naming decision>" }
+    "ig": {
+      "provider": "instagram",
+      "handle": "albert.prep"
+    },
+    "fb": {
+      "provider": "facebook",
+      "handle": "Albert Prep"
+    },
+    "tiktok": {
+      "provider": "tiktok",
+      "handle": "albertprep"
+    }
   }
 }

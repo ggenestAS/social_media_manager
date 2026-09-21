@@ -6,6 +6,33 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-21 · DECISION — "Albert Prep" is this brand; mental-math on hold, its accounts converted
+
+**Decided (owner).** `brands/albert-prep` (mental math, "Le Cahier") is on
+hold. Its social accounts — Instagram `albert.prep`, Facebook page `Albert
+Prep`, TikTok `albertprep` — are converted to this identity. `channels.json`
+here now declares them; the old brand's `channels.json` withdraws them so the
+resolver cannot post mental-math content to the converted accounts. Folder
+slug stays `albert-prep-agent` (paths, PR, docs already reference it).
+`scripts/stage-day.mjs` now defaults to this brand.
+
+**Consequences.** Blocker 1 (naming/handles) and 5 (accounts) from the
+2026-09-20 entry are closed. The accounts still carry the mental-math profile
+photo, cover and bio, and a feed of 40+ mental-math posts. The new profile
+kit landed the same day from Claude Design (*Social Profile Kit*):
+[`assets/profile-kit/`](assets/profile-kit/) — mascot profile picture (D),
+FB covers EN/FR, five highlight covers, bios per platform with character
+counts (FB intro FR is over the limit as designed; trimmed variant provided).
+The switch-over itself is manual — checklist in
+[`assets/README.md`](assets/README.md).
+Followers were acquired on mental-math content: expect a drop and a noisy
+first read on organic reach; do not treat early organic numbers as a signal.
+
+**Would change our mind.** If the mental-math brand is revived, it needs new
+accounts — these are not coming back.
+
+---
+
 ## 2026-09-21 · DECISION — 9:16 safe zone applied to every vertical asset
 
 **Observed.** Reels, Stories and TikTok overlay their UI on the video: ~250 px

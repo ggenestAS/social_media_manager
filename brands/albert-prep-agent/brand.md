@@ -68,7 +68,9 @@ from the produced paid creatives, so organic and paid share one visual world.
 
 ## Channels
 
-No accounts exist for this identity yet — see the naming collision in
-[`README.md`](README.md). [`channels.json`](channels.json) holds placeholders
-and `npm run social:resolve` will fail loudly until real channels are
-connected. Paid runs through Meta Ads Manager, not Postiz.
+The former mental-math accounts are converted to this brand (decision
+2026-09-21): Instagram `albert.prep`, Facebook `Albert Prep`, TikTok
+`albertprep` — declared in [`channels.json`](channels.json); resolve live ids
+with `BRAND=albert-prep-agent npm run social:resolve`. Their profile photo,
+cover and bio still carry the old identity until the new assets land (Claude
+Design, pending). Paid runs through Meta Ads Manager, not Postiz.

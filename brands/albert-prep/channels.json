@@ -1,8 +1,17 @@
 {
-  "_comment": "Semantic channel map for Postiz. Keys are aliases used in scripts; values identify a channel by stable provider + handle (NOT the opaque Postiz integration id, which rotates when a channel is reconnected). Resolve live ids with: npm run social:resolve. 'handle' is matched against the integration's profile, falling back to its name when profile is empty.",
+  "_comment": "ON HOLD since 2026-09-21 — the accounts albert.prep (IG), Albert Prep (FB) and albertprep (TikTok) were converted to brands/albert-prep-agent and are declared there. Handles are deliberately withdrawn here so `BRAND=albert-prep npm run social:resolve` fails loudly instead of posting mental-math content to the converted accounts. Restore from git history if the brand is revived on new accounts.",
   "channels": {
-    "ig": { "provider": "instagram", "handle": "albert.prep" },
-    "fb": { "provider": "facebook", "handle": "Albert Prep" },
-    "tiktok": { "provider": "tiktok", "handle": "albertprep" }
+    "ig": {
+      "provider": "instagram",
+      "handle": "<on-hold: transferred to albert-prep-agent 2026-09-21>"
+    },
+    "fb": {
+      "provider": "facebook",
+      "handle": "<on-hold: transferred to albert-prep-agent 2026-09-21>"
+    },
+    "tiktok": {
+      "provider": "tiktok",
+      "handle": "<on-hold: transferred to albert-prep-agent 2026-09-21>"
+    }
   }
 }

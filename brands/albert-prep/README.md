@@ -1,4 +1,12 @@
-# Albert Prep (brand)
+# Albert Prep (brand) — ON HOLD since 2026-09-21
+
+> This mental-math brand is paused. Its social accounts (`albert.prep` IG,
+> `Albert Prep` FB, `albertprep` TikTok) were converted to
+> [`brands/albert-prep-agent/`](../albert-prep-agent/), which now owns the
+> "Albert Prep" name. `channels.json` here has its handles withdrawn on
+> purpose — do not schedule or publish from this folder. Content, templates
+> and the decision log are kept as-is for reference.
+
 
 Read this first to orient. This folder is fully self-contained: everything an
 agent needs to plan, generate, and ship Albert Prep social content lives here.

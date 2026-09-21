@@ -35,7 +35,7 @@ function flag(name, fallback = null) {
 const hasFlag = (name) => args.includes(name);
 
 const date = flag('--date');
-const brand = flag('--brand', process.env.BRAND || 'albert-prep');
+const brand = flag('--brand', process.env.BRAND || 'albert-prep-agent');
 const mode = hasFlag('--schedule') ? 'schedule' : 'draft';
 const exportMissing = hasFlag('--export-missing');
 const dryRun = hasFlag('--dry-run');

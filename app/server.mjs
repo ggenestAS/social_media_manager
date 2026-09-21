@@ -195,6 +195,8 @@ function scanBrand(dir) {
   brand.log = existsSync(join(dir, 'LOG.md')) ? rel(join(dir, 'LOG.md')) : null;
 
   brand.assets = walk(join(dir, 'assets'), (p) => MEDIA_EXT.has(extname(p).toLowerCase())).map((p) => ({ path: rel(p), name: posix.basename(rel(p)) }));
+  // renderable kits under assets/ (e.g. profile-kit/source.html) behave like bundles
+  brand.assetKits = findBundles(join(dir, 'assets'), 'asset', 2).bundles;
 
   brand.postTypes = dirs(join(dir, 'templates/post-types')).map((d) => {
     const spec = join(d, 'spec.md');

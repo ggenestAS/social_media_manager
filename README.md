@@ -49,13 +49,13 @@ folder name, so nothing is renamed across its lifecycle.
 
 | Brand | Product | Status |
 |---|---|---|
-| [`brands/albert-prep/`](brands/albert-prep/) | Mental-math training, "Le Cahier" identity | Live organic + paid |
+| [`brands/albert-prep/`](brands/albert-prep/) | Mental-math training, "Le Cahier" identity | **On hold** (2026-09-21) — accounts converted to albert-prep-agent |
 | [`brands/prep-ai/`](brands/prep-ai/) | Exam agent, previous identity (Prep Albert, monochrome chat) | Paid-first, one experiment staged |
-| [`brands/albert-prep-agent/`](brands/albert-prep-agent/) | Exam agent, current identity ("Albert Prep", black frame + press mechanic) | First Meta campaign + first organic bundles staged |
+| [`brands/albert-prep-agent/`](brands/albert-prep-agent/) | Exam agent, "Albert Prep" (black frame + press mechanic) — owns the albert.prep / albertprep accounts | First Meta campaign + first organic bundles staged |
 
 With several brands, set `BRAND=<brand>` for the scripts that resolve one
-(`social:resolve`, `stage:day`). Start at each brand's README; note the
-naming collision recorded in `brands/albert-prep-agent/README.md`.
+(`social:resolve` requires it; `stage:day` defaults to `albert-prep-agent`).
+Start at each brand's README.
 
 ## Browse everything locally
 
