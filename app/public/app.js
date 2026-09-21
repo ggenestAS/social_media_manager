@@ -106,15 +106,30 @@ const sizer = new ResizeObserver((entries) => { for (const e of entries) { const
 const lazy = new IntersectionObserver((entries) => {
   for (const e of entries) if (e.isIntersecting) { lazy.unobserve(e.target); e.target.dispatchEvent(new Event('lazyload')); }
 }, { rootMargin: '300px' });
+// Reels / Stories / TikTok UI overlay, in board pixels (see design-system.md § 9:16 safe zone)
+const SAFE = { top: 250, bottom: 480, right: 160 };
+const safeOn = () => { try { return localStorage.getItem('safeZones') === '1'; } catch { return false; } };
+function safeOverlay(w, h) {
+  const pct = (v, t) => (v / t * 100).toFixed(3) + '%';
+  return el('div', { class: 'safe' + (safeOn() ? ' on' : ''), 'aria-hidden': 'true' },
+    el('div', { class: 'band', style: `left:0;top:0;width:100%;height:${pct(SAFE.top, h)}` }, 'top ' + SAFE.top),
+    el('div', { class: 'band', style: `left:0;bottom:0;width:100%;height:${pct(SAFE.bottom, h)}` }, 'bottom ' + SAFE.bottom + ' · caption / CTA'),
+    el('div', { class: 'band', style: `right:0;top:${pct(SAFE.top, h)};width:${pct(SAFE.right, w)};height:${pct(h - SAFE.top - SAFE.bottom, h)}` }, 'right ' + SAFE.right));
+}
+function safeToggle() {
+  const b = el('button', { class: safeOn() ? 'on' : '', onclick: () => { try { localStorage.setItem('safeZones', safeOn() ? '0' : '1'); } catch {} document.querySelectorAll('.safe').forEach((x) => x.classList.toggle('on', safeOn())); b.classList.toggle('on', safeOn()); } }, 'Reels / TikTok safe zones');
+  return b;
+}
 function boardFrame(source, board, { lazyLoad = true } = {}) {
   const w = board?.w || 1080, h = board?.h || 1350;
   const box = el('div', { class: 'thumb', style: `aspect-ratio:${w}/${h}` }, el('div', { class: 'ph' }, 'preview'));
+  const overlay = h === 1920 ? safeOverlay(w, h) : null;
   const load = async () => {
     try {
       const html = await text(source);
       const f = el('iframe', { 'data-w': w, 'data-h': h, sandbox: 'allow-scripts allow-same-origin', loading: 'lazy', title: board?.label || source });
       f.srcdoc = previewDoc(html, dirOf(source), board?.label);
-      box.replaceChildren(f); fitFrame(f); sizer.observe(box);
+      box.replaceChildren(f); if (overlay) box.append(overlay); fitFrame(f); sizer.observe(box);
     } catch (e) { box.replaceChildren(el('div', { class: 'ph' }, 'preview failed')); }
   };
   if (lazyLoad) { box.addEventListener('lazyload', load); lazy.observe(box); } else load();
@@ -245,7 +260,7 @@ async function viewBundle(B, dir, q) {
   const board = b.boards[bi];
   const left = el('div', { style: 'flex:1 1 420px;min-width:0;max-width:640px' });
   if (b.source) {
-    if (b.boards.length > 1) left.append(el('div', { class: 'tabs' }, b.boards.map((x, i) => el('a', { href: `#/b/${B.slug}/bundle/${encodeURIComponent(dir)}?board=${i}` }, el('button', { class: i === bi ? 'on' : '' }, x.label)))));
+    left.append(el('div', { class: 'tabs' }, b.boards.length > 1 ? b.boards.map((x, i) => el('a', { href: `#/b/${B.slug}/bundle/${encodeURIComponent(dir)}?board=${i}` }, el('button', { class: i === bi ? 'on' : '' }, x.label))) : null, board?.h === 1920 ? safeToggle() : null));
     left.append(boardFrame(b.source, board, { lazyLoad: false }));
     left.append(el('p', { class: 'pathline', style: 'margin-top:8px' }, board ? `${board.label} · ${board.w}×${board.h}` : 'no data-screen-label — whole page', ' · ', el('a', { href: '/f/' + b.source, target: '_blank', rel: 'noopener' }, 'open source.html'), ' · ', el('a', { href: '#', onclick: (e) => { e.preventDefault(); navigator.clipboard?.writeText(exportCmd(b)); e.target.textContent = 'copied'; } }, 'copy export command')));
   } else left.append(el('div', { class: 'empty' }, 'No source.html — this bundle is a production brief (capture-based).'));
@@ -274,7 +289,7 @@ async function viewTemplate(B, path) {
   const t = B.postTypes.find((x) => x.templates.some((tp) => tp.path === path));
   const tp = t?.templates.find((x) => x.path === path);
   if (!tp) return setMain(el('div', { class: 'empty' }, 'Template not found'));
-  const left = el('div', { style: 'flex:1 1 420px;min-width:0;max-width:640px' }, el('div', { class: 'tabs' }, tp.boards.map((x, i) => el('button', { class: i === 0 ? 'on' : '', onclick: (e) => { left.querySelector('.thumb').replaceWith(boardFrame(path, x, { lazyLoad: false })); left.querySelectorAll('button').forEach((bt) => bt.classList.remove('on')); e.target.classList.add('on'); } }, x.label))), boardFrame(path, tp.boards[0], { lazyLoad: false }));
+  const left = el('div', { style: 'flex:1 1 420px;min-width:0;max-width:640px' }, el('div', { class: 'tabs' }, tp.boards.map((x, i) => el('button', { class: i === 0 ? 'on' : '', onclick: (e) => { left.querySelector('.thumb').replaceWith(boardFrame(path, x, { lazyLoad: false })); left.querySelectorAll('button').forEach((bt) => bt.classList.remove('on')); e.target.classList.add('on'); } }, x.label)), tp.boards.some((x) => x.h === 1920) ? safeToggle() : null), boardFrame(path, tp.boards[0], { lazyLoad: false }));
   const right = el('div', { style: 'flex:1 1 380px;min-width:0' }, el('h3', {}, 'spec.md'), t.spec ? docView(t.spec, await text(t.spec)) : el('div', { class: 'empty' }, 'No spec.md'), el('h3', {}, 'files'), el('div', { class: 'list' }, t.files.map((f) => el('a', { href: '/f/' + f, target: '_blank', rel: 'noopener' }, f.split('/').pop()))));
   setMain(crumbs(el('a', { href: '#/' }, 'Brands'), el('a', { href: `#/b/${B.slug}` }, B.name), el('a', { href: `#/b/${B.slug}/assets?f=templates` }, 'Templates'), t.name), el('h1', {}, t.title), el('p', { class: 'pathline' }, path), el('div', { class: 'row', style: 'margin-top:16px' }, left, right));
 }

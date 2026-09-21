@@ -1,7 +1,9 @@
 # Statement
 
 **Format:** 1080 × 1350 px (4:5) · 1 board · optional 9:16 story adapt
-(1080 × 1920) in the same `source.html`.
+(1080 × 1920) in the same `source.html`. The 9:16 board uses the safe-zone
+padding (top 270 · right 160 · bottom 480 · left 96) and 136 px display type
+— see `design-system.md` § 9:16 safe zone.
 **Export:** `npm run html:to-image -- source.html --all --out export/`
 
 ## Concept
@@ -16,7 +18,7 @@ text; organically it's a feed post whose caption carries the argument.
 ```
 │  EYEBROW · 30px · 0.18em · uppercase · --mute           (top)
 │
-│  Display sentence.▌          132px (4:5) / 148px (9:16), max 9–10ch,
+│  Display sentence.▌          132px (4:5) / 136px (9:16), max 9–10ch,
 │                              weight 500, tracking −0.035em, cursor optional
 │  Body line in --soft, 40/44px, max 24ch.
 │

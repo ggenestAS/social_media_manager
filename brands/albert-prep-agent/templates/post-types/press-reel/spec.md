@@ -13,12 +13,22 @@ in, word by word. An ink panel slams up from the bottom: two words that
 builds word by word and its last words turn accent blue, cursor blinking.
 The button pops, wordmark and trust line settle, fade to black.
 
+## Safe zone
+
+The reel is a Reels/Stories/TikTok placement: the top 250 px, bottom 480 px
+and right 160 px are covered by platform UI. The paper starts its text at
+y = 290 and keeps the headline above y = 1360 while it is full-height, the
+ink panel rises to y = 800 and pads 504 px at the bottom, all text ends at
+x ≤ 910 (the camera zoom scales edges outward by up to 5 %). Type is scaled to fit (hero × 0.86, right line × 0.85,
+compressed headline × 0.82). Check any frame with the safe-zones toggle in
+`npm run browse` (see `design-system.md` § 9:16 safe zone).
+
 ## Timeline (authored seconds, from `scenes` = [Headline, Right, Turn, CTA])
 
 | Scene | Default | What happens |
 |---|---|---|
 | Headline | 3.8 s | paper wipe 0.1→0.8 · masthead pops 0.45 · date 0.7 · headline words from 0.95, stagger 0.12 |
-| Right | 2.2 s | panel rises to mid-screen in 0.55 s · headline compresses to `headSizeSmall` · `right` pops at +0.45 |
+| Right | 2.2 s | panel rises to y = 800 in 0.55 s · headline compresses to 0.82 × `headSizeSmall` · `right` pops at +0.45 |
 | Turn | 3.8–4.0 s | `right` shrinks to a 28px uppercase kicker over 0.7 s · `kicker` enters at +0.5 · hero words from +0.9, stagger 0.14 · accent words from +2.8 · cursor blinks from +2.5 |
 | CTA | 3.2 s | hero lifts 40px · button pops at +0.15 · footer enters at +0.55 · fade to black over the last 0.4 s |
 

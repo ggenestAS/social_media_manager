@@ -6,6 +6,35 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-21 · DECISION — 9:16 safe zone applied to every vertical asset
+
+**Observed.** Reels, Stories and TikTok overlay their UI on the video: ~250 px
+on top (account, sound), ~480 px at the bottom (caption, CTA bar, progress),
+~160 px on the right (TikTok's button column). The imported reels put the
+wordmark, trust line and CTA 230 px from the bottom and the masthead 211 px
+from the top; the 9:16 statics sat at 120 / 300 px. All of it would be under
+the caption layer. Feed 4:5 and carousel placements have no overlay.
+
+**Decided.** One safe zone (top 250 · bottom 480 · right 160 · left 96)
+encoded in the design system and applied to all 9:16 boards: the four reels
+(panel now rises to y = 800, type scaled 0.82–0.86), the press-split 9:16 and
+the five statement 9:16 adapts. The design source fixed the reels and the one
+split 9:16; **the statement 9:16 boards are fixed in the repo only** — the
+design's `Ad 1–5 · 9:16` still use the old geometry. The brand browser has a
+safe-zones toggle on every 9:16 preview (same red bands as the design's
+Tweaks toggle) — check any frame against it before export.
+Two gaps in the design's own revision, compensated in the port: during the
+headline scene the paper is full-height and the headline built inside the
+caption band (bottom padding now animates 560 → 80 with the panel rise), and
+the ×1.05 camera zoom pushed the masthead/date a few pixels into the top and
+right bands (paper margins 290 / 185, panel right 170).
+
+**Would change our mind.** Measured overlay sizes differ per app version and
+device; if a QA screenshot on a real phone shows text under the caption, widen
+the zone in `design-system.md` and regenerate — never per asset.
+
+---
+
 ## 2026-09-20 · LAUNCH — brand imported from Claude Design; first Meta campaign + first organic bundles staged
 
 **Observed.** The Claude Design project (*Meta Campaign Concept*, *Meta Ad

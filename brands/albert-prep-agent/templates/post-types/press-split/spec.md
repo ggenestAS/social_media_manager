@@ -1,7 +1,9 @@
 # Press split
 
 **Format:** 1080 × 1350 px (4:5) · 1 board · optional 9:16 adapt in the same
-file (paper gets 220px top padding, ink 300px bottom to clear Reels UI).
+file. The 9:16 board follows the safe zone: paper padding 290 / 160 / 96 / 96,
+ink padding 80 / 160 / 480 / 96, reply 84 px (see `design-system.md`
+§ 9:16 safe zone).
 **Export:** `npm run html:to-image -- source.html --all --out export/`
 
 ## Concept
@@ -20,7 +22,7 @@ material contrast is the argument: they say, we do.
 │ Headline — Georgia 700, 58–66px, −0.025em, 1.08    │
 ├ INK (flex:1) ───────────────────────────────────────┤
 │ KICKER · 28px · 0.18em · uppercase · --mute         │
-│ Reply — Helvetica 500, 82px (92px story), 1.0       │
+│ Reply — Helvetica 500, 82px (84px story), 1.0       │
 │ Why line — 34px --soft, max 28ch (optional)         │
 │                                                     │
 │ ⠿ Albert Prep              Free · early access …    │

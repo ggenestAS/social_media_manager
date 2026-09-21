@@ -1,7 +1,8 @@
 /**
  * Press reel timeline — inlined by every press-reel source.html.
  *
- * Port of the Claude Design composition (meta-reel-1.jsx on animations-v3) to
+ * Port of the Claude Design composition (meta-reel-1.jsx on animations-v3, safe-zone
+ * revision: SAFE = top 250 / bottom 480 / right 160, panel at y=800) to
  * CSS keyframes so the repo's exporter can seek the timeline frame by frame.
  * Every animation shares one duration (the authored loop) and encodes its
  * timing as keyframe percentages; the exporter sets `currentTime` on each.
@@ -20,6 +21,7 @@
     step: 'step-end',
   };
   const H = 1920;
+  const PANEL_Y = 800; // ink panel top once risen — keeps the hero + CTA above the 480px caption layer
   const FOG = '#e6e8ec';
   const MUTE = '#8b919a';
 
@@ -121,7 +123,7 @@
     q('.kicker-txt').textContent = R.kicker;
     q('.cta-txt').textContent = R.cta;
     q('.trust').textContent = R.foot;
-    q('.hero').style.fontSize = R.heroSize + 'px';
+    q('.hero').style.fontSize = Math.round(R.heroSize * 0.86) + 'px';
 
     // ── Choreography (authored seconds) ──────────────────────────────────
     const zoom = q('.zoom');
@@ -141,11 +143,13 @@
         [0.8, 'clip-path:inset(0 0 0% 0)'],
         [TOTAL, 'clip-path:inset(0 0 0% 0)'],
       ]),
+      // height follows the panel; bottom padding shrinks with it so the headline stays
+      // above the 480px caption band while the paper is full-height (SAFE.bottom + 80)
       kf('paperH', [
-        [0, `height:${H}px`],
-        [RIGHT, `height:${H}px`, 'outExpo'],
-        [RIGHT + 0.55, `height:${H / 2}px`],
-        [TOTAL, `height:${H / 2}px`],
+        [0, `height:${H}px;padding-bottom:560px`],
+        [RIGHT, `height:${H}px;padding-bottom:560px`, 'outExpo'],
+        [RIGHT + 0.55, `height:${PANEL_Y}px;padding-bottom:80px`],
+        [TOTAL, `height:${PANEL_Y}px;padding-bottom:80px`],
       ])
     );
     set(q('.mast, .mast-logo'), pop(0.45, 0.7));
@@ -156,25 +160,26 @@
     set(headline, kf('hsize', [
       [0, `font-size:${R.headSize}px`],
       [RIGHT, `font-size:${R.headSize}px`, 'outExpo'],
-      [RIGHT + 0.55, `font-size:${R.headSizeSmall}px`],
-      [TOTAL, `font-size:${R.headSizeSmall}px`],
+      [RIGHT + 0.55, `font-size:${Math.round(R.headSizeSmall * 0.82)}px`],
+      [TOTAL, `font-size:${Math.round(R.headSizeSmall * 0.82)}px`],
     ]));
 
     set(q('.panel'), kf('panel', [
       [0, `top:${H}px`],
       [RIGHT, `top:${H}px`, 'outExpo'],
-      [RIGHT + 0.55, `top:${H / 2}px`],
-      [TOTAL, `top:${H / 2}px`],
+      [RIGHT + 0.55, `top:${PANEL_Y}px`],
+      [TOTAL, `top:${PANEL_Y}px`],
     ]));
 
     // "They're right." — big at Right, shrinks to a kicker at Turn
+    const rightPx = Math.round(R.rightSize * 0.85);
     set(q('.right-line'), kf('shrink', [
-      [0, `font-size:${R.rightSize}px;letter-spacing:-0.035em;color:${FOG};text-transform:none`],
-      [TURN, `font-size:${R.rightSize}px;letter-spacing:-0.035em;color:${FOG};text-transform:none`, 'inOutCubic'],
+      [0, `font-size:${rightPx}px;letter-spacing:-0.035em;color:${FOG};text-transform:none`],
+      [TURN, `font-size:${rightPx}px;letter-spacing:-0.035em;color:${FOG};text-transform:none`, 'inOutCubic'],
       [TURN + 0.3, `color:${FOG};text-transform:none`, 'linear'],
       [TURN + 0.4, `color:${MUTE};text-transform:uppercase`, 'linear'],
-      [TURN + 0.7, `font-size:28px;letter-spacing:0.18em;color:${MUTE};text-transform:uppercase`],
-      [TOTAL, `font-size:28px;letter-spacing:0.18em;color:${MUTE};text-transform:uppercase`],
+      [TURN + 0.7, `font-size:26px;letter-spacing:0.18em;color:${MUTE};text-transform:uppercase`],
+      [TOTAL, `font-size:26px;letter-spacing:0.18em;color:${MUTE};text-transform:uppercase`],
     ]));
     set(q('.right'), pop(RIGHT + 0.45, 0.6));
     set(q('.kicker-txt'), enter(TURN + 0.5, 0.5));
@@ -185,8 +190,8 @@
     set(q('.hero'), kf('lift', [
       [0, 'transform:translateY(0)'],
       [CTA, 'transform:translateY(0)', 'outCubic'],
-      [CTA + 0.6, 'transform:translateY(-40px)'],
-      [TOTAL, 'transform:translateY(-40px)'],
+      [CTA + 0.6, 'transform:translateY(-12px)'],
+      [TOTAL, 'transform:translateY(-12px)'],
     ]));
     const cursor = q('.hero .cursor');
     cursor.style.background = R.accent;

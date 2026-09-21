@@ -93,6 +93,12 @@ for d in brands/albert-prep-agent/output/paid/campaigns/2026-09-20-meta-launch/c
 
 ## 6. Formats & placements (deck §05)
 
+All 9:16 assets (reels, story adapts) respect the Reels/Stories/TikTok safe
+zone — top 250 · bottom 480 · right 160 px — so nothing sits under the caption,
+CTA bar or button column. Feed 4:5 and the carousel have no overlay. Verify
+any frame with the safe-zones toggle in `npm run browse` (LOG 2026-09-21).
+
+
 Every direction gets a 4:5 and a 9:16 so Advantage+ can serve everywhere;
 carousel is feed-only. Reels: the MP4 also serves as Story (same file).
 
