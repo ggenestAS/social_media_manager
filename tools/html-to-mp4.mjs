@@ -71,7 +71,7 @@ function usage() {
     '--out <dir>                 Output directory (default: <html-dir>/output)',
     '--aspect <ratio>            Filter screens (default: 9:16)',
     '--fps <n>                   Frame rate (default: 30)',
-    '--speed <n>                 Playback speed multiplier (default: 1.5)',
+    '--speed <n>                 Playback speed multiplier (default: 1.5; auto from data-speed)',
     '--loop-ms <ms>              CSS animation loop length (default: 8500; auto from data-loop-ms)',
     '--cta-ms <ms>               Timeline point for CTA preview/hold (default: 7750; auto from data-cta-ms)',
     '--cta-hold-ms <ms>          Frozen CTA duration at 1× (default: 2000)',
@@ -117,6 +117,7 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
     const ctaMs = parseInt(screen.dataset.ctaMs, 10);
     const coverMs = parseInt(screen.dataset.coverMs, 10);
     const timerSec = parseInt(screen.dataset.timerSec, 10);
+    const speed = parseFloat(screen.dataset.speed);
     let audioCues = null;
     try { audioCues = JSON.parse(screen.dataset.audioCues || 'null'); } catch (e) { audioCues = null; }
     return {
@@ -124,6 +125,7 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
       ctaMs: Number.isFinite(ctaMs) && ctaMs > 0 ? ctaMs : null,
       coverMs: Number.isFinite(coverMs) && coverMs > 0 ? coverMs : null,
       timerSec: Number.isFinite(timerSec) && timerSec > 0 ? timerSec : null,
+      speed: Number.isFinite(speed) && speed > 0 ? speed : null,
       audioCues: Array.isArray(audioCues) ? audioCues : null,
     };
   }, screenLabel);
@@ -132,6 +134,8 @@ async function recordScreen(browser, htmlFile, screenLabel, slug, outputDir, cfg
   if (screenTiming?.ctaMs) cfg.ctaMs = screenTiming.ctaMs;
   if (screenTiming?.coverMs) cfg.coverMs = screenTiming.coverMs;
   else cfg.coverMs = 2500;
+  // Authored-pace reels declare data-speed; an explicit --speed still wins.
+  if (screenTiming?.speed && globalOptions.speed == null) cfg.speed = screenTiming.speed;
 
   await prepareAnimationCapture(page);
 
