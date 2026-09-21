@@ -120,10 +120,17 @@ function safeToggle() {
   const b = el('button', { class: safeOn() ? 'on' : '', onclick: () => { try { localStorage.setItem('safeZones', safeOn() ? '0' : '1'); } catch {} document.querySelectorAll('.safe').forEach((x) => x.classList.toggle('on', safeOn())); b.classList.toggle('on', safeOn()); } }, 'Reels / TikTok safe zones');
   return b;
 }
+// Facebook page cover: mobile shows the centre 1640×498, trimming 63px top and bottom
+function coverOverlay(w, h) {
+  const pct = (v) => (v / h * 100).toFixed(3) + '%';
+  return el('div', { class: 'safe' + (safeOn() ? ' on' : ''), 'aria-hidden': 'true' },
+    el('div', { class: 'band', style: `left:0;top:0;width:100%;height:${pct(63)}` }, 'mobile crop'),
+    el('div', { class: 'band', style: `left:0;bottom:0;width:100%;height:${pct(63)}` }, 'mobile crop'));
+}
 function boardFrame(source, board, { lazyLoad = true } = {}) {
   const w = board?.w || 1080, h = board?.h || 1350;
   const box = el('div', { class: 'thumb', style: `aspect-ratio:${w}/${h}` }, el('div', { class: 'ph' }, 'preview'));
-  const overlay = h === 1920 ? safeOverlay(w, h) : null;
+  const overlay = h === 1920 ? safeOverlay(w, h) : (w === 1640 && h === 624 ? coverOverlay(w, h) : null);
   const load = async () => {
     try {
       const html = await text(source);
@@ -163,6 +170,7 @@ function allBundles(B) {
   const out = [...B.organic.posts];
   for (const e of B.organic.experiments) out.push(...e.drafts.map((d) => ({ ...d, experiment: e.slug })));
   for (const c of B.paid.campaigns) out.push(...c.bundles.map((d) => ({ ...d, campaign: c.slug })));
+  out.push(...(B.assetKits || []));
   return out;
 }
 const setMain = (...kids) => { const m = $('#main'); m.replaceChildren(...kids); m.scrollTop = 0; window.scrollTo(0, 0); };
@@ -237,7 +245,10 @@ async function viewAssets(B, q) {
     parts.push(head, bs.length ? el('div', { class: 'grid' }, bs.map((b) => bundleCard(B.slug, b))) : el('div', { class: 'empty' }, 'No renderable bundles in this campaign — see its docs and media.'));
   }
   if (filter === 'all' || filter === 'templates') parts.push(section(`Post-type templates · ${B.postTypes.length}`, B.postTypes.filter((t) => !search || t.name.includes(search)).flatMap((t) => t.templates.map((tp) => el('a', { class: 'card', href: `#/b/${B.slug}/template/${encodeURIComponent(tp.path)}` }, boardFrame(tp.path, tp.boards[0]), el('div', { class: 'meta' }, el('div', { class: 'title' }, t.title), el('div', { class: 'badges' }, el('span', { class: 'badge' }, t.name), el('span', { class: 'badge' }, tp.path.split('/').pop()), el('span', { class: 'badge' }, `${tp.boards.length} boards`))))))));
-  if (filter === 'all' || filter === 'brand') parts.push(B.assets.length ? el('div', {}, el('h2', {}, `Brand assets · ${B.assets.length}`), gallery(B.assets.map((a) => a.path))) : null);
+  if (filter === 'all' || filter === 'brand') {
+    if (B.assetKits?.length) parts.push(section(`Asset kits · ${B.assetKits.length}`, B.assetKits.filter(match).map((b) => bundleCard(B.slug, b)), 'Renderable kits under assets/ (profile pictures, covers, highlight covers).'));
+    parts.push(B.assets.length ? el('div', {}, el('h2', {}, `Brand assets · ${B.assets.length}`), gallery(B.assets.map((a) => a.path))) : null);
+  }
   if (filter === 'all' || filter === 'media') for (const c of B.paid.campaigns) {
     const m = c.media.filter((x) => !search || (c.slug + ' ' + x.path).toLowerCase().includes(search));
     if (m.length) parts.push(el('div', {}, el('h2', {}, `Campaign media · ${c.slug}`), gallery(m.map((x) => x.path))));
@@ -260,7 +271,7 @@ async function viewBundle(B, dir, q) {
   const board = b.boards[bi];
   const left = el('div', { style: 'flex:1 1 420px;min-width:0;max-width:640px' });
   if (b.source) {
-    left.append(el('div', { class: 'tabs' }, b.boards.length > 1 ? b.boards.map((x, i) => el('a', { href: `#/b/${B.slug}/bundle/${encodeURIComponent(dir)}?board=${i}` }, el('button', { class: i === bi ? 'on' : '' }, x.label))) : null, board?.h === 1920 ? safeToggle() : null));
+    left.append(el('div', { class: 'tabs' }, b.boards.length > 1 ? b.boards.map((x, i) => el('a', { href: `#/b/${B.slug}/bundle/${encodeURIComponent(dir)}?board=${i}` }, el('button', { class: i === bi ? 'on' : '' }, x.label))) : null, (board?.h === 1920 || (board?.w === 1640 && board?.h === 624)) ? safeToggle() : null));
     left.append(boardFrame(b.source, board, { lazyLoad: false }));
     left.append(el('p', { class: 'pathline', style: 'margin-top:8px' }, board ? `${board.label} · ${board.w}×${board.h}` : 'no data-screen-label — whole page', ' · ', el('a', { href: '/f/' + b.source, target: '_blank', rel: 'noopener' }, 'open source.html'), ' · ', el('a', { href: '#', onclick: (e) => { e.preventDefault(); navigator.clipboard?.writeText(exportCmd(b)); e.target.textContent = 'copied'; } }, 'copy export command')));
   } else left.append(el('div', { class: 'empty' }, 'No source.html — this bundle is a production brief (capture-based).'));

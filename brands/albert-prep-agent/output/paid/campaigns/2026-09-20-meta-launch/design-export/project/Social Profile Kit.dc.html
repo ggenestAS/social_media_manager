@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><style>html,body{margin:0;background:#1a1c1f;color:#e6e8ec;font-family:Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:#e6e8ec;text-decoration:none}a:hover{color:#fff}h1,h2,p{margin:0}</style></helmet>
+<div style="padding:64px;display:flex;flex-direction:column;gap:96px;font-family:Helvetica,Arial,sans-serif;width:max-content;min-width:100%;box-sizing:border-box">
+
+<section data-screen-label="Profile pictures" style="display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;gap:20px;align-items:baseline;font-size:20px;color:#8b919a"><span style="font-size:28px;color:#e6e8ec;font-weight:600">01</span><span>Profile pictures · 1080×1080, shown in the circle crop · same file on FB, IG, TikTok · D selected · logo stays dots, the account gets a face</span></div>
+  <div style="display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center">
+      <div data-screen-label="PFP · dots" style="flex:none;width:1080px;height:1080px;border-radius:50%;background:#090a0b;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <span style="display:inline-grid;grid-template-columns:repeat(3,120px);gap:84px"><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span><span style="width:120px;height:120px;background:#e6e8ec;border-radius:50%"></span></span>
+      </div>
+      <span style="font-size:22px;color:#5c6169">A · Dot grid</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center">
+      <div data-screen-label="PFP · monogram" style="flex:none;width:1080px;height:1080px;border-radius:50%;background:#090a0b;color:#e6e8ec;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <span style="font-size:620px;font-weight:500;letter-spacing:-0.06em;line-height:1;display:flex;align-items:baseline">A<span style="display:inline-block;width:34px;height:0.78em;margin-left:0.04em;background:hsl(210,60%,72%)"></span></span>
+      </div>
+      <span style="font-size:22px;color:#5c6169">B · Monogram with cursor</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center">
+      <div data-screen-label="PFP · inverted" style="flex:none;width:1080px;height:1080px;border-radius:50%;background:#e6e8ec;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <span style="display:inline-grid;grid-template-columns:repeat(3,120px);gap:84px"><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span><span style="width:120px;height:120px;background:#090a0b;border-radius:50%"></span></span>
+      </div>
+      <span style="font-size:22px;color:#5c6169">C · Inverted (stands out on dark-mode feeds)</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center">
+      <div data-screen-label="PFP · mascot" style="flex:none;width:1080px;height:1080px;border-radius:50%;background:#090a0b;outline:6px solid hsl(210,60%,72%);outline-offset:24px;display:flex;align-items:center;justify-content:center;overflow:hidden"><svg width="760" height="760" viewBox="0 0 120 120"><g fill="rgba(255,255,255,0.2)"><circle cx="30" cy="30" r="6"></circle><circle cx="50" cy="30" r="6"></circle><circle cx="70" cy="30" r="6"></circle><circle cx="90" cy="30" r="6"></circle><circle cx="30" cy="50" r="6"></circle><circle cx="90" cy="50" r="6"></circle><circle cx="30" cy="70" r="6"></circle><circle cx="50" cy="70" r="6"></circle><circle cx="70" cy="70" r="6"></circle><circle cx="90" cy="70" r="6"></circle><circle cx="30" cy="90" r="6"></circle><circle cx="50" cy="90" r="6"></circle><circle cx="70" cy="90" r="6"></circle><circle cx="90" cy="90" r="6"></circle></g><circle cx="50" cy="50" r="8" fill="#e6e8ec"></circle><circle cx="70" cy="50" r="8" fill="#e6e8ec"></circle><circle cx="52" cy="49" r="3.2" fill="#090a0b"></circle><circle cx="72" cy="49" r="3.2" fill="#090a0b"></circle></svg></div>
+      <span style="display:flex;align-items:center;gap:14px;font-size:22px;color:#e6e8ec"><span style="padding:6px 14px;border-radius:999px;background:hsl(210,60%,72%);color:#090a0b;font-size:16px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase">Selected</span>D · Albert, the mascot — exported at 1080×1080</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center">
+      <div data-screen-label="PFP · mascot happy" style="flex:none;width:1080px;height:1080px;border-radius:50%;background:#090a0b;display:flex;align-items:center;justify-content:center;overflow:hidden"><svg width="760" height="760" viewBox="0 0 120 120"><g fill="rgba(255,255,255,0.2)"><circle cx="30" cy="30" r="6"></circle><circle cx="50" cy="30" r="6"></circle><circle cx="70" cy="30" r="6"></circle><circle cx="90" cy="30" r="6"></circle><circle cx="30" cy="50" r="6"></circle><circle cx="90" cy="50" r="6"></circle><circle cx="30" cy="70" r="6"></circle><circle cx="90" cy="70" r="6"></circle><circle cx="30" cy="90" r="6"></circle><circle cx="50" cy="90" r="6"></circle><circle cx="70" cy="90" r="6"></circle><circle cx="90" cy="90" r="6"></circle></g><path d="M44 50 Q50 44 56 50" stroke="#e6e8ec" stroke-width="4" fill="none" stroke-linecap="round"></path><path d="M64 50 Q70 44 76 50" stroke="#e6e8ec" stroke-width="4" fill="none" stroke-linecap="round"></path><circle cx="50" cy="70" r="6" fill="hsl(210,60%,72%)"></circle><circle cx="70" cy="70" r="6" fill="hsl(210,60%,72%)"></circle></svg></div>
+      <span style="font-size:22px;color:#5c6169">E · Albert, happy (for launch day / milestone posts)</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Facebook cover" style="display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;gap:20px;align-items:baseline;font-size:20px;color:#8b919a"><span style="font-size:28px;color:#e6e8ec;font-weight:600">02</span><span>Facebook page cover · 1640×624 · mobile crops to the centre 1640×498 (dashed) · text stays inside it</span></div>
+  <div style="display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start">
+    <div data-screen-label="FB cover · EN" style="flex:none;position:relative;width:1640px;height:624px;background:#090a0b;color:#e6e8ec;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 120px;box-sizing:border-box">
+      <div style="position:absolute;left:0;right:0;top:63px;height:498px;border-top:1px dashed rgba(255,255,255,0.18);border-bottom:1px dashed rgba(255,255,255,0.18);pointer-events:none"></div>
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="font-size:24px;letter-spacing:0.18em;text-transform:uppercase;color:#8b919a">The exam agent</div>
+        <h1 style="font-size:108px;font-weight:500;letter-spacing:-0.035em;line-height:0.98">Walk in ready.<span style="display:inline-block;width:7px;height:0.82em;margin-left:0.06em;vertical-align:-0.08em;background:hsl(210,60%,72%)"></span></h1>
+        <p style="font-size:30px;color:#a2a8b1;line-height:1.35">Tell it your exam. It plans backwards from the date and trains you daily.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:20px">
+        <span style="padding:22px 40px;border-radius:14px;background:#e6e8ec;color:#090a0b;font-size:30px;font-weight:600">Free early access</span>
+        <span style="font-size:24px;color:#8b919a">albert-prep.vercel.app</span>
+      </div>
+    </div>
+    <div data-screen-label="FB cover · FR" style="flex:none;position:relative;width:1640px;height:624px;background:#090a0b;color:#e6e8ec;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 120px;box-sizing:border-box">
+      <div style="position:absolute;left:0;right:0;top:63px;height:498px;border-top:1px dashed rgba(255,255,255,0.18);border-bottom:1px dashed rgba(255,255,255,0.18);pointer-events:none"></div>
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="font-size:24px;letter-spacing:0.18em;text-transform:uppercase;color:#8b919a">L’agent qui te prépare aux examens</div>
+        <h1 style="font-size:108px;font-weight:500;letter-spacing:-0.035em;line-height:0.98">Arrive prêt.<span style="display:inline-block;width:7px;height:0.82em;margin-left:0.06em;vertical-align:-0.08em;background:hsl(210,60%,72%)"></span></h1>
+        <p style="font-size:30px;color:#a2a8b1;line-height:1.35">Dis-lui ton examen. Il planifie à rebours du jour J et t’entraîne chaque jour.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:20px">
+        <span style="padding:22px 40px;border-radius:14px;background:#e6e8ec;color:#090a0b;font-size:30px;font-weight:600">Accès anticipé gratuit</span>
+        <span style="font-size:24px;color:#8b919a">albert-prep.vercel.app</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Story highlight covers" style="display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;gap:20px;align-items:baseline;font-size:20px;color:#8b919a"><span style="font-size:28px;color:#e6e8ec;font-weight:600">03</span><span>Instagram highlight covers · 1080×1080 (shown in circle) · TikTok has no banner, so these carry the profile</span></div>
+  <div style="display:flex;gap:48px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center"><div data-screen-label="Highlight · How it works" style="flex:none;width:400px;height:400px;border-radius:50%;background:#090a0b;color:#e6e8ec;display:flex;align-items:center;justify-content:center"><span style="display:inline-grid;grid-template-columns:repeat(9,10px);gap:8px"><span style="height:10px;border-radius:5px;background:hsl(210,60%,72%)"></span><span style="height:10px;border-radius:5px;background:hsl(210,60%,72%)"></span><span style="height:10px;border-radius:5px;background:hsl(210,60%,72%)"></span><span style="height:10px;border-radius:5px;background:rgba(255,255,255,0.35)"></span><span style="height:10px;border-radius:5px;background:rgba(255,255,255,0.35)"></span><span style="height:10px;border-radius:5px;background:rgba(255,255,255,0.35)"></span><span style="height:10px;border-radius:5px;background:rgba(255,255,255,0.35)"></span><span style="height:10px;border-radius:5px;background:rgba(255,255,255,0.18)"></span><span style="height:10px;border-radius:5px;background:rgba(255,255,255,0.18)"></span></span></div><span style="font-size:22px;color:#8b919a">How it works</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center"><div data-screen-label="Highlight · Daily" style="flex:none;width:400px;height:400px;border-radius:50%;background:#090a0b;color:#e6e8ec;display:flex;align-items:center;justify-content:center;font-size:120px;font-weight:500;letter-spacing:-0.04em">15<span style="font-size:48px;color:#8b919a;margin-left:6px">min</span></div><span style="font-size:22px;color:#8b919a">Daily</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center"><div data-screen-label="Highlight · In the press" style="flex:none;width:400px;height:400px;border-radius:50%;background:#f4f2ec;color:#111;display:flex;align-items:center;justify-content:center;font-family:Georgia,'Times New Roman',serif;font-size:150px;font-weight:700;letter-spacing:-0.04em">Aa</div><span style="font-size:22px;color:#8b919a">In the press</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center"><div data-screen-label="Highlight · Students" style="flex:none;width:400px;height:400px;border-radius:50%;background:#090a0b;color:#e6e8ec;display:flex;align-items:center;justify-content:center;font-size:84px;font-weight:500;letter-spacing:-0.04em">“ ”</div><span style="font-size:22px;color:#8b919a">Students</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center"><div data-screen-label="Highlight · Early access" style="flex:none;width:400px;height:400px;border-radius:50%;background:#090a0b;display:flex;align-items:center;justify-content:center"><span style="display:inline-block;width:14px;height:150px;background:hsl(210,60%,72%)"></span></div><span style="font-size:22px;color:#8b919a">Early access</span></div>
+  </div>
+</section>
+
+<section data-screen-label="Bios" style="display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;gap:20px;align-items:baseline;font-size:20px;color:#8b919a"><span style="font-size:28px;color:#e6e8ec;font-weight:600">04</span><span>Bios and descriptions · character-counted per platform · EN first, FR below</span></div>
+  <div style="display:grid;grid-template-columns:repeat(3,600px);gap:40px">
+    <div style="background:#111316;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;justify-content:space-between;font-size:22px;letter-spacing:0.14em;text-transform:uppercase;color:#8b919a"><span>Instagram</span><span>150 chars</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Name field</span><p style="font-size:28px;font-weight:600">Albert Prep · Exam Agent</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Bio · EN</span><p style="font-size:26px;line-height:1.45">The AI that trains you, not the one that answers for you.<br>Tell it your exam → daily plan until the door.<br>Free early access ↓</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Bio · FR</span><p style="font-size:26px;line-height:1.45">L’IA qui t’entraîne, pas celle qui répond à ta place.<br>Ton examen → un plan, chaque jour, jusqu’au jour J.<br>Accès anticipé gratuit ↓</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Link</span><p style="font-size:24px;color:#a2a8b1">albert-prep.vercel.app · Category: Education</p></div>
+    </div>
+    <div style="background:#111316;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;justify-content:space-between;font-size:22px;letter-spacing:0.14em;text-transform:uppercase;color:#8b919a"><span>TikTok</span><span>80 chars</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Name field</span><p style="font-size:28px;font-weight:600">Albert Prep</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Bio · EN</span><p style="font-size:26px;line-height:1.45">On exam day you’re the only model in the room. We train that one. Free ↓</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Bio · FR</span><p style="font-size:26px;line-height:1.45">Le jour J, tu es le seul modèle dans la salle. On t’entraîne. Gratuit ↓</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Link</span><p style="font-size:24px;color:#a2a8b1">albert-prep.vercel.app · needs Business account or 1k followers</p></div>
+    </div>
+    <div style="background:#111316;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;justify-content:space-between;font-size:22px;letter-spacing:0.14em;text-transform:uppercase;color:#8b919a"><span>Facebook page</span><span>Intro 101 · About 255</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Intro · EN</span><p style="font-size:26px;line-height:1.45">The exam agent. Tell it your exam — it plans backwards from the date and trains you daily. Free.</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">About · EN</span><p style="font-size:24px;line-height:1.45;color:#a2a8b1">Every AI you use does the remembering for you. Albert Prep is the one that gets it into your head: a week-by-week plan built backwards from your exam date, short daily sessions, and feedback on the mistake behind the mistake. Free during early access.</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Intro · FR</span><p style="font-size:26px;line-height:1.45">L’agent qui te prépare aux examens. Ton examen, ta date — un plan et un entraînement quotidien. Gratuit.</p></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:22px;color:#8b919a">Category · CTA</span><p style="font-size:24px;color:#a2a8b1">Education · Button: Sign up → albert-prep.vercel.app</p></div>
+    </div>
+  </div>
+</section>
+
+</div>
+</x-dc>
+</body>
+</html>

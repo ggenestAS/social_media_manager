@@ -18,9 +18,13 @@ slug stays `albert-prep-agent` (paths, PR, docs already reference it).
 
 **Consequences.** Blocker 1 (naming/handles) and 5 (accounts) from the
 2026-09-20 entry are closed. The accounts still carry the mental-math profile
-photo, cover and bio, and a feed of 40+ mental-math posts — the new
-profile/cover assets come from Claude Design (pending); the bio, link and
-pinned posts must be switched by hand before the first organic post here.
+photo, cover and bio, and a feed of 40+ mental-math posts. The new profile
+kit landed the same day from Claude Design (*Social Profile Kit*):
+[`assets/profile-kit/`](assets/profile-kit/) — mascot profile picture (D),
+FB covers EN/FR, five highlight covers, bios per platform with character
+counts (FB intro FR is over the limit as designed; trimmed variant provided).
+The switch-over itself is manual — checklist in
+[`assets/README.md`](assets/README.md).
 Followers were acquired on mental-math content: expect a drop and a noisy
 first read on organic reach; do not treat early organic numbers as a signal.
 

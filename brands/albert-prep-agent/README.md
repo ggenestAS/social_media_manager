@@ -29,7 +29,7 @@ Read in order:
 
 | Path | What |
 |---|---|
-| `brand.md` · `context/` · `channels.json` · `assets/` | Identity, product facts, channel aliases (the converted albert.prep accounts), wordmark SVG |
+| `brand.md` · `context/` · `channels.json` · `assets/` | Identity, product facts, channel aliases (the converted albert.prep accounts), wordmark SVG, [profile kit](assets/README.md) |
 | `templates/design-system.md` | Palette, type, shared CSS, signatures, artboard conventions |
 | `templates/content-guide.md` | Handle/CTA/hashtag rules, hooks, copy bank pointers |
 | `templates/post-types/<type>/{spec.md, template.html}` | The organic menu; `press-reel/reel-timeline.js` is the animation engine inlined by reel bundles |
@@ -52,8 +52,8 @@ Read in order:
 - **Paid:** upload manually via Meta Ads Manager — no ad account is wired to
   this repo. Copy, URLs and checklist are in the campaign's `campaign.md`.
 - **Postiz:** `BRAND=albert-prep-agent npm run social:resolve` → the converted
-  accounts (profile/cover assets for the new identity are pending from Claude
-  Design; see LOG 2026-09-21).
+  accounts. Profile picture, covers, highlight covers and bios for the
+  switch-over: [`assets/README.md`](assets/README.md).
 
 Per-post state (status, schedule, Postiz id) lives in each bundle's `post.md`
 frontmatter, never in folder names.
