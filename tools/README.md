@@ -55,6 +55,26 @@ Outputs per screen:
 - `cover-<slug>-1x1.png` — center square crop for IG grid QA
 - `preview-<slug>.png` — same frame as cover
 
+### Sound
+
+Two audio paths, both automatic from attributes on the screen element:
+
+- **Sample cues** — `data-audio-cues='[{"at":3.8,"sample":"slam","gain":1}, …]'`
+  (animation seconds) plus optional `data-audio-bed="pink:0.035"`. Each cue
+  drops `brands/<brand>/assets/audio/<sample>.wav` (or .ogg/.mp3) at
+  `coverHold + at / speed`, over a generated band-passed noise bed, then
+  a −6 dBFS pre-limiter, then two-pass `loudnorm` (measure, linear gain, LRA 20) to −14 LUFS integrated with a −1.5 dBTP ceiling, AAC 192 kbps 48 kHz stereo.
+  The brand folder is found by walking up from the HTML file; `--samples <dir>`
+  overrides it. Used by `albert-prep-agent`'s press reels (cues emitted by its
+  `reel-timeline.js`; sources and licences in that brand's
+  `assets/audio/SOURCES.md`).
+- **Legacy countdown** — `data-timer-sec` (ticks + reveal chime) and
+  `--audio ticks|cues` with `{at, freq, dur}` sine beeps, used by `albert-prep`.
+
+`--no-sfx` skips all of it. ffmpeg must have `libx264`, `aac`, `amix`,
+`adelay`, `loudnorm` and `anoisesrc` (any distro or static build does;
+Playwright's bundled ffmpeg does not).
+
 Per-screen timing hints are read from the screen element when the matching flag
 is omitted: `data-loop-ms`, `data-cta-ms`, `data-cover-ms`, `data-timer-sec`
 (SFX), and `data-speed` (authored-pace reels such as `press-reel` set

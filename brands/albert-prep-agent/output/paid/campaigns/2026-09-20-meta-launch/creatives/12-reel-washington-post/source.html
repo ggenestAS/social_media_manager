@@ -437,6 +437,26 @@ h1, h2, h3, p { margin:0; }
       [TOTAL, 'opacity:1'],
     ]));
 
+    // ── Sound design cues (authored seconds) — mixed by tools/html-to-mp4.mjs ──
+    // Samples live in brands/<brand>/assets/audio/<sample>.wav (see assets/audio/SOURCES.md).
+    // Every beat of the choreography gets one hit; the bed is generated (pink room tone).
+    if (R.audio !== false) {
+      const cues = [];
+      const cue = (at, sample, gain = 1) => cues.push({ at: +at.toFixed(3), sample, gain });
+      cue(0.1, 'paper-slide', 0.8);                                  // paper wipes down
+      cue(0.45, 'click-soft', 0.5);                                  // masthead pops
+      R.headline.split(' ').forEach((_, i) => cue(0.95 + i * 0.12, `key-${(i % 3) + 1}`, 0.7)); // headline types
+      cue(RIGHT, 'slam', 1);                                         // ink panel slams up
+      cue(RIGHT + 0.45, 'pop', 0.8);                                 // the reply punches in
+      cue(TURN + 0.5, 'click-soft', 0.5);                            // kicker enters
+      R.hero.split(' ').forEach((_, i) => cue(heroStart + i * 0.14, 'key-soft', 0.55)); // hero line builds
+      cue(heroStart + 1.9, 'chime', 0.7);                            // accent words turn blue
+      cue(CTA + 0.15, 'pop', 0.9);                                   // button pops
+      cue(CTA + 0.55, 'click-soft', 0.4);                            // footer settles
+      reel.dataset.audioCues = JSON.stringify(cues);
+      reel.dataset.audioBed = R.bed || 'pink:0.035';                 // type:volume — the low room tone under everything
+    }
+
     // ── Export hints for tools/html-to-mp4.mjs ───────────────────────────
     reel.dataset.loopMs = String(Math.round(TOTAL * 1000));
     reel.dataset.ctaMs = String(Math.round((CTA + 1.6) * 1000));

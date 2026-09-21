@@ -87,7 +87,7 @@ supplied none. Everything on the boards is verbatim from the design.
 # statics — one PNG per artboard
 for d in brands/albert-prep-agent/output/paid/campaigns/2026-09-20-meta-launch/creatives/0[1-8]-*/; do
   npm run html:to-image -- "$d/source.html" --all --out "$d/export"; done
-# reels — MP4 + cover PNGs per variant (data-speed=1 is read from the board)
+# reels — MP4 with sound design + cover PNGs per variant (data-speed=1 and audio cues are read from the board)
 for d in brands/albert-prep-agent/output/paid/campaigns/2026-09-20-meta-launch/creatives/{09,10,11,12}-*/; do
   npm run html:to-mp4 -- "$d/source.html" --out "$d/export"; done
 ```

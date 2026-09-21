@@ -58,5 +58,30 @@ agrees), `kicker` (≤ 8 words), `hero` (≤ 10 words, the turn), language.
 ## Caption formula
 
 Quote the headline with credit, one line that agrees, one that turns, product
-line, trust line, "Link in bio." Sound: none authored — silent or a low
-ambient bed; do not add ticks.
+line, trust line, "Link in bio."
+
+## Sound
+
+Sound design, no music: `reel-timeline.js` emits one sample cue per beat of
+the choreography and the exporter mixes them automatically
+(`tools/README.md` § Sound). Samples and licences:
+[`../../../assets/audio/SOURCES.md`](../../../assets/audio/SOURCES.md).
+
+| Beat | Sample | Gain |
+|---|---|---|
+| paper wipe 0.1 s | `paper-slide` | 0.8 |
+| masthead pop 0.45 s | `click-soft` | 0.5 |
+| headline words (0.95 s + 0.12 s each) | `key-1` / `key-2` / `key-3` rotating | 0.7 |
+| panel slam (Right) | `slam` | 1.0 |
+| reply pop (Right + 0.45) | `pop` | 0.8 |
+| kicker (Turn + 0.5) | `click-soft` | 0.5 |
+| hero words (Turn + 0.9 + 0.14 each) | `key-soft` | 0.55 |
+| accent turn (Turn + 2.8) | `chime` | 0.7 |
+| CTA pop (CTA + 0.15) | `pop` | 0.9 |
+| footer (CTA + 0.55) | `click-soft` | 0.4 |
+| whole reel | pink room-tone bed, −29 dB, fades with the seam | — |
+
+Output: −14 LUFS integrated (pre-limit, measure, linear loudnorm), true peak ≤ −1.5 dBTP before AAC, AAC 48 kHz stereo — the
+reel still reads silent (feed autoplay is muted); sound is additive. Set
+`"audio": false` in the reel config for a silent variant; `"bed": "none"`
+drops the room tone. No voice-over in this flight (deck: captions on, no VO).
