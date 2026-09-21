@@ -303,7 +303,7 @@ export function findBrandAudioDir(htmlFile) {
  *  bed         'pink:0.035' | 'brown:0.03' | 'none' — noise colour and linear volume
  *  speed /     how html-to-mp4 mapped animation time to video time
  *  coverHoldMs (video = coverHold + anim / speed)
- *  target      loudnorm I target (default -13; measured output ≈ -14 LUFS integrated, limiter at -1.4 dBTP)
+ *  target      integrated loudness (default -14 LUFS; pre-limit → measure → linear loudnorm, TP ≤ -1.5 dBTP)
  */
 export function muxReelSamples(mp4Path, {
   cues = [],
@@ -311,7 +311,7 @@ export function muxReelSamples(mp4Path, {
   bed = 'pink:0.035',
   speed = 1,
   coverHoldMs = 1000,
-  target = -13, // single-pass loudnorm lands ~1.5 LU under target on this material → ≈ −14 LUFS integrated
+  target = -14,
 } = {}) {
   if (!samplesDir || !existsSync(samplesDir)) throw new Error(`samples dir not found: ${samplesDir}`);
   const findSample = (stem) => {
@@ -362,18 +362,37 @@ export function muxReelSamples(mp4Path, {
 
   filters.push(
     `${mixLabels.join('')}amix=inputs=${mixLabels.length}:duration=longest:dropout_transition=0:normalize=0,` +
-      `atrim=0:${dur},asetpts=N/SR/TB,` +
-      `loudnorm=I=${target}:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.85:attack=3:release=60:level=false[aout]`
+      `atrim=0:${dur},asetpts=N/SR/TB,alimiter=limit=0.5:attack=2:release=50:level=false[mix]` // pre-limit the hits at −6 dBFS so the linear gain pass can reach the target
   );
 
+  // Pass 1 — mix to a WAV and measure (single-pass loudnorm undershoots on sparse material).
+  // The mix graph was built with the video as input 0; without it every input index shifts by one.
+  const mixWav = `${mp4Path}.mix.tmp.wav`;
+  const shifted = filters.join(';').replace(/\[(\d+):a\]/g, (m, i) => '[' + (Number(i) - 1) + ':a]');
+  execSync(
+    `ffmpeg -y ${inputs.slice(1).join(' ')} -filter_complex "${shifted}" -map "[mix]" -c:a pcm_s24le -ar 48000 "${mixWav}"`,
+    { stdio: 'pipe' }
+  );
+  const report = execSync(
+    `ffmpeg -hide_banner -nostats -i "${mixWav}" -af loudnorm=I=${target}:TP=-1.5:LRA=20:print_format=json -f null - 2>&1`,
+    { encoding: 'utf8', stdio: 'pipe' }
+  );
+  const jStart = report.lastIndexOf('{');
+  const measured = JSON.parse(report.slice(jStart, report.indexOf('}', jStart) + 1));
+  // Pass 2 — linear gain from the measurement (LRA target 20: sound design is sparse and loudnorm
+  // silently falls back to dynamic mode when measured LRA exceeds the target), safety limiter, encode.
+  const norm =
+    `loudnorm=I=${target}:TP=-1.5:LRA=20:linear=true:measured_I=${measured.input_i}:measured_TP=${measured.input_tp}` +
+    `:measured_LRA=${measured.input_lra}:measured_thresh=${measured.input_thresh}:offset=${measured.target_offset}`;
   const tmp = `${mp4Path}.sfx.tmp.mp4`;
   execSync(
-    `ffmpeg -y ${inputs.join(' ')} -filter_complex "${filters.join(';')}" ` +
+    `ffmpeg -y -i "${mp4Path}" -i "${mixWav}" -filter_complex "[1:a]${norm},aresample=48000,alimiter=limit=0.85:attack=3:release=80:level=false[aout]" ` +
       `-map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest "${tmp}"`,
     { stdio: 'pipe' }
   );
+  if (!process.env.KEEP_MIX) rmSync(mixWav, { force: true });
   renameSync(tmp, mp4Path);
-  console.log(`   Sound mixed → ${mp4Path} (${placed} cues${bedKind !== 'none' ? ` + ${bedKind} bed` : ''}, loudnorm ${target} LUFS)`);
+  console.log(`   Sound mixed → ${mp4Path} (${placed} cues${bedKind !== 'none' ? ` + ${bedKind} bed` : ''}, measured ${measured.input_i} → ${target} LUFS, two-pass)`);
 }
 
 /** Generate short tick + reveal clips if missing (ffmpeg lavfi). */

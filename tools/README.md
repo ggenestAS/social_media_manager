@@ -63,7 +63,7 @@ Two audio paths, both automatic from attributes on the screen element:
   (animation seconds) plus optional `data-audio-bed="pink:0.035"`. Each cue
   drops `brands/<brand>/assets/audio/<sample>.wav` (or .ogg/.mp3) at
   `coverHold + at / speed`, over a generated band-passed noise bed, then
-  `loudnorm` to −14 LUFS and a −1.4 dBTP limiter, AAC 192 kbps 48 kHz stereo.
+  a −6 dBFS pre-limiter, then two-pass `loudnorm` (measure, linear gain, LRA 20) to −14 LUFS integrated with a −1.5 dBTP ceiling, AAC 192 kbps 48 kHz stereo.
   The brand folder is found by walking up from the HTML file; `--samples <dir>`
   overrides it. Used by `albert-prep-agent`'s press reels (cues emitted by its
   `reel-timeline.js`; sources and licences in that brand's

@@ -81,7 +81,7 @@ the choreography and the exporter mixes them automatically
 | footer (CTA + 0.55) | `click-soft` | 0.4 |
 | whole reel | pink room-tone bed, −29 dB, fades with the seam | — |
 
-Output: −14 LUFS integrated, true peak ≤ −1.4 dBTP, AAC 48 kHz stereo — the
+Output: −14 LUFS integrated (pre-limit, measure, linear loudnorm), true peak ≤ −1.5 dBTP before AAC, AAC 48 kHz stereo — the
 reel still reads silent (feed autoplay is muted); sound is additive. Set
 `"audio": false` in the reel config for a silent variant; `"bed": "none"`
 drops the room tone. No voice-over in this flight (deck: captions on, no VO).
