@@ -203,7 +203,7 @@ for the creatives expire **2026-09-29** — re-sign or re-upload after that.
 | `1788857662130848` | carousel-wrong-ai (4 cards) | carousel · parents |
 | — | reels 09 A/B · 10 A/B · 12 A/B | upload `export/reel-*.mp4` + `cover-*-9-16.png` by hand |
 
-**Campaign structure (2026-09-22, revised the same evening). Everything PAUSED.**
+**Campaign structure (2026-09-22, revised the same evening). Campaign and both ad sets ACTIVE since 2026-09-22 evening; ads PAUSED until switched on.**
 
 Campaign `52626090874065` — *Albert Prep — 2026-09 Meta launch ·
 EXP-2026-09-20-meta-directions* · `OUTCOME_LEADS` · auction · ABO · no

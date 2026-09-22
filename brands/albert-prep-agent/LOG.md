@@ -57,8 +57,13 @@ FR €40) holding every mechanic as ads. The mechanic test is now directional
 were uploaded by the owner into the ad account's media library and attached
 as video ads through the API (20 ads in total, all paused).
 
+**2026-09-22, evening — ACTIVATED.** Owner confirmed the Instagram identity
+is `albert.prep` and asked to activate the campaign and both ad sets; done
+via the API. The 20 ads were left PAUSED at that point — spend starts only
+when ads are switched on.
+
 **Still owner-gated.** Cost-per-`Lead` ceiling; FR statement adapts; Les
-Echos publication date; the activation itself. (Instagram: every creative got
+Echos publication date; switching the ads on. (Instagram: every creative got
 an `effective_instagram_media_id`, so an IG identity is attached — confirm
 it is `albert.prep` in Ads Manager, no linking step needed.)
 
