@@ -203,15 +203,42 @@ for the creatives expire **2026-09-29** — re-sign or re-upload after that.
 | `1788857662130848` | carousel-wrong-ai (4 cards) | carousel · parents |
 | — | reels 09 A/B · 10 A/B · 12 A/B | upload `export/reel-*.mp4` + `cover-*-9-16.png` by hand |
 
-**Not yet created (needs the owner's budget):** the campaign
-(`OUTCOME_LEADS`, auction, ABO — one budget per ad set as the test design
-requires), the ad sets below and the ads. Ad-set spec, identical except
-market and creatives: optimisation `OFFSITE_CONVERSIONS` on pixel
-`936385079418303` event `LEAD`, billing `IMPRESSIONS`, destination `WEBSITE`,
-targeting `{"geo_locations":{"countries":["GB"]}}` / `["FR"]`, age 16–18 as
-Advantage+ suggestion, Advantage+ placements minus Audience Network and
-right column, DSA beneficiary/payor *Albert School of Business & Data*,
-attribution default 7-day click / 1-day view. Carousel set: FR+GB, 25–54.
+**Campaign structure created 2026-09-22 (owner: €20/day per ad set). Everything PAUSED.**
+
+Campaign `52626090874065` — *Albert Prep — 2026-09 Meta launch ·
+EXP-2026-09-20-meta-directions* · `OUTCOME_LEADS` · auction · ABO (one budget
+per ad set, as the test design requires) · no special ad category.
+Every ad set: optimisation `OFFSITE_CONVERSIONS` on pixel `936385079418303`
+event `LEAD`, billing impressions, autobid, destination website, daily budget
+€20, attribution 7-day click / 1-day view, DSA beneficiary + payor *Albert
+School of Business & Data*, placements Facebook (feed, story, reels, video
+feeds, marketplace, search, in-stream) + Instagram (feed, story, reels,
+explore, profile feed, search); Audience Network, Messenger and right column
+excluded; Advantage+ audience **off** so the 16–18 cap is hard.
+
+| Ad set id | Ad set | Ads |
+|---|---|---|
+| `52626090958665` | statement · UK · 16–18 | 01–05 (5 ads) |
+| `52626090970665` | press-split · UK · 16–18 | fortune, euronews, inquirer, fortune-screens, wapo-teens, wapo-blue-books (6 ads) |
+| `52626091001665` | press-reel · UK · 16–18 | **empty** — add reels 09 A/B, 12 A/B by hand (video upload not available through the API for this account) |
+| `52626091053665` | press-split · FR · 16–18 | monde, figaro (2 ads) |
+| `52626091082265` | press-reel · FR · 16–18 | **empty** — add reel 10 A/B by hand |
+| `52626091125065` | carousel · parents · FR+UK · 25–54 | carousel-wrong-ai (1 ad); feed placements only |
+| — | statement · FR | **not created** — no FR statement creatives exist |
+
+Ads (all PAUSED): `52626091263665` no-tabs · `52626091307465` mind-blank ·
+`52626091381865` only-model · `52626092293265` abandoned-plans ·
+`52626091510865` vs-chatgpt · `52626091569665` fortune · `52626091606065`
+euronews · `52626091666065` inquirer · `52626091716265` fortune-screens ·
+`52626091814265` wapo-teens · `52626091839065` wapo-blue-books ·
+`52626091878065` monde · `52626092346665` figaro · `52626092028465` carousel.
+Delivery-error check at creation: none.
+
+**Before activating:** (1) link the `albert.prep` Instagram account to the ad
+account, else Instagram placements fall back to the Page identity or do not
+deliver; (2) upload the six reel MP4s + covers into the two press-reel ad
+sets; (3) decide whether the two empty reel sets and the parents set launch
+on day 1 or wait; (4) activate campaign → ad sets → ads in that order.
 
 **Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
 reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le

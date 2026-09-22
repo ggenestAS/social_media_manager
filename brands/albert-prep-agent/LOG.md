@@ -48,9 +48,13 @@ restate what an `experiment.md` or `campaign.md` already says.
 **Would change our mind.** If ad-driven `Lead` is dominated by Google sign-in
 starts that never reach `CompleteRegistration`, switch the optimisation event.
 
-**Still owner-gated.** Daily budget + cost-per-`Lead` ceiling; Instagram
-account linked to the ad account (else Facebook-only delivery); FR statement
-adapts for ad set 1; Les Echos publication date.
+**Same day, later.** Owner set €20/day per ad set. Campaign `52626090874065`,
+six ad sets and fourteen image ads created PAUSED (ids in `campaign.md` §11).
+The two press-reel sets are empty until the MP4s are uploaded by hand.
+
+**Still owner-gated.** Cost-per-`Lead` ceiling; Instagram account linked to
+the ad account (else Facebook-only delivery); FR statement adapts for ad set
+1; Les Echos publication date; the activation itself.
 
 ---
 
