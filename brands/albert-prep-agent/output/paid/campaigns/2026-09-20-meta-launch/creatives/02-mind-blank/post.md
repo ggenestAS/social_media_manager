@@ -14,7 +14,7 @@ meta:
   objective: leads (Lead = early-access account created)
   ad_set: statement · UK
   copy_frame: PAS · quiet, empathetic
-  destination: https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-mind-blank&exam=A-levels
+  destination: https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-mind-blank&exam=A-levels
   cta_button: "Sign up"
   headline: "You studied. Then your mind went blank."
   description: "Free · 2 minutes · no card"
@@ -32,4 +32,4 @@ A tutor is brilliant one hour a week. Albert is there every day.
 
 Try it free — 2 minutes to set up, no credit card.
 
-Start at albert-prep.vercel.app
+Start at prep.albertschool.com

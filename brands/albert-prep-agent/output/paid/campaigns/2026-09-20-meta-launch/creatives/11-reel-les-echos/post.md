@@ -17,14 +17,15 @@ meta:
   cta_button: "S'inscrire"
   description: "Gratuit · accès anticipé · sans carte"
   ads:
-    - { variant: A, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-echos-a&exam=Bac%202027" }
-    - { variant: B, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-echos-b&exam=Bac%202027" }
+    - { variant: A, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-echos-a&exam=Bac%202027" }
+    - { variant: B, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-echos-b&exam=Bac%202027" }
 press:
-  - { mast: "Les Echos", date: "2026", headline: "Les jeunes diplômés, premières victimes de l’IA", logo_ref: "https://fr.wikipedia.org/wiki/Special:FilePath/Logo_Les_%C3%89chos_(2021).svg", url: TODO-verify }
+  - { mast: "Les Echos", date: "UNCONFIRMED — likely autumn 2025", headline: "Les jeunes diplômés, premières victimes de l’IA", logo_ref: "https://fr.wikipedia.org/wiki/Special:FilePath/Logo_Les_%C3%89chos_(2021).svg", url: https://www.lesechos.fr/monde/enjeux-internationaux/les-jeunes-diplomes-premieres-victimes-de-lia-2190496 }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
   notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises
 checklist:
+  - **do not run until the Les Echos publication date is confirmed** (board says 2026; the article id points to 2025)
   - verify the headline's exact wording + link; masthead renders as text (real logo only with sign-off)
   - QA the MP4 at 1× — pacing is authored, never time-stretch
 ---

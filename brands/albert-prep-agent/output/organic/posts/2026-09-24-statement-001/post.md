@@ -10,7 +10,7 @@ status: draft
 postiz_id: null
 language: fr
 boards: ["Statement · Le jour J · 4:5", "Statement · Le jour J · 9:16"]
-link_in_bio: https://albert-prep.vercel.app/?utm_source=instagram&utm_medium=organic&utm_campaign=2026-09-launch&utm_content=statement-001
+link_in_bio: https://prep.albertschool.com/?utm_source=instagram&utm_medium=organic&utm_campaign=2026-09-launch&utm_content=statement-001
 copy_source: concept deck copy bank — « Le jour J, tu es le seul modèle dans la salle. » (eyebrow + sentence); sub-line from the Le Monde split
 checklist:
   - export: npm run html:to-image -- <this>/source.html --all --out <this>/export

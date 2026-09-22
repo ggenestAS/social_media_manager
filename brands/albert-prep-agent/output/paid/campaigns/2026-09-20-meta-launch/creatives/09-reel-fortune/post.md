@@ -17,10 +17,10 @@ meta:
   cta_button: "Sign up"
   description: "Free · early access · no card"
   ads:
-    - { variant: A, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-fortune-a&exam=A-levels" }
-    - { variant: B, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-fortune-b&exam=A-levels" }
+    - { variant: A, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-fortune-a&exam=A-levels" }
+    - { variant: B, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-fortune-b&exam=A-levels" }
 press:
-  - { mast: "Fortune", date: "February 24, 2026", headline: "‘Students can’t reason’: Teachers warn AI is fueling a crisis in kids’ ability to think", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/Fortune_magazine_logo_2016.svg", url: TODO-verify }
+  - { mast: "Fortune", date: "February 24, 2026", headline: "‘Students can’t reason’: Teachers warn AI is fueling a crisis in kids’ ability to think", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/Fortune_magazine_logo_2016.svg", url: https://fortune.com/2026/02/24/students-cant-reason-teachers-warn-ai-fueling-crisis-in-kids-ability-to-think/ }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
   notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises

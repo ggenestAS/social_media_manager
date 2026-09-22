@@ -134,7 +134,7 @@ async function main() {
   console.log(`   Source : ${htmlFile}`);
   console.log(`   Output : ${outputDir}`);
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || undefined });
   const outputs = [];
 
   try {

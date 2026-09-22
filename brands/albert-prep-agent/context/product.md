@@ -51,8 +51,11 @@ you; use Albert to be ready when it counts.
 ## Destinations & attribution (critical for ads)
 
 Every paid click lands on a tagged campaign URL, never the bare homepage.
-Base URL as printed in the design's ad copy: `https://albert-prep.vercel.app/`
-— **confirm before spend** (see LOG.md blocker 2).
+Base URL (owner, 2026-09-22): `https://prep.albertschool.com/` — the Vercel
+project `albert-prep`; `albert-prep.vercel.app` is the same deployment but is
+not the public name. Paid clicks with an exam pre-fill land on **`/start`**:
+the root page ignores `?exam=`, `/start?exam=<label>` pre-fills the exam and
+opens on the date step (verified headless 2026-09-22).
 
 | Field | Convention |
 |---|---|
@@ -60,10 +63,14 @@ Base URL as printed in the design's ad copy: `https://albert-prep.vercel.app/`
 | `utm_medium` | `paid` (organic link-in-bio: `organic`) |
 | `utm_campaign` | `2026-09-meta-launch` |
 | `utm_content` | `<direction>-<creative-slug>-<format>` e.g. `press-split-monde-4x5` |
-| `exam` | exam pre-fill from the ad (deck: "exam pre-filled from the ad via URL"); the landing prototype passes `?exam=` into the funnel — **confirm the live parameter name** |
+| `exam` | exam pre-fill, **on `/start` only**: `/start?exam=A-levels`, `/start?exam=Bac%202027` (free-text label; verified live) |
 
-Measurement plan (from the concept deck): Pixel + Conversions API live and
-verified before the first euro; events `PageView` (utm_content = creative),
-`InitiateCheckout` (exam typed, "Build my plan" pressed), `Lead` (early-access
-account created — the optimised event), custom `PlanBuilt` (first plan
-generated — the quality signal). Attribution 7-day click / 1-day view.
+Measurement as actually implemented (GTM container GTM-K7VPGZ55, pixel
+`Albert Prep Data` 936385079418303, browser-side only — no Conversions API):
+`PageView` (incl. SPA route changes), custom `FunnelStarted` (first in-funnel
+choice: exam date), custom `PlacementCompleted` (three placement questions
+answered), **`Lead`** (email captured / magic link sent, or Google sign-in
+started at funnel step 7 — the optimised event), `CompleteRegistration`
+(account exists and first brief claimed — the quality signal; the deck's
+`PlanBuilt` and `InitiateCheckout` were never implemented). Attribution 7-day
+click / 1-day view.

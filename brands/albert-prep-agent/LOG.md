@@ -6,6 +6,54 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-22 · DECISION — launch prep: landing URL fixed, headlines fact-checked, Meta account inventoried
+
+**Observed.**
+- Owner: the production landing is **`prep.albertschool.com`** (Vercel project
+  `albert-prep`; `albert-prep.vercel.app` is the same deployment, not the public
+  name). The root page ignores `?exam=`; **`/start?exam=<label>`** pre-fills the
+  exam and opens on the date step (verified headless, EN and FR labels).
+- Meta: ad account **Albert Prep** `act_1334262842179873` (EUR, payment method,
+  business *Albert School of Business & Data*), Page **Albert Prep**
+  `1133253399880164`, pixel **Albert Prep Data** `936385079418303`. The pixel
+  fires browser-side through GTM `GTM-K7VPGZ55`: `PageView`, custom
+  `FunnelStarted` / `PlacementCompleted`, **`Lead`** (email captured or Google
+  sign-in started at funnel step 7), `CompleteRegistration` (account + first
+  brief). No Conversions API. The deck's `InitiateCheckout` / `PlanBuilt` were
+  never built. Organic `Lead` runs ~30–60/day. Two paused Traffic campaigns from
+  the mental-math brand (June 2026, ≈ €600) sit in the same account. The
+  Instagram account linked to the ad account could not be read from here.
+- Press headlines (web fact-check of the 11 distinct clippings): 4 verbatim
+  (Fortune *reason*, Inquirer — a NYT wire story, Le Monde, WaPo *deeper
+  problem* — an opinion column later flagged as AI-written), 4 paraphrased,
+  2 not headlines at all (WaPo *learning*, HBR), Les Echos date unconfirmed
+  (probably 2025). Details per bundle in each `post.md`.
+
+**Decided.**
+- Every paid destination becomes
+  `https://prep.albertschool.com/start?utm_…&exam=…` (carousel → root, no
+  exam); organic link-in-bio → root. Applied across the brand folder, including
+  the on-canvas URL on carousel card 4.
+- Boards rewritten to the published wording (Fortune *screens*, Euronews, WaPo
+  *teens*, Le Figaro — date 25 mai; the unattributable *90 %* kicker cut).
+  **Excluded from flight 1:** WaPo *learning*, HBR, both Les Echos assets.
+  The FR press cells are therefore thin (two splits, one reel); read them as
+  directional.
+- Optimise on pixel `Lead` as GTM defines it; read `CompleteRegistration` as
+  the quality event in place of `PlanBuilt`. CAPI before scale, not before
+  flight 1.
+- Tooling: the export CLIs accept `CHROMIUM_PATH`; in the cloud sandbox reels
+  render with `ffmpeg-static` + `ffprobe-static` (libx264, aac, loudnorm).
+
+**Would change our mind.** If ad-driven `Lead` is dominated by Google sign-in
+starts that never reach `CompleteRegistration`, switch the optimisation event.
+
+**Still owner-gated.** Daily budget + cost-per-`Lead` ceiling; Instagram
+account linked to the ad account (else Facebook-only delivery); FR statement
+adapts for ad set 1; Les Echos publication date.
+
+---
+
 ## 2026-09-21 · DECISION — reels get sound design (samples synced to the animation), no music
 
 **Observed.** Reels and TikTok autoplay with sound on; a silent typographic ad

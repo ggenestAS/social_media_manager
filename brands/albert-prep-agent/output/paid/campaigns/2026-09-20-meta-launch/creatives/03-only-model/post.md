@@ -14,7 +14,7 @@ meta:
   objective: leads (Lead = early-access account created)
   ad_set: statement · UK
   copy_frame: AIDA · confident, contrarian
-  destination: https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-only-model&exam=A-levels
+  destination: https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-only-model&exam=A-levels
   cta_button: "Sign up"
   headline: "You’re the only model in the room."
   description: "Early access · free · no card"
@@ -30,4 +30,4 @@ Then it trains you daily. What you miss comes back until it sticks. What you've 
 
 Early access is open in small waves. Full agent, free, no card.
 
-Claim your spot → albert-prep.vercel.app
+Claim your spot → prep.albertschool.com

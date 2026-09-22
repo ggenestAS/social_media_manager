@@ -17,14 +17,15 @@ meta:
   cta_button: "Sign up"
   description: "Free · early access · no card"
   ads:
-    - { variant: A, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-wapo-a&exam=A-levels" }
-    - { variant: B, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-wapo-b&exam=A-levels" }
+    - { variant: A, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-wapo-a&exam=A-levels" }
+    - { variant: B, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-wapo-b&exam=A-levels" }
 press:
-  - { mast: "The Washington Post", date: "August 9, 2026", headline: "Universities are fighting AI cheating. But there’s a deeper problem.", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Logo_of_The_Washington_Post_Newspaper.svg", url: TODO-verify }
+  - { mast: "The Washington Post", date: "August 9, 2026", headline: "Universities are fighting AI cheating. But there’s a deeper problem.", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Logo_of_The_Washington_Post_Newspaper.svg", url: https://www.washingtonpost.com/opinions/2026/08/09/university-fight-against-ai-cheating-doesnt-go-far-enough/ }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
   notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises
 checklist:
+  - note: the WaPo piece is an OPINION column (Dartmouth provost); Semafor reported it was flagged as AI-written — keep the masthead honest ("Opinion") or accept the caveat
   - verify the headline's exact wording + link; masthead renders as text (real logo only with sign-off)
   - QA the MP4 at 1× — pacing is authored, never time-stretch
 ---

@@ -17,10 +17,10 @@ meta:
   cta_button: "S'inscrire"
   description: "Gratuit · accès anticipé · sans carte"
   ads:
-    - { variant: A, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-monde-a&exam=Bac%202027" }
-    - { variant: B, destination: "https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-monde-b&exam=Bac%202027" }
+    - { variant: A, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-monde-a&exam=Bac%202027" }
+    - { variant: B, destination: "https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=press-reel-monde-b&exam=Bac%202027" }
 press:
-  - { mast: "Le Monde", date: "18 septembre 2026", headline: "Les avancées de l’IA provoquent une crise inédite chez les mathématiciens", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Monde.svg", url: TODO-verify }
+  - { mast: "Le Monde", date: "18 septembre 2026", headline: "Les avancées de l’IA provoquent une crise inédite chez les mathématiciens", logo_ref: "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Monde.svg", url: https://www.lemonde.fr/sciences/article/2026/09/18/les-avancees-de-l-ia-provoquent-une-crise-inedite-chez-les-mathematiciens_6776810_1650684.html }
 export:
   command: npm run html:to-mp4 -- <this>/source.html --out <this>/export
   notes: data-speed=1, data-loop-ms, data-cta-ms, data-cover-ms and data-audio-cues are set by the inlined reel-timeline.js; sound design is mixed automatically from assets/audio (−14 LUFS, no music); cover = the full headline just before the panel rises

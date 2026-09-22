@@ -14,7 +14,7 @@ meta:
   objective: leads (Lead = early-access account created)
   ad_set: statement · UK
   copy_frame: AIDA · casual, peer-to-peer (lower-case on purpose)
-  destination: https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-abandoned-plans&exam=A-levels
+  destination: https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-abandoned-plans&exam=A-levels
   cta_button: "Sign up"
   headline: "how many revision plans have you abandoned?"
   description: "Free · 2 minutes · no card"
@@ -30,4 +30,4 @@ It remembers your weak spots between sessions (ChatGPT forgets you the second yo
 
 Free right now, no card, takes 2 minutes to set up.
 
-Let it plan your next 9 weeks → albert-prep.vercel.app
+Let it plan your next 9 weeks → prep.albertschool.com

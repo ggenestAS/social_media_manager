@@ -14,7 +14,7 @@ meta:
   objective: leads (Lead = early-access account created)
   ad_set: statement · UK
   copy_frame: AIDA · minimal, punchy
-  destination: https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-vs-chatgpt&exam=A-levels
+  destination: https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-vs-chatgpt&exam=A-levels
   cta_button: "Sign up"
   headline: "ChatGPT answers. Albert gets you ready."
   description: "Free · early access · no card"
@@ -35,4 +35,4 @@ Active recall. Spaced repetition. Feedback at the right moment. Applied daily, w
 
 Free during early access. No card required.
 
-Build my plan → albert-prep.vercel.app
+Build my plan → prep.albertschool.com
