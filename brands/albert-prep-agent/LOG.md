@@ -62,8 +62,20 @@ is `albert.prep` and asked to activate the campaign and both ad sets; done
 via the API. The 20 ads were left PAUSED at that point — spend starts only
 when ads are switched on.
 
-**Still owner-gated.** Cost-per-`Lead` ceiling; FR statement adapts; Les
-Echos publication date; switching the ads on. (Instagram: every creative got
+**Later the same evening — all 20 ads switched on; analytics audited.**
+Findings, recorded in `readout.md`: (1) pixel `936385079418303` is shared
+with `www.albertschool.com` and a dozen subdomains — 443 of 444 `Lead`s in
+the last 28 days are the school site's, so only ad-attributed metrics count
+and the `Lead` model is pre-trained on the wrong population; fix is
+URL-scoped custom conversions, owner to create; (2) `CompleteRegistration`
+can never fire — GTM waits for `account_created`, which the landing never
+pushes; quality is read first-party from `prep.brief.status = claimed`
+(baseline 5 %); (3) the landing stores no `utm_*` / `fbclid`, so first-party
+rows cannot be tied to a creative — landing change requested. Meta
+attribution per ad is the decision metric; the rest is campaign-level.
+
+**Still owner-gated.** Cost-per-`Lead` ceiling; custom conversions; FR
+statement adapts; Les Echos publication date; landing tracking changes. (Instagram: every creative got
 an `effective_instagram_media_id`, so an IG identity is attached — confirm
 it is `albert.prep` in Ads Manager, no linking step needed.)
 

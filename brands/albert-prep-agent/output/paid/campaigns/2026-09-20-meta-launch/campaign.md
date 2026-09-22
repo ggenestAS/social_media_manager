@@ -142,10 +142,13 @@ the week-one baseline, then held for the scale phase.
 | `FunnelStarted` (custom) | First in-funnel choice (exam date) |
 | `PlacementCompleted` (custom) | Three placement questions answered |
 | `Lead` (**optimised**) | Email captured (magic link sent) or Google sign-in started, funnel step 7 |
-| `CompleteRegistration` | Account exists and first brief claimed — the quality signal (the deck's `PlanBuilt` was never built) |
+| `CompleteRegistration` | **Never fires** — GTM listens for `account_created`, which the landing never pushes. Quality is read first-party from `prep.brief.status = claimed` (see `readout.md`) |
 
 All browser-side through GTM `GTM-K7VPGZ55` on pixel `936385079418303`; no
-Conversions API yet. Organic `Lead` volume the week before launch: ~30–60/day.
+Conversions API yet. **The pixel is shared with `www.albertschool.com` and
+other school subdomains**: the ~30–60 `Lead`s/day seen before launch are the
+school site's, not the prep landing's (one `Lead` from `prep.albertschool.com`
+in 28 days). Read only ad-attributed numbers; see `readout.md` §2.
 
 ## 9. Timeline (deck §09)
 
@@ -266,9 +269,10 @@ early winners. Read mechanic performance as ad-level cost per Lead with
 unequal spend, directional only. A controlled comparison is a later Meta
 A/B test on one variable with a real budget.
 
-**Before activating:** (1) confirm in Ads Manager that the Instagram identity
-on any ad is `albert.prep`, not a Page-backed account; (2) decide on the two
-B-variant reels above; (3) activate campaign → ad sets → ads.
+**Activated 2026-09-22 evening, all 20 ads.** Instagram identity confirmed
+`albert.prep`. Readout protocol, data sources and their limits:
+[`readout.md`](readout.md). Open on day 1: custom conversions scoped to
+`prep.albertschool.com` (owner, Events Manager), then re-point both ad sets.
 
 **Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
 reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le

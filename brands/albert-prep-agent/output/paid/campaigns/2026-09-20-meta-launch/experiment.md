@@ -15,11 +15,13 @@ sets, 14 days, equal budget, no mid-flight edits. Same shape; the directions
 are replaced by the mechanics that were actually produced (see
 `campaign.md` §4).
 
-**What "worked" looks like:** cost per `Lead` by ad set, read in Ads Manager
-against Pixel/CAPI; plan-built rate (`PlanBuilt` / `Lead`) as the quality
-check. Diagnostics: thumb-stop rate (3-s views / impressions on the reel
-sets), CTR, landing conversion. No formal stats — order-of-magnitude
-differences only, after 14 days of comparable spend.
+**What "worked" looks like:** cost per attributed `Lead` **by ad**, inside
+each market set, spend-weighted by mechanic (the sets are per market, not per
+mechanic — see `campaign.md` §11). Quality check: first-party claimed /
+drafts in `prep.brief` against the 5 % pre-launch baseline (`PlanBuilt` and
+`CompleteRegistration` do not fire). Diagnostics: ThruPlays / impressions and
+3-s plays for reels, link CTR, landing page views / clicks. No formal stats —
+differences under 30 % are noise. Full protocol: `readout.md`.
 
 **Decision rule (fixed before spend, from the deck):** scale the mechanic
 with the lowest cost per signup, provided its plan-built rate holds above
