@@ -228,16 +228,37 @@ audience **off** so the 16–18 cap is hard.
 
 | Ad set id | Ad set | Daily budget | Ads |
 |---|---|---|---|
-| `52626097319265` | UK · 16–18 · all mechanics | €60 | 5 statements, 6 press splits, the carousel (now shown to students, not parents — pause it if unwanted); add reels 09 A/B and 12 A/B by hand |
-| `52626097343065` | FR · 16–18 · all mechanics | €40 | monde, figaro; add reel 10 A/B by hand before activating |
+| `52626097319265` | UK · 16–18 · all mechanics | €60 | 5 statements, 6 press splits, the carousel (now shown to students, not parents — pause it if unwanted), 4 reels (Fortune A/B, Washington Post A/B) |
+| `52626097343065` | FR · 16–18 · all mechanics | €40 | monde, figaro, 2 reels (Le Monde A/B) |
 
 Ads (PAUSED) — UK: `52626097432665` no-tabs · `52626097451065` mind-blank ·
 `52626097460465` only-model · `52626097485865` abandoned-plans ·
 `52626097489665` vs-chatgpt · `52626097504065` fortune · `52626097594865`
 euronews · `52626097612265` inquirer · `52626097712665` fortune-screens ·
 `52626097857465` wapo-teens · `52626098094065` wapo-blue-books ·
-`52626098139065` carousel. FR: `52626098167465` monde · `52626098256865`
-figaro.
+`52626098139065` carousel · `52626105100265` reel-fortune-A ·
+`52626105108065` reel-fortune-B · `52626105182465` reel-wapo-A ·
+`52626105186865` reel-wapo-B. FR: `52626098167465` monde · `52626098256865`
+figaro · `52626105117465` reel-le-monde-A · `52626105127865` reel-le-monde-B.
+
+Reels were uploaded by the owner into the ad account's media library
+(Médiathèque → *Contenu multimédia du compte publicitaire*, account Albert
+Prep); the API then read the video ids (`1066203996125686` fortune-A,
+`1410273877897314` fortune-B, `1787057842626233` wapo-A, `2375564253247588`
+wapo-B, `1112570561330882` monde-A, `1848474336323967` monde-B) and the
+video creatives were built with the 9:16 cover PNGs as thumbnails:
+`1401994255453366` / `1071514935854350` (Fortune A/B), `4201418893412183` /
+`1563747911619719` (WaPo A/B), `948214701691566` / `1569079421717175` (Le
+Monde A/B). Business-level media-library folders are **not** visible to the
+API; upload in the ad-account view.
+
+**Brand-rule flag on the B variants.** Le Monde B says on canvas « Il
+t’entraîne jusqu’à la mention » and WaPo B says "The agent that gets you good
+grades / Better grades on the day". `context/product.md` forbids grade
+promises. The ad copy around them was kept neutral (« jusqu’au jour J »,
+"Ready on the day"), but the video frames still carry the lines. Pause
+`52626105127865` and `52626105186865` before activation unless the wording
+is accepted.
 
 **What this changes for the experiment.** Mechanic vs mechanic is no longer
 an equal-budget test: Meta rotates ads inside each set and shifts spend to
@@ -245,17 +266,9 @@ early winners. Read mechanic performance as ad-level cost per Lead with
 unequal spend, directional only. A controlled comparison is a later Meta
 A/B test on one variable with a real budget.
 
-**Reels upload (manual, Ads Manager).** Package with README:
-`albert-prep-reels-2026-09.zip` (UK and FR folders, MP4 + cover per variant;
-signed link in the session, valid to 2026-09-29; the files are also in each
-reel bundle's `export/`). Per variant: new ad in the market's set → single
-video → upload MP4 → thumbnail = the matching cover PNG → primary text,
-headline, description from the README → CTA *Sign up* / *S'inscrire* →
-destination URL verbatim from the README (they carry `utm_content` and
-`exam`).
-
 **Before activating:** (1) link the `albert.prep` Instagram account to the ad
-account; (2) upload the reels; (3) activate campaign → ad sets → ads.
+account; (2) decide on the two B-variant reels above; (3) activate campaign →
+ad sets → ads.
 
 **Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
 reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le

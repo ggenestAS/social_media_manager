@@ -53,8 +53,9 @@ with six ad sets built PAUSED — then **restructured** on the owner's
 question about learning-phase volume: six €20 sets cannot each reach ~50
 Leads/week, so they were archived and replaced by two market sets (UK €60,
 FR €40) holding every mechanic as ads. The mechanic test is now directional
-(ad-level cost per Lead, unequal spend). Ids in `campaign.md` §11. Reels
-still to upload by hand.
+(ad-level cost per Lead, unequal spend). Ids in `campaign.md` §11. The six reels
+were uploaded by the owner into the ad account's media library and attached
+as video ads through the API (20 ads in total, all paused).
 
 **Still owner-gated.** Cost-per-`Lead` ceiling; Instagram account linked to
 the ad account (else Facebook-only delivery); FR statement adapts for ad set
