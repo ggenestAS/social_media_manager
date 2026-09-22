@@ -177,6 +177,42 @@ Conversions API yet. Organic `Lead` volume the week before launch: ~30–60/day.
 | Landing | `https://prep.albertschool.com/start?…&exam=<label>` (carousel: root) |
 | Legacy | Two **paused** Traffic campaigns from the mental-math brand (June 2026, ≈ €600 spent) remain in the account — leave paused |
 
+**Built in the account (2026-09-22, all PAUSED / unattached).** Image
+creatives were created straight from hosted PNGs (the account is not yet
+enabled for the Ads API media-upload tool, so the reels — which need a
+`video_id` — must be uploaded by hand in Ads Manager). Hosted copies of every
+flight-1 asset sit in the private Neon storage bucket `meta-ads-2026-09`
+(project `albert-prep`, branch `dev/claude-launch`); the signed links used
+for the creatives expire **2026-09-29** — re-sign or re-upload after that.
+
+| Creative id | Ad | Ad set |
+|---|---|---|
+| `1087696244228204` | statement-no-tabs | statement · UK |
+| `1406252808356950` | statement-mind-blank | statement · UK |
+| `1420410213365559` | statement-only-model | statement · UK |
+| `1604864081077688` | statement-abandoned-plans | statement · UK |
+| `1781372549729184` | statement-vs-chatgpt | statement · UK |
+| `1570887808052062` | press-split-fortune (reason) | press-split · UK |
+| `1445975470727971` | press-split-euronews | press-split · UK |
+| `1463742872262874` | press-split-inquirer | press-split · UK |
+| `1709530146776452` | press-split-fortune-screens | press-split · UK |
+| `1402853647979891` | press-split-wapo-teens | press-split · UK |
+| `1079841078013226` | press-split-wapo-blue-books | press-split · UK |
+| `1809307859985599` | press-split-monde | press-split · FR |
+| `1613742066768683` | press-split-figaro | press-split · FR |
+| `1788857662130848` | carousel-wrong-ai (4 cards) | carousel · parents |
+| — | reels 09 A/B · 10 A/B · 12 A/B | upload `export/reel-*.mp4` + `cover-*-9-16.png` by hand |
+
+**Not yet created (needs the owner's budget):** the campaign
+(`OUTCOME_LEADS`, auction, ABO — one budget per ad set as the test design
+requires), the ad sets below and the ads. Ad-set spec, identical except
+market and creatives: optimisation `OFFSITE_CONVERSIONS` on pixel
+`936385079418303` event `LEAD`, billing `IMPRESSIONS`, destination `WEBSITE`,
+targeting `{"geo_locations":{"countries":["GB"]}}` / `["FR"]`, age 16–18 as
+Advantage+ suggestion, Advantage+ placements minus Audience Network and
+right column, DSA beneficiary/payor *Albert School of Business & Data*,
+attribution default 7-day click / 1-day view. Carousel set: FR+GB, 25–54.
+
 **Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
 reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le
 Monde *crise inédite*, WaPo *deeper problem* (opinion column — caveat). Rewritten
