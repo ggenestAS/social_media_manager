@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Albert Prep — Statement #002</title>
+<style>
+:root {
+  --ink:#090a0b; --ink-2:#111316; --fog:#e6e8ec; --soft:#a2a8b1; --mute:#8b919a;
+  --paper:#f4f2ec; --paper-ink:#111111; --paper-mute:#666666;
+  --light-soft:#4d525a; --light-mute:#6b7078;
+  --accent:hsl(210,60%,72%); --live:hsl(150,60%,55%);
+  --hair:rgba(255,255,255,0.12); --hair-soft:rgba(255,255,255,0.08);
+  --font:Helvetica,Arial,sans-serif; --serif:Georgia,'Times New Roman',serif;
+}
+*, *::before, *::after { box-sizing:border-box; }
+html, body { margin:0; }
+body { background:#1a1c1f; font-family:var(--font); color:var(--fog);
+  -webkit-font-smoothing:antialiased; display:flex; flex-wrap:wrap; gap:64px;
+  padding:64px; align-items:flex-start; }
+h1, h2, h3, p { margin:0; }
+
+/* Artboards — one .board per [data-screen-label], explicit inline width/height */
+.board { position:relative; overflow:hidden; flex:none; display:flex;
+  flex-direction:column; justify-content:space-between; font-family:var(--font); }
+.board--ink { background:var(--ink); color:var(--fog); }
+.board--light { background:var(--fog); color:var(--ink); }
+.board--feed { padding:96px; }                 /* 1080×1350 */
+.board--story { padding:270px 160px 480px 96px; } /* 1080×1920 — 9:16 SAFE ZONE: top 250, bottom 480, right 160 (Reels/Stories/TikTok UI) */
+
+/* Statement type */
+.eyebrow { font-size:30px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mute); }
+.board--light .eyebrow { color:var(--light-mute); }
+.display { font-weight:500; letter-spacing:-0.035em; line-height:0.98; text-wrap:balance; }
+.board--feed .display { font-size:132px; max-width:10ch; }
+.board--story .display { font-size:136px; max-width:10ch; }
+.display .dim { color:var(--mute); }
+.display--stack { display:flex; flex-direction:column; gap:0.1em; }
+.sub { margin-top:56px; font-size:40px; line-height:1.35; color:var(--soft); max-width:24ch; text-wrap:pretty; }
+.board--story .sub { margin-top:56px; font-size:40px; max-width:22ch; }
+.board--light .sub { color:var(--light-soft); }
+.cursor { display:inline-block; width:8px; height:0.85em; margin-left:0.06em;
+  vertical-align:-0.08em; background:var(--accent); }
+
+/* Footer: wordmark left, trust line right */
+.foot { display:flex; justify-content:space-between; align-items:center; }
+.wordmark { display:flex; align-items:center; gap:16px; font-size:32px; white-space:nowrap; }
+.wordmark strong { font-weight:600; }
+.dots { display:inline-grid; grid-template-columns:repeat(3,8px); gap:6px; }
+.dots span { width:8px; height:8px; border-radius:50%; background:currentColor; }
+.trust { font-size:28px; color:var(--mute); }
+.board--light .trust { color:var(--light-mute); }
+
+/* Buttons */
+.btn { display:inline-flex; align-items:center; gap:18px; padding:24px 40px;
+  border-radius:16px; background:var(--fog); color:var(--ink); font-size:34px; font-weight:600; }
+.board--light .btn { background:var(--ink); color:var(--fog); }
+
+/* Press split: paper (headline) on top, ink (Albert) below */
+.split { padding:0; }
+.split .paper { flex:1; background:var(--paper); color:var(--paper-ink); padding:88px 96px;
+  display:flex; flex-direction:column; justify-content:space-between; }
+.split .ink { flex:1; background:var(--ink); color:var(--fog); padding:88px 96px;
+  display:flex; flex-direction:column; justify-content:space-between; }
+.board--story.split .paper { padding:290px 160px 96px 96px; }
+.board--story.split .ink { padding:80px 160px 480px 96px; }
+.masthead { display:flex; justify-content:space-between; align-items:center; height:72px; }
+.masthead .mast { font-family:var(--serif); font-weight:700; font-size:48px; letter-spacing:0.04em; }
+.masthead img { height:64px; width:auto; }
+.masthead .date { font-size:26px; color:var(--paper-mute); }
+.headline { font-family:var(--serif); font-weight:700; font-size:66px;
+  letter-spacing:-0.025em; line-height:1.08; text-wrap:balance; }
+.board--story .headline { font-size:74px; }
+.kicker { font-size:28px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mute); line-height:1.3; }
+.reply { margin-top:32px; font-size:82px; font-weight:500; letter-spacing:-0.035em; line-height:1.0; text-wrap:balance; }
+.board--story .reply { font-size:84px; }
+.why { margin-top:32px; font-size:34px; line-height:1.4; color:var(--soft); max-width:28ch; }
+
+/* Carousel: clipping stack + plan card */
+.clips { display:flex; flex-direction:column; gap:20px; transform:rotate(-2deg); margin:-20px -40px 0; }
+.clip { background:var(--paper); color:var(--paper-ink); padding:28px 34px; border-radius:6px; }
+.clip .src { font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:var(--paper-mute);
+  display:flex; justify-content:space-between; }
+.clip p { margin-top:10px; font-size:38px; font-weight:600; letter-spacing:-0.02em; line-height:1.1; font-family:var(--serif); }
+.card-h1 { font-size:124px; font-weight:500; letter-spacing:-0.035em; line-height:0.98; max-width:11ch; text-wrap:balance; }
+.card-h2 { font-size:88px; font-weight:500; letter-spacing:-0.035em; line-height:1.0; max-width:14ch; text-wrap:balance; }
+.card-h3 { font-size:96px; font-weight:500; letter-spacing:-0.035em; line-height:1.0; text-wrap:balance; }
+.card-hook { font-size:120px; font-weight:500; letter-spacing:-0.035em; line-height:0.98; }
+.card-sub { margin-top:40px; font-size:34px; line-height:1.4; color:var(--soft); max-width:30ch; text-wrap:pretty; }
+.card-sub--big { margin-top:56px; font-size:40px; line-height:1.35; max-width:24ch; }
+.count { font-size:28px; color:var(--mute); white-space:nowrap; }
+.board--light .count { color:var(--light-mute); }
+.plan { padding:44px; border:1px solid var(--hair); border-radius:28px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01)); }
+.plan .label { display:flex; justify-content:space-between; font-size:22px; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--mute); }
+.plan .live { display:inline-flex; align-items:center; gap:8px; }
+.plan .live::before { content:''; width:10px; height:10px; border-radius:50%; background:var(--live); }
+.plan .title { margin-top:24px; font-size:52px; font-weight:500; letter-spacing:-0.03em; line-height:1.05; }
+.plan .meta { margin-top:12px; font-size:26px; color:var(--soft); }
+.plan .weeks { margin-top:32px; display:grid; grid-template-columns:repeat(9,1fr); gap:6px; }
+.plan .weeks span { height:10px; border-radius:5px; background:rgba(255,255,255,0.18); }
+.plan .weeks span.done { background:var(--accent); }
+.plan .weeks span.next { background:rgba(255,255,255,0.35); }
+.plan .phases { margin-top:28px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; font-size:24px; }
+.plan .phases span { display:flex; flex-direction:column; gap:6px; }
+.plan .phases span > span:first-child { color:var(--mute); }
+
+/* Press reel (9:16, animated — see post-types/press-reel) */
+.reel { width:1080px; height:1920px; background:var(--ink); color:var(--fog); }
+.reel .zoom { position:absolute; inset:0; transform-origin:50% 45%; }
+.reel .paper { position:absolute; left:0; top:0; width:1080px; height:1920px; background:var(--paper);
+  color:var(--paper-ink); padding:290px 185px 560px 96px; display:flex; flex-direction:column;
+  justify-content:space-between; overflow:hidden; }
+.reel .paper .headline { font-size:104px; line-height:1.06; }
+.reel .panel { position:absolute; left:0; top:1920px; width:1080px; height:1120px; background:var(--ink);
+  padding:72px 170px 504px 96px; display:flex; flex-direction:column; justify-content:space-between;
+  box-shadow:0 -40px 120px rgba(0,0,0,0.6); }  /* rises to y=800; bottom padding clears the 480px caption layer */
+/* .reel .paper padding-bottom is animated by reel-timeline.js (560px → 80px as the panel rises) so the headline
+   never sits in the caption band; the extra top/right paper margin absorbs the 5% camera zoom. */
+.reel .right-line { display:flex; flex-wrap:wrap; align-items:baseline; gap:0 0.3em; font-weight:500;
+  line-height:1.15; min-height:32px; letter-spacing:-0.035em; color:var(--fog); }
+.reel .right-line > span { display:inline-block; }
+.reel .hero { margin-top:44px; font-size:86px; font-weight:500; letter-spacing:-0.035em; line-height:1.0; }
+.reel .word { display:inline-block; margin-right:0.24em; white-space:pre; }
+.reel .hero .cursor { width:8px; height:0.82em; vertical-align:-0.08em; opacity:0; }
+.reel .cta-wrap { transform-origin:left center; }
+.reel .btn { padding:20px 36px; border-radius:16px; font-size:32px; }
+.reel .btn .arrow { font-size:42px; line-height:1; }
+.reel .seam { position:absolute; inset:0; background:var(--ink); pointer-events:none; }
+</style>
+</head>
+<body>
+<div data-screen-label="Statement · Le blanc · 4:5" class="board board--ink board--feed" style="width:1080px;height:1350px">
+  <div class="eyebrow">Reconnaître ≠ savoir</div>
+  <div>
+    <h1 class="display">Tu as révisé. Puis le blanc.<span class="cursor"></span></h1>
+    <p class="sub">Albert repère le trou avant le jour J — et le referme, chaque jour.</p>
+  </div>
+  <div class="foot"><div class="wordmark"><span class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><span><strong>Albert</strong> Prep</span></div><span class="trust">Gratuit · 2 minutes · sans carte</span></div>
+</div>
+
+<div data-screen-label="Statement · Le blanc · 9:16" class="board board--ink board--story" style="width:1080px;height:1920px">
+  <div class="eyebrow">Reconnaître ≠ savoir</div>
+  <div>
+    <h1 class="display">Tu as révisé. Puis le blanc.<span class="cursor"></span></h1>
+    <p class="sub">Albert repère le trou avant le jour J — et le referme, chaque jour.</p>
+  </div>
+  <div class="foot"><div class="wordmark"><span class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><span><strong>Albert</strong> Prep</span></div><span class="trust">Gratuit · 2 minutes · sans carte</span></div>
+</div>
+</body>
+</html>
