@@ -203,42 +203,59 @@ for the creatives expire **2026-09-29** — re-sign or re-upload after that.
 | `1788857662130848` | carousel-wrong-ai (4 cards) | carousel · parents |
 | — | reels 09 A/B · 10 A/B · 12 A/B | upload `export/reel-*.mp4` + `cover-*-9-16.png` by hand |
 
-**Campaign structure created 2026-09-22 (owner: €20/day per ad set). Everything PAUSED.**
+**Campaign structure (2026-09-22, revised the same evening). Everything PAUSED.**
 
 Campaign `52626090874065` — *Albert Prep — 2026-09 Meta launch ·
-EXP-2026-09-20-meta-directions* · `OUTCOME_LEADS` · auction · ABO (one budget
-per ad set, as the test design requires) · no special ad category.
-Every ad set: optimisation `OFFSITE_CONVERSIONS` on pixel `936385079418303`
-event `LEAD`, billing impressions, autobid, destination website, daily budget
-€20, attribution 7-day click / 1-day view, DSA beneficiary + payor *Albert
-School of Business & Data*, placements Facebook (feed, story, reels, video
-feeds, marketplace, search, in-stream) + Instagram (feed, story, reels,
-explore, profile feed, search); Audience Network, Messenger and right column
-excluded; Advantage+ audience **off** so the 16–18 cap is hard.
+EXP-2026-09-20-meta-directions* · `OUTCOME_LEADS` · auction · ABO · no
+special ad category.
 
-| Ad set id | Ad set | Ads |
-|---|---|---|
-| `52626090958665` | statement · UK · 16–18 | 01–05 (5 ads) |
-| `52626090970665` | press-split · UK · 16–18 | fortune, euronews, inquirer, fortune-screens, wapo-teens, wapo-blue-books (6 ads) |
-| `52626091001665` | press-reel · UK · 16–18 | **empty** — add reels 09 A/B, 12 A/B by hand (video upload not available through the API for this account) |
-| `52626091053665` | press-split · FR · 16–18 | monde, figaro (2 ads) |
-| `52626091082265` | press-reel · FR · 16–18 | **empty** — add reel 10 A/B by hand |
-| `52626091125065` | carousel · parents · FR+UK · 25–54 | carousel-wrong-ai (1 ad); feed placements only |
-| — | statement · FR | **not created** — no FR statement creatives exist |
+First build was six ad sets at €20/day (one per mechanic × market, as the
+experiment doc prescribed). **Archived within the hour**: €140/week per set
+cannot reach the ~50 optimisation events a week Meta needs to leave the
+learning phase unless cost per Lead is under €2.80, and the three same-market
+sets would have bid against each other. Archived ids: `52626090958665`,
+`52626090970665`, `52626091001665`, `52626091053665`, `52626091082265`,
+`52626091125065` (their ads archived with them).
 
-Ads (all PAUSED): `52626091263665` no-tabs · `52626091307465` mind-blank ·
-`52626091381865` only-model · `52626092293265` abandoned-plans ·
-`52626091510865` vs-chatgpt · `52626091569665` fortune · `52626091606065`
-euronews · `52626091666065` inquirer · `52626091716265` fortune-screens ·
-`52626091814265` wapo-teens · `52626091839065` wapo-blue-books ·
-`52626091878065` monde · `52626092346665` figaro · `52626092028465` carousel.
-Delivery-error check at creation: none.
+Replacement: **two ad sets, split by market only**, all mechanics as ads
+inside. Each: optimisation `OFFSITE_CONVERSIONS` on pixel `936385079418303`
+event `LEAD`, billing impressions, autobid, destination website, attribution
+7-day click / 1-day view, DSA beneficiary + payor *Albert School of Business
+& Data*, placements Facebook (feed, story, reels, video feeds, marketplace,
+search, in-stream) + Instagram (feed, story, reels, explore, profile feed,
+search); Audience Network, Messenger and right column excluded; Advantage+
+audience **off** so the 16–18 cap is hard.
+
+| Ad set id | Ad set | Daily budget | Ads |
+|---|---|---|---|
+| `52626097319265` | UK · 16–18 · all mechanics | €60 | 5 statements, 6 press splits, the carousel (now shown to students, not parents — pause it if unwanted); add reels 09 A/B and 12 A/B by hand |
+| `52626097343065` | FR · 16–18 · all mechanics | €40 | monde, figaro; add reel 10 A/B by hand before activating |
+
+Ads (PAUSED) — UK: `52626097432665` no-tabs · `52626097451065` mind-blank ·
+`52626097460465` only-model · `52626097485865` abandoned-plans ·
+`52626097489665` vs-chatgpt · `52626097504065` fortune · `52626097594865`
+euronews · `52626097612265` inquirer · `52626097712665` fortune-screens ·
+`52626097857465` wapo-teens · `52626098094065` wapo-blue-books ·
+`52626098139065` carousel. FR: `52626098167465` monde · `52626098256865`
+figaro.
+
+**What this changes for the experiment.** Mechanic vs mechanic is no longer
+an equal-budget test: Meta rotates ads inside each set and shifts spend to
+early winners. Read mechanic performance as ad-level cost per Lead with
+unequal spend, directional only. A controlled comparison is a later Meta
+A/B test on one variable with a real budget.
+
+**Reels upload (manual, Ads Manager).** Package with README:
+`albert-prep-reels-2026-09.zip` (UK and FR folders, MP4 + cover per variant;
+signed link in the session, valid to 2026-09-29; the files are also in each
+reel bundle's `export/`). Per variant: new ad in the market's set → single
+video → upload MP4 → thumbnail = the matching cover PNG → primary text,
+headline, description from the README → CTA *Sign up* / *S'inscrire* →
+destination URL verbatim from the README (they carry `utm_content` and
+`exam`).
 
 **Before activating:** (1) link the `albert.prep` Instagram account to the ad
-account, else Instagram placements fall back to the Page identity or do not
-deliver; (2) upload the six reel MP4s + covers into the two press-reel ad
-sets; (3) decide whether the two empty reel sets and the parents set launch
-on day 1 or wait; (4) activate campaign → ad sets → ads in that order.
+account; (2) upload the reels; (3) activate campaign → ad sets → ads.
 
 **Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
 reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le

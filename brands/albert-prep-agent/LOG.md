@@ -48,9 +48,13 @@ restate what an `experiment.md` or `campaign.md` already says.
 **Would change our mind.** If ad-driven `Lead` is dominated by Google sign-in
 starts that never reach `CompleteRegistration`, switch the optimisation event.
 
-**Same day, later.** Owner set €20/day per ad set. Campaign `52626090874065`,
-six ad sets and fourteen image ads created PAUSED (ids in `campaign.md` §11).
-The two press-reel sets are empty until the MP4s are uploaded by hand.
+**Same day, later.** Owner set €20/day per ad set; campaign `52626090874065`
+with six ad sets built PAUSED — then **restructured** on the owner's
+question about learning-phase volume: six €20 sets cannot each reach ~50
+Leads/week, so they were archived and replaced by two market sets (UK €60,
+FR €40) holding every mechanic as ads. The mechanic test is now directional
+(ad-level cost per Lead, unequal spend). Ids in `campaign.md` §11. Reels
+still to upload by hand.
 
 **Still owner-gated.** Cost-per-`Lead` ceiling; Instagram account linked to
 the ad account (else Facebook-only delivery); FR statement adapts for ad set
