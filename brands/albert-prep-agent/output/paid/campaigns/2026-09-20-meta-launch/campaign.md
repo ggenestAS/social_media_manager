@@ -173,7 +173,7 @@ Conversions API yet. Organic `Lead` volume the week before launch: ~30–60/day.
 | Ad account | **Albert Prep** · `act_1334262842179873` · EUR · business *Albert School of Business & Data* (`2015033765322002`) · payment method on file |
 | Page | **Albert Prep** · `1133253399880164` (lead-form ToS not accepted — irrelevant, we optimise on the website pixel) |
 | Pixel | **Albert Prep Data** · `936385079418303` · browser events via GTM, see §8 |
-| Instagram | **not resolved** — the IG account id linked to the ad account could not be read (tool not enabled for this account). Without it, ads deliver on Facebook only. Check *Business settings → Instagram accounts* and link `albert.prep` to the ad account before activating |
+| Instagram | **wired.** The IG-accounts endpoint is not enabled for this account, but every creative (June and September) carries an `effective_instagram_media_id`, i.e. Meta minted an Instagram post for it — an Instagram identity is attached. Whether it is `albert.prep` or a Page-backed account is only visible in Ads Manager (ad → Identity) |
 | Landing | `https://prep.albertschool.com/start?…&exam=<label>` (carousel: root) |
 | Legacy | Two **paused** Traffic campaigns from the mental-math brand (June 2026, ≈ €600 spent) remain in the account — leave paused |
 
@@ -266,9 +266,9 @@ early winners. Read mechanic performance as ad-level cost per Lead with
 unequal spend, directional only. A controlled comparison is a later Meta
 A/B test on one variable with a real budget.
 
-**Before activating:** (1) link the `albert.prep` Instagram account to the ad
-account; (2) decide on the two B-variant reels above; (3) activate campaign →
-ad sets → ads.
+**Before activating:** (1) confirm in Ads Manager that the Instagram identity
+on any ad is `albert.prep`, not a Page-backed account; (2) decide on the two
+B-variant reels above; (3) activate campaign → ad sets → ads.
 
 **Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
 reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le

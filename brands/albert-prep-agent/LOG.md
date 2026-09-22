@@ -57,9 +57,10 @@ FR €40) holding every mechanic as ads. The mechanic test is now directional
 were uploaded by the owner into the ad account's media library and attached
 as video ads through the API (20 ads in total, all paused).
 
-**Still owner-gated.** Cost-per-`Lead` ceiling; Instagram account linked to
-the ad account (else Facebook-only delivery); FR statement adapts for ad set
-1; Les Echos publication date; the activation itself.
+**Still owner-gated.** Cost-per-`Lead` ceiling; FR statement adapts; Les
+Echos publication date; the activation itself. (Instagram: every creative got
+an `effective_instagram_media_id`, so an IG identity is attached — confirm
+it is `albert.prep` in Ads Manager, no linking step needed.)
 
 ---
 
