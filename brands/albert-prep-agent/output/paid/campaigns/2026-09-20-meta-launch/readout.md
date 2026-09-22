@@ -14,6 +14,16 @@ assumed events that do not exist.
 | Optimisation | pixel `936385079418303` · standard event `Lead` · 7-day click / 1-day view |
 | Activated | 2026-09-22 evening (UTC+2) — day 1 = 2026-09-23 |
 
+## 1b. Audience caveat — FR serves to 18+ only
+
+Meta no longer shows ads to under-18s in the EU/EEA/Switzerland, whatever the
+ad set says. Ads Manager flags the FR ads "Audience limitée"; the set still
+delivers, to 18-year-olds. The bac 2027 cohort is mostly born 2008, so by
+late September roughly two thirds of terminale students are already 18 and
+the share rises through the year. The FR read is therefore "18-year-old
+terminale students", not 16–18. The UK is outside the EU: the UK set reaches
+16–17 as targeted. Keep this in mind when comparing the two markets.
+
 ## 2. Where the data lives, and what each source can and cannot tell you
 
 **Meta (ad-attributed).** The only per-creative signal. Pull at `level=ad`
