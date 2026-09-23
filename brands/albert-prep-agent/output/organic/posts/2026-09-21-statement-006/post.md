@@ -10,7 +10,7 @@ release_url: https://www.instagram.com/p/Ddj2XCVGLOy/
 postiz_id: cmublen1z09yhlf0yag2gf9ts
 language: fr
 boards: ["Statement · ChatGPT · 4:5", "Statement · ChatGPT · 9:16"]
-link_in_bio: https://albert-prep.vercel.app/?utm_source=instagram&utm_medium=organic&utm_campaign=2026-09-launch&utm_content=statement-006
+link_in_bio: https://prep.albertschool.com/?utm_source=instagram&utm_medium=organic&utm_campaign=2026-09-launch&utm_content=statement-006
 grid_order: 006
 notes: Seed set for @albert.prep. 3 EN / 3 FR, one hook per language. Publish 002→007 so 007 (light, Walk in ready) lands top-left. 4:5 feed only — do not post the 9:16 as the grid asset. Live on Instagram @albert.prep. Postiz id cmublen1z09yhlf0yag2gf9ts.
 ---

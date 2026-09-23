@@ -5,7 +5,7 @@ and when; it builds a plan backwards from exam day and trains you in short
 daily sessions until you walk in ready. Any exam; launch markets: French bac
 (FR) and A-levels (UK). Product facts and destinations:
 [`context/product.md`](context/product.md).
-Landing (as printed in the design's ad copy): <https://albert-prep.vercel.app>
+Landing (as printed in the design's ad copy): <https://prep.albertschool.com>
 — **confirm the production URL before spend** (the concept deck says
 `prep.albert.com`; the previous identity used `prepai.albertschool.com`).
 

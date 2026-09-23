@@ -2,7 +2,7 @@
 
 Copy from the Claude Design *Social Profile Kit* (2026-09-21), character-counted
 here (code points, as the platforms count). EN first, FR below. Link everywhere:
-`https://albert-prep.vercel.app` (confirm the production URL — LOG blocker 2).
+`https://prep.albertschool.com` (confirm the production URL — LOG blocker 2).
 
 | Field | Chars | Limit | |
 |---|---|---|---|
@@ -17,7 +17,7 @@ here (code points, as the platforms count). EN first, FR below. Link everywhere:
 ## Instagram (`albert.prep`)
 
 - **Name field:** Albert Prep · Exam Agent
-- **Category:** Education · **Link:** albert-prep.vercel.app
+- **Category:** Education · **Link:** prep.albertschool.com
 - **Bio · EN**
   ```
   The AI that trains you, not the one that answers for you.
@@ -34,14 +34,14 @@ here (code points, as the platforms count). EN first, FR below. Link everywhere:
 ## TikTok (`albertprep`)
 
 - **Name field:** Albert Prep
-- **Link:** albert-prep.vercel.app — TikTok shows a bio link only on a Business
+- **Link:** prep.albertschool.com — TikTok shows a bio link only on a Business
   account or above 1k followers; switch the account type if needed.
 - **Bio · EN:** `On exam day you’re the only model in the room. We train that one. Free ↓`
 - **Bio · FR:** `Le jour J, tu es le seul modèle dans la salle. On t’entraîne. Gratuit ↓`
 
 ## Facebook page (`Albert Prep`)
 
-- **Category:** Education · **Button:** Sign up → albert-prep.vercel.app
+- **Category:** Education · **Button:** Sign up → prep.albertschool.com
 - **Intro · EN (96):** `The exam agent. Tell it your exam — it plans backwards from the date and trains you daily. Free.`
 - **Intro · FR, as designed (104 — over):** `L’agent qui te prépare aux examens. Ton examen, ta date — un plan et un entraînement quotidien. Gratuit.`
 - **Intro · FR, trimmed (98):** `L’agent qui te prépare aux examens. Un plan et un entraînement quotidien jusqu’au jour J. Gratuit.`

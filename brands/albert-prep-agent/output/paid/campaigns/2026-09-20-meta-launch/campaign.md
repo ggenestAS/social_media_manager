@@ -8,10 +8,12 @@
 **Experiment:** [`experiment.md`](experiment.md) — EXP-2026-09-20-meta-directions
 **Source:** Claude Design *Meta Campaign Concept* (concept v1, 14 slides) + *Meta Ad Statics* + *Meta Reel 1–4* → [`design-export/`](design-export/)
 
-> Before spend, the remaining blockers in [`../../../LOG.md`](../../../LOG.md)
-> must clear: production landing URL, press-headline verification, Pixel +
-> CAPI (the name/handle question was settled 2026-09-21). None of them is a
-> creative task.
+> **2026-09-22 — launch state.** Landing URL fixed (`prep.albertschool.com`,
+> exam pre-fill on `/start`), headlines fact-checked (4 boards rewritten, 3
+> excluded), pixel events inventoried (browser Pixel via GTM, no CAPI), Meta
+> account / Page / pixel identified. See §11 and [`../../../LOG.md`](../../../LOG.md).
+> Still owner-gated: budget + cost ceiling, Instagram account link, FR
+> statement adapts.
 
 ## 1. Objective (deck §01)
 
@@ -136,10 +138,20 @@ the week-one baseline, then held for the scale phase.
 
 | Event | Fires when |
 |---|---|
-| `PageView` | Landing, with `utm_content` = creative |
-| `InitiateCheckout` | Exam typed, "Build my plan" pressed |
-| `Lead` (**optimised**) | Early-access account created |
-| `PlanBuilt` (custom) | First plan generated — the real quality signal |
+| `PageView` | Landing and every SPA route change, `utm_content` = creative |
+| `FunnelStarted` (custom) | First in-funnel choice (exam date) |
+| `PlacementCompleted` (custom) | Three placement questions answered |
+| `Lead` (**optimised**) | Email captured (magic link sent) or Google sign-in started, funnel step 7 |
+| `CompleteRegistration` | **Never fires** — GTM listens for `account_created`, which the landing never pushes. Quality is read first-party from `prep.brief.status = claimed` (see `readout.md`) |
+
+All browser-side through GTM `GTM-K7VPGZ55` on pixel `936385079418303`; no
+Conversions API yet. **The pixel is shared with `www.albertschool.com` and
+other school subdomains**: the ~30–60 `Lead`s/day seen before launch are the
+school site's, not the prep landing's (one `Lead` from `prep.albertschool.com`
+in 28 days). Cause found 2026-09-23: the prep GTM container loads on the
+school site. GTM version 7 gates every pixel tag to the landing hostname
+(awaiting owner publish); dedicated dataset next. Read only ad-attributed
+numbers; see `readout.md` §2.
 
 ## 9. Timeline (deck §09)
 
@@ -156,11 +168,136 @@ the week-one baseline, then held for the scale phase.
 |---|---|---|
 | 01 | ~~Resolve the brand-name / handle collision~~ — done 2026-09-21: `albert-prep` on hold, its accounts converted to this brand | — |
 | 02 | Approve the mechanics to test (statement vs press) or cut to one; set the two-week test budget and the cost-per-signup ceiling | This week |
-| 03 | Confirm the production landing URL + exam pre-fill parameter; Pixel + CAPI live | Week 1 |
-| 04 | Verify the 15 press headlines (exact wording, links); masthead-logo sign-off; replace carousel card-1 clippings with verified screenshots | Week 1 |
-| 05 | Export PNG/MP4, upload per the checklist below | Week 1 |
+| 03 | ~~Confirm the production landing URL + exam pre-fill parameter~~ done 2026-09-22 (`prep.albertschool.com/start?exam=`); Pixel live (browser); CAPI **not** set up — acceptable for flight 1, add before scale | — |
+| 04 | ~~Verify the press headlines~~ done 2026-09-22 (see §11); masthead-logo sign-off still open (text mastheads ship); carousel card-1 clippings are typeset, not screenshots | — |
+| 05 | ~~Export PNG/MP4~~ done 2026-09-22; upload via the Meta Marketing API per §11 | — |
 
-## Upload checklist (Meta Ads Manager — manual, no ad account in this repo)
+## 11. Launch state — 2026-09-22
+
+| | |
+|---|---|
+| Ad account | **Albert Prep** · `act_1334262842179873` · EUR · business *Albert School of Business & Data* (`2015033765322002`) · payment method on file |
+| Page | **Albert Prep** · `1133253399880164` (lead-form ToS not accepted — irrelevant, we optimise on the website pixel) |
+| Pixel | **Albert Prep Data** · `936385079418303` · browser events via GTM, see §8 |
+| Instagram | **wired.** The IG-accounts endpoint is not enabled for this account, but every creative (June and September) carries an `effective_instagram_media_id`, i.e. Meta minted an Instagram post for it — an Instagram identity is attached. Whether it is `albert.prep` or a Page-backed account is only visible in Ads Manager (ad → Identity) |
+| Landing | `https://prep.albertschool.com/start?…&exam=<label>` (carousel: root) |
+| Legacy | Two **paused** Traffic campaigns from the mental-math brand (June 2026, ≈ €600 spent) remain in the account — leave paused |
+
+**Built in the account (2026-09-22, all PAUSED / unattached).** Image
+creatives were created straight from hosted PNGs (the account is not yet
+enabled for the Ads API media-upload tool, so the reels — which need a
+`video_id` — must be uploaded by hand in Ads Manager). Hosted copies of every
+flight-1 asset sit in the private Neon storage bucket `meta-ads-2026-09`
+(project `albert-prep`, branch `dev/claude-launch`); the signed links used
+for the creatives expire **2026-09-29** — re-sign or re-upload after that.
+
+| Creative id | Ad | Ad set |
+|---|---|---|
+| `1087696244228204` | statement-no-tabs | statement · UK |
+| `1406252808356950` | statement-mind-blank | statement · UK |
+| `1420410213365559` | statement-only-model | statement · UK |
+| `1604864081077688` | statement-abandoned-plans | statement · UK |
+| `1781372549729184` | statement-vs-chatgpt | statement · UK |
+| `1570887808052062` | press-split-fortune (reason) | press-split · UK |
+| `1445975470727971` | press-split-euronews | press-split · UK |
+| `1463742872262874` | press-split-inquirer | press-split · UK |
+| `1709530146776452` | press-split-fortune-screens | press-split · UK |
+| `1402853647979891` | press-split-wapo-teens | press-split · UK |
+| `1079841078013226` | press-split-wapo-blue-books | press-split · UK |
+| `1809307859985599` | press-split-monde | press-split · FR |
+| `1613742066768683` | press-split-figaro | press-split · FR |
+| `1788857662130848` | carousel-wrong-ai (4 cards) | carousel · parents |
+| — | reels 09 A/B · 10 A/B · 12 A/B | upload `export/reel-*.mp4` + `cover-*-9-16.png` by hand |
+
+**Campaign structure (2026-09-22, revised the same evening). Campaign and both ad sets ACTIVE since 2026-09-22 evening; ads PAUSED until switched on.**
+
+Campaign `52626090874065` — *Albert Prep — 2026-09 Meta launch ·
+EXP-2026-09-20-meta-directions* · `OUTCOME_LEADS` · auction · ABO · no
+special ad category.
+
+First build was six ad sets at €20/day (one per mechanic × market, as the
+experiment doc prescribed). **Archived within the hour**: €140/week per set
+cannot reach the ~50 optimisation events a week Meta needs to leave the
+learning phase unless cost per Lead is under €2.80, and the three same-market
+sets would have bid against each other. Archived ids: `52626090958665`,
+`52626090970665`, `52626091001665`, `52626091053665`, `52626091082265`,
+`52626091125065` (their ads archived with them).
+
+Replacement: **two ad sets, split by market only**, all mechanics as ads
+inside. Each: optimisation `OFFSITE_CONVERSIONS` on pixel `936385079418303`
+event `LEAD`, billing impressions, autobid, destination website, attribution
+7-day click / 1-day view, DSA beneficiary + payor *Albert School of Business
+& Data*, placements Facebook (feed, story, reels, video feeds, marketplace,
+search, in-stream) + Instagram (feed, story, reels, explore, profile feed,
+search); Audience Network, Messenger and right column excluded; Advantage+
+audience **off** so the 16–18 cap is hard.
+
+| Ad set id | Ad set | Daily budget | Ads |
+|---|---|---|---|
+| `52626097319265` | UK · 16–18 · all mechanics | €60 | 5 statements, 6 press splits, the carousel (now shown to students, not parents — pause it if unwanted), 4 reels (Fortune A/B, Washington Post A/B) |
+| `52626097343065` | FR · 16–18 · all mechanics | €40 | monde, figaro, 2 reels (Le Monde A/B) |
+
+Ads (PAUSED) — UK: `52626097432665` no-tabs · `52626097451065` mind-blank ·
+`52626097460465` only-model · `52626097485865` abandoned-plans ·
+`52626097489665` vs-chatgpt · `52626097504065` fortune · `52626097594865`
+euronews · `52626097612265` inquirer · `52626097712665` fortune-screens ·
+`52626097857465` wapo-teens · `52626098094065` wapo-blue-books ·
+`52626098139065` carousel · `52626105100265` reel-fortune-A ·
+`52626105108065` reel-fortune-B · `52626105182465` reel-wapo-A ·
+`52626105186865` reel-wapo-B. FR: `52626098167465` monde · `52626098256865`
+figaro · `52626105117465` reel-le-monde-A · `52626105127865` reel-le-monde-B.
+
+Reels were uploaded by the owner into the ad account's media library
+(Médiathèque → *Contenu multimédia du compte publicitaire*, account Albert
+Prep); the API then read the video ids (`1066203996125686` fortune-A,
+`1410273877897314` fortune-B, `1787057842626233` wapo-A, `2375564253247588`
+wapo-B, `1112570561330882` monde-A, `1848474336323967` monde-B) and the
+video creatives were built with the 9:16 cover PNGs as thumbnails:
+`1401994255453366` / `1071514935854350` (Fortune A/B), `4201418893412183` /
+`1563747911619719` (WaPo A/B), `948214701691566` / `1569079421717175` (Le
+Monde A/B). Business-level media-library folders are **not** visible to the
+API; upload in the ad-account view.
+
+**Brand-rule flag on the B variants.** Le Monde B says on canvas « Il
+t’entraîne jusqu’à la mention » and WaPo B says "The agent that gets you good
+grades / Better grades on the day". `context/product.md` forbids grade
+promises. The ad copy around them was kept neutral (« jusqu’au jour J »,
+"Ready on the day"), but the video frames still carry the lines. Pause
+`52626105127865` and `52626105186865` before activation unless the wording
+is accepted.
+
+**What this changes for the experiment.** Mechanic vs mechanic is no longer
+an equal-budget test: Meta rotates ads inside each set and shifts spend to
+early winners. Read mechanic performance as ad-level cost per Lead with
+unequal spend, directional only. A controlled comparison is a later Meta
+A/B test on one variable with a real budget.
+
+**Activated 2026-09-22 evening, all 20 ads.** Instagram identity confirmed
+`albert.prep`. Readout protocol, data sources and their limits:
+[`readout.md`](readout.md). Open on day 1: custom conversions scoped to
+`prep.albertschool.com` (owner, Events Manager), then re-point both ad sets.
+
+**Headline fact-check (web, 2026-09-22).** Verbatim: Fortune *Students can't
+reason* (01/07/09/carousel), Inquirer *cognitive surrender* (NYT wire), Le
+Monde *crise inédite*, WaPo *deeper problem* (opinion column — caveat). Rewritten
+to the published wording on the boards: Fortune *screens*, Euronews *PISA*, WaPo
+*teens*, Le Figaro (date 25 mai; the *90 %* kicker was cut). **Excluded from
+flight 1:** WaPo *learning* (not a headline), HBR (no such headline or quote),
+Les Echos split + reel (publication date unconfirmed, probably 2025).
+
+**Flight-1 ad sets (what actually ships).**
+
+| Ad set | Market | Ads |
+|---|---|---|
+| statement · UK | GB 16–18 | 01–05, each 4:5 + 9:16 |
+| press-split · UK | GB 16–18 | 07 fortune (4:5 + 9:16), euronews, inquirer, fortune-screens · 08 wapo-teens, wapo-blue-books |
+| press-reel · UK | GB 16–18 | 09 Fortune A/B · 12 Washington Post A/B |
+| press-split · FR | FR 16–18 | 08 monde, figaro |
+| press-reel · FR | FR 16–18 | 10 Le Monde A/B |
+| statement · FR | FR 16–18 | **empty until FR adapts exist** — run as 5 ad sets and note it |
+| carousel · parents | FR+GB 25–54 | 06 |
+
+## Upload checklist (Meta Marketing API via the Ads MCP, or Ads Manager)
 
 1. Campaign: **Leads** objective, optimise for `Lead`; 6 ad sets per
    `experiment.md`, equal daily budget, same schedule, no mid-flight edits.

@@ -14,7 +14,7 @@ meta:
   objective: leads (Lead = early-access account created)
   ad_set: statement · UK
   copy_frame: PAS · blunt, second-person
-  destination: https://albert-prep.vercel.app/?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-no-tabs&exam=A-levels
+  destination: https://prep.albertschool.com/start?utm_source=meta&utm_medium=paid&utm_campaign=2026-09-meta-launch&utm_content=statement-no-tabs&exam=A-levels
   cta_button: "Sign up"
   headline: "The exam room has no tabs."
   description: "Free · early access · no card"
@@ -30,4 +30,4 @@ Albert Prep works the other way. Tell it your exam and your date. It builds a we
 
 Free while it's in early access. No card.
 
-Build my plan → albert-prep.vercel.app
+Build my plan → prep.albertschool.com

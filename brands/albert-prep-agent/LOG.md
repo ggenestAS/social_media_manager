@@ -6,6 +6,121 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-23 · DECISION — pixel contamination traced to the prep GTM container loading on the school site; container gated by hostname
+
+**Observed.**
+- Owner (Tag Assistant on `www.albertschool.com`): `GTM-K7VPGZ55`, the
+  prep landing's container, loads on school pages. That is why pixel
+  `936385079418303` shows the school's PageViews and `Lead`s: the prep
+  container inits the pixel wherever it runs.
+- Not in the school's server HTML, not in the school container
+  `GTM-KH6RQW8` (0 references), not in HubSpot's pixel injector. Owner
+  found the injector: Cloudflare *Google tag gateway for advertisers* on
+  the `albertschool.com` zone, automatic injection, configured with
+  `GTM-K7VPGZ55`, so every proxied hostname loads the prep container.
+  `prep.albertschool.com` is DNS-only on Vercel and unaffected.
+- The prep container's six tags are all Meta Pixel tags; none had a
+  hostname condition.
+
+**Decided.**
+- Close the leak on our side regardless of who injects it: trigger 40
+  *"Exception — not prep.albertschool.com"* (any event, `Page Hostname`
+  not matching `^(www\.)?prep\.albertschool\.com$`) added as blocking
+  trigger to tags 4, 28, 36–39. Saved as version 7. **Publishing is a
+  production deploy the agent is not permitted to run** — owner publishes
+  version 7; revert is republishing version 6.
+- Version 7 also ships two deletions already pending in the workspace
+  (legacy bachelor-prep tags 24 `CompleteRegistration` on
+  `signup_complete`, 25 `DiagnosticComplete`), which tags 36–39's notes
+  say they replace.
+- Dedicated dataset for the landing stays the target; gating first, so
+  switching the id does not just move the contamination.
+
+**Would change our mind.** If the school-site injection was deliberate
+remarketing for prep, it should run on the school pixel `319999483429539`
+with an audience rule, not on the landing's optimisation pixel.
+
+**Owner to do.** Publish GTM v7; disable the Cloudflare tag gateway (or
+its automatic injection) on the `albertschool.com` zone. A dedicated
+dataset is no longer required once both are done — see `readout.md` §2.
+
+---
+
+## 2026-09-22 · DECISION — launch prep: landing URL fixed, headlines fact-checked, Meta account inventoried
+
+**Observed.**
+- Owner: the production landing is **`prep.albertschool.com`** (Vercel project
+  `albert-prep`; `albert-prep.vercel.app` is the same deployment, not the public
+  name). The root page ignores `?exam=`; **`/start?exam=<label>`** pre-fills the
+  exam and opens on the date step (verified headless, EN and FR labels).
+- Meta: ad account **Albert Prep** `act_1334262842179873` (EUR, payment method,
+  business *Albert School of Business & Data*), Page **Albert Prep**
+  `1133253399880164`, pixel **Albert Prep Data** `936385079418303`. The pixel
+  fires browser-side through GTM `GTM-K7VPGZ55`: `PageView`, custom
+  `FunnelStarted` / `PlacementCompleted`, **`Lead`** (email captured or Google
+  sign-in started at funnel step 7), `CompleteRegistration` (account + first
+  brief). No Conversions API. The deck's `InitiateCheckout` / `PlanBuilt` were
+  never built. Organic `Lead` runs ~30–60/day. Two paused Traffic campaigns from
+  the mental-math brand (June 2026, ≈ €600) sit in the same account. The
+  Instagram account linked to the ad account could not be read from here.
+- Press headlines (web fact-check of the 11 distinct clippings): 4 verbatim
+  (Fortune *reason*, Inquirer — a NYT wire story, Le Monde, WaPo *deeper
+  problem* — an opinion column later flagged as AI-written), 4 paraphrased,
+  2 not headlines at all (WaPo *learning*, HBR), Les Echos date unconfirmed
+  (probably 2025). Details per bundle in each `post.md`.
+
+**Decided.**
+- Every paid destination becomes
+  `https://prep.albertschool.com/start?utm_…&exam=…` (carousel → root, no
+  exam); organic link-in-bio → root. Applied across the brand folder, including
+  the on-canvas URL on carousel card 4.
+- Boards rewritten to the published wording (Fortune *screens*, Euronews, WaPo
+  *teens*, Le Figaro — date 25 mai; the unattributable *90 %* kicker cut).
+  **Excluded from flight 1:** WaPo *learning*, HBR, both Les Echos assets.
+  The FR press cells are therefore thin (two splits, one reel); read them as
+  directional.
+- Optimise on pixel `Lead` as GTM defines it; read `CompleteRegistration` as
+  the quality event in place of `PlanBuilt`. CAPI before scale, not before
+  flight 1.
+- Tooling: the export CLIs accept `CHROMIUM_PATH`; in the cloud sandbox reels
+  render with `ffmpeg-static` + `ffprobe-static` (libx264, aac, loudnorm).
+
+**Would change our mind.** If ad-driven `Lead` is dominated by Google sign-in
+starts that never reach `CompleteRegistration`, switch the optimisation event.
+
+**Same day, later.** Owner set €20/day per ad set; campaign `52626090874065`
+with six ad sets built PAUSED — then **restructured** on the owner's
+question about learning-phase volume: six €20 sets cannot each reach ~50
+Leads/week, so they were archived and replaced by two market sets (UK €60,
+FR €40) holding every mechanic as ads. The mechanic test is now directional
+(ad-level cost per Lead, unequal spend). Ids in `campaign.md` §11. The six reels
+were uploaded by the owner into the ad account's media library and attached
+as video ads through the API (20 ads in total, all paused).
+
+**2026-09-22, evening — ACTIVATED.** Owner confirmed the Instagram identity
+is `albert.prep` and asked to activate the campaign and both ad sets; done
+via the API. The 20 ads were left PAUSED at that point — spend starts only
+when ads are switched on.
+
+**Later the same evening — all 20 ads switched on; analytics audited.**
+Findings, recorded in `readout.md`: (1) pixel `936385079418303` is shared
+with `www.albertschool.com` and a dozen subdomains — 443 of 444 `Lead`s in
+the last 28 days are the school site's, so only ad-attributed metrics count
+and the `Lead` model is pre-trained on the wrong population; fix is
+URL-scoped custom conversions, owner to create; (2) `CompleteRegistration`
+can never fire — GTM waits for `account_created`, which the landing never
+pushes; quality is read first-party from `prep.brief.status = claimed`
+(baseline 5 %); (3) the landing stores no `utm_*` / `fbclid`, so first-party
+rows cannot be tied to a creative — landing change requested. Meta
+attribution per ad is the decision metric; the rest is campaign-level.
+
+**Still owner-gated.** Cost-per-`Lead` ceiling; custom conversions; FR
+statement adapts; Les Echos publication date; landing tracking changes. (Instagram: every creative got
+an `effective_instagram_media_id`, so an IG identity is attached — confirm
+it is `albert.prep` in Ads Manager, no linking step needed.)
+
+---
+
 ## 2026-09-21 · DECISION — reels get sound design (samples synced to the animation), no music
 
 **Observed.** Reels and TikTok autoplay with sound on; a silent typographic ad

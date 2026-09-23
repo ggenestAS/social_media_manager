@@ -10,7 +10,7 @@ release_url: https://www.instagram.com/p/Ddj2IouGHC2/
 postiz_id: cmublel7e09yglf0y3hm5cdtm
 language: en
 boards: ["Statement · Fifteen minutes · 4:5", "Statement · Fifteen minutes · 9:16"]
-link_in_bio: https://albert-prep.vercel.app/?utm_source=instagram&utm_medium=organic&utm_campaign=2026-09-launch&utm_content=statement-005
+link_in_bio: https://prep.albertschool.com/?utm_source=instagram&utm_medium=organic&utm_campaign=2026-09-launch&utm_content=statement-005
 grid_order: 005
 notes: Seed set for @albert.prep. 3 EN / 3 FR, one hook per language. Publish 002→007 so 007 (light, Walk in ready) lands top-left. 4:5 feed only — do not post the 9:16 as the grid asset. Live on Instagram @albert.prep. Postiz id cmublel7e09yglf0y3hm5cdtm.
 ---
