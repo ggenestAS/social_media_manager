@@ -14,8 +14,11 @@ restate what an `experiment.md` or `campaign.md` already says.
   `936385079418303` shows the school's PageViews and `Lead`s: the prep
   container inits the pixel wherever it runs.
 - Not in the school's server HTML, not in the school container
-  `GTM-KH6RQW8` (0 references), not in HubSpot's pixel injector. Injected
-  client-side by something not yet identified.
+  `GTM-KH6RQW8` (0 references), not in HubSpot's pixel injector. Owner
+  found the injector: Cloudflare *Google tag gateway for advertisers* on
+  the `albertschool.com` zone, automatic injection, configured with
+  `GTM-K7VPGZ55`, so every proxied hostname loads the prep container.
+  `prep.albertschool.com` is DNS-only on Vercel and unaffected.
 - The prep container's six tags are all Meta Pixel tags; none had a
   hostname condition.
 
@@ -37,9 +40,9 @@ restate what an `experiment.md` or `campaign.md` already says.
 remarketing for prep, it should run on the school pixel `319999483429539`
 with an audience rule, not on the landing's optimisation pixel.
 
-**Owner to do.** Publish GTM v7; find and remove the injector on the
-school site (Network → Initiator of `gtm.js?id=GTM-K7VPGZ55`); create the
-*Albert Prep landing* dataset and send its id.
+**Owner to do.** Publish GTM v7; disable the Cloudflare tag gateway (or
+its automatic injection) on the `albertschool.com` zone. A dedicated
+dataset is no longer required once both are done — see `readout.md` §2.
 
 ---
 

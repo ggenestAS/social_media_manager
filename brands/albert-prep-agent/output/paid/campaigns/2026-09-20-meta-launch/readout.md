@@ -44,11 +44,16 @@ came from `prep.albertschool.com`. Consequences:
   a slow, noisy first week regardless of creative.
 - An ad-clicker who later fires a `Lead` on `www.albertschool.com` counts as
   our conversion. Small but non-zero contamination.
-- **Cause (2026-09-23, owner's Tag Assistant):** the prep container
-  `GTM-K7VPGZ55` itself loads on `www.albertschool.com`. It is not in the
-  school's server HTML nor in the school container `GTM-KH6RQW8`, so
-  something client-side injects it; initiator still unknown. Every school
-  page therefore ran `fbq('init','936385079418303')` and its `Lead` tags.
+- **Cause (2026-09-23):** the Cloudflare zone `albertschool.com` has
+  *Google tag gateway for advertisers* enabled with automatic injection,
+  configured with `GTM-K7VPGZ55`. Cloudflare rewrites every HTML response
+  on every proxied hostname (`www`, `hr`, `finance`, `deepdive`, …) to add
+  the prep container, served first-party from a path like
+  `hr.albertschool.com/neyf/`. Not visible to `curl`: injection happens
+  only for browser-like requests. `prep.albertschool.com` is DNS-only on
+  Vercel, so the gateway never touches it; its snippet is hard-coded in
+  the app. Every proxied school page therefore ran
+  `fbq('init','936385079418303')` and its `Lead` tags.
 - **Fix, our side (done, awaiting publish):** GTM version 7 *"Gate Meta
   Pixel to prep.albertschool.com"* adds trigger 40 — any event whose
   `Page Hostname` does not match `^(www\.)?prep\.albertschool\.com$` — as a
@@ -57,10 +62,11 @@ came from `prep.albertschool.com`. Consequences:
   Publishing is a production deploy the agent is not allowed to perform:
   owner publishes version 7 in the GTM UI (Versions → 7 → Publish). Revert
   = republish version 6.
-- **Fix, at source (owner):** find what injects `GTM-K7VPGZ55` on the school
-  site (DevTools → Network → `gtm.js?id=GTM-K7VPGZ55` → Initiator) and
-  remove it. If it was intentional remarketing, use the school pixel
-  `319999483429539` for that instead.
+- **Fix, at source (owner):** Cloudflare dashboard → zone
+  `albertschool.com` → Tag Management → Google tag gateway: disable it, or
+  at least turn off automatic injection. Do not try to scope it to prep;
+  prep is not proxied. Verify afterwards with a headless-browser pass over
+  the school hostnames and 24 h of dataset stats by hostname.
 - **Then a dedicated dataset:** create *Albert Prep landing* (new pixel, do
   not reuse the shared one), swap the id in GTM tag 4 and its `<noscript>`,
   publish, re-point both ad sets' `promoted_object` to the new pixel's
