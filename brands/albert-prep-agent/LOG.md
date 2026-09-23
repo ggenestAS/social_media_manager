@@ -6,6 +6,43 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-23 · DECISION — pixel contamination traced to the prep GTM container loading on the school site; container gated by hostname
+
+**Observed.**
+- Owner (Tag Assistant on `www.albertschool.com`): `GTM-K7VPGZ55`, the
+  prep landing's container, loads on school pages. That is why pixel
+  `936385079418303` shows the school's PageViews and `Lead`s: the prep
+  container inits the pixel wherever it runs.
+- Not in the school's server HTML, not in the school container
+  `GTM-KH6RQW8` (0 references), not in HubSpot's pixel injector. Injected
+  client-side by something not yet identified.
+- The prep container's six tags are all Meta Pixel tags; none had a
+  hostname condition.
+
+**Decided.**
+- Close the leak on our side regardless of who injects it: trigger 40
+  *"Exception — not prep.albertschool.com"* (any event, `Page Hostname`
+  not matching `^(www\.)?prep\.albertschool\.com$`) added as blocking
+  trigger to tags 4, 28, 36–39. Saved as version 7. **Publishing is a
+  production deploy the agent is not permitted to run** — owner publishes
+  version 7; revert is republishing version 6.
+- Version 7 also ships two deletions already pending in the workspace
+  (legacy bachelor-prep tags 24 `CompleteRegistration` on
+  `signup_complete`, 25 `DiagnosticComplete`), which tags 36–39's notes
+  say they replace.
+- Dedicated dataset for the landing stays the target; gating first, so
+  switching the id does not just move the contamination.
+
+**Would change our mind.** If the school-site injection was deliberate
+remarketing for prep, it should run on the school pixel `319999483429539`
+with an audience rule, not on the landing's optimisation pixel.
+
+**Owner to do.** Publish GTM v7; find and remove the injector on the
+school site (Network → Initiator of `gtm.js?id=GTM-K7VPGZ55`); create the
+*Albert Prep landing* dataset and send its id.
+
+---
+
 ## 2026-09-22 · DECISION — launch prep: landing URL fixed, headlines fact-checked, Meta account inventoried
 
 **Observed.**

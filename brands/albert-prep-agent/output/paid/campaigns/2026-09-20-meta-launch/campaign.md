@@ -148,7 +148,10 @@ All browser-side through GTM `GTM-K7VPGZ55` on pixel `936385079418303`; no
 Conversions API yet. **The pixel is shared with `www.albertschool.com` and
 other school subdomains**: the ~30–60 `Lead`s/day seen before launch are the
 school site's, not the prep landing's (one `Lead` from `prep.albertschool.com`
-in 28 days). Read only ad-attributed numbers; see `readout.md` §2.
+in 28 days). Cause found 2026-09-23: the prep GTM container loads on the
+school site. GTM version 7 gates every pixel tag to the landing hostname
+(awaiting owner publish); dedicated dataset next. Read only ad-attributed
+numbers; see `readout.md` §2.
 
 ## 9. Timeline (deck §09)
 

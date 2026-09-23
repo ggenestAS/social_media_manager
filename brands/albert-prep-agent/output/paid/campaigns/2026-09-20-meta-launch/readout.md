@@ -44,11 +44,29 @@ came from `prep.albertschool.com`. Consequences:
   a slow, noisy first week regardless of creative.
 - An ad-clicker who later fires a `Lead` on `www.albertschool.com` counts as
   our conversion. Small but non-zero contamination.
-- **Fix (owner, Events Manager → Custom conversions):** create
-  `Prep Lead` = event `Lead`, URL contains `prep.albertschool.com`, and
-  `Prep FunnelStarted` = custom event `FunnelStarted`, same URL rule. Then
-  the ad sets are re-pointed at `Prep Lead` (resets learning — do it on day
-  1 or not at all).
+- **Cause (2026-09-23, owner's Tag Assistant):** the prep container
+  `GTM-K7VPGZ55` itself loads on `www.albertschool.com`. It is not in the
+  school's server HTML nor in the school container `GTM-KH6RQW8`, so
+  something client-side injects it; initiator still unknown. Every school
+  page therefore ran `fbq('init','936385079418303')` and its `Lead` tags.
+- **Fix, our side (done, awaiting publish):** GTM version 7 *"Gate Meta
+  Pixel to prep.albertschool.com"* adds trigger 40 — any event whose
+  `Page Hostname` does not match `^(www\.)?prep\.albertschool\.com$` — as a
+  blocking trigger on all six pixel tags. Off-domain the container loads
+  but sends nothing to Meta. Vercel previews are excluded on purpose.
+  Publishing is a production deploy the agent is not allowed to perform:
+  owner publishes version 7 in the GTM UI (Versions → 7 → Publish). Revert
+  = republish version 6.
+- **Fix, at source (owner):** find what injects `GTM-K7VPGZ55` on the school
+  site (DevTools → Network → `gtm.js?id=GTM-K7VPGZ55` → Initiator) and
+  remove it. If it was intentional remarketing, use the school pixel
+  `319999483429539` for that instead.
+- **Then a dedicated dataset:** create *Albert Prep landing* (new pixel, do
+  not reuse the shared one), swap the id in GTM tag 4 and its `<noscript>`,
+  publish, re-point both ad sets' `promoted_object` to the new pixel's
+  `Lead`. Resets learning — do it in one go, early, or not at all.
+  Interim without it: custom conversion `Prep Lead` = `Lead` with URL
+  containing `prep.albertschool.com`.
 
 **GTM `GTM-K7VPGZ55` on the landing.** Verified wiring:
 `funnel_step_completed{label:date}` → `FunnelStarted`;
