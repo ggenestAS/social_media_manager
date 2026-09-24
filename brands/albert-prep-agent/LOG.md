@@ -6,6 +6,33 @@ restate what an `experiment.md` or `campaign.md` already says.
 
 ---
 
+## 2026-09-24 · TEST — one AI-generated UGC creator reel produced (Higgsfield), off-brand on purpose, not yet in flight
+
+**Observed.**
+- Owner wanted to use a Higgsfield trial before it lapsed. Of everything the
+  connector offers, only the UGC talking-head recipe does something neither
+  the HTML renderer nor the design team can: a native-looking Reels creator.
+  Product demo stays HTML (deterministic type, brand tokens).
+- The recipe's truth gate matches ours: generated creator = host, never a
+  customer; claims from an allowlist; no invented results. Script built
+  from the copy bank and `context/product.md` only.
+- The trial's "unlimited" allowance covered none of the four locked models.
+  The 15 s / 1080p clip costs 180 credits; balance allowed 14 s / 720p (98).
+  Total spend ≈ 107 credits. Output: `creatives/13-ugc-creator-uk/`.
+
+**Decided.**
+- Keep as a candidate seventh cell, own ad set, AI-disclosed, never added to
+  the live UK set. Re-render 15 s / 1080p before any spend; 720p is a tool
+  test. Owner listens to the audio first — words and accent are unverified.
+- Read it only against the UK set's spend-weighted mechanics after ≥ 7 days;
+  directional, not decisive.
+
+**Would change our mind.** If the black-frame cells clear the learning
+phase with an acceptable cost per Lead, this cell is unnecessary risk to the
+brand contract and should stay in the drawer.
+
+---
+
 ## 2026-09-23 · DECISION — pixel contamination traced to the prep GTM container loading on the school site; container gated by hostname
 
 **Observed.**

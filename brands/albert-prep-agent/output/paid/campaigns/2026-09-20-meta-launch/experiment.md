@@ -45,6 +45,7 @@ Prep) via the Meta Marketing API; see `campaign.md` §11 for live ids.
 | 5 | press-reel · FR | FR, 16–18 | 10 Le Monde (A/B), 11 Les Echos (A/B) | 9:16 |
 | 6 | press-reel · UK | UK, 16–18 | 09 Fortune (A/B), 12 Washington Post (A/B) | 9:16 |
 | + | carousel · parents (outside the core test) | FR+UK, 25–54 | 06 | carousel |
+| + | ugc-creator · UK (outside the core test, **not in flight**) | UK, 16–18 | 13 (AI-generated creator, disclosed) | 9:16 reel |
 
 Within an ad set, Meta may rotate the creatives (dynamic); the unit of
 decision is the ad set (mechanic × market), not the single ad. Reel variant
